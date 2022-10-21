@@ -1,9 +1,10 @@
 #include "makanan.h"
 #include <string.h>
+// #include <strings.h>
 #include <stdio.h>
 #include "../boolean.h"
 
-void buatMakanan(Makanan *makanan, char *namaMakanan, int waktuBasi, int waktuSampai, int idBaru)
+void buatMakanan(Makanan *makanan, char *namaMakanan, int waktuBasi, int waktuSampai, char *idUnik, char *idTipe)
 {
     int i = 0;
     int stringLength = strlen(namaMakanan);
@@ -15,7 +16,8 @@ void buatMakanan(Makanan *makanan, char *namaMakanan, int waktuBasi, int waktuSa
 
     basiDalam(*makanan) = waktuBasi;
     sampaiDalam(*makanan) = waktuSampai;
-    idDari(*makanan) = idBaru;
+    idUnik(*makanan) = idUnik;
+    idTipe(*makanan) = idTipe;
 }
 
 void cetakMakanan(Makanan makanan)
@@ -26,31 +28,23 @@ void cetakMakanan(Makanan makanan)
         printf("%c", namaMakanan(makanan)[i]);
     }
     printf("\n");
-    printf("Makanan memiliki ID : %d\n", idDari(makanan));
+    printf("Makanan memiliki ID Tipe : %s\n", idTipe(makanan));
+    printf("Makanan memiliki ID Unik : %s\n", idUnik(makanan));
+
+    // printf("%s", id);
+    // printf("\n");
     printf("Basi dalam : %d menit\n", basiDalam(makanan));
     printf("Sampai dalam : %d menit\n", sampaiDalam(makanan));
 }
 
 boolean namaMakananSama(Makanan m1, Makanan m2)
 {
-    boolean samaSekarang = strlen(namaMakanan(m1)) == strlen(namaMakanan(m2));
-    int stringLength = strlen(namaMakanan(m1));
-    int i = 0;
-    while (samaSekarang && i < stringLength)
-    {
-        samaSekarang = namaMakanan(m1)[i] == namaMakanan(m2)[i];
-        if (samaSekarang)
-        {
-            i++;
-        }
-    }
-
-    return samaSekarang;
+    return strcmp(namaMakanan(m1), namaMakanan(m2)) == 0;
 };
 
 boolean tipeMakananSama(Makanan m1, Makanan m2)
 {
-    return idDari(m1) % 1000 == idDari(m2) % 1000;
+    return strcmp(idUnik(m1), idUnik(m2)) == 0;
 };
 
 boolean basiBersamaan(Makanan m1, Makanan m2)
