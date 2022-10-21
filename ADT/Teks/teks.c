@@ -11,7 +11,6 @@ void buatTeks(char string[], Teks *teks)
         panjangT(*teks) += 1;
         i += 1;
     }
-    printf("\n");
 };
 
 void buatTeksKosong(Teks *teks)
@@ -76,6 +75,10 @@ boolean teksLPanjang(Teks t1, Teks t2)
 
 void gabungkanTeks(Teks t1, Teks t2, Teks *t3)
 {
+    if (panjangT(t1) + panjangT(t2) > NMax)
+    {
+        return;
+    }
     buatTeksKosong(t3);
     for (int i = 0; i < panjangT(t1); i++)
     {
