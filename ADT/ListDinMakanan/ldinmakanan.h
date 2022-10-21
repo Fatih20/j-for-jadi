@@ -157,9 +157,9 @@ void insertLastLDinMakanan(LDinMakanan *l, ElType val);
 
 /* ********** MENAMBAH DAN MENGHAPUS ELEMEN DI AKHIR ********** */
 /**
- * @brief Menambahkan val sebagai elemen list pada index idx. Jika list penuh, maka list akan diexpand
+ * @brief Menambahkan val sebagai elemen list pada index idx. Jika list penuh, maka list akan diexpand. Jika idx tidak valid, akan dicetak pesan error.
  *
- * @param l list tidak kosong
+ * @param l l bisa kosong
  * @param val elemen yang akan dimasukkan pada list
  * @param idx index tempat pengisian val
  */
