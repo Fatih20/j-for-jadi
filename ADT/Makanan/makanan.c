@@ -1,50 +1,48 @@
 #include "makanan.h"
-#include <string.h>
-// #include <strings.h>
+#include "../Teks/teks.h"
+
 #include <stdio.h>
 #include "../boolean.h"
 
-void buatMakanan(Makanan *makanan, char *namaMakanan, int waktuBasi, int waktuSampai, char *idUnik, char *idTipe)
+void buatMakanan(Makanan *makanan, char namaMakanan[], int waktuBasi, int waktuSampai, char idTipe[], char idUnik[])
 {
     int i = 0;
-    int stringLength = strlen(namaMakanan);
-    for (i = 0; i < stringLength; i++)
-    {
-        namaMakanan(*makanan)[i] = namaMakanan[i];
-    }
-    namaMakanan(*makanan)[i] = '\0';
 
+    buatTeks(namaMakanan, &namaMakanan(*makanan));
     basiDalam(*makanan) = waktuBasi;
     sampaiDalam(*makanan) = waktuSampai;
-    idUnik(*makanan) = idUnik;
-    idTipe(*makanan) = idTipe;
+    buatTeks(idUnik, &idUnik(*makanan));
+    buatTeks(idTipe, &idTipe(*makanan));
 }
 
 void cetakMakanan(Makanan makanan)
 {
     printf("Nama makanan : ");
-    for (int i = 0; i < strlen(namaMakanan(makanan)); i++)
-    {
-        printf("%c", namaMakanan(makanan)[i]);
-    }
+    cetakTeks(namaMakanan(makanan));
     printf("\n");
-    printf("Makanan memiliki ID Tipe : %s\n", idTipe(makanan));
-    printf("Makanan memiliki ID Unik : %s\n", idUnik(makanan));
+    printf("Makanan memiliki ID  : ");
+    cetakTeks(idMakanan(makanan));
+    printf("\n");
 
-    // printf("%s", id);
-    // printf("\n");
     printf("Basi dalam : %d menit\n", basiDalam(makanan));
     printf("Sampai dalam : %d menit\n", sampaiDalam(makanan));
 }
 
+Teks idMakanan(Makanan makanan)
+{
+    Teks retTeks;
+    gabungkanTeks(idTipe(makanan), idUnik(makanan), &retTeks);
+    return retTeks;
+};
+
 boolean namaMakananSama(Makanan m1, Makanan m2)
 {
-    return strcmp(namaMakanan(m1), namaMakanan(m2)) == 0;
+    return teksSama(namaMakanan(m1), namaMakanan(m2));
 };
 
 boolean tipeMakananSama(Makanan m1, Makanan m2)
 {
-    return strcmp(idUnik(m1), idUnik(m2)) == 0;
+    return teksSama(idTipe(m1), idTipe(m2));
 };
 
 boolean basiBersamaan(Makanan m1, Makanan m2)

@@ -1,9 +1,10 @@
 #include "../boolean.h"
+#include "../Teks/teks.h"
 
 #ifndef makanan_H
 #define makanan_H
 
-typedef char *makananID;
+typedef Teks makananID;
 
 /**
  * @brief Makanan yang menjadi fokus dari tubes ini
@@ -16,7 +17,7 @@ typedef char *makananID;
  */
 typedef struct
 {
-    char nama[100];
+    Teks nama;
     makananID idUnik;
     makananID idTipe;
     int waktuBasi;
@@ -39,7 +40,14 @@ typedef struct
  *
  * @return Makanan pada address yang diberikan terdefinisi dengan parameter yang diberikan
  */
-void buatMakanan(Makanan *makanan, char *namaMakanan, int waktuBasi, int waktuSampai, char *idUnik, char *idTipe);
+void buatMakanan(Makanan *makanan, char namaMakanan[], int waktuBasi, int waktuSampai, char idTipe[], char idUnik[]);
+
+/**
+ * @brief Fungsi untuk mendapatkan id gabungan makanan
+ * @param makanan makanan yang ingin didapatkan id-nya
+ * @return id gabungan dalam ADT Teks
+ */
+Teks idMakanan(Makanan makanan);
 
 /**
  * @brief Fungsi untuk menginisialisasi makanan
