@@ -6,9 +6,22 @@
 
 #include "../boolean.h"
 
+/**
+ * @brief Penanda bahwa input untuk MKI selesai
+ *
+ */
 #define MARK '\n'
-/* State Mesin */
+
+/**
+ * @brief Karakter yang sekarang sedang dibaca MKI
+ *
+ */
 extern char currentChar;
+
+/**
+ * @brief Apakah MKI telah berhenti karena menemukan MARK
+ *
+ */
 extern boolean EOP;
 
 /**
