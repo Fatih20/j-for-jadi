@@ -4,46 +4,46 @@
 
 void buatLDinKar(LDinKar *l, int capacity)
 {
-    KAR(*l) = (LDinKarEl *)malloc(capacity * sizeof(LDinKarEl));
-    NEFF(*l) = 0;
-    CAPACITY(*l) = capacity;
+    kar(*l) = (LDinKarEl *)malloc(capacity * sizeof(LDinKarEl));
+    nEffLDC(*l) = 0;
+    capacityLDC(*l) = capacity;
 }
 
 void dealokasiLDinKar(LDinKar *l)
 {
-    free(KAR(*l));
-    CAPACITY(*l) = 0;
-    NEFF(*l) = 0;
+    free(kar(*l));
+    capacityLDC(*l) = 0;
+    nEffLDC(*l) = 0;
 }
 
 int panjangLDinKar(LDinKar l)
 {
-    return NEFF(l);
+    return nEffLDC(l);
 }
 
 IdxType lastIdxLDinKar(LDinKar l)
 {
-    return NEFF(l) - 1;
+    return nEffLDC(l) - 1;
 }
 
 boolean isIdxValidLDinKar(LDinKar l, IdxType i)
 {
-    return (i < CAPACITY(l) && i >= IDX_MIN);
+    return (i < capacityLDC(l) && i >= IDX_MIN);
 }
 
 boolean isIdxEffLDinKar(LDinKar l, IdxType i)
 {
-    return (i <= NEFF(l) && i >= IDX_MIN);
+    return (i <= nEffLDC(l) && i >= IDX_MIN);
 }
 
 boolean isEmptyLDinKar(LDinKar l)
 {
-    return (NEFF(l) == 0);
+    return (nEffLDC(l) == 0);
 }
 
 boolean isFullLDinKar(LDinKar l)
 {
-    return (NEFF(l) == CAPACITY(l));
+    return (nEffLDC(l) == capacityLDC(l));
 }
 
 void readLDinKar(LDinKar *l)
@@ -54,16 +54,16 @@ void readLDinKar(LDinKar *l)
     {
         scanf("%d", &n);
     }
-    if (n > CAPACITY(*l))
+    if (n > capacityLDC(*l))
     {
-        expandLDinKar(l, n - CAPACITY(*l));
+        expandLDinKar(l, n - capacityLDC(*l));
     }
     char temp;
     scanf("%c", &temp); /*eats new line*/
-    NEFF(*l) = n;
+    nEffLDC(*l) = n;
     for (i = IDX_MIN; i < n; i++)
     {
-        scanf("%c", &(ELMT(*l, i)));
+        scanf("%c", &(elmtLDC(*l, i)));
     }
 }
 
@@ -73,7 +73,7 @@ void printLDinKar(LDinKar l)
     {
         for (int i = IDX_MIN; i < panjangLDinKar(l); i++)
         {
-            printf("%c", ELMT(l, i));
+            printf("%c", elmtLDC(l, i));
         }
         printf("\n");
     }
@@ -81,13 +81,13 @@ void printLDinKar(LDinKar l)
 
 void copyLDinKar(LDinKar lIn, LDinKar *lOut)
 {
-    buatLDinKar(lOut, CAPACITY(lIn));
+    buatLDinKar(lOut, capacityLDC(lIn));
     for (int i = IDX_MIN; i < panjangLDinKar(lIn); i++)
     {
-        ELMT(*lOut, i) = ELMT(lIn, i);
+        elmtLDC(*lOut, i) = elmtLDC(lIn, i);
     }
-    NEFF(*lOut) = NEFF(lIn);
-    CAPACITY(*lOut) = CAPACITY(lIn);
+    nEffLDC(*lOut) = nEffLDC(lIn);
+    capacityLDC(*lOut) = capacityLDC(lIn);
 }
 
 void insertFirstLDinKar(LDinKar *l, LDinKarEl val)
@@ -97,7 +97,7 @@ void insertFirstLDinKar(LDinKar *l, LDinKarEl val)
 
 void insertLastLDinKar(LDinKar *l, LDinKarEl val)
 {
-    insertAtLDinKar(l, val, NEFF(*l));
+    insertAtLDinKar(l, val, nEffLDC(*l));
 }
 
 void insertAtLDinKar(LDinKar *l, LDinKarEl val, IdxType idx)
@@ -106,14 +106,14 @@ void insertAtLDinKar(LDinKar *l, LDinKarEl val, IdxType idx)
     {
         expandLDinKar(l, 1);
     }
-    NEFF(*l) += 1;
+    nEffLDC(*l) += 1;
     if (isIdxEffLDinKar(*l, idx))
     {
         for (int i = lastIdxLDinKar(*l); i > idx; i--)
         {
-            ELMT(*l, i) = ELMT(*l, i - 1);
+            elmtLDC(*l, i) = elmtLDC(*l, i - 1);
         }
-        ELMT(*l, idx) = val;
+        elmtLDC(*l, idx) = val;
     }
     else
     {
@@ -123,6 +123,6 @@ void insertAtLDinKar(LDinKar *l, LDinKarEl val, IdxType idx)
 
 void expandLDinKar(LDinKar *l, int num)
 {
-    CAPACITY(*l) += num;
-    KAR(*l) = realloc(KAR(*l), (CAPACITY(*l)) * sizeof(LDinKarEl));
+    capacityLDC(*l) += num;
+    kar(*l) = realloc(kar(*l), (capacityLDC(*l)) * sizeof(LDinKarEl));
 }

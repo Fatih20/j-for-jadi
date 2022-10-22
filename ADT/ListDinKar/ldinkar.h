@@ -27,10 +27,10 @@ typedef struct
 } LDinKar;
 
 /* ********** SELEKTOR ********** */
-#define NEFF(l) (l).nEff
-#define KAR(l) (l).kar
-#define ELMT(l, i) (l).kar[i]
-#define CAPACITY(l) (l).capacity
+#define nEffLDC(l) (l).nEff
+#define kar(l) (l).kar
+#define elmtLDC(l, i) (l).kar[i]
+#define capacityLDC(l) (l).capacity
 
 /* ********** KONSTRUKTOR ********** */
 
