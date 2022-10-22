@@ -1,7 +1,7 @@
 /* File: charmachine.c */
 /* Implementasi Mesin Karakter */
 
-#include "mKarFile.h"
+#include "mCFile.h"
 #include <stdio.h>
 
 char currentChar;
@@ -10,16 +10,16 @@ boolean EOP;
 static FILE *pita;
 static int retval;
 
-void startMKFile(char namaFile[])
+void startMCFile(char namaFile[])
 {
     pita = fopen(namaFile, "r");
-    advMKFile();
+    advMCFile();
 }
 
-void advMKFile()
+void advMCFile()
 {
     retval = fscanf(pita, "%c", &currentChar);
-    EOP = (currentChar == MARK);
+    EOP = (currentChar == MARKF);
     if (EOP)
     {
         fclose(pita);

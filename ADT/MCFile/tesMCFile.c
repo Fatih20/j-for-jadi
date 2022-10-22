@@ -1,15 +1,15 @@
 #include "../boolean.h"
-#include "mKarFile.h"
+#include "mCFile.h"
 #include <stdio.h>
 
 int main(int argc, char const *argv[])
 {
     char test[] = "test.txt";
-    startMKFile(test);
-    while (currentChar != MARK)
+    startMCFile(test);
+    while (currentChar != MARKF)
     {
         printf("%c", currentChar);
-        advMKFile();
+        advMCFile();
     }
     return 0;
 }

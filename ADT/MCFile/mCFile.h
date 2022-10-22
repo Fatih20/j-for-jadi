@@ -1,8 +1,8 @@
 /* File: charmachine.h */
 /* Definisi Mesin Karakter */
 
-#ifndef mKarFile
-#define mKarFile
+#ifndef mCFile
+#define mCFile
 
 #include "../boolean.h"
 
@@ -10,7 +10,7 @@
  * @brief Penanda bahwa input untuk MKF selesai
  *
  */
-#define MARK '.'
+#define MARKF '.'
 
 /**
  * @brief Karakter yang sekarang sedang dibaca MKF
@@ -29,12 +29,12 @@ extern boolean EOP;
  * @param namaFile file yang akan dibaca. Gunakan directory file relatif pada directory program, bukan nama file saja.
  *
  */
-void startMKFile(char namaFile[]);
+void startMCFile(char namaFile[]);
 
 /**
  * @brief Memajukan pita satu karakter. Menyalakan EOP jika karakter selanjutnya adalah MARK.
  *
  */
-void advMKFile();
+void advMCFile();
 
 #endif

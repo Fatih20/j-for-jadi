@@ -1,14 +1,14 @@
 #include "../boolean.h"
-#include "mKarInput.h"
+#include "mCInput.h"
 #include <stdio.h>
 
 int main(int argc, char const *argv[])
 {
-    startMKInput();
-    while (currentChar != MARK)
+    startMCInput();
+    while (currentChar != MARKI)
     {
         printf("%c\n", currentChar);
-        advMKInput();
+        advMCInput();
     }
     return 0;
 }

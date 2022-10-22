@@ -10,7 +10,7 @@
  * @brief Penanda bahwa input untuk MKI selesai
  *
  */
-#define MARK '\n'
+#define MARKI '\n'
 
 /**
  * @brief Karakter yang sekarang sedang dibaca MKI
@@ -28,12 +28,12 @@ extern boolean EOP;
  * @brief Menyiapkan mesin untuk pengoperasian dan pita untuk dibaca. Pembaca karakter ada pada karakter pertama setelah fungsi dijalankan.
  *
  */
-void startMKInput();
+void startMCInput();
 
 /**
  * @brief Memajukan pita satu karakter. Menyalakan EOP jika karakter selanjutnya adalah MARK.
  *
  */
-void advMKInput();
+void advMCInput();
 
 #endif
