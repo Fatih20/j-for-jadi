@@ -53,11 +53,11 @@ void advMKFile()
     else
     {
 
-        saveKata();
+        saveKataF();
     }
 }
 
-void saveKata()
+void saveKataF()
 {
     buatTeks("", &currentWord);
     boolean actualLetter = true;
