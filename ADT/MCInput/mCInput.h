@@ -1,8 +1,8 @@
 /* File: charmachine.h */
 /* Definisi Mesin Karakter */
 
-#ifndef mKarInput
-#define mKarInput
+#ifndef mCInput
+#define mCInput
 
 #include "../boolean.h"
 
