@@ -1,0 +1,1 @@
+gcc ldinkar.c ldinkarDriver.c
