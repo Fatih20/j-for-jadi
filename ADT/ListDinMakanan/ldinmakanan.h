@@ -27,10 +27,10 @@ typedef struct
 } LDinMakanan;
 
 /* ********** SELEKTOR ********** */
-#define NEFF(l) (l).nEff
-#define MAKANAN(l) (l).makanan
-#define ELMT(l, i) (l).makanan[i]
-#define CAPACITY(l) (l).capacity
+#define nEffLDM(l) (l).nEff
+#define makanan(l) (l).makanan
+#define elmtLDM(l, i) (l).makanan[i]
+#define capacityLDM(l) (l).capacity
 
 /* ********** KONSTRUKTOR ********** */
 
@@ -138,6 +138,14 @@ void printLDinMakanan(LDinMakanan l);
  * @param lOut sembarang
  */
 void copyLDinMakanan(LDinMakanan lIn, LDinMakanan *lOut);
+
+/**
+ * @brief Mengeluarkan elemen pertama dari l lalu menyimpannya ke dalam X
+ *
+ * @param l
+ * @param X
+ */
+void removeFirstLDinMakanan(LDinMakanan *l, LDinMakananEl *X);
 
 /**
  * @brief memasukkan val sebagai elemen pertama l, jika l penuh maka akan diexpand
