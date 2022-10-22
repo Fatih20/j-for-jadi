@@ -140,3 +140,10 @@ void cetakFoodQueue(FoodQueue FQ)
 {
     printLDinMakanan(FQ.content);
 };
+
+void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2)
+{
+    headFQ(*FQ2) = headFQ(FQ1);
+    tailFQ(*FQ2) = tailFQ(FQ1);
+    copyLDinMakanan(FQ1.content, &(FQ2->content));
+};
