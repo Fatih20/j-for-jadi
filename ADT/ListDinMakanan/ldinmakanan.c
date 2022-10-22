@@ -4,7 +4,7 @@
 
 void buatLDinMakanan(LDinMakanan *l, int capacity)
 {
-    MAKANAN(*l) = (ElType *)malloc(capacity * sizeof(ElType));
+    MAKANAN(*l) = (LDinMakananEl *)malloc(capacity * sizeof(LDinMakananEl));
     NEFF(*l) = 0;
     CAPACITY(*l) = capacity;
 }
@@ -100,17 +100,17 @@ void copyLDinMakanan(LDinMakanan lIn, LDinMakanan *lOut)
     CAPACITY(*lOut) = CAPACITY(lIn);
 }
 
-void insertFirstLDinMakanan(LDinMakanan *l, ElType val)
+void insertFirstLDinMakanan(LDinMakanan *l, LDinMakananEl val)
 {
     insertAtLDinMakanan(l, val, 0);
 }
 
-void insertLastLDinMakanan(LDinMakanan *l, ElType val)
+void insertLastLDinMakanan(LDinMakanan *l, LDinMakananEl val)
 {
     insertAtLDinMakanan(l, val, NEFF(*l));
 }
 
-void insertAtLDinMakanan(LDinMakanan *l, ElType val, IdxType idx)
+void insertAtLDinMakanan(LDinMakanan *l, LDinMakananEl val, IdxType idx)
 {
     if (isFullLDinMakanan(*l))
     {
@@ -134,5 +134,5 @@ void insertAtLDinMakanan(LDinMakanan *l, ElType val, IdxType idx)
 void expandLDinMakanan(LDinMakanan *l, int num)
 {
     CAPACITY(*l) += num;
-    MAKANAN(*l) = realloc(MAKANAN(*l), (CAPACITY(*l)) * sizeof(ElType));
+    MAKANAN(*l) = realloc(MAKANAN(*l), (CAPACITY(*l)) * sizeof(LDinMakananEl));
 }

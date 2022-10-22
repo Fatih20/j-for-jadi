@@ -12,16 +12,16 @@
 /* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
-typedef Makanan ElType; /* type elemen list */
+typedef Makanan LDinMakananEl; /* type elemen list */
 typedef int IdxType;
 /**
- * @brief ADT LDinMakanan yang merupakan list dinamis rata kiri dengan ElType Makanan
+ * @brief ADT LDinMakanan yang merupakan list dinamis rata kiri dengan LDinMakananEl Makanan
  * @param nEff >=0, banyak elemen efektif
  * @param capacity kapasitas/ukuran list
  */
 typedef struct
 {
-    ElType *makanan;
+    LDinMakananEl *makanan;
     int nEff;
     int capacity;
 } LDinMakanan;
@@ -145,7 +145,7 @@ void copyLDinMakanan(LDinMakanan lIn, LDinMakanan *lOut);
  * @param l l bisa kosong
  * @param val elemen yang akan dimasukkan ke dalam l
  */
-void insertFirstLDinMakanan(LDinMakanan *l, ElType val);
+void insertFirstLDinMakanan(LDinMakanan *l, LDinMakananEl val);
 
 /**
  * @brief memasukkan val sebagai elemen pertama l, jika l penuh maka akan diexpand
@@ -153,7 +153,7 @@ void insertFirstLDinMakanan(LDinMakanan *l, ElType val);
  * @param l l bisa kosong
  * @param val elemen yang akan dimasukkan ke dalam l
  */
-void insertLastLDinMakanan(LDinMakanan *l, ElType val);
+void insertLastLDinMakanan(LDinMakanan *l, LDinMakananEl val);
 
 /* ********** MENAMBAH DAN MENGHAPUS ELEMEN DI AKHIR ********** */
 /**
@@ -163,7 +163,7 @@ void insertLastLDinMakanan(LDinMakanan *l, ElType val);
  * @param val elemen yang akan dimasukkan pada list
  * @param idx index tempat pengisian val
  */
-void insertAtLDinMakanan(LDinMakanan *l, ElType val, IdxType idx);
+void insertAtLDinMakanan(LDinMakanan *l, LDinMakananEl val, IdxType idx);
 
 /**
  * @brief Menambahkan capacity l sebanyak num
