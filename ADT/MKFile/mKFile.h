@@ -50,6 +50,6 @@ void advMKFile();
  * @brief Menyimpan kata yang sedang diperiksa. Mesin harus sudah berada pada karakter kata pertama sebelum fungsi dijalankan.
  *
  */
-void saveKata();
+void saveKataF();
 
 #endif
