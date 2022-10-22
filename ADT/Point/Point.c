@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include "point.h"
 
 void CreatePoint(POINT *P, int X, int Y)
@@ -12,18 +13,18 @@ void BacaPOINT(POINT *P)
     /* KAMUS LOKAL*/
     int X, Y;
     /* ALGORITMA */
-    scanf("%f %f", &X, &Y);
+    scanf("%d %d", &X, &Y);
     CreatePoint(P, X, Y);
 }
 
 void TulisPOINT(POINT P)
 {
     /* KAMUS LOKAL*/
-    float X, Y;
+    int X, Y;
     /* ALGORITMA*/
     X = Absis(P);
     Y = Ordinat(P);
-    printf("(%.02f,%.02f)", X, Y);
+    printf("(%d,%d)", X, Y);
 }
 
 boolean EQ(POINT P1, POINT P2)
@@ -139,7 +140,7 @@ POINT MirrorOf(POINT P, boolean SbX)
 float Jarak0(POINT P)
 {
     /*KAMUS LOKAL*/
-    float X, Y;
+    int X, Y;
     /*ALGORITMA*/
     X = Absis(P);
     Y = Ordinat(P);
