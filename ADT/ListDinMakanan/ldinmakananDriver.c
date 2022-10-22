@@ -18,21 +18,32 @@ int main()
     /* Uji insertFirstLDinMakanan*/
     printf("*****Insert First*****\n");
     insertFirstLDinMakanan(&l, temp1);
+    insertFirstLDinMakanan(&l, temp2);
     printLDinMakanan(l);
+    printf("\n");
     /* UJI insertAtLDinMakanan */
     printf("*****Insert At*****\n");
     insertAtLDinMakanan(&l, temp1, 1);
     printLDinMakanan(l);
+    printf("\n");
     /* UJI insertLastLDinMakanan */
     printf("*****Insert Last*****\n");
     insertLastLDinMakanan(&l, temp2);
     printLDinMakanan(l);
+    printf("\n");
 
     /* UJI copyLDinMakanan*/
     printf("*****Copy*****\n");
     copyLDinMakanan(l, &ltemp);
     printf("*****Copied List*****\n");
     printLDinMakanan(ltemp);
+    printf("\n");
+
+    /* UJI removeFirstLDinMakanan*/
+    printf("*****List With First Element Removed*****\n");
+    removeFirstLDinMakanan(&l, &temp1);
+    printLDinMakanan(l);
+    printf("\n");
 
     dealokasiLDinMakanan(&l);
     dealokasiLDinMakanan(&ltemp);

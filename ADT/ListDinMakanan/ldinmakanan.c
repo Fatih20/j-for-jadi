@@ -100,6 +100,18 @@ void copyLDinMakanan(LDinMakanan lIn, LDinMakanan *lOut)
     capacityLDM(*lOut) = capacityLDM(lIn);
 }
 
+void removeFirstLDinMakanan(LDinMakanan *l, LDinMakananEl *X)
+{
+    *X = elmtLDM(*l, 0);
+    int i = 0;
+    int lastIndex = lastIdxLDinMakanan(*l);
+    for (int i = 0; i <= lastIndex - 1; i++)
+    {
+        elmtLDM(*l, i) = elmtLDM(*l, i + 1);
+    }
+    nEffLDM(*l)--;
+};
+
 void insertFirstLDinMakanan(LDinMakanan *l, LDinMakananEl val)
 {
     insertAtLDinMakanan(l, val, 0);

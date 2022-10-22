@@ -140,6 +140,14 @@ void printLDinMakanan(LDinMakanan l);
 void copyLDinMakanan(LDinMakanan lIn, LDinMakanan *lOut);
 
 /**
+ * @brief Mengeluarkan elemen pertama dari l lalu menyimpannya ke dalam X
+ *
+ * @param l
+ * @param X
+ */
+void removeFirstLDinMakanan(LDinMakanan *l, LDinMakananEl *X);
+
+/**
  * @brief memasukkan val sebagai elemen pertama l, jika l penuh maka akan diexpand
  *
  * @param l l bisa kosong
