@@ -109,4 +109,12 @@ boolean teksLPanjang(Teks t1, Teks t2);
  */
 void gabungkanTeks(Teks t1, Teks t2, Teks *t3);
 
+/**
+ * @brief mengembalikan integer yang direpresentasikan oleh teks t
+ *
+ * @param t teks yang akan diubah menjadi integer
+ * @return integer yang direpresentasikan oleh teks t
+ */
+int teksToInt(Teks t);
+
 #endif
