@@ -1,0 +1,1 @@
+gcc ldinteks.c ldinteksDriver.c ../Teks/teks.c
