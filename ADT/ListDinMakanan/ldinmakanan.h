@@ -27,10 +27,10 @@ typedef struct
 } LDinMakanan;
 
 /* ********** SELEKTOR ********** */
-#define NEFF(l) (l).nEff
-#define MAKANAN(l) (l).makanan
-#define ELMT(l, i) (l).makanan[i]
-#define CAPACITY(l) (l).capacity
+#define nEffLDM(l) (l).nEff
+#define makanan(l) (l).makanan
+#define elmtLDM(l, i) (l).makanan[i]
+#define capacityLDM(l) (l).capacity
 
 /* ********** KONSTRUKTOR ********** */
 
