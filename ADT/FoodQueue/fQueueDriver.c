@@ -49,5 +49,12 @@ int main(int argc, char const *argv[])
     cetakMakanan(tempEl2);
     printf("\n\n");
 
+    // Uji copyFQ
+    printf("Tes copy FQ1 ke FQ3\n");
+    FoodQueue fq3;
+    buatFQKosong(&fq3, 1);
+    copyFoodQueue(fq1, &fq3);
+    cetakFoodQueue(fq3);
+
     return 0;
 }
