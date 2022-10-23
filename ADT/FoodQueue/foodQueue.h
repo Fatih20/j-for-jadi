@@ -135,4 +135,13 @@ void dequeue(FoodQueue *FQ, FoodQueueEl *X);
  */
 void cetakFoodQueue(FoodQueue FQ);
 
+/**
+ * @brief Menggandakan isi FQ1 ke FQ2
+ *
+ * @param FQ1
+ * @param FQ2 tujuan penggandaan. Harus sudah terdefinisi.
+ *
+ */
+void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2);
+
 #endif
