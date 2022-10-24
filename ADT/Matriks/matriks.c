@@ -56,25 +56,31 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator)
 {
     // KAMUS LOKAL
     int i, j, e, nRows, nCols, ctr;
-    boolean firstLine, isRow;
+    Teks bil; // Penampung nRow/nCol asumsi 10<=nRow<=100 dan 10<=nCol<=100
+    boolean isRow;
     // ALGORITMA
     ctr = 0; // Untuk mengambi nRows dan nCols
     isRow = true;
     CreatePoint(lokasiSimulator, -1, -1);
-    startMKFile(namaFile);
-    while (!endMKF)
+    startMBFile(namaFile);
+    while (!endMBF)
     {
-        // printf("%s\n", currentWord.karArray);
-        // printf("Halo");
-        if (ctr < 2)
+
+        if (ctr == 0)
         {
+
             if (isRow) // Jika yang terbaca adalah konfigurasi nRows
             {
+                i = 0;
+                while (i < panjangLDinTeks(currentRow) && (currentRow.teks[i] != ' '))
+                {
+                    bil[i] =
+                }
                 isRow = false;
                 nRows = 0;
                 for (i = 0; i < currentWord.length; i++)
                 {
-                    nRows = nRows * 10 + (int)(currentWord.karArray[i] - '0');
+                    nRows = nRows * 10 + (int)(bil[i] - '0');
                 }
             }
             else // Jika yang terbaca adalah konfigurasi nCols
@@ -121,7 +127,7 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator)
             }
             i++;
         }
-        advMKFile();
+        advMBFile();
     }
     // m merupakan peta hasil konfigurasi
 }

@@ -1,7 +1,6 @@
 #include "../boolean.h"
 #include "../Point/point.h"
-#include "../MKFile/mKFile.h"
-#include "../Teks/teks.h"
+#include "../MBFile/mbFile.h"
 
 #ifndef MATRIKS_H
 #define MATRIKS_H
