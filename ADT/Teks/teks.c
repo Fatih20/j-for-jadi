@@ -35,12 +35,8 @@ void plusKar(Teks *teks, char kar)
     panjangT(*teks) += 1;
 };
 
-void delKar(Teks *teks)
-{
-    if (panjangT(*teks) > 0)
-    {
-        panjangT(*teks) -= 1;
-    }
+void delKar(Teks *teks){
+    // Need list deletion
 };
 
 boolean teksSama(Teks t1, Teks t2)
