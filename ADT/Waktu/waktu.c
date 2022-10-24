@@ -53,15 +53,13 @@ void tulisWaktu(Waktu W)
 
     if (Detik(W) > 0)
     {
-        printf("%d detik", Detik(W));
+        printf("%d detik ", Detik(W));
     }
 
     if ((Hari(W) == 0) && (Jam(W) == 0) && (Menit(W) == 0) && (Detik(W) == 0))
     {
-        printf("%d detik", Detik(W));
+        printf("%d detik ", Detik(W));
     }
-
-    printf("\n");
 }
 
 long waktuToDetik(Waktu W)
@@ -120,6 +118,66 @@ Waktu prevNDetik(Waktu W, int N)
 Waktu prevDetik(Waktu W)
 {
     return (prevNDetik(W, 1));
+}
+
+Waktu nextNMenit(Waktu W, int N)
+{
+    return (nextNDetik(W, (N * 60)));
+}
+
+Waktu nextMenit(Waktu W)
+{
+    return (nextNMenit(W, 1));
+}
+
+Waktu prevNMenit(Waktu W, int N)
+{
+    return (nextNMenit(W, -N));
+}
+
+Waktu prevMenit(Waktu W)
+{
+    return (prevNMenit(W, 1));
+}
+
+Waktu nextNJam(Waktu W, int N)
+{
+    return (nextNMenit(W, (N * 60)));
+}
+
+Waktu nextJam(Waktu W)
+{
+    return (nextNJam(W, 1));
+}
+
+Waktu prevNJam(Waktu W, int N)
+{
+    return (nextNJam(W, -N));
+}
+
+Waktu prevJam(Waktu W)
+{
+    return (prevNJam(W, 1));
+}
+
+Waktu nextNHari(Waktu W, int N)
+{
+    return (nextNJam(W, (N * 24)));
+}
+
+Waktu nextHari(Waktu W)
+{
+    return (nextNHari(W, 1));
+}
+
+Waktu prevNHari(Waktu W, int N)
+{
+    return (nextNHari(W, -N));
+}
+
+Waktu prevHari(Waktu W)
+{
+    return (prevNHari(W, 1));
 }
 
 long durasi(Waktu WAw, Waktu WAkh)

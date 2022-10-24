@@ -144,9 +144,111 @@ Waktu prevNDetik(Waktu W, int N);
  * @brief Fungsi untuk mendapatkan nilai waktu 1 detik sebelum waktu masukan
  * @param W waktu yang ingin ditentukan 1 detik sebelumnya
  *
- * @return waktu N detik sebelum W
+ * @return waktu 1 detik sebelum W
  */
 Waktu prevDetik(Waktu W);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu N menit setelah waktu masukan
+ * @param W waktu yang ingin ditentukan N menit setelahnya
+ * @param N banyak detik yang ditambahkan ke waktu W
+ *
+ * @return waktu N menit setelah W
+ */
+Waktu nextNMenit(Waktu W, int N);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu 1 menit setelah waktu masukan
+ * @param W waktu yang ingin ditentukan 1 menit setelahnya
+ *
+ * @return waktu 1 menit setelah W
+ */
+Waktu nextMenit(Waktu W);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu N menit sebelum waktu masukan
+ * @param W waktu yang ingin ditentukan N menit sebelumnya
+ * @param N banyak menit yang dikurangkan ke waktu W
+ *
+ * @return waktu N menit sebelum W
+ */
+Waktu prevNMenit(Waktu W, int N);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu 1 menit sebelum waktu masukan
+ * @param W waktu yang ingin ditentukan 1 menit sebelumnya
+ *
+ * @return waktu 1 menit sebelum W
+ */
+Waktu prevMenit(Waktu W);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu N jam setelah waktu masukan
+ * @param W waktu yang ingin ditentukan N jam setelahnya
+ * @param N banyak jam yang ditambahkan ke waktu W
+ *
+ * @return waktu N jam setelah W
+ */
+Waktu nextNJam(Waktu W, int N);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu 1 jam setelah waktu masukan
+ * @param W waktu yang ingin ditentukan 1 jam setelahnya
+ *
+ * @return waktu 1 jam setelah W
+ */
+Waktu nextJam(Waktu W);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu N jam sebelum waktu masukan
+ * @param W waktu yang ingin ditentukan N jam sebelumnya
+ * @param N banyak jam yang dikurangkan ke waktu W
+ *
+ * @return waktu N jam sebelum W
+ */
+Waktu prevNJam(Waktu W, int N);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu 1 jam sebelum waktu masukan
+ * @param W waktu yang ingin ditentukan 1 jam sebelumnya
+ *
+ * @return waktu 1 jam sebelum W
+ */
+Waktu prevJam(Waktu W);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu N hari setelah waktu masukan
+ * @param W waktu yang ingin ditentukan N hari setelahnya
+ * @param N banyak hari yang ditambahkan ke waktu W
+ *
+ * @return waktu N hari setelah W
+ */
+Waktu nextNHari(Waktu W, int N);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu 1 hari setelah waktu masukan
+ * @param W waktu yang ingin ditentukan N hari setelahnya
+ *
+ * @return waktu 1 hari setelah W
+ */
+Waktu nextHari(Waktu W);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu N hari sebelum waktu masukan
+ * @param W waktu yang ingin ditentukan N hari sebelumnya
+ * @param N banyak hari yang dikurangkan ke waktu W
+ *
+ * @return waktu N hari sebelum W
+ */
+Waktu prevNHari(Waktu W, int N);
+
+/**
+ * @brief Fungsi untuk mendapatkan nilai waktu 1 hari sebelum waktu masukan
+ * @param W waktu yang ingin ditentukan 1 hari sebelumnya
+ *
+ * @return waktu 1 hari sebelum W
+ */
+Waktu prevHari(Waktu W);
 
 /**
  * @brief Fungsi untuk menghitung selisih dari dua Waktu
