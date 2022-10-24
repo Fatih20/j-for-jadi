@@ -40,6 +40,12 @@ typedef struct
 #define content(FQ) (FQ).content
 
 /**
+ * @brief Elemen ke-i dari FQ
+ *
+ */
+#define elmtFQ(FQ, i) elmtLDM(content(FQ), i)
+
+/**
  * @brief Elemen pada indeks head dari FQ
  *
  * @param FQ
@@ -61,7 +67,7 @@ FoodQueueEl tailElFQ(FoodQueue FQ);
  * @param FQ
  * @return FoodQueueEl
  */
-FoodQueueEl elmtFQ(FoodQueue FQ, int i);
+// FoodQueueEl elmtFQ(FoodQueue FQ, int i);
 
 /**
  *
