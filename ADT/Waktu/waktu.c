@@ -36,66 +36,32 @@ void bacaWaktu(Waktu *W)
 
 void tulisWaktu(Waktu W)
 {
-    if ((Hari(W) > 0) && (Jam(W) > 0) && (Menit(W) > 0) && (Detik(W) > 0))
+    if (Hari(W) > 0)
     {
-        printf("%d hari %d jam %d menit %d detik", Hari(W), Jam(W), Menit(W), Detik(W));
+        printf("%d hari ", Hari(W));
     }
-    else if ((Hari(W) > 0) && (Jam(W) > 0) && (Menit(W) > 0) && (Detik(W) == 0))
+
+    if (Jam(W) > 0)
     {
-        printf("%d hari %d jam %d menit", Hari(W), Jam(W), Menit(W));
+        printf("%d jam ", Jam(W));
     }
-    else if ((Hari(W) > 0) && (Jam(W) > 0) && (Menit(W) == 0) && (Detik(W) > 0))
+
+    if (Menit(W) > 0)
     {
-        printf("%d hari %d jam %d detik", Hari(W), Jam(W), Detik(W));
+        printf("%d menit ", Menit(W));
     }
-    else if ((Hari(W) > 0) && (Jam(W) == 0) && (Menit(W) > 0) && (Detik(W) > 0))
-    {
-        printf("%d hari %d menit %d detik", Hari(W), Menit(W), Detik(W));
-    }
-    else if ((Hari(W) > 0) && (Jam(W) > 0) && (Menit(W) == 0) && (Detik(W) == 0))
-    {
-        printf("%d hari %d jam", Hari(W), Jam(W));
-    }
-    else if ((Hari(W) > 0) && (Jam(W) == 0) && (Menit(W) > 0) && (Detik(W) == 0))
-    {
-        printf("%d hari %d menit", Hari(W), Menit(W));
-    }
-    else if ((Hari(W) > 0) && (Jam(W) == 0) && (Menit(W) == 0) && (Detik(W) > 0))
-    {
-        printf("%d hari %d detik", Hari(W), Detik(W));
-    }
-    else if ((Hari(W) > 0) && (Jam(W) == 0) && (Menit(W) == 0) && (Detik(W) == 0))
-    {
-        printf("%d hari", Hari(W));
-    }
-    else if ((Hari(W) == 0) && (Jam(W) > 0) && (Menit(W) > 0) && (Detik(W) > 0))
-    {
-        printf("%d jam %d menit %d detik", Jam(W), Menit(W), Detik(W));
-    }
-    else if ((Hari(W) == 0) && (Jam(W) > 0) && (Menit(W) > 0) && (Detik(W) == 0))
-    {
-        printf("%d jam %d menit", Jam(W), Menit(W));
-    }
-    else if ((Hari(W) == 0) && (Jam(W) > 0) && (Menit(W) == 0) && (Detik(W) > 0))
-    {
-        printf("%d jam %d detik", Jam(W), Detik(W));
-    }
-    else if ((Hari(W) == 0) && (Jam(W) > 0) && (Menit(W) == 0) && (Detik(W) == 0))
-    {
-        printf("%d jam", Jam(W));
-    }
-    else if ((Hari(W) == 0) && (Jam(W) == 0) && (Menit(W) > 0) && (Detik(W) > 0))
-    {
-        printf("%d menit %d detik", Menit(W), Detik(W));
-    }
-    else if ((Hari(W) == 0) && (Jam(W) == 0) && (Menit(W) > 0) && (Detik(W) == 0))
-    {
-        printf("%d menit", Menit(W));
-    }
-    else if ((Hari(W) == 0) && (Jam(W) == 0) && (Menit(W) == 0) && (Detik(W) >= 0))
+
+    if (Detik(W) > 0)
     {
         printf("%d detik", Detik(W));
     }
+
+    if ((Hari(W) == 0) && (Jam(W) == 0) && (Menit(W) == 0) && (Detik(W) == 0))
+    {
+        printf("%d detik", Detik(W));
+    }
+
+    printf("\n");
 }
 
 long waktuToDetik(Waktu W)
@@ -136,32 +102,9 @@ boolean WGT(Waktu W1, Waktu W2)
     return (waktuToDetik(W1) > waktuToDetik(W2));
 }
 
-Waktu nextDetik(Waktu W)
-{
-    return (detikToWaktu(waktuToDetik(W) + 1));
-}
-
 Waktu nextNDetik(Waktu W, int N)
 {
     return (detikToWaktu(waktuToDetik(W) + N));
-}
-
-Waktu prevDetik(Waktu W)
-{
-    long detik;
-
-    detik = waktuToDetik(W);
-    detik -= 1;
-    return (detikToWaktu(detik));
-}
-
-Waktu prevNDetik(Waktu W, int N)
-{
-    long detik;
-
-    detik = waktuToDetik(W);
-    detik -= N;
-    return (detikToWaktu(detik));
 }
 
 long durasi(Waktu WAw, Waktu WAkh)
@@ -170,7 +113,15 @@ long durasi(Waktu WAw, Waktu WAkh)
 
     detikAkh = waktuToDetik(WAkh);
     detikAw = waktuToDetik(WAw);
-    durasi = detikAkh - detikAw;
 
-    return durasi;
+    if (detikAkh >= detikAw)
+    {
+        durasi = detikAkh - detikAw;
+    }
+    else
+    {
+        durasi = detikAw - detikAkh;
+    }
+
+    return (durasi);
 }

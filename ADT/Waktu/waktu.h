@@ -115,43 +115,20 @@ boolean WLT(Waktu W1, Waktu W2);
 boolean WGT(Waktu W1, Waktu W2);
 
 /**
- * @brief Fungsi untuk mendapatkan nilai waktu 1 detik setelah waktu masukan
- * @param W waktu yang ingin ditentukan 1 detik setelahnya
- *
- * @return waktu 1 detik setelah W
- */
-Waktu nextDetik(Waktu W);
-
-/**
  * @brief Fungsi untuk mendapatkan nilai waktu N detik setelah waktu masukan
  * @param W waktu yang ingin ditentukan N detik setelahnya
+ * @param N banyak detik yang ditambahkan ke waktu W
  *
  * @return waktu N detik setelah W
  */
 Waktu nextNDetik(Waktu W, int N);
 
 /**
- * @brief Fungsi untuk mendapatkan nilai waktu 1 detik sebelum waktu masukan
- * @param W waktu yang ingin ditentukan 1 detik sebelumnya
- *
- * @return waktu 1 detik sebelum W
- */
-Waktu prevDetik(Waktu W);
-
-/**
- * @brief Fungsi untuk mendapatkan nilai waktu N detik setelah waktu masukan
- * @param W waktu yang ingin ditentukan N detik sebelumnya
- *
- * @return waktu N detik sebelum W
- */
-Waktu prevNDetik(Waktu W, int N);
-
-/**
  * @brief Fungsi untuk menghitung selisih dari dua Waktu
  * @param WAw waktu awal
  * @param Wakh waktu akhir
  *
- * @return nilai dari WAw-WAkh
+ * @return nilai dari durasi antara waktu awal dengan waktu akhir
  */
 long durasi(Waktu WAw, Waktu WAkh);
 
