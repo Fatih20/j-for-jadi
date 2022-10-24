@@ -2,32 +2,39 @@
 
 FoodQueueEl headElFQ(FoodQueue FQ)
 {
-    return elmtLDM(FQ.content, FQ.headFQ);
+    return elmtFQ(FQ, headFQ(FQ));
 };
 
 FoodQueueEl tailElFQ(FoodQueue FQ)
 {
-    return elmtLDM(FQ.content, FQ.tailFQ);
+    return elmtFQ(FQ, tailFQ(FQ));
 };
 
 FoodQueueEl elmtFQ(FoodQueue FQ, int i)
 {
-    return elmtLDM(FQ.content, i);
+    return elmtLDM(content(FQ), i);
 };
 
 boolean isEmptyFQ(FoodQueue FQ)
 {
-    return isEmptyLDinMakanan(FQ.content);
+    return headFQ(FQ) == Nil && tailFQ(FQ) == Nil;
 };
 
 int nElmt(FoodQueue FQ)
 {
-    return panjangLDinMakanan(FQ.content);
+    if (isEmptyFQ(FQ))
+    {
+        return 0;
+    }
+    else
+    {
+        return tailFQ(FQ) - headFQ(FQ) + 1;
+    }
 };
 
 void buatFQKosong(FoodQueue *FQ, int max)
 {
-    buatLDinMakanan(&(FQ->content), max);
+    buatLDinMakanan(&(content(*FQ)), max);
     headFQ(*FQ) = Nil;
     tailFQ(*FQ) = Nil;
 };
@@ -35,7 +42,7 @@ void buatFQKosong(FoodQueue *FQ, int max)
 void deAlokasi(FoodQueue *FQ)
 {
 
-    dealokasiLDinMakanan(&(FQ->content));
+    dealokasiLDinMakanan(&(content(*FQ)));
     headFQ(*FQ) = Nil;
     tailFQ(*FQ) = Nil;
 };
@@ -43,10 +50,14 @@ void deAlokasi(FoodQueue *FQ)
 void enqueueDelivery(FoodQueue *FQ, FoodQueueEl X)
 {
 
-    // Jika kosong maka lakukan ini
+    // Jika kosong maka langsung insert first dan definisikan head serta tail
+    boolean added = false;
     if (isEmptyFQ(*FQ))
     {
-        insertFirstLDinMakanan(&(FQ->content), X);
+        insertFirstLDinMakanan(&(content(*FQ)), X);
+        headFQ(*FQ) = 0;
+        tailFQ(*FQ) = 0;
+        added = true;
     }
     else
     {
@@ -65,24 +76,18 @@ void enqueueDelivery(FoodQueue *FQ, FoodQueueEl X)
             {
                 // cetakMakanan(X);
                 // printf("%d\n", i);
-                insertAtLDinMakanan(&(FQ->content), X, i + 1);
+                insertAtLDinMakanan(&(content(*FQ)), X, i + 1);
+                added = true;
             }
         }
 
         if (!lessOrSameFound)
         {
-            insertAtLDinMakanan(&(FQ->content), X, i + 1);
+            insertAtLDinMakanan(&(content(*FQ)), X, i + 1);
+            added = true;
         }
-    }
 
-    if (headFQ(*FQ) == Nil)
-    {
-        headFQ(*FQ) = 0;
-        tailFQ(*FQ) = 0;
-    }
-    else
-    {
-        tailFQ(*FQ) += 1;
+        tailFQ(*FQ) += added;
     }
 };
 
@@ -90,13 +95,17 @@ void enqueueInventory(FoodQueue *FQ, FoodQueueEl X)
 {
 
     // Jika kosong maka lakukan ini
+    boolean added = false;
     if (isEmptyFQ(*FQ))
     {
-        insertFirstLDinMakanan(&(FQ->content), X);
+        insertFirstLDinMakanan(&(content(*FQ)), X);
+        headFQ(*FQ) = 0;
+        tailFQ(*FQ) = 0;
+        added = true;
     }
     else
     {
-        int i = lastIdxLDinMakanan(FQ->content);
+        int i = lastIdxLDinMakanan(content(*FQ));
         boolean lessOrSameFound = false;
 
         // Jika tidak kosong maka lakukan ini
@@ -111,41 +120,47 @@ void enqueueInventory(FoodQueue *FQ, FoodQueueEl X)
             {
                 // cetakMakanan(X);
                 // printf("%d\n", i);
-                insertAtLDinMakanan(&(FQ->content), X, i + 1);
+                insertAtLDinMakanan(&(content(*FQ)), X, i + 1);
+                added = true;
             }
         }
 
         if (!lessOrSameFound)
         {
-            insertAtLDinMakanan(&(FQ->content), X, i + 1);
+            insertAtLDinMakanan(&(content(*FQ)), X, i + 1);
+            added = true;
         }
-    }
-
-    if (headFQ(*FQ) == Nil)
-    {
-        headFQ(*FQ) = 0;
-        tailFQ(*FQ) = 0;
-    }
-    else
-    {
-        tailFQ(*FQ) += 1;
+        tailFQ(*FQ) += added;
     }
 };
 void dequeue(FoodQueue *FQ, FoodQueueEl *X)
 {
-    removeFirstLDinMakanan(&(FQ->content), X);
+    if (isEmptyFQ(*FQ))
+    {
+        return;
+    }
+    if (nElmt(*FQ) == 1)
+    {
+        headFQ(*FQ) = Nil;
+        tailFQ(*FQ) = Nil;
+    }
+    else
+    {
+        tailFQ(*FQ)--;
+    }
+    removeFirstLDinMakanan(&(content(*FQ)), X);
 };
 
 void cetakFoodQueue(FoodQueue FQ)
 {
-    printLDinMakanan(FQ.content);
+    printLDinMakanan(content(FQ));
 };
 
 void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2)
 {
     headFQ(*FQ2) = headFQ(FQ1);
     tailFQ(*FQ2) = tailFQ(FQ1);
-    copyLDinMakanan(FQ1.content, &(FQ2->content));
+    copyLDinMakanan(FQ1.content, &(content(*FQ2)));
 };
 
 void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal)
@@ -153,19 +168,27 @@ void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal)
     int deletedIdx = idxMakanan(*FQ, idTipeS);
     if (deletedIdx != IDX_UNDEF)
     {
-        removeAtLDinMakanan(&(*FQ).content, deletedVal, deletedIdx);
-        tailFQ(*FQ)--;
+        if (nElmt(*FQ) == 1)
+        {
+            headFQ(*FQ) = Nil;
+            tailFQ(*FQ) = Nil;
+        }
+        else
+        {
+            tailFQ(*FQ)--;
+        }
+        removeAtLDinMakanan(&content(*FQ), deletedVal, deletedIdx);
     }
 };
 
 int idxMakanan(FoodQueue FQ, char idTipeS[])
 {
     int i = 0;
-    int lastIdx = lastIdxLDinMakanan((FQ).content);
+    // int lastIdx = tailFQ(FQ);
     boolean found = false;
     Teks idTipe;
     buatTeks(idTipeS, &idTipe);
-    while (!found && i <= lastIdx)
+    while (!found && i <= tailFQ(FQ))
     {
         found = teksSama(idTipe(elmtFQ((FQ), i)), idTipe);
         if (!found)
@@ -179,7 +202,7 @@ int idxMakanan(FoodQueue FQ, char idTipeS[])
 
 void hapusBasi(FoodQueue *FQ)
 {
-    while ((!isEmptyFQ(*FQ)) && (headElFQ(*FQ)).waktuBasi == 0)
+    while ((!isEmptyFQ(*FQ)) && basiDalam(headElFQ(*FQ)) == 0)
     {
         FoodQueueEl temp;
         dequeue(FQ, &temp);
@@ -187,7 +210,7 @@ void hapusBasi(FoodQueue *FQ)
 };
 void hapusSampai(FoodQueue *DQ, FoodQueue *IQ)
 {
-    while ((!isEmptyFQ(*DQ)) && (headElFQ(*DQ)).waktuSampai == 0)
+    while ((!isEmptyFQ(*DQ)) && sampaiDalam((headElFQ(*DQ))) == 0)
     {
         FoodQueueEl temp;
         dequeue(DQ, &temp);
@@ -196,17 +219,19 @@ void hapusSampai(FoodQueue *DQ, FoodQueue *IQ)
 };
 void majukanWSampai(FoodQueue *DQ, FoodQueue *IQ)
 {
-    int lastIdx = lastIdxLDinMakanan((*DQ).content);
-    for (int i = 0; i <= lastIdx; i++)
+    // int lastIdx = tailFQ(*DQ);
+    for (int i = headFQ(*DQ); i <= tailFQ(*DQ); i++)
     {
+        // sampaiDalam(elmtFQ((*DQ), i))--;
         elmtLDM((*DQ).content, i).waktuSampai--;
     }
     hapusSampai(DQ, IQ);
 };
 void majukanWBasi(FoodQueue *IQ)
 {
-    int lastIdx = lastIdxLDinMakanan((*IQ).content);
-    for (int i = 0; i <= lastIdx; i++)
+    // int lastIdx = tailFQ(*IQ);
+    // int lastIdx = lastIdxLDinMakanan((*IQ).content);
+    for (int i = 0; i <= tailFQ(*IQ); i++)
     {
         elmtLDM((*IQ).content, i).waktuBasi--;
     }

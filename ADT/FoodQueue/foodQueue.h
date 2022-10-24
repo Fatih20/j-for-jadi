@@ -34,6 +34,12 @@ typedef struct
 #define tailFQ(FQ) (FQ).tailFQ
 
 /**
+ * @brief Array dinamis yang bekerja under-the-hood FQ
+ *
+ */
+#define content(FQ) (FQ).content
+
+/**
  * @brief Elemen pada indeks head dari FQ
  *
  * @param FQ

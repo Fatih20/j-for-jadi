@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
     // cetakFoodQueue(iq);
 
     // Majukan waktu semua
-    printf("Waktu dimajukan satu\n");
+    printf("\nWaktu dimajukan satu\n");
     majukanWFQ(&dq, &iq);
     printf("\nDQ\n");
     cetakFoodQueue(dq);
@@ -71,7 +71,7 @@ int main(int argc, char const *argv[])
     cetakFoodQueue(iq);
 
     // Majukan waktu semua
-    printf("Waktu dimajukan satu\n");
+    printf("\nWaktu dimajukan satu\n");
     majukanWFQ(&dq, &iq);
     printf("\nDQ\n");
     cetakFoodQueue(dq);
@@ -79,7 +79,7 @@ int main(int argc, char const *argv[])
     cetakFoodQueue(iq);
 
     // Majukan waktu semua
-    printf("Waktu dimajukan satu\n");
+    printf("\nWaktu dimajukan satu\n");
     majukanWFQ(&dq, &iq);
     printf("\nDQ\n");
     cetakFoodQueue(dq);
