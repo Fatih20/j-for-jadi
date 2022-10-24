@@ -194,4 +194,12 @@ void majukanWSampai(FoodQueue *DQ, FoodQueue *IQ);
  */
 void majukanWBasi(FoodQueue *IQ);
 
+/**
+ * @brief Lakukan majukanWBasi ke IQ lalu lakukan majukanWSampai kepada DQ dan IQ
+ *
+ * @param DQ Delivery queue
+ * @param IQ Inventory queue
+ */
+void majukanWFQ(FoodQueue *DQ, FoodQueue *IQ);
+
 #endif

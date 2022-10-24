@@ -213,3 +213,9 @@ void majukanWBasi(FoodQueue *IQ)
 
     hapusBasi(IQ);
 };
+
+void majukanWFQ(FoodQueue *DQ, FoodQueue *IQ)
+{
+    majukanWBasi(IQ);
+    majukanWSampai(DQ, IQ);
+};
