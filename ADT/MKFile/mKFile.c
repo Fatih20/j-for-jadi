@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 boolean endMKF;
+boolean EOP;
 Teks currentWord;
 
 boolean isBlankF(char c)
@@ -29,7 +30,7 @@ void ignoreBlanksF()
     /* Mengabaikan satu atau beberapa BLANK
        I.S. : currentChar sembarang
        F.S. : currentChar ≠ BLANK atau currentChar = MARK */
-    while (isBlankF(currentChar))
+    while (isBlankF(currentChar) && !EOP)
     {
         advMCFile();
     }
@@ -46,7 +47,7 @@ void startMKFile(char namaFile[])
 void advMKFile()
 {
     ignoreBlanksF();
-    if (currentChar == MARKF)
+    if (EOP)
     {
         endMKF = true;
     }
@@ -63,7 +64,7 @@ void saveKataF()
     boolean actualLetter = true;
     while (actualLetter)
     {
-        if (isBlankF(currentChar) || currentChar == MARKF)
+        if (isBlankF(currentChar) || EOP)
         {
             actualLetter = false;
         }

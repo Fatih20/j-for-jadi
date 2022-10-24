@@ -4,7 +4,7 @@
 
 int main(int argc, char const *argv[])
 {
-    char test[] = "test.txt";
+    char test[] = "test copy.txt";
     startMCFile(test);
     while (!EOP)
     {
