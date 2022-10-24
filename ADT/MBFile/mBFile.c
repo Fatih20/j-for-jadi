@@ -7,6 +7,7 @@
 
 char currentChar;
 boolean endMKF;
+boolean endMBF;
 Teks currentWord;
 LDinTeks currentRow;
 
