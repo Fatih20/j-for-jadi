@@ -4,15 +4,15 @@
 #include <stdio.h>
 
 boolean endMKF;
+boolean EOP;
 Teks currentWord;
 
-boolean isBlankF(char c)
+boolean isIgnoredF(char c)
 {
     switch (c)
     {
     case '\n':
         return true;
-        return false;
         break;
     case ' ':
         return true;
@@ -24,12 +24,17 @@ boolean isBlankF(char c)
     }
 }
 
+boolean isBlankF(char c)
+{
+    return c == ' ';
+}
+
 void ignoreBlanksF()
 {
     /* Mengabaikan satu atau beberapa BLANK
        I.S. : currentChar sembarang
        F.S. : currentChar ≠ BLANK atau currentChar = MARK */
-    while (isBlankF(currentChar))
+    while (isBlankF(currentChar) && !EOP)
     {
         advMCFile();
     }
@@ -46,9 +51,13 @@ void startMKFile(char namaFile[])
 void advMKFile()
 {
     ignoreBlanksF();
-    if (currentChar == MARKF)
+    if (EOP)
     {
         endMKF = true;
+    }
+    else if (currentChar == '\n')
+    {
+        buatNewLine();
     }
     else
     {
@@ -57,13 +66,19 @@ void advMKFile()
     }
 }
 
+void buatNewLine()
+{
+    buatTeks("\n", &currentWord);
+    advMCFile();
+}
+
 void saveKataF()
 {
     buatTeks("", &currentWord);
     boolean actualLetter = true;
     while (actualLetter)
     {
-        if (isBlankF(currentChar) || currentChar == MARKF)
+        if (isBlankF(currentChar) || EOP)
         {
             actualLetter = false;
         }

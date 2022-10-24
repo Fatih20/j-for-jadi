@@ -2,7 +2,6 @@
 #define LDINKAR_H
 
 #include "../boolean.h"
-#include "../Makanan/makanan.h"
 #include <stdio.h>
 
 /*  Kamus Umum */
@@ -159,6 +158,31 @@ void insertLastLDinKar(LDinKar *l, LDinKarEl val);
  * @param idx index tempat pengisian val
  */
 void insertAtLDinKar(LDinKar *l, LDinKarEl val, IdxType idx);
+
+/**
+ * @brief Mengeluarkan elemen pertama dari l lalu menyimpannya ke dalam X
+ *
+ * @param l
+ * @param X
+ */
+void removeFirstLDinKar(LDinKar *l, LDinKarEl *val);
+
+/**
+ * @brief menghapus nilai pada indeks idx list din l dan menyimpannya dalam val
+ *
+ * @param l list yang akan dihapus elemennya
+ * @param val penyimpanan nilai yang dihapus dari list
+ * @param idx indeks yang akan dihapus elemennya
+ */
+void removeAtLDinKar(LDinKar *l, LDinKarEl *val, IdxType idx);
+
+/**
+ * @brief menghapus elemen terakhir pada list dan menyimpannya dalam val
+ *
+ * @param l list yang akan dihapus elemen terakhirnya
+ * @param val penyimpanan nilai yang dihapus dari list
+ */
+void removeLastLDinKar(LDinKar *l, LDinKarEl *val);
 
 /**
  * @brief Menambahkan capacity l sebanyak num

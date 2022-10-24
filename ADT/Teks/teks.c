@@ -7,8 +7,8 @@ void buatTeks(char string[], Teks *teks)
     buatTeksKosong(teks);
     for (char kar = *string; kar != '\0'; kar = *++string)
     {
-        karArrayT(*teks)[i] = kar;
-        panjangT(*teks) += 1;
+        insertLastLDinKar(&(karArrayT(*teks)), kar);
+        // Tidak perlu tambahkan panjangT karena otomatis dilakukan di dalam insertLast
         i += 1;
     }
 };
@@ -16,6 +16,7 @@ void buatTeks(char string[], Teks *teks)
 void buatTeksKosong(Teks *teks)
 {
     panjangT(*teks) = 0;
+    buatLDinKar(&karArrayT(*teks), 20);
 };
 
 void cetakTeks(Teks t)
@@ -23,26 +24,21 @@ void cetakTeks(Teks t)
     for (int i = 0; i < panjangT(t); i++)
     {
         // printf("test");
-        printf("%c", karArrayT(t)[i]);
+        printf("%c", elmtLDC(karArrayT(t), i));
     }
 };
 
 void plusKar(Teks *teks, char kar)
 {
-    if (panjangT(*teks) < 100)
-    {
 
-        karArrayT(*teks)[panjangT(*teks)] = kar;
-        panjangT(*teks) += 1;
-    }
+    insertLastLDinKar(&(karArrayT(*teks)), kar);
+    // Tidak perlu tambahkan panjangT karena otomatis dilakukan di dalam insertLast
 };
 
 void delKar(Teks *teks)
 {
-    if (panjangT(*teks) > 0)
-    {
-        panjangT(*teks) -= 1;
-    }
+    char temp;
+    removeLastLDinKar(&karArrayT(*teks), &temp);
 };
 
 boolean teksSama(Teks t1, Teks t2)
@@ -52,7 +48,7 @@ boolean teksSama(Teks t1, Teks t2)
     int pTeks = panjangT(t1);
     while (same && i < pTeks)
     {
-        same = karArrayT(t1)[i] == karArrayT(t2)[i];
+        same = elmtLDC(karArrayT(t1), i) == elmtLDC(karArrayT(t2), i);
         i += same;
     }
     return same;
@@ -75,18 +71,14 @@ boolean teksLPanjang(Teks t1, Teks t2)
 
 void gabungkanTeks(Teks t1, Teks t2, Teks *t3)
 {
-    if (panjangT(t1) + panjangT(t2) > NMax)
-    {
-        return;
-    }
     buatTeksKosong(t3);
     for (int i = 0; i < panjangT(t1); i++)
     {
-        plusKar(t3, karArrayT(t1)[i]);
+        plusKar(t3, elmtLDC(karArrayT(t1), i));
     }
 
     for (int j = 0; j < panjangT(t2); j++)
     {
-        plusKar(t3, karArrayT(t2)[j]);
+        plusKar(t3, elmtLDC(karArrayT(t2), j));
     }
 };
