@@ -53,8 +53,12 @@ void Pop(Stack *S, infotype *X)
 
 void expandStack(Stack *S, int num)
 {
+    *S->T = realloc(*S->T, (Capacity(*S) + num) * sizeof(infotype));
+    Capacity(*S) += num;
 }
 
 void shrinkStack(Stack *S, int num)
 {
+    *S->T = realloc(*S->T, (Capacity(*S) - num) * sizeof(infotype));
+    Capacity(*S) -= num;
 }
