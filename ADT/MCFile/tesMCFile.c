@@ -6,7 +6,7 @@ int main(int argc, char const *argv[])
 {
     char test[] = "test.txt";
     startMCFile(test);
-    while (currentChar != MARKF)
+    while (!EOP)
     {
         printf("%c", currentChar);
         advMCFile();
