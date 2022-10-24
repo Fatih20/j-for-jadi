@@ -112,6 +112,21 @@ void removeFirstLDinMakanan(LDinMakanan *l, LDinMakananEl *X)
     nEffLDM(*l)--;
 };
 
+void removeAtLDinMakanan(LDinMakanan *l, LDinMakananEl *val, IdxType idx)
+{
+    *val = elmtLDM(*l, idx);
+    for (int i = idx; i < panjangLDinMakanan(*l) - 1; i++)
+    {
+        elmtLDM(*l, i) = elmtLDM(*l, i + 1);
+    }
+    nEffLDM(*l) -= 1;
+}
+
+void removeLastLDinMakanan(LDinMakanan *l, LDinMakananEl *val)
+{
+    removeAtLDinMakanan(l, val, panjangLDinMakanan(*l) - 1);
+};
+
 void insertFirstLDinMakanan(LDinMakanan *l, LDinMakananEl val)
 {
     insertAtLDinMakanan(l, val, 0);

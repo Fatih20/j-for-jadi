@@ -62,6 +62,14 @@ boolean EQ(POINT P1, POINT P2);
 boolean NEQ(POINT P1, POINT P2);
 
 /**
+ * @brief Mengembalikan true jika dua buah titik bersebelahan
+ * @param P1: Titik 1
+ * @param P2: Titik 2 
+ * @return boolean 
+ */
+boolean IsAdjacent(POINT P1, POINT P2);
+
+/**
  * @brief Menghasilkan true jika P adalah titik origin
  * @param P: POINT
  * @return boolean

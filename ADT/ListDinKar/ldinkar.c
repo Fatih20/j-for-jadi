@@ -121,6 +121,26 @@ void insertAtLDinKar(LDinKar *l, LDinKarEl val, IdxType idx)
     }
 }
 
+void removeFirstLDinKar(LDinKar *l, LDinKarEl *val)
+{
+    removeAtLDinKar(l, val, 0);
+};
+
+void removeAtLDinKar(LDinKar *l, LDinKarEl *val, IdxType idx)
+{
+    *val = elmtLDC(*l, idx);
+    for (int i = idx; i < panjangLDinKar(*l) - 1; i++)
+    {
+        elmtLDC(*l, i) = elmtLDC(*l, i + 1);
+    }
+    nEffLDC(*l) -= 1;
+}
+
+void removeLastLDinKar(LDinKar *l, LDinKarEl *val)
+{
+    removeAtLDinKar(l, val, panjangLDinKar(*l) - 1);
+};
+
 void expandLDinKar(LDinKar *l, int num)
 {
     capacityLDC(*l) += num;

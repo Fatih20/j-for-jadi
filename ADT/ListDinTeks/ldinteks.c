@@ -93,6 +93,26 @@ void copyLDinTeks(LDinTeks lIn, LDinTeks *lOut)
     capacityLDT(*lOut) = capacityLDT(lIn);
 }
 
+void removeFirstLDinTeks(LDinTeks *l, LDinTeksEl *val)
+{
+    removeAtLDinTeks(l, val, 0);
+};
+
+void removeAtLDinTeks(LDinTeks *l, LDinTeksEl *val, IdxType idx)
+{
+    *val = elmtLDT(*l, idx);
+    for (int i = idx; i < panjangLDinTeks(*l) - 1; i++)
+    {
+        elmtLDT(*l, i) = elmtLDT(*l, i + 1);
+    }
+    nEffLDT(*l) -= 1;
+}
+
+void removeLastLDinTeks(LDinTeks *l, LDinTeksEl *val)
+{
+    removeAtLDinTeks(l, val, panjangLDinTeks(*l) - 1);
+};
+
 void insertFirstLDinTeks(LDinTeks *l, LDinTeksEl val)
 {
     insertAtLDinTeks(l, val, 0);

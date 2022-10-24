@@ -19,7 +19,7 @@ void startMCFile(char namaFile[])
 void advMCFile()
 {
     retval = fscanf(pita, "%c", &currentChar);
-    EOP = (currentChar == MARKF);
+    EOP = (retval != 1);
     if (EOP)
     {
         fclose(pita);

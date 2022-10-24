@@ -11,7 +11,6 @@ int main(int argc, char const *argv[])
     while (!endMKF)
     {
         cetakTeks(currentWord);
-        printf("\n");
         advMKFile();
     }
 
