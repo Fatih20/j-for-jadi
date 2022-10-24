@@ -79,6 +79,14 @@ long waktuToDetik(Waktu W);
 Waktu detikToWaktu(long N);
 
 /**
+ * @brief Mengecek apakah sebuah waktu adalah 0
+ *
+ * @param w
+ * @return boolean w 0 atau tidak
+ */
+boolean isWZero(Waktu w);
+
+/**
  * @brief Fungsi untuk membandingkan dua Waktu
  * @param W1 waktu yang dibandingkan
  * @param W2 waktu yang dibandingkan
