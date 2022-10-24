@@ -10,7 +10,7 @@
  * @brief Penanda bahwa input untuk MKF selesai
  *
  */
-#define MARKF '.'
+#define MARKF EOF
 
 /**
  * @brief Karakter yang sekarang sedang dibaca MKF
