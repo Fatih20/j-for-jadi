@@ -59,8 +59,8 @@ int main(int argc, char const *argv[])
     // Uji remove and find by ID
     printf("Tes remove dan cari tipe dalam FQ2\n");
     FoodQueueEl tempEl3;
-    printf("%d\n", idxMakanan(fq2, "012"));
-    deleteByID(&fq2, "012", &tempEl3);
+    printf("%d\n", idxMakanan(fq2, "014"));
+    deleteByID(&fq2, "010", &tempEl3);
     cetakFoodQueue(fq2);
     return 0;
 }
