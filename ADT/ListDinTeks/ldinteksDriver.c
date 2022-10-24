@@ -32,6 +32,20 @@ int main()
     printf("*****Copied List*****\n");
     printLDinTeks(ltemp);
 
+    /* UJI removeFirst */
+    printf("****First Element Removed*****\n");
+    Teks val;
+    removeFirstLDinTeks(&l, &val);
+    printLDinTeks(l);
+
+    /* UJI removeLast */
+    printf("****Last Element Removed*****\n");
+    removeLastLDinTeks(&l, &val);
+    printLDinTeks(l);
+
+    printf("****Element at Idx 1 Removed*****\n");
+    removeAtLDinTeks(&l, &val, 1);
+    printLDinTeks(l);
     dealokasiLDinTeks(&l);
     dealokasiLDinTeks(&ltemp);
 }

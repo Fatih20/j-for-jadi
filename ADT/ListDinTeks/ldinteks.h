@@ -154,6 +154,31 @@ void insertLastLDinTeks(LDinTeks *l, LDinTeksEl val);
 void insertAtLDinTeks(LDinTeks *l, LDinTeksEl val, IdxType idx);
 
 /**
+ * @brief Mengeluarkan elemen pertama dari l lalu menyimpannya ke dalam X
+ *
+ * @param l
+ * @param X
+ */
+void removeFirstLDinTeks(LDinTeks *l, LDinTeksEl *val);
+
+/**
+ * @brief menghapus nilai pada indeks idx list din l dan menyimpannya dalam val
+ *
+ * @param l list yang akan dihapus elemennya
+ * @param val penyimpanan nilai yang dihapus dari list
+ * @param idx indeks yang akan dihapus elemennya
+ */
+void removeAtLDinTeks(LDinTeks *l, LDinTeksEl *val, IdxType idx);
+
+/**
+ * @brief menghapus elemen terakhir pada list dan menyimpannya dalam val
+ *
+ * @param l list yang akan dihapus elemen terakhirnya
+ * @param val penyimpanan nilai yang dihapus dari list
+ */
+void removeLastLDinTeks(LDinTeks *l, LDinTeksEl *val);
+
+/**
  * @brief Menambahkan capacity l sebanyak num
  * @param l
  * @param num Tambahan capacity l
