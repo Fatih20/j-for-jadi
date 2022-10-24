@@ -162,4 +162,35 @@ void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal);
  * @return int indeks dari tipe makanan yang diberikan yang paling awal dalam queue. -1 jika makanan tidak ada.
  */
 int idxMakanan(FoodQueue FQ, char idTipeS[]);
+
+/**
+ * @brief Men-dequeue elemen di-head yang memiliki waktu basi 0 sampai elemen di-head belum basi. Gunakan sesuai spek parameter.
+ *
+ * @param FQ Inventory queue yang ingin dihapus elemennya yang sudah basi
+ */
+void hapusBasi(FoodQueue *FQ);
+
+/**
+ * @brief Men-dequeue elemen di-head queue pertama yang memiliki waktu sampai 0 sampai elemen di-head belum sampai. Elemen yang di-dequeue dimasukkan ke queue kedua. Gunakan sesuai spek parameter.
+ *
+ * @param DQ Delivery queue yang makanan sampainya akan dikeluarkan
+ * @param IQ Inventory queue yang akan menerima elemen yang dikeluarkan dari DQ
+ *
+ */
+void hapusSampai(FoodQueue *DQ, FoodQueue *IQ);
+
+/**
+ * @brief Memajukan waktu untuk delivery queue. Mengurangi waktu sampai semua makanan di dalamnya.
+ *
+ * @param DQ Delivery queue yang mengalami pemajuan waktu
+ */
+void majukanSampai(FoodQueue *DQ);
+
+/**
+ * @brief Memajukan waktu untuk inventory queue. Mengurangi waktu basi semua makanan di dalamnya.
+ *
+ * @param IQ
+ */
+void majukanBasi(FoodQueue *IQ);
+
 #endif
