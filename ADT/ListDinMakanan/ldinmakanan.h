@@ -148,6 +148,23 @@ void copyLDinMakanan(LDinMakanan lIn, LDinMakanan *lOut);
 void removeFirstLDinMakanan(LDinMakanan *l, LDinMakananEl *X);
 
 /**
+ * @brief menghapus nilai pada indeks idx list din l dan menyimpannya dalam val
+ *
+ * @param l list yang akan dihapus elemennya
+ * @param val penyimpanan nilai yang dihapus dari list
+ * @param idx indeks yang akan dihapus elemennya
+ */
+void removeAtLDinMakanan(LDinMakanan *l, LDinMakananEl *val, IdxType idx);
+
+/**
+ * @brief menghapus elemen terakhir pada list dan menyimpannya dalam val
+ *
+ * @param l list yang akan dihapus elemen terakhirnya
+ * @param val penyimpanan nilai yang dihapus dari list
+ */
+void removeLastLDinMakanan(LDinMakanan *l, LDinMakananEl *val);
+
+/**
  * @brief memasukkan val sebagai elemen pertama l, jika l penuh maka akan diexpand
  *
  * @param l l bisa kosong
@@ -178,5 +195,6 @@ void insertAtLDinMakanan(LDinMakanan *l, LDinMakananEl val, IdxType idx);
  * @param l
  * @param num Tambahan capacity l
  */
+
 void expandLDinMakanan(LDinMakanan *l, int num);
 #endif
