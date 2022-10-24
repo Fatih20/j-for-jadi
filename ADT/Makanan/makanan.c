@@ -84,3 +84,8 @@ boolean sampaiSetelahAtauSama(Makanan m1, Makanan m2)
 {
     return !sampaiDuluan(m1, m2) || sampaiBersamaan(m1, m2);
 };
+
+boolean isMakananEqual(Makanan m1, Makanan m2)
+{
+    return teksSama(namaMakanan(m1), namaMakanan(m2)) && teksSama(idTipe(m1), idTipe(m2)) && teksSama(idUnik(m1), idUnik(m2)) && basiDalam(m1) == basiDalam(m2) && sampaiDalam(m1) == sampaiDalam(m2);
+}

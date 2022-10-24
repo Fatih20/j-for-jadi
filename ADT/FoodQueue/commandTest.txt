@@ -1,0 +1,5 @@
+Tes time
+gcc fQueueTimeDriver.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c -o tesFQWaktu -lm
+
+Tes in general
+gcc fQueueDriver.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c -o tesFQ -lm

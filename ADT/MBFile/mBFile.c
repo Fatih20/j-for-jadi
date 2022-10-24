@@ -7,12 +7,16 @@
 
 char currentChar;
 boolean endMKF;
+boolean endMBF;
 Teks currentWord;
 LDinTeks currentRow;
 
 boolean isBlankFB(Teks t)
 {
-    return elmtLDC(karArrayT(t), lastIdxLDinKar(karArrayT(t))) == '\n';
+    Teks tN;
+    buatTeksKosong(&tN);
+    plusKar(&tN, '\n');
+    return teksSama(t, tN);
 }
 
 void ignoreBlanksFB()

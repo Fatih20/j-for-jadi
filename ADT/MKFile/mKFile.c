@@ -68,7 +68,8 @@ void advMKFile()
 
 void buatNewLine()
 {
-    buatTeks("\n", &currentWord);
+    buatTeksKosong(&currentWord);
+    plusKar(&currentWord, '\n');
     advMCFile();
 }
 
@@ -78,7 +79,7 @@ void saveKataF()
     boolean actualLetter = true;
     while (actualLetter)
     {
-        if (isBlankF(currentChar) || EOP)
+        if (isIgnoredF(currentChar) || EOP)
         {
             actualLetter = false;
         }
