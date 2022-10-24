@@ -1,5 +1,5 @@
 #include "lstatmakanan.h"
-#include "../MKFile/mKFile.h"
+#include "../MBFile/mBFile.h"
 #include <stdio.h>
 Makanan getMarkLStatMakanan()
 {
@@ -22,7 +22,7 @@ int panjangLStatMakanan(LStatMakanan l)
     int res = 0;
     for (int i = 0; i < capacityLSM; i++)
     {
-        if (isMakananEqual(elmtLSM(l, i), getMarkLStatMakanan()))
+        if (!isMakananEqual(elmtLSM(l, i), getMarkLStatMakanan()))
         {
             res += 1;
         }
@@ -34,7 +34,6 @@ IdxType lastIdxLStatMakanan(LStatMakanan l)
 {
     return panjangLStatMakanan(l) - 1;
 }
-
 
 boolean isIdxValidLStatMakanan(LStatMakanan l, IdxType i)
 {
@@ -56,81 +55,87 @@ boolean isFullLStatMakanan(LStatMakanan l)
     return panjangLStatMakanan(l) == capacityLSM;
 }
 
-
-void readLStatMakanan(LStatMakanan *l) 
+void readLStatMakanan(LStatMakanan *l, char *file)
 {
-    startMKFile("makanancfg.txt");
-    printf("aaa");
+
+    startMBFile(file);
     int n;
-    if (!endMKF)
+    if (!endMBF)
     {
-        printf("aaa");
-        n = teksToInt(currentWord);
+        n = teksToInt(elmtLDT(currentRow, 0));
     }
     while (n--)
     {
+        advMBFile();
         Makanan makananTemp;
-        Teks idTemp, aksi, namaTemp;
+        Teks idTemp, aksi, namaTemp, space;
         int hariKad, jamKad, menitKad, hariKirim, jamKirim, menitKirim, hariOlah, jamOlah, menitOlah;
-        advMKFile();
-        idTemp = currentWord; /* Baca ID */
-        advMKFile();
-        namaTemp = currentWord; 
-        advMKFile();    /* Baca nama*/
-        for (int i = 0; i < 3; i++) /* Baca waktu kadaluarsa */
+        idTemp = elmtLDT(currentRow, 0);
+        advMBFile();
+        buatTeks("", &namaTemp);
+        buatTeks(" ", &space);
+        for (int i = 0; i < nEffLDT(currentRow); i++)
         {
-            advMKFile();
-            hariKad = teksToInt(currentWord);
-            advMKFile();
-            jamKad = teksToInt(currentWord);
-            advMKFile();
-            menitKad = teksToInt(currentWord);
+            if (i != 0)
+            {
+                gabungkanTeks(namaTemp, space, &namaTemp);
+            }
+            gabungkanTeks(namaTemp, elmtLDT(currentRow, i), &namaTemp);
         }
-        for (int i = 0; i < 3; i++) /* Baca waktu pengiriman*/
-        {
-            advMKFile();
-            hariKirim = teksToInt(currentWord);
-            advMKFile();
-            jamKirim = teksToInt(currentWord);
-            advMKFile();
-            menitKirim = teksToInt(currentWord);
-        }
-        advMKFile();
-        aksi = currentWord;         /* Baca aksi */
-        for (int i = 0; i < 3; i++) /* Baca waktu pengolahan */
-        {
-            advMKFile();
-            hariOlah = teksToInt(currentWord);
-            advMKFile();
-            jamOlah = teksToInt(currentWord);
-            advMKFile();
-            menitOlah = teksToInt(currentWord);
-        }
+        advMBFile();
+        hariKad = teksToInt(elmtLDT(currentRow, 0));
+        jamKad = teksToInt(elmtLDT(currentRow, 1));
+        menitKad = teksToInt(elmtLDT(currentRow, 2));
+        /* BUAT WAKTU*/
+        advMBFile();
+        hariKirim = teksToInt(elmtLDT(currentRow, 0));
+        jamKirim = teksToInt(elmtLDT(currentRow, 1));
+        menitKirim = teksToInt(elmtLDT(currentRow, 2));
+        advMBFile();
+        aksi = elmtLDT(currentRow, 0);
+        advMBFile();
+        hariOlah = teksToInt(elmtLDT(currentRow, 0));
+        jamOlah = teksToInt(elmtLDT(currentRow, 1));
+        menitOlah = teksToInt(elmtLDT(currentRow, 2));
         idTipe(makananTemp) = idTemp;
         basiDalam(makananTemp) = hariKad;
         sampaiDalam(makananTemp) = hariKirim;
         namaMakanan(makananTemp) = namaTemp;
-        cetakMakanan(makananTemp);
         insertLastLStatMakanan(l, makananTemp);
     }
-};
-/* I.S. l sembarang */
-/* F.S. List l terdefinisi */
-/* Proses: membaca banyaknya elemen l dan mengisi nilainya */
-/* 1. Baca banyaknya elemen diakhiri enter, misalnya n */
-/*    Pembacaan diulangi sampai didapat n yang benar yaitu 0 <= n <= CAPACITY */
-/*    Jika n tidak valid, tidak diberikan pesan kesalahan */
-/* 2. Jika 0 < n <= CAPACITY; Lakukan n kali:
-          Baca elemen mulai dari indeks 0 satu per satu diakhiri enter */
-/*    Jika n = 0; hanya terbentuk List kosong */
+}; /* blomm finalll */
+
+/* BELUM FINALL tar aja klo adt makanan dah fixx */
 void printLStatMakanan(LStatMakanan l)
+{
+    printf("==============================\n");
+    printf("         DAFTAR MAKANAN       \n");
+    printf("==============================\n");
+    for (int i = 0; i < panjangLStatMakanan(l); i++)
+    {
+        printf("%d. ", i + 1);
+        cetakTeks(namaMakanan(elmtLSM(l, i)));
+        printf(" - ");
+        /* CETAK WAKTU*/
+        cetakTeks(namaMakanan(elmtLSM(l, i)));
+        /* ga pake cetakMakanan krn ini idUniknya undefined*/
+        printf("\n");
+    }
+}
+
+Teks getNameFromID(LStatMakanan l, Teks idTipe)
 {
     for (int i = 0; i < panjangLStatMakanan(l); i++)
     {
-        printf("%d. \n", i + 1);
-        cetakMakanan(elmtLSM(l, i));
+        if (teksSama(idTipe(elmtLSM(l, i)), idTipe))
+        {
+            return namaMakanan(elmtLSM(l, i));
+        }
     }
-}
+    Teks blank;
+    buatTeks("#", &blank);
+    return blank;
+};
 
 int indexOfLStatMakanan(LStatMakanan l, LStatMakananEl val)
 {
@@ -154,6 +159,7 @@ int indexOfLStatMakanan(LStatMakanan l, LStatMakananEl val)
 
 void insertLastLStatMakanan(LStatMakanan *l, LStatMakananEl val)
 {
+
     if (panjangLStatMakanan(*l) < capacityLSM)
     {
         elmtLSM(*l, panjangLStatMakanan(*l)) = val;

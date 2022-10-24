@@ -7,6 +7,7 @@
 
 #include "../boolean.h"
 #include "../Makanan/makanan.h"
+#include "../Teks/teks.h"
 
 /*  Kamus Umum */
 #define capacityLSM 100
@@ -29,7 +30,7 @@ typedef int IdxType;
  */
 typedef struct
 {
-    LStatMakananEl makanan[capacityLSM]; /* memori tempat penyimpan elemen (container) */
+  LStatMakananEl makanan[capacityLSM]; /* memori tempat penyimpan elemen (container) */
 } LStatMakanan;
 
 /* ********** SELEKTOR ********** */
@@ -105,8 +106,8 @@ boolean isEmptyLStatMakanan(LStatMakanan l);
 boolean isFullLStatMakanan(LStatMakanan l);
 
 /**
- * @brief membaca daftar makanan dari makanancfg.txt
- * Format makanancfg.txt
+ * @brief membaca daftar makanan dari file
+ * Format <file>
  * 6 # Jumlah makanan
  * 11 # ID Makanan
  * Ayam Mentah # Nama makanan
@@ -116,8 +117,9 @@ boolean isFullLStatMakanan(LStatMakanan l);
  * 0 0 0 # Lama aksi pengolahan
  *
  * @param l
+ * @param file
  */
-void readLStatMakanan(LStatMakanan *l);
+void readLStatMakanan(LStatMakanan *l, char *file);
 
 /**
  * @brief Menuliskan isi list makanan
@@ -135,6 +137,15 @@ void printLStatMakanan(LStatMakanan l);
  * @return int index ditemukannya val dalam l
  */
 int indexOfLStatMakanan(LStatMakanan l, LStatMakananEl val);
+
+/**
+ * @brief Mengembalikan nama makanan dengan idMakanan ID
+ * 
+ * @param l 
+ * @param id 
+ * @return Teks 
+ */
+Teks getNameFromID(LStatMakanan l, Teks id);
 
 void insertLastLStatMakanan(LStatMakanan *l, LStatMakananEl val);
 /* Proses: Menambahkan val sebagai elemen terakhir List */
