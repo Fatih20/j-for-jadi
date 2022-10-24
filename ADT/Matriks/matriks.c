@@ -82,7 +82,7 @@ void displayMatriks(Matriks m)
     }
 }
 
-boolean isCollide(Matriks m, Point p)
+boolean isCollide(Matriks m, POINT p)
 {
     // KAMUS LOKAL
     int x, y;
@@ -93,20 +93,20 @@ boolean isCollide(Matriks m, Point p)
     return (ELMT(m, x, y) == '*' || ELMT(m, x, y) == 'X' || ELMT(m, x, y) == 'T' || ELMT(m, x, y) == 'M' || ELMT(m, x, y) == 'F' || ELMT(m, x, y) == 'C' || ELMT(m, x, y) == 'B');
 }
 
-void moveSimulator(Matriks *m, Simulator *s, Point p)
+void moveSimulator(Matriks *m, POINT *lokasiSimulator, POINT p)
 {
     // KAMUS LOKAL
     int x1, y1, x2, y2;
     // ALGORITMA
 
     // Setup
-    x1 = Absis(*s.lokasi);
-    y1 = Ordinat(*s.lokasi);
+    x1 = Absis(*lokasiSimulator) + 1;
+    y1 = Ordinat(*lokasiSimulator) + 1;
     x2 = Absis(p) + 1;
     y2 = Ordinat(p) + 1;
     ELMT(*m, x2, y2) = 'S'; // Mengisi tanda 'S' pada koordinat p
     ELMT(*m, x1, y1) = ' '; // Menghapus tanda 'S' pada posisi sebelumnya
-    // Mengubah Simulator.lokasi
-    Absis(*s.lokasi) = x2 - 1;
-    Ordinat(*s.lokasi) = y2 - 1;
+    // Mengubah lokasi simulator
+    Absis(*lokasiSimulator) = x2 - 1;
+    Ordinat(*lokasiSimulator) = y2 - 1;
 }
