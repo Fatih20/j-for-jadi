@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "matriks.h"
 
-void createMatrix(int nRows, int nCols, Matriks *m)
+void createMatriks(int nRows, int nCols, Matriks *m)
 {
     // KAMUS LOKAL
     // ALGORITMA
@@ -42,7 +42,7 @@ void copyMatriks(Matriks mIn, Matriks *mOut)
     // KAMUS LOKAL
     int i, j;
     // ALGORITMA
-    createMatrix(ROW_EFF(mIn), COL_EFF(mIn), mOut);
+    createMatriks(ROW_EFF(mIn), COL_EFF(mIn), mOut);
     for (i = 0; i <= getLastIdxRow(mIn); i++)
     {
         for (j = 0; j <= getLastIdxCol(mIn); j++)
@@ -52,12 +52,78 @@ void copyMatriks(Matriks mIn, Matriks *mOut)
     }
 }
 
-void readMatriks(Matriks *m, int nRow, int nCol)
+void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator)
 {
     // KAMUS LOKAL
-    int i, j, e;
+    int i, j, e, nRows, nCols, ctr;
+    boolean firstLine, isRow;
     // ALGORITMA
-    createMatrix(nRow, nCol, m); // inisialisasi matriks kosong
+    ctr = 0; // Untuk mengambi nRows dan nCols
+    isRow = true;
+    CreatePoint(lokasiSimulator, -1, -1);
+    startMKFile(namaFile);
+    while (!endMKF)
+    {
+        // printf("%s\n", currentWord.karArray);
+        // printf("Halo");
+        if (ctr < 2)
+        {
+            if (isRow) // Jika yang terbaca adalah konfigurasi nRows
+            {
+                isRow = false;
+                nRows = 0;
+                for (i = 0; i < currentWord.length; i++)
+                {
+                    nRows = nRows * 10 + (int)(currentWord.karArray[i] - '0');
+                }
+            }
+            else // Jika yang terbaca adalah konfigurasi nCols
+            {
+                nCols = 0;
+                for (i = 0; i < currentWord.length; i++)
+                {
+                    nCols = nCols * 10 + (int)(currentWord.karArray[i] - '0');
+                }
+            }
+
+            if (ctr > 0) // Jika Konfigurasi baris 1 sudah selesai
+            {
+                createMatriks(nRows + 2, nCols + 2, m); // Insialisasi ukuran peta
+                // Batas Atas dan Bawah Peta
+                for (j = 0; j <= getLastIdxCol(*m); j++)
+                {
+                    ELMT(*m, 0, j) = '*';
+                    ELMT(*m, getLastIdxRow(*m), j) = '*';
+                }
+                i = 1;
+            }
+            ctr++;
+        }
+        else
+        {
+            // Mengisi Peta
+            ELMT(*m, i, 0) = '*';
+            ELMT(*m, i, getLastIdxCol(*m)) = '*';
+            for (j = 1; j <= getLastIdxCol(*m) - 1; j++)
+            {
+                if (currentWord.karArray[j - 1] == '#')
+                {
+                    ELMT(*m, i, j) = ' ';
+                }
+                else
+                {
+                    if (currentWord.karArray[j - 1] == 'S')
+                    {
+                        CreatePoint(lokasiSimulator, i - 1, j - 1);
+                    }
+                    ELMT(*m, i, j) = currentWord.karArray[j - 1];
+                }
+            }
+            i++;
+        }
+        advMKFile();
+    }
+    // m merupakan peta hasil konfigurasi
 }
 
 void displayMatriks(Matriks m)
@@ -71,11 +137,11 @@ void displayMatriks(Matriks m)
         {
             if (j != getLastIdxCol(m))
             {
-                printf("%d ", ELMT(m, i, j));
+                printf("%c ", ELMT(m, i, j));
             }
             else
             {
-                printf("%d", ELMT(m, i, j));
+                printf("%c", ELMT(m, i, j));
             }
         }
         printf("\n");

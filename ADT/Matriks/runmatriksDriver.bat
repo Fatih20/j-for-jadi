@@ -1,0 +1,1 @@
+gcc matriksDriver.c matriks.c ../MKFile/mKFile.c ../MCFile/mCFile.c ../Teks/teks.c ../Point/Point.c -o driverMatriks

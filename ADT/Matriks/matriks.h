@@ -1,6 +1,7 @@
 #include "../boolean.h"
 #include "../Point/point.h"
 #include "../MKFile/mKFile.h"
+#include "../Teks/teks.h"
 
 #ifndef MATRIKS_H
 #define MATRIKS_H
@@ -92,11 +93,11 @@ void copyMatriks(Matriks mIn, Matriks *mOut);
  * @brief Melakukan CreateMatrix(m,nRow,nCol) dan mengisi nilai efektifnya
  *
  * @param m: Matriks
- * @param nRow: Banyak baris
- * @param nCol: Banyak kolom
+ * @param namaFile: namaFile konfigurasi
+ * @param lokasiSimulator: titik koordinat simulator
  * @return m terdefinisi nilai elemen efektifnya, berukuran nRow x nCol
  */
-void readMatriks(Matriks *m, int nRow, int nCol);
+void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator);
 
 /**
  * @brief Menulis nilai setiap elemen m ke layar dengan traversal per baris dan per kolom
