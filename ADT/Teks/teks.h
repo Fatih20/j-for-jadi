@@ -1,4 +1,5 @@
 #include "../boolean.h"
+#include "../ListDinKar/ldinkar.h"
 
 #ifndef teks_H
 #define teks_H
@@ -13,11 +14,11 @@
  */
 typedef struct
 {
-    char karArray[NMax];
+    LDinKar karArray;
     int length;
 } Teks;
 
-#define panjangT(T) (T).length
+#define panjangT(T) nEffLDC((T).karArray)
 #define karArrayT(T) (T).karArray
 
 /**

@@ -31,23 +31,36 @@ int main(int argc, char const *argv[])
     cetakFoodQueue(fq2);
     printf("\n\n");
 
-    // Uji Dequeue FQ1
-    printf("Tes dequeue FQ1\n");
-    FoodQueueEl tempEl1;
-    dequeue(&fq1, &tempEl1);
-    cetakFoodQueue(fq1);
-    printf("\n");
-    cetakMakanan(tempEl1);
-    printf("\n\n");
+    // // Uji Dequeue FQ1
+    // printf("Tes dequeue FQ1\n");
+    // FoodQueueEl tempEl1;
+    // // dequeue(&fq1, &tempEl1);
+    // cetakFoodQueue(fq1);
+    // printf("\n");
+    // cetakMakanan(tempEl1);
+    // printf("\n\n");
 
-    // Uji Dequeue FQ2
-    printf("Tes dequeue FQ2\n");
-    FoodQueueEl tempEl2;
-    dequeue(&fq2, &tempEl2);
+    // // Uji Dequeue FQ2
+    // printf("Tes dequeue FQ2\n");
+    // FoodQueueEl tempEl2;
+    // // dequeue(&fq2, &tempEl2);
+    // cetakFoodQueue(fq2);
+    // printf("\n");
+    // cetakMakanan(tempEl2);
+    // printf("\n\n");
+
+    // Uji copyFQ
+    printf("Tes copy FQ1 ke FQ3\n");
+    FoodQueue fq3;
+    buatFQKosong(&fq3, 1);
+    copyFoodQueue(fq1, &fq3);
+    cetakFoodQueue(fq3);
+
+    // Uji remove and find by ID
+    printf("Tes remove dan cari tipe dalam FQ2\n");
+    FoodQueueEl tempEl3;
+    printf("%d\n", idxMakanan(fq2, "014"));
+    deleteByIdTipe(&fq2, "010", &tempEl3);
     cetakFoodQueue(fq2);
-    printf("\n");
-    cetakMakanan(tempEl2);
-    printf("\n\n");
-
     return 0;
 }

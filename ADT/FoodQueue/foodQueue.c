@@ -140,3 +140,39 @@ void cetakFoodQueue(FoodQueue FQ)
 {
     printLDinMakanan(FQ.content);
 };
+
+void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2)
+{
+    headFQ(*FQ2) = headFQ(FQ1);
+    tailFQ(*FQ2) = tailFQ(FQ1);
+    copyLDinMakanan(FQ1.content, &(FQ2->content));
+};
+
+void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal)
+{
+    int deletedIdx = idxMakanan(*FQ, idTipeS);
+    if (deletedIdx != IDX_UNDEF)
+    {
+        removeAtLDinMakanan(FQ, deletedVal, deletedIdx);
+        tailFQ(*FQ)--;
+    }
+};
+
+int idxMakanan(FoodQueue FQ, char idTipeS[])
+{
+    int i = 0;
+    int lastIdx = lastIdxLDinMakanan((FQ).content);
+    boolean found = false;
+    Teks idTipe;
+    buatTeks(idTipeS, &idTipe);
+    while (!found && i <= lastIdx)
+    {
+        found = teksSama(idTipe(elmtFQ((FQ), i)), idTipe);
+        if (!found)
+        {
+            i++;
+        }
+    }
+
+    return found ? i : IDX_UNDEF;
+};

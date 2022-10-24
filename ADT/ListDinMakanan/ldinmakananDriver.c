@@ -45,6 +45,19 @@ int main()
     printLDinMakanan(l);
     printf("\n");
 
+    /* Uji removeLastLDinMakanan*/
+    printf("*****List With Last Element Removed*****\n");
+    Makanan val;
+    removeLastLDinMakanan(&l, &val);
+    printLDinMakanan(l);
+    printf("\n");
+
+    /* Uji removeAtLDinMakanan*/
+    printf("*****List With Element At Idx Removed*****\n");
+    removeAtLDinMakanan(&l, &val, 1);
+    printLDinMakanan(l);
+    printf("\n");
+    cetakMakanan(val);
     dealokasiLDinMakanan(&l);
     dealokasiLDinMakanan(&ltemp);
 }

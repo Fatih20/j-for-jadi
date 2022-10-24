@@ -1,7 +1,8 @@
-#ifndef LDINKAR_H
-#define LDINKAR_H
+#ifndef LDINTEKS_H
+#define LDINTEKS_H
 
 #include "../boolean.h"
+#include "../Teks/teks.h"
 #include <stdio.h>
 
 /*  Kamus Umum */
@@ -11,51 +12,51 @@
 /* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
-typedef char LDinKarEl; /* type elemen list */
+typedef Teks LDinTeksEl; /* type elemen list */
 typedef int IdxType;
 /**
- * @brief ADT LDinKar yang merupakan list dinamis rata kiri dengan LDinKarEl char
+ * @brief ADT LDinTeks yang merupakan list dinamis rata kiri dengan LDinTeksEl char
  * @param nEff >=0, banyak elemen efektif
  * @param capacity kapasitas/ukuran list
  */
 typedef struct
 {
-    LDinKarEl *kar;
+    LDinTeksEl *teks;
     int nEff;
     int capacity;
-} LDinKar;
+} LDinTeks;
 
 /* ********** SELEKTOR ********** */
-#define nEffLDC(l) (l).nEff
-#define kar(l) (l).kar
-#define elmtLDC(l, i) (l).kar[i]
-#define capacityLDC(l) (l).capacity
+#define nEffLDT(l) (l).nEff
+#define teks(l) (l).teks
+#define elmtLDT(l, i) (l).teks[i]
+#define capacityLDT(l) (l).capacity
 
 /* ********** KONSTRUKTOR ********** */
 
 /**
- * @brief Konstruktor : Membuat list char kosong
+ * @brief Konstruktor : Membuat list teks kosong
  *
- * @param l alamat list char
+ * @param l alamat list teks
  * @param capacity kapasitas list dinamis l
  */
-void buatLDinKar(LDinKar *l, int capacity);
+void buatLDinTeks(LDinTeks *l, int capacity);
 
 /**
  * @brief men-dealokasi memori list l
  *
  * @param l list makanan l yang mula-mula terdefinisi
  */
-void dealokasiLDinKar(LDinKar *l);
+void dealokasiLDinTeks(LDinTeks *l);
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /**
- * @brief mengembalikan banyaknya elemen list char l
+ * @brief mengembalikan banyaknya elemen list teks l
  *
  * @param l list makanan yang terdefinisi (bisa kosong)
  * @return int : banyaknya elemen dalam list l
  */
-int panjangLDinKar(LDinKar l);
+int panjangLDinTeks(LDinTeks l);
 
 /* *** Selektor INDEKS *** */
 
@@ -65,7 +66,7 @@ int panjangLDinKar(LDinKar l);
  * @param l prekondisi : l tidak kosong
  * @return IdxType : indeks elemen l terakhir
  */
-IdxType lastIdxLDinKar(LDinKar l);
+IdxType lastIdxLDinTeks(LDinTeks l);
 
 /* ********** Test Indeks yang valid ********** */
 
@@ -76,7 +77,7 @@ IdxType lastIdxLDinKar(LDinKar l);
  * @param i indeks yang akan dicek
  * @return boolean
  */
-boolean isIdxValidLDinKar(LDinKar l, IdxType i);
+boolean isIdxValidLDinTeks(LDinTeks l, IdxType i);
 
 /**
  * @brief Mengirimkan true jika i adalah indeks yang terdefinisi utk list, yaitu antara 0..NEff-1
@@ -85,7 +86,7 @@ boolean isIdxValidLDinKar(LDinKar l, IdxType i);
  * @param i indeks yang akan dicek
  * @return boolean
  */
-boolean isIdxEffLDinKar(LDinKar l, IdxType i);
+boolean isIdxEffLDinTeks(LDinTeks l, IdxType i);
 
 /* ********** TEST KOSONG/PENUH ********** */
 /**
@@ -94,7 +95,7 @@ boolean isIdxEffLDinKar(LDinKar l, IdxType i);
  * @param l
  * @return boolean
  */
-boolean isEmptyLDinKar(LDinKar l);
+boolean isEmptyLDinTeks(LDinTeks l);
 
 /**
  * @brief  Mengirimkan true jika list l penuh, mengirimkan false jika tidak
@@ -102,27 +103,20 @@ boolean isEmptyLDinKar(LDinKar l);
  * @param l
  * @return boolean
  */
-boolean isFullLDinKar(LDinKar l);
+boolean isFullLDinTeks(LDinTeks l);
 
 /**
- * @brief membaca list makanan
- * Proses : terima N jumlah makanan
- * 1. Baca banyaknya elemen diakhiri enter, misalnya N
- *    Pembacaan diulangi sampai didapat N yang benar yaitu 0 <= N <= CAPACITY(l)
- *    Jika N tidak valid, tidak diberikan pesan kesalahan
- * 2. Jika 0 < N <= CAPACITY(l); Lakukan N kali: Baca elemen mulai dari indeks
-      0 satu per satu diakhiri enter
- * ini buat debug dan driver doang sebenarnya ga butuh harusnyaa
+ * @brief membaca list teks
  *
  * @param l sudah dialokasikan sebelumnya
  */
-void readLDinKar(LDinKar *l);
+void readLDinTeks(LDinTeks *l);
 
 /**
  * @brief Menampilkan isi list char sebagai string
  * @param l boleh kosong
  */
-void printLDinKar(LDinKar l);
+void printLDinTeks(LDinTeks l);
 
 /* ********** OPERASI LAIN ********** */
 /**
@@ -131,7 +125,7 @@ void printLDinKar(LDinKar l);
  * @param lIn lIn terdefinisi
  * @param lOut sembarang
  */
-void copyLDinKar(LDinKar lIn, LDinKar *lOut);
+void copyLDinTeks(LDinTeks lIn, LDinTeks *lOut);
 
 /**
  * @brief memasukkan val sebagai elemen pertama l, jika l penuh maka akan diexpand
@@ -139,7 +133,7 @@ void copyLDinKar(LDinKar lIn, LDinKar *lOut);
  * @param l l bisa kosong
  * @param val elemen yang akan dimasukkan ke dalam l
  */
-void insertFirstLDinKar(LDinKar *l, LDinKarEl val);
+void insertFirstLDinTeks(LDinTeks *l, LDinTeksEl val);
 
 /**
  * @brief memasukkan val sebagai elemen pertama l, jika l penuh maka akan diexpand
@@ -147,7 +141,7 @@ void insertFirstLDinKar(LDinKar *l, LDinKarEl val);
  * @param l l bisa kosong
  * @param val elemen yang akan dimasukkan ke dalam l
  */
-void insertLastLDinKar(LDinKar *l, LDinKarEl val);
+void insertLastLDinTeks(LDinTeks *l, LDinTeksEl val);
 
 /* ********** MENAMBAH DAN MENGHAPUS ELEMEN DI AKHIR ********** */
 /**
@@ -157,7 +151,7 @@ void insertLastLDinKar(LDinKar *l, LDinKarEl val);
  * @param val elemen yang akan dimasukkan pada list
  * @param idx index tempat pengisian val
  */
-void insertAtLDinKar(LDinKar *l, LDinKarEl val, IdxType idx);
+void insertAtLDinTeks(LDinTeks *l, LDinTeksEl val, IdxType idx);
 
 /**
  * @brief Mengeluarkan elemen pertama dari l lalu menyimpannya ke dalam X
@@ -165,7 +159,7 @@ void insertAtLDinKar(LDinKar *l, LDinKarEl val, IdxType idx);
  * @param l
  * @param X
  */
-void removeFirstLDinKar(LDinKar *l, LDinKarEl *val);
+void removeFirstLDinTeks(LDinTeks *l, LDinTeksEl *val);
 
 /**
  * @brief menghapus nilai pada indeks idx list din l dan menyimpannya dalam val
@@ -174,7 +168,7 @@ void removeFirstLDinKar(LDinKar *l, LDinKarEl *val);
  * @param val penyimpanan nilai yang dihapus dari list
  * @param idx indeks yang akan dihapus elemennya
  */
-void removeAtLDinKar(LDinKar *l, LDinKarEl *val, IdxType idx);
+void removeAtLDinTeks(LDinTeks *l, LDinTeksEl *val, IdxType idx);
 
 /**
  * @brief menghapus elemen terakhir pada list dan menyimpannya dalam val
@@ -182,12 +176,12 @@ void removeAtLDinKar(LDinKar *l, LDinKarEl *val, IdxType idx);
  * @param l list yang akan dihapus elemen terakhirnya
  * @param val penyimpanan nilai yang dihapus dari list
  */
-void removeLastLDinKar(LDinKar *l, LDinKarEl *val);
+void removeLastLDinTeks(LDinTeks *l, LDinTeksEl *val);
 
 /**
  * @brief Menambahkan capacity l sebanyak num
  * @param l
  * @param num Tambahan capacity l
  */
-void expandLDinKar(LDinKar *l, int num);
+void expandLDinTeks(LDinTeks *l, int num);
 #endif
