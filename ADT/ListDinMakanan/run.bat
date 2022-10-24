@@ -1,0 +1,1 @@
+gcc ldinmakanan.c ldinmakananDriver.c ../Makanan/makanan.c ../Teks/teks.c
