@@ -164,7 +164,7 @@ int idxMakanan(FoodQueue FQ, char idTipeS[])
     boolean found = false;
     Teks idTipe;
     buatTeks(idTipeS, &idTipe);
-    while (!found && i <= lastIdx)
+    while (!found && i < lastIdx)
     {
         found = teksSama(idTipe(elmtFQ((FQ), i)), idTipe);
         if (!found)
@@ -174,4 +174,4 @@ int idxMakanan(FoodQueue FQ, char idTipeS[])
     }
 
     return found ? i : IDX_UNDEF;
-}
+};
