@@ -41,6 +41,11 @@ boolean NEQ(POINT P1, POINT P2)
     return !EQ(P1, P2);
 }
 
+boolean IsAdjacent(POINT P1, POINT P2)
+{
+    return (EQ(PlusDelta(P1, -1, -1), P2) || EQ(PlusDelta(P1, 0, -1), P2) || EQ(PlusDelta(P1, 1, -1), P2) || EQ(PlusDelta(P1, -1, 0), P2) || EQ(PlusDelta(P1, 1, 0), P2) || EQ(PlusDelta(P1, -1, 1), P2) || EQ(PlusDelta(P1, 0, 1), P2) || EQ(PlusDelta(P1, 1, 1), P2));
+}
+
 boolean IsOrigin(POINT P)
 {
     /*KAMUS LOKAL*/

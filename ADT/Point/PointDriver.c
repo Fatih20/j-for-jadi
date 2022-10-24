@@ -3,11 +3,15 @@
 
 int main()
 {
-    POINT P1, P2;
+    POINT P1, P2, P3, P4;
     printf("Masukkan Titik 1:\n");
     BacaPOINT(&P1);
     printf("Masukkan Titik 2:\n");
     BacaPOINT(&P2);
+    printf("Masukkan Titik 3:\n");
+    BacaPOINT(&P3);
+    printf("Masukkan Titik 4:\n");
+    BacaPOINT(&P4);
 
     printf("\n");
     TulisPOINT(P1);
@@ -83,5 +87,7 @@ int main()
     TulisPOINT(P2);
     printf("\n");
 
+    printf("IsAdjacent\n");
+    printf("%d\n", IsAdjacent(P3, P4));
     return 0;
 }
