@@ -8,11 +8,14 @@ Teks currentWord;
 
 int main(int argc, char const *argv[])
 {
+    int i = 0;
     startMBFile("test.txt");
     while (!endMBF)
     {
+        printf("%d = ", i);
         printLDinTeks(currentRow);
         advMBFile();
+        i++;
     }
 
     return 0;

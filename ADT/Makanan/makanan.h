@@ -184,4 +184,12 @@ boolean sampaiDuluanAtauSama(Makanan m1, Makanan m2);
  */
 boolean sampaiSetelahAtauSama(Makanan m1, Makanan m2);
 
+/**
+ * @brief Fungsi untuk mengecek apakah 2 makanan sama (nama, id, waktu kadaluarsa, lama pengiriman sama)
+ *
+ * @param m1 makanan yang ingin dicek infonya
+ * @param m2 makanan yang ingin dicek infonya
+ * @return boolean apakah m1 == m2
+ */
+boolean isMakananEqual(Makanan m1, Makanan m2);
 #endif

@@ -56,5 +56,11 @@ int main(int argc, char const *argv[])
     copyFoodQueue(fq1, &fq3);
     cetakFoodQueue(fq3);
 
+    // Uji remove and find by ID
+    printf("Tes remove dan cari tipe dalam FQ2\n");
+    FoodQueueEl tempEl3;
+    printf("%d\n", idxMakanan(fq2, "014"));
+    deleteByIdTipe(&fq2, "010", &tempEl3);
+    cetakFoodQueue(fq2);
     return 0;
 }
