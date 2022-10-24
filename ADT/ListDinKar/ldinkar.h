@@ -2,7 +2,6 @@
 #define LDINKAR_H
 
 #include "../boolean.h"
-#include "../Makanan/makanan.h"
 #include <stdio.h>
 
 /*  Kamus Umum */

@@ -1,4 +1,5 @@
 #include "teks.h"
+#include "../ListDinKar/ldinkar.h"
 #include <stdio.h>
 
 int main(int argc, char const *argv[])
@@ -19,6 +20,8 @@ int main(int argc, char const *argv[])
     buatTeks("Dgklg", &t2);
     cetakTeks(t2);
     printf("\n");
+    plusKar(&t2, 'o');
+    plusKar(&t2, 'o');
     plusKar(&t2, 'o');
     cetakTeks(t2);
     printf("\n");
