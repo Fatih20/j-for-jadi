@@ -8,7 +8,7 @@ void buatTeks(char string[], Teks *teks)
     for (char kar = *string; kar != '\0'; kar = *++string)
     {
         insertLastLDinKar(&(karArrayT(*teks)), kar);
-        panjangT(*teks) += 1;
+        // Tidak perlu tambahkan panjangT karena otomatis dilakukan di dalam insertLast
         i += 1;
     }
 };
@@ -32,7 +32,7 @@ void plusKar(Teks *teks, char kar)
 {
 
     insertLastLDinKar(&(karArrayT(*teks)), kar);
-    panjangT(*teks) += 1;
+    // Tidak perlu tambahkan panjangT karena otomatis dilakukan di dalam insertLast
 };
 
 void delKar(Teks *teks){
