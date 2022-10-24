@@ -178,9 +178,9 @@ int idxMakanan(FoodQueue FQ, char idTipeS[]);
 /**
  * @brief Men-dequeue elemen di-head yang memiliki waktu basi 0 sampai elemen di-head belum basi. Gunakan sesuai spek parameter.
  *
- * @param FQ Inventory queue yang ingin dihapus elemennya yang sudah basi
+ * @param IQ Inventory queue yang ingin dihapus elemennya yang sudah basi
  */
-void hapusBasi(FoodQueue *FQ);
+void hapusBasi(FoodQueue *IQ);
 
 /**
  * @brief Men-dequeue elemen di-head queue pertama yang memiliki waktu sampai 0 sampai elemen di-head belum sampai. Elemen yang di-dequeue dimasukkan ke queue kedua. Gunakan sesuai spek parameter.
