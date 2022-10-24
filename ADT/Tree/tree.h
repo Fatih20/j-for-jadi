@@ -5,9 +5,10 @@
 #include "../Teks/teks.h"
 
 /* Selektor */
-#define CHILD(p, i) (p)->children.child[i]
-#define CHILDREN(p) (p)->children
-#define MAKANAN(p) (p)->makanan
+#define Child(p, i) (p)->children.child[i]
+#define Children(p) (p)->children
+#define MakananTree(p) (p)->makanan
+#define AksiTree(p) (p)->aksi
 #define ListNodeCap(l) (l).capacity
 #define CAPACITY 100
 #define ListNodeELMT(l, i) (l).child[i]
@@ -18,15 +19,16 @@ typedef struct treeNode *Address;
 typedef Address ListNodeEl;
 typedef struct listNode
 {
-    Address *child;
-    int capacity;
-    int nEff;
+   Address *child;
+   int capacity;
+   int nEff;
 } ListNode;
 
 typedef struct treeNode
 {
-    treeEl makanan;
-    ListNode children;
+   treeEl aksi;
+   treeEl makanan;
+   ListNode children;
 } TreeNode;
 
 /* Definisi PohonBiner */
