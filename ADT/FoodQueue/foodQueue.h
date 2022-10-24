@@ -144,4 +144,13 @@ void cetakFoodQueue(FoodQueue FQ);
  */
 void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2);
 
+/**
+ * @brief Menghapus sebuah elemen berdasar id tipe makanannya. Menghapus kemunculan pertama makanan dengan id tipe tersebut.
+ *
+ * @param FQ Queue yang in
+ * @param idTipe id dari tipe yang ingin dihapus dari queue
+ *
+ */
+void deleteByID(FoodQueue *FQ, Teks idTipe);
+
 #endif

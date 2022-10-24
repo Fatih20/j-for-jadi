@@ -147,3 +147,7 @@ void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2)
     tailFQ(*FQ2) = tailFQ(FQ1);
     copyLDinMakanan(FQ1.content, &(FQ2->content));
 };
+
+void deleteByID(FoodQueue *FQ, Teks idTipe){
+
+};
