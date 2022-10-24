@@ -148,11 +148,11 @@ void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2);
  * @brief Menghapus sebuah elemen berdasar id tipe makanannya. Menghapus kemunculan pertama makanan dengan id tipe tersebut. Jika makanan tidak ada di queue, tidak ada yang terjadi.
  *
  * @param FQ Queue yang ingin dihapus salah elemennya
- * @param idTipe id dari tipe yang ingin dihapus dari queue
+ * @param idTipeS id dari tipe yang ingin dihapus dari queue
  * @param deletedVal alamat tempat makanan yang dihapus akan disimpan
  *
  */
-void deleteByID(FoodQueue *FQ, Teks idTipe, Makanan *deletedVal);
+void deleteByID(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal);
 
 /**
  * @brief Mengembalikan indeks makanan paling awal dari tipe yang diberikan
@@ -161,5 +161,5 @@ void deleteByID(FoodQueue *FQ, Teks idTipe, Makanan *deletedVal);
  * @param idTipe id dari tipe makanan yang ingin dicari
  * @return int indeks dari tipe makanan yang diberikan yang paling awal dalam queue. -1 jika makanan tidak ada.
  */
-int idxMakanan(FoodQueue *FQ, Teks idTipe);
+int idxMakanan(FoodQueue *FQ, char idTipeS[]);
 #endif
