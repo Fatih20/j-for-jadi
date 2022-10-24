@@ -6,13 +6,13 @@ int main(int argc, char const *argv[])
 {
 
     Teks t1;
-    buatTeks("quis auctor elit sed vulputate mi sit amet mauris commodo quis imperdiet massa tincidunt nuncmmmmmmmmmmmmmmmmmmmmmmmmm", &t1);
+    buatTeks("quis auctor elit sed vulputate mi sit amet mauris commodo quis imperdiet massa tincidunt", &t1);
     cetakTeks(t1);
     printf("\n");
-    // delKar(&t1);
-    // delKar(&t1);
-    // delKar(&t1);
-    // delKar(&t1);
+    delKar(&t1);
+    delKar(&t1);
+    delKar(&t1);
+    delKar(&t1);
     cetakTeks(t1);
     printf("\n");
 

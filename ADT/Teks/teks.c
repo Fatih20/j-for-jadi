@@ -35,8 +35,10 @@ void plusKar(Teks *teks, char kar)
     // Tidak perlu tambahkan panjangT karena otomatis dilakukan di dalam insertLast
 };
 
-void delKar(Teks *teks){
-    // Need list deletion
+void delKar(Teks *teks)
+{
+    char temp;
+    removeLastLDinKar(&karArrayT(*teks), &temp);
 };
 
 boolean teksSama(Teks t1, Teks t2)
