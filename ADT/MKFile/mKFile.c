@@ -7,13 +7,12 @@ boolean endMKF;
 boolean EOP;
 Teks currentWord;
 
-boolean isBlankF(char c)
+boolean isIgnoredF(char c)
 {
     switch (c)
     {
     case '\n':
         return true;
-        return false;
         break;
     case ' ':
         return true;
@@ -23,6 +22,11 @@ boolean isBlankF(char c)
         return false;
         break;
     }
+}
+
+boolean isBlankF(char c)
+{
+    return c == ' ';
 }
 
 void ignoreBlanksF()
@@ -51,11 +55,21 @@ void advMKFile()
     {
         endMKF = true;
     }
+    else if (currentChar == '\n')
+    {
+        buatNewLine();
+    }
     else
     {
 
         saveKataF();
     }
+}
+
+void buatNewLine()
+{
+    buatTeks("\n", &currentWord);
+    advMCFile();
 }
 
 void saveKataF()
