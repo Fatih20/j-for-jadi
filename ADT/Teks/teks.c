@@ -16,7 +16,7 @@ void buatTeks(char string[], Teks *teks)
 void buatTeksKosong(Teks *teks)
 {
     panjangT(*teks) = 0;
-    buatLDinKar(&karArrayT(*teks), 100);
+    buatLDinKar(&karArrayT(*teks), 20);
 };
 
 void cetakTeks(Teks t)
