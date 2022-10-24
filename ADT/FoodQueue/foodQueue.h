@@ -161,5 +161,5 @@ void deleteByID(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal);
  * @param idTipe id dari tipe makanan yang ingin dicari
  * @return int indeks dari tipe makanan yang diberikan yang paling awal dalam queue. -1 jika makanan tidak ada.
  */
-int idxMakanan(FoodQueue *FQ, char idTipeS[]);
+int idxMakanan(FoodQueue FQ, char idTipeS[])
 #endif

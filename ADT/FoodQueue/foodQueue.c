@@ -150,23 +150,23 @@ void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2)
 
 void deleteByID(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal)
 {
-    int deletedIdx = idxMakanan(FQ, idTipeS);
+    int deletedIdx = idxMakanan(*FQ, idTipeS);
     if (deletedIdx != IDX_UNDEF)
     {
         removeAtLDinMakanan(FQ, deletedVal, deletedIdx);
     }
 };
 
-int idxMakanan(FoodQueue *FQ, char idTipeS[])
+int idxMakanan(FoodQueue FQ, char idTipeS[])
 {
     int i = 0;
-    int lastIdx = lastIdxLDinMakanan((*FQ).content);
+    int lastIdx = lastIdxLDinMakanan((FQ).content);
     boolean found = false;
     Teks idTipe;
     buatTeks(idTipeS, &idTipe);
     while (!found && i <= lastIdx)
     {
-        found = teksSama(idTipe(elmtFQ((*FQ), i)), idTipe);
+        found = teksSama(idTipe(elmtFQ((FQ), i)), idTipe);
         if (!found)
         {
             i++;
