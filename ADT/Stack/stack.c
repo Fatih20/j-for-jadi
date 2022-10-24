@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "stack.h"
 
 void CreateEmptyStack(Stack *S, int capacity)
@@ -6,26 +7,28 @@ void CreateEmptyStack(Stack *S, int capacity)
     // KAMUS LOKAL
     // ALGORITMA
     Top(*S) = Nil;
+    Capacity(*S) = capacity;
+    Info(*S) = (infoStack *)malloc(capacity * sizeof(infoStack));
 }
 
-boolean IsEmpty(Stack S)
+boolean IsEmptyStack(Stack S)
 {
     // KAMUS LOKAL
     // ALGORITMA
     return (Top(S) == Nil);
 }
 
-boolean IsFull(Stack S)
+boolean IsFullStack(Stack S)
 {
     // KAMUS LOKAL
     // ALGORITMA
     return (Top(S) == Capacity(S) - 1);
 }
-void Push(Stack *S, infotype X)
+void Push(Stack *S, infoStack X)
 {
     // KAMUS LOKAL
     // ALGORITMA
-    if (IsEmpty(*S))
+    if (IsEmptyStack(*S))
     {
         Top(*S) = 0;
     }
@@ -36,7 +39,7 @@ void Push(Stack *S, infotype X)
     InfoTop(*S) = X;
 }
 
-void Pop(Stack *S, infotype *X)
+void Pop(Stack *S, infoStack *X)
 {
     // KAMUS LOKAL
     // ALGORITMA
@@ -53,12 +56,12 @@ void Pop(Stack *S, infotype *X)
 
 void expandStack(Stack *S, int num)
 {
-    *S->T = realloc(*S->T, (Capacity(*S) + num) * sizeof(infotype));
+    Info(*S) = realloc(Info(*S), (Capacity(*S) + num) * sizeof(infoStack));
     Capacity(*S) += num;
 }
 
 void shrinkStack(Stack *S, int num)
 {
-    *S->T = realloc(*S->T, (Capacity(*S) - num) * sizeof(infotype));
+    Info(*S) = realloc(Info(*S), (Capacity(*S) - num) * sizeof(infoStack));
     Capacity(*S) -= num;
 }

@@ -6,7 +6,7 @@
 
 #define Nil -1
 
-typedef State infotype;
+typedef State infoStack;
 typedef int address; /* indeks tabel */
 
 /**
@@ -17,13 +17,14 @@ typedef int address; /* indeks tabel */
  */
 typedef struct
 {
-    infotype *T;
+    infoStack *T;
     address TOP;
     int capacity;
 } Stack;
 
 #define Top(S) (S).TOP
 #define InfoTop(S) (S).T[(S).TOP]
+#define Info(S) (S).T
 #define Capacity(S) (S).capacity
 
 /**
@@ -39,14 +40,14 @@ void CreateEmptyStack(Stack *S, int capacity);
  * @param S: Stack of State
  * @return boolean
  */
-boolean IsEmpty(Stack S);
+boolean IsEmptyStack(Stack S);
 
 /**
  * @brief Mengirim true jika tabel penampung nilai elemen stack penuh
  * @param S: Stack of State
  * @return boolean
  */
-boolean IsFull(Stack S);
+boolean IsFullStack(Stack S);
 
 /**
  * @brief Menambahkan X sebagai elemen Stack S
@@ -54,7 +55,7 @@ boolean IsFull(Stack S);
  * @param X: State
  * @return X menjadi TOP yang baru,TOP bertambah 1
  */
-void Push(Stack *S, infotype X);
+void Push(Stack *S, infoStack X);
 
 /**
  * @brief Menghapus X dari Stack S
@@ -62,7 +63,7 @@ void Push(Stack *S, infotype X);
  * @param X: State
  * @return X adalah nilai elemen TOP yang lama, TOP berkurang 1
  */
-void Pop(Stack *S, infotype *X);
+void Pop(Stack *S, infoStack *X);
 
 /**
  * @brief Menambahkan capacity S sebanyak num
