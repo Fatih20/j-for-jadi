@@ -4,7 +4,7 @@
 
 int main(int argc, char const *argv[])
 {
-    Waktu w1, w2, w3, w4, w5, w6, w7;
+    Waktu w1, w2, w3, w4, w5, w6, w7, w8, w9;
     long d1, d2;
 
     if (isWaktuValid(5, 17, 46, 20))
@@ -55,8 +55,14 @@ int main(int argc, char const *argv[])
     w6 = nextNDetik(w1, 48);
     tulisWaktu(w6);
 
-    w7 = nextNDetik(w1, -90);
+    w7 = nextDetik(w1);
     tulisWaktu(w7);
+
+    w8 = prevNDetik(w1, 3700);
+    tulisWaktu(w8);
+
+    w9 = prevDetik(w1);
+    tulisWaktu(w9);
 
     d2 = durasi(w2, w1);
     printf("w1-w2=%d", d2);

@@ -107,6 +107,21 @@ Waktu nextNDetik(Waktu W, int N)
     return (detikToWaktu(waktuToDetik(W) + N));
 }
 
+Waktu nextDetik(Waktu W)
+{
+    return (nextNDetik(W, 1));
+}
+
+Waktu prevNDetik(Waktu W, int N)
+{
+    return (nextNDetik(W, -N));
+}
+
+Waktu prevDetik(Waktu W)
+{
+    return (prevNDetik(W, 1));
+}
+
 long durasi(Waktu WAw, Waktu WAkh)
 {
     long detikAw, detikAkh, durasi;
