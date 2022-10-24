@@ -154,6 +154,7 @@ void deleteByID(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal)
     if (deletedIdx != IDX_UNDEF)
     {
         removeAtLDinMakanan(FQ, deletedVal, deletedIdx);
+        tailFQ(*FQ)--;
     }
 };
 
@@ -164,7 +165,7 @@ int idxMakanan(FoodQueue FQ, char idTipeS[])
     boolean found = false;
     Teks idTipe;
     buatTeks(idTipeS, &idTipe);
-    while (!found && i < lastIdx)
+    while (!found && i <= lastIdx)
     {
         found = teksSama(idTipe(elmtFQ((FQ), i)), idTipe);
         if (!found)
