@@ -107,18 +107,18 @@ void deAlokasi(FoodQueue *FQ);
 /**
  * @brief Memasukkan X ke FQ sesuai aturan prioritas waktu sampai. Yaitu makanan yang paling cepat sampai terlebih dahulu dan jika sama, maka dimasukkan sesuai urutan masuknya yang lebih dulu. Tail mundur satu.
  *
- * @param FQ
+ * @param DQ
  * @param X
  */
-void enqueueDelivery(FoodQueue *FQ, FoodQueueEl X);
+void enqueueDelivery(FoodQueue *DQ, FoodQueueEl X);
 
 /**
  * @brief Memasukkan X ke FQ sesuai aturan prioritas waktu basi. Yaitu makanan yang paling cepat basi terlebih dahulu dan jika sama, maka dimasukkan sesuai urutan masuknya yang lebih dulu. Tail mundur satu.
  *
- * @param FQ
+ * @param IQ
  * @param X
  */
-void enqueueInventory(FoodQueue *FQ, FoodQueueEl X);
+void enqueueInventory(FoodQueue *IQ, FoodQueueEl X);
 
 /**
  * @brief Menghapus elemen teratas FQ dengan aturan FIFO. Menyimpan elemen yang dihapus ke address X. Head mundur
@@ -180,17 +180,18 @@ void hapusBasi(FoodQueue *FQ);
 void hapusSampai(FoodQueue *DQ, FoodQueue *IQ);
 
 /**
- * @brief Memajukan waktu untuk delivery queue. Mengurangi waktu sampai semua makanan di dalamnya.
+ * @brief Memajukan waktu untuk delivery queue. Mengurangi waktu sampai semua makanan di dalamnya. Kemudian menjalankan hapusSampai.
  *
- * @param DQ Delivery queue yang mengalami pemajuan waktu
+ * @param DQ Delivery queue yang dimajukan waktunya kemudian dipindah ke IQ makanannya yang sudah sampai
+ * @param IQ Inventory queue yang menerima makanan yang sampai setelah waktu dimajukan
  */
-void majukanSampai(FoodQueue *DQ);
+void majukanWSampai(FoodQueue *DQ, FoodQueue *IQ);
 
 /**
- * @brief Memajukan waktu untuk inventory queue. Mengurangi waktu basi semua makanan di dalamnya.
+ * @brief Memajukan waktu untuk inventory queue. Mengurangi waktu basi semua makanan di dalamnya. Kemudian menjalankan hapusBasi
  *
- * @param IQ
+ * @param IQ yang ingin dimajukan waktunya lalu dihapus elemennya yang basi setelah waktu dimajukan
  */
-void majukanBasi(FoodQueue *IQ);
+void majukanWBasi(FoodQueue *IQ);
 
 #endif

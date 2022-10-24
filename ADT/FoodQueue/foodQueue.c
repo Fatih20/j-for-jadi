@@ -153,7 +153,7 @@ void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal)
     int deletedIdx = idxMakanan(*FQ, idTipeS);
     if (deletedIdx != IDX_UNDEF)
     {
-        removeAtLDinMakanan(FQ, deletedVal, deletedIdx);
+        removeAtLDinMakanan(&(*FQ).content, deletedVal, deletedIdx);
         tailFQ(*FQ)--;
     }
 };
@@ -175,4 +175,41 @@ int idxMakanan(FoodQueue FQ, char idTipeS[])
     }
 
     return found ? i : IDX_UNDEF;
+};
+
+void hapusBasi(FoodQueue *FQ)
+{
+    while ((!isEmptyFQ(*FQ)) && (headElFQ(*FQ)).waktuBasi == 0)
+    {
+        FoodQueueEl temp;
+        dequeue(FQ, &temp);
+    }
+};
+void hapusSampai(FoodQueue *DQ, FoodQueue *IQ)
+{
+    while ((!isEmptyFQ(*DQ)) && (headElFQ(*DQ)).waktuSampai == 0)
+    {
+        FoodQueueEl temp;
+        dequeue(DQ, &temp);
+        enqueueInventory(IQ, temp);
+    }
+};
+void majukanWSampai(FoodQueue *DQ, FoodQueue *IQ)
+{
+    int lastIdx = lastIdxLDinMakanan((*DQ).content);
+    for (int i = 0; i <= lastIdx; i++)
+    {
+        elmtLDM((*DQ).content, i).waktuSampai--;
+    }
+    hapusSampai(DQ, IQ);
+};
+void majukanWBasi(FoodQueue *IQ)
+{
+    int lastIdx = lastIdxLDinMakanan((*IQ).content);
+    for (int i = 0; i <= lastIdx; i++)
+    {
+        elmtLDM((*IQ).content, i).waktuBasi--;
+    }
+
+    hapusBasi(IQ);
 };
