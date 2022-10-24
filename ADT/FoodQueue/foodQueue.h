@@ -152,7 +152,7 @@ void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2);
  * @param deletedVal alamat tempat makanan yang dihapus akan disimpan
  *
  */
-void deleteByID(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal);
+void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal);
 
 /**
  * @brief Mengembalikan indeks makanan paling awal dari tipe yang diberikan

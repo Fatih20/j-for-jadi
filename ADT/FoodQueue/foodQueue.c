@@ -148,7 +148,7 @@ void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2)
     copyLDinMakanan(FQ1.content, &(FQ2->content));
 };
 
-void deleteByID(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal)
+void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal)
 {
     int deletedIdx = idxMakanan(*FQ, idTipeS);
     if (deletedIdx != IDX_UNDEF)
