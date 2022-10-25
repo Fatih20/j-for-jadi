@@ -4,16 +4,26 @@
 int main()
 {
     State state;
-    POINT lokasi;
-    Absis(lokasi) = 4;
-    Ordinat(lokasi) = 5;
-    int waktu = 100;
+    int absis = 4;
+    int ordinat = 5;
+    int waktu = 4800;
     FoodQueue inventory;
     Makanan temp1, temp2, temp3, temp4;
-    buatMakanan(&temp1, "Susu", 1, 3, "010", "000");
-    buatMakanan(&temp2, "Tahu", 3, 1, "012", "000");
-    buatMakanan(&temp3, "Tempe", 2, 2, "011", "000");
-    buatMakanan(&temp4, "Geprek", 2, 2, "013", "000");
+    Waktu wB1, wB2, wB3, wB4, wS1, wS2, wS3, wS4;
+    wB1 = buatWaktu(0, 0, 3, 0);
+    wB2 = buatWaktu(0, 0, 2, 0);
+    wB3 = buatWaktu(0, 0, 2, 0);
+    wB4 = buatWaktu(0, 0, 1, 0);
+
+    wS1 = buatWaktu(0, 0, 1, 0);
+    wS2 = buatWaktu(0, 0, 2, 0);
+    wS3 = buatWaktu(0, 0, 2, 0);
+    wS4 = buatWaktu(0, 0, 3, 0);
+
+    buatMakanan(&temp1, "Susu", "010", "000", wB1, wS1);
+    buatMakanan(&temp2, "Tahu", "012", "000", wB2, wS2);
+    buatMakanan(&temp3, "Tempe", "011", "000", wB3, wS3);
+    buatMakanan(&temp4, "Geprek", "013", "000", wB4, wS4);
 
     // Uji membuat queue
     buatFQKosong(&inventory, 5);
@@ -21,19 +31,19 @@ int main()
     // Uji print tiap enqueue inventory baru
     printf("Tes enqueue delivery\n\n");
     enqueueDelivery(&inventory, temp1);
-    buatState(&state, lokasi, waktu, inventory);
+    buatState(&state, absis, ordinat, waktu, inventory);
     cetakState(state);
     enqueueDelivery(&inventory, temp2);
-    buatState(&state, lokasi, waktu, inventory);
+    buatState(&state, absis, ordinat, waktu, inventory);
     cetakState(state);
     enqueueDelivery(&inventory, temp3);
-    buatState(&state, lokasi, waktu, inventory);
+    buatState(&state, absis, ordinat, waktu, inventory);
     cetakState(state);
     enqueueDelivery(&inventory, temp4);
-    buatState(&state, lokasi, waktu, inventory);
+    buatState(&state, absis, ordinat, waktu, inventory);
     cetakState(state);
 }
 
 /*
-gcc -o main ADT\State\stateDriver.c ADT\State\state.c ADT\FoodQueue\foodQueue.c ADT\ListDinMakanan\ldinmakanan.c ADT\Makanan\makanan.c ADT\Point\Point.c ADT\Teks\teks.c
+gcc -o main ADT\State\stateDriver.c ADT\State\state.c ADT\FoodQueue\foodQueue.c ADT\ListDinMakanan\ldinmakanan.c ADT\Makanan\makanan.c ADT\Point\Point.c ADT\Teks\teks.c ADT\ListDinKar\ldinkar.c ADT\Waktu\waktu.c
 */
