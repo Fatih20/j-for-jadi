@@ -60,7 +60,7 @@ boolean isFullLStatMakanan(LStatMakanan l)
     return panjangLStatMakanan(l) == capacityLSM;
 }
 
-void readLStatMakanan(LStatMakanan *l, char *file, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON)
+void readLStatMakanan(LStatMakanan *l, char *file)
 {
 
     startMBFile(file);
@@ -113,7 +113,7 @@ void readLStatMakanan(LStatMakanan *l, char *file, AksiLokasi MIX, AksiLokasi BO
         hariOlah = teksToInt(elmtLDT(currentRow, 0));
         jamOlah = teksToInt(elmtLDT(currentRow, 1));
         menitOlah = teksToInt(elmtLDT(currentRow, 2));
-        
+
         AksiLokasi aksiTemp;
         idTipe(makananTemp) = idTemp;
         basiDalam(makananTemp) = waktuKad;
