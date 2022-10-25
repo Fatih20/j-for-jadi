@@ -62,18 +62,21 @@ void readLDinMakanan(LDinMakanan *l)
     for (i; i < n; i++)
     {
         Makanan temp;
-        char idMakanan[100];
-        char namaMakanan[100];
+        char *idMakanan;
+        char *namaMakanan;
+        Waktu wB;
+        Waktu wS;
         int waktuKadaluarsa, lamaPengiriman;
         printf("Masukkan ID makanan: ");
-        scanf("%s", &idMakanan);
+        scanf("%s", idMakanan);
         printf("Masukkan nama makanan: ");
-        scanf("%s", &namaMakanan);
+        scanf("%s", namaMakanan);
         printf("Masukkan waktu kadaluarsa: ");
-        scanf("%d", &waktuKadaluarsa);
+        bacaWaktu(&wB);
         printf("Masukkan lama pengiriman: ");
+        bacaWaktu(&wS);
         scanf("%d", &lamaPengiriman);
-        buatMakanan(&temp, namaMakanan, waktuKadaluarsa, lamaPengiriman, idMakanan, idMakanan);
+        buatMakanan(&temp, namaMakanan, idMakanan, idMakanan, wB, wS);
         elmtLDM(*l, i) = temp;
     }
 }

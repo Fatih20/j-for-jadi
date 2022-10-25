@@ -80,6 +80,11 @@ Waktu detikToWaktu(long N)
     return W;
 }
 
+boolean isWZero(Waktu w)
+{
+    return waktuToDetik(w) == 0;
+};
+
 boolean WEQ(Waktu W1, Waktu W2)
 {
     return (waktuToDetik(W1) == waktuToDetik(W2));
