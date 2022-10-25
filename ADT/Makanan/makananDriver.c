@@ -5,7 +5,11 @@
 int main(int argc, char const *argv[])
 {
     Makanan m1;
-    buatMakanan(&m1, "bruh", 100, 100, "95", "100");
+    Waktu wB;
+    Waktu wS;
+    wB = buatWaktu(0, 0, 20, 0);
+    wS = buatWaktu(0, 0, 20, 0);
+    buatMakanan(&m1, "bruh", "95", "100", wB, wS);
     cetakMakanan(m1);
     // Makanan m2;
     // buatMakanan(&m2, "bruh", 101, 100, "12", "101");

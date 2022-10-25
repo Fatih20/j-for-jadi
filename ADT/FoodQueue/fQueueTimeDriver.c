@@ -4,10 +4,21 @@ int main(int argc, char const *argv[])
 {
     FoodQueue dq, iq;
     Makanan temp1, temp2, temp3, temp4;
-    buatMakanan(&temp1, "Susu", 1, 3, "010", "000");
-    buatMakanan(&temp2, "Tahu", 4, 1, "012", "000");
-    buatMakanan(&temp3, "Tempe", 2, 2, "011", "000");
-    buatMakanan(&temp4, "Geprek", 2, 2, "013", "000");
+    Waktu wB1, wB2, wB3, wB4, wS1, wS2, wS3, wS4;
+    wB1 = buatWaktu(0, 0, 3, 0);
+    wB2 = buatWaktu(0, 0, 2, 0);
+    wB3 = buatWaktu(0, 0, 2, 0);
+    wB4 = buatWaktu(0, 0, 1, 0);
+
+    wS1 = buatWaktu(0, 0, 1, 0);
+    wS2 = buatWaktu(0, 0, 2, 0);
+    wS3 = buatWaktu(0, 0, 2, 0);
+    wS4 = buatWaktu(0, 0, 3, 0);
+
+    buatMakanan(&temp1, "Susu", "010", "000", wB1, wS1);
+    buatMakanan(&temp2, "Tahu", "012", "000", wB2, wS2);
+    buatMakanan(&temp3, "Tempe", "011", "000", wB3, wS3);
+    buatMakanan(&temp4, "Geprek", "013", "000", wB4, wS4);
 
     // Uji membuat queue
     buatFQKosong(&dq, 5);
