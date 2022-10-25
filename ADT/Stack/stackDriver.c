@@ -67,14 +67,14 @@ int main()
     // Uji print tiap enqueue inventory baru
     printf("Tes enqueue delivery\n\n");
     enqueueDelivery(&inventory, temp1);
-    buatState(&state, lokasi, waktu, inventory);
+    buatState(&state, 1, 1, 0, 1, 0, 0, inventory);
     Push(&SState, state);
     cetakState(state);
     printf("IsFull: %d\n", IsFullStack(SState));
     printf("IsEmpty: %d\n", IsEmptyStack(SState));
 
     enqueueDelivery(&inventory, temp2);
-    buatState(&state, lokasi, waktu, inventory);
+    buatState(&state, 1, 1, 0, 1, 0, 1, inventory);
     // cetakState(state);
     Push(&SState, state);
     printf("IsFull: %d\n", IsFullStack(SState));
@@ -82,7 +82,7 @@ int main()
 
     shrinkStack(&SState, 7);
     enqueueDelivery(&inventory, temp3);
-    buatState(&state, lokasi, waktu, inventory);
+    buatState(&state, 1, 1, 0, 1, 1, 0, inventory);
     // cetakState(state);
     Push(&SState, state);
     printf("IsFull: %d\n", IsFullStack(SState));
@@ -90,7 +90,7 @@ int main()
 
     expandStack(&SState, 2);
     enqueueDelivery(&inventory, temp4);
-    buatState(&state, lokasi, waktu, inventory);
+    buatState(&state, 1, 1, 0, 0, 2, 0, inventory);
     // cetakState(state);
     Push(&SState, state);
     printf("IsFull: %d\n", IsFullStack(SState));
