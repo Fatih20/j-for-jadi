@@ -19,10 +19,40 @@ int main()
     wS3 = buatWaktu(0, 0, 2, 0);
     wS4 = buatWaktu(0, 0, 3, 0);
 
-    buatMakanan(&temp1, "Susu", "010", "000", wB1, wS1);
-    buatMakanan(&temp2, "Tahu", "012", "000", wB2, wS2);
-    buatMakanan(&temp3, "Tempe", "011", "000", wB3, wS3);
-    buatMakanan(&temp4, "Geprek", "013", "000", wB4, wS4);
+    AksiLokasi aL1, aL2, aL3, aL4;
+    Teks namaM1, idTM1, idUM1, aLT1;
+    Teks namaM2, idTM2, idUM2, aLT2;
+    Teks namaM3, idTM3, idUM3, aLT3;
+    Teks namaM4, idTM4, idUM4, aLT4;
+
+    buatTeks("BUY", &aLT1);
+    buatTeks("Susu", &namaM1);
+    buatTeks("010", &idTM1);
+    buatTeks("000", &idUM1);
+    buatAksiLokasi(&aL1, aLT1, 2, 2, 0, 1, 5, 0);
+
+    buatTeks("BUY", &aLT2);
+    buatTeks("Tempe", &namaM2);
+    buatTeks("011", &idTM2);
+    buatTeks("000", &idUM2);
+    buatAksiLokasi(&aL2, aLT2, 2, 2, 0, 1, 5, 0);
+
+    buatTeks("BUY", &aLT3);
+    buatTeks("Tahu", &namaM3);
+    buatTeks("012", &idTM3);
+    buatTeks("000", &idUM3);
+    buatAksiLokasi(&aL3, aLT3, 2, 2, 0, 1, 5, 0);
+
+    buatTeks("BUY", &aLT4);
+    buatTeks("Geprek", &namaM4);
+    buatTeks("013", &idTM4);
+    buatTeks("000", &idUM4);
+    buatAksiLokasi(&aL4, aLT4, 2, 2, 0, 1, 5, 0);
+
+    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
+    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
+    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3);
+    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4);
 
     // Uji membuat queue
     buatFQKosong(&inventory, 5);

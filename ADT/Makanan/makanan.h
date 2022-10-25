@@ -50,7 +50,7 @@ typedef struct
  *
  * @return Makanan pada address yang diberikan terdefinisi dengan parameter yang diberikan
  */
-void buatMakanan(Makanan *makanan, char namaMakanan[], char idTipe[], char idUnik[], Waktu waktuBasi, Waktu waktuSampai, AksiLokasi aksiLokasi);
+void buatMakanan(Makanan *makanan, Teks namaMakanan, Teks idTipe, Teks idUnik, Waktu waktuBasi, Waktu waktuSampai, AksiLokasi aksiLokasi);
 
 /**
  * @brief Fungsi untuk mendapatkan id gabungan makanan

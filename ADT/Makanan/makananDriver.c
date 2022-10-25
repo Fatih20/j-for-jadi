@@ -12,10 +12,13 @@ int main(int argc, char const *argv[])
     wS = buatWaktu(0, 0, 20, 0);
 
     AksiLokasi aL;
-    Teks aLT;
-    buatTeks("Bruh", &aLT);
-    buatAksiLokasi(&aL, aLT, 2, 2, 0, 1, 5, 0);
-    buatMakanan(&m1, "bruh", "95", "100", wB, wS, aL);
+    Teks namaM1, idTM1, idUM1, aLT1;
+    buatTeks("Bruh", &aLT1);
+    buatTeks("bruh", &namaM1);
+    buatTeks("095", &idTM1);
+    buatTeks("100", &idUM1);
+    buatAksiLokasi(&aL, aLT1, 2, 2, 0, 1, 5, 0);
+    buatMakanan(&m1, namaM1, idTM1, idUM1, wB, wS, aL);
     cetakMakanan(m1);
     printf("\n");
     TulisPOINT(getFInPlace(m1));

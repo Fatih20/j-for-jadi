@@ -4,11 +4,11 @@
 #include <stdio.h>
 #include "../boolean.h"
 
-void buatMakanan(Makanan *makanan, char namaMakanan[], char idTipe[], char idUnik[], Waktu waktuBasi, Waktu waktuSampai, AksiLokasi aksiLokasi)
+void buatMakanan(Makanan *makanan, Teks namaMakanan, Teks idTipe, Teks idUnik, Waktu waktuBasi, Waktu waktuSampai, AksiLokasi aksiLokasi)
 {
-    buatTeks(namaMakanan, &namaMakanan(*makanan));
-    buatTeks(idUnik, &idUnik(*makanan));
-    buatTeks(idTipe, &idTipe(*makanan));
+    namaMakanan(*makanan) = namaMakanan;
+    idTipe(*makanan) = idTipe;
+    idUnik(*makanan) = idUnik;
     basiDalam(*makanan) = waktuBasi;
     sampaiDalam(*makanan) = waktuSampai;
     aksiLokasi(*makanan) = aksiLokasi;
@@ -30,6 +30,7 @@ void cetakMakanan(Makanan makanan)
     tulisWaktu(sampaiDalam(makanan));
     printf("\n");
     displayAksiLokasi(aksiLokasi(makanan));
+    printf("\n");
 }
 
 Teks idMakanan(Makanan makanan)
