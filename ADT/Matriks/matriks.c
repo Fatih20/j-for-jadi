@@ -56,12 +56,14 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator)
 {
     // KAMUS LOKAL
     int i, j, e, nRows, nCols, ctr;
-    Teks bil; // Penampung nRow/nCol asumsi 10<=nRow<=100 dan 10<=nCol<=100
+    Teks bil1, bil2; // Penampung nRow/nCol asumsi 10<=nRow<=100 dan 10<=nCol<=100
     boolean isRow;
     // ALGORITMA
     ctr = 0; // Untuk mengambi nRows dan nCols
     isRow = true;
     CreatePoint(lokasiSimulator, -1, -1);
+    buatTeksKosong(&bil1);
+    buatTeksKosong(&bil2);
     startMBFile(namaFile);
     while (!endMBF)
     {
@@ -72,24 +74,34 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator)
             if (isRow) // Jika yang terbaca adalah konfigurasi nRows
             {
                 i = 0;
-                while (i < panjangLDinTeks(currentRow) && (currentRow.teks[i] != ' '))
+                while (i < panjangLDinTeks(currentRow) && (teks(currentRow)->karArray.kar[i] != ' '))
                 {
-                    bil[i] =
+                    elmtLDC(karArrayT(bil1), i) = teks(currentRow)->karArray.kar[i];
+                    panjangT(bil1)++;
+                    i++;
                 }
                 isRow = false;
                 nRows = 0;
-                for (i = 0; i < currentWord.length; i++)
+                for (i = 0; i < panjangT(bil1); i++)
                 {
-                    nRows = nRows * 10 + (int)(bil[i] - '0');
+                    nRows = nRows * 10 + (int)(elmtLDC(karArrayT(bil1), i) - '0');
                 }
             }
             else // Jika yang terbaca adalah konfigurasi nCols
             {
+                j = 0;
+                for (i = panjangT(bil1) + 1; i < panjangLDinTeks(currentRow); i++)
+                {
+                    elmtLDC(karArrayT(bil2), j) = teks(currentRow)->karArray.kar[i];
+                    i++;
+                    j++;
+                }
                 nCols = 0;
                 for (i = 0; i < currentWord.length; i++)
                 {
-                    nCols = nCols * 10 + (int)(currentWord.karArray[i] - '0');
+                    nCols = nCols * 10 + (int)(elmtLDC(karArrayT(bil2), i) - '0');
                 }
+                ctr++;
             }
 
             if (ctr > 0) // Jika Konfigurasi baris 1 sudah selesai
@@ -101,9 +113,8 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator)
                     ELMT(*m, 0, j) = '*';
                     ELMT(*m, getLastIdxRow(*m), j) = '*';
                 }
-                i = 1;
+                i = 1; // indeks baris
             }
-            ctr++;
         }
         else
         {
@@ -112,17 +123,17 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator)
             ELMT(*m, i, getLastIdxCol(*m)) = '*';
             for (j = 1; j <= getLastIdxCol(*m) - 1; j++)
             {
-                if (currentWord.karArray[j - 1] == '#')
+                if (teks(currentRow)->karArray.kar[j - 1] == '#')
                 {
                     ELMT(*m, i, j) = ' ';
                 }
                 else
                 {
-                    if (currentWord.karArray[j - 1] == 'S')
+                    if (teks(currentRow)->karArray.kar[j - 1] == 'S')
                     {
                         CreatePoint(lokasiSimulator, i - 1, j - 1);
                     }
-                    ELMT(*m, i, j) = currentWord.karArray[j - 1];
+                    ELMT(*m, i, j) = teks(currentRow)->karArray.kar[j - 1];
                 }
             }
             i++;
