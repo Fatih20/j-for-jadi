@@ -57,7 +57,6 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator, AksiLokasi
     // KAMUS LOKAL
     int i, j, e, nRows, nCols, ctr;
     Teks aksi; // penampung teks aksi
-    Waktu waktu;
     boolean isRow;
     // ALGORITMA
     ctr = 0; // Untuk mengambi nRows dan nCols
@@ -113,33 +112,28 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator, AksiLokasi
                     }
                     else if (nthChar(elmtLDT(currentRow, 0), j - 1) == 'M')
                     {
-                        buatTeks("MIX", &aksi);
-                        waktu = buatWaktu(0, 0, 1, 0);                  // default
-                        buatAksiLokasi(MIX, aksi, i - 1, j - 1, waktu); // default
+                        buatTeks("MIX", &aksi);                              // default
+                        buatAksiLokasi(MIX, aksi, i - 1, j - 1, 0, 0, 1, 0); // default
                     }
                     else if (nthChar(elmtLDT(currentRow, 0), j - 1) == 'T')
                     {
-                        buatTeks("TELEPON", &aksi);
-                        waktu = buatWaktu(0, 0, 1, 0);                  // default
-                        buatAksiLokasi(MIX, aksi, i - 1, j - 1, waktu); // default
+                        buatTeks("TELEPON", &aksi);                              // default
+                        buatAksiLokasi(TELEPON, aksi, i - 1, j - 1, 0, 0, 1, 0); // default
                     }
                     else if (nthChar(elmtLDT(currentRow, 0), j - 1) == 'F')
                     {
-                        buatTeks("FRY", &aksi);
-                        waktu = buatWaktu(0, 0, 1, 0);                  // default
-                        buatAksiLokasi(MIX, aksi, i - 1, j - 1, waktu); // default
+                        buatTeks("FRY", &aksi);                              // default
+                        buatAksiLokasi(FRY, aksi, i - 1, j - 1, 0, 0, 1, 0); // default
                     }
                     else if (nthChar(elmtLDT(currentRow, 0), j - 1) == 'C')
                     {
-                        buatTeks("CHOP", &aksi);
-                        waktu = buatWaktu(0, 0, 1, 0);                  // default
-                        buatAksiLokasi(MIX, aksi, i - 1, j - 1, waktu); // default
+                        buatTeks("CHOP", &aksi);                              // default
+                        buatAksiLokasi(CHOP, aksi, i - 1, j - 1, 0, 0, 1, 0); // default
                     }
                     else if (nthChar(elmtLDT(currentRow, 0), j - 1) == 'B')
                     {
-                        buatTeks("BOIL", &aksi);
-                        waktu = buatWaktu(0, 0, 1, 0);                  // default
-                        buatAksiLokasi(MIX, aksi, i - 1, j - 1, waktu); // default
+                        buatTeks("BOIL", &aksi);                              // default
+                        buatAksiLokasi(BOIL, aksi, i - 1, j - 1, 0, 0, 1, 0); // default
                     }
                     ELMT(*m, i, j) = nthChar(elmtLDT(currentRow, 0), j - 1);
                 }

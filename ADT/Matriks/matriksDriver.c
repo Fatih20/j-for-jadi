@@ -3,10 +3,11 @@
 
 int main()
 {
+    AksiLokasi MIX, BOIL, TELEPON, FRY, CHOP;
     Matriks Peta, CopyPeta;
     POINT lokasiSimulator, dest, mix;
     char namaFile[] = "peta.txt";
-    readMatriks(&Peta, namaFile, &lokasiSimulator);
+    readMatriks(&Peta, namaFile, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
     displayMatriks(Peta);
     printf("isMatriksIdxValid\n");
     printf("%d\n", isMatriksIdxValid(10, 10));
@@ -37,6 +38,21 @@ int main()
     CreatePoint(&dest, 2, 1);
     printf("IsAdjacent: %d\n", IsAdjacent(lokasiSimulator, mix));
     printf("IsCollideDest: %d\n", isCollide(Peta, dest));
+
+    printf("lokasi Simulator:");
+    TulisPOINT(lokasiSimulator);
+    printf("\n");
+
+    displayAksiLokasi(MIX);
+    printf("\n");
+    displayAksiLokasi(BOIL);
+    printf("\n");
+    displayAksiLokasi(CHOP);
+    printf("\n");
+    displayAksiLokasi(FRY);
+    printf("\n");
+    displayAksiLokasi(TELEPON);
+    printf("\n");
 
     return 0;
 }

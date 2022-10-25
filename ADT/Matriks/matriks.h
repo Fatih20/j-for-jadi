@@ -2,7 +2,6 @@
 #include "../Point/point.h"
 #include "../MBFile/mbFile.h"
 #include "../AksiLokasi/aksiLokasi.h"
-#include "../Waktu/waktu.h"
 
 #ifndef MATRIKS_H
 #define MATRIKS_H
