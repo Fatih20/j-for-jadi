@@ -8,7 +8,7 @@ void buatAksiLokasi(AksiLokasi *AL, Teks aksi, int x, int y, int waktu)
     Absis(lokasi) = x;
     Ordinat(lokasi) = y;
     lokasi(*AL) = lokasi;
-    waktu(*AL) = waktu;
+    waktu(*AL) = detikToWaktu(waktu);
 }
 
 void displayAksiLokasi(AksiLokasi AL)
@@ -17,5 +17,6 @@ void displayAksiLokasi(AksiLokasi AL)
     cetakTeks(aksi(AL));
     printf("\nLokasi : ");
     TulisPOINT(lokasi(AL));
-    printf("\nWaktu  : %d\n", waktu(AL));
+    printf("\nWaktu  : ");
+    tulisWaktu(waktu(AL));
 }

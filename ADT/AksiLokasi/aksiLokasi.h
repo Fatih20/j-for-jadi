@@ -4,18 +4,19 @@
 #include "../boolean.h"
 #include "../Point/Point.h"
 #include "../Teks/teks.h"
+#include "../Waktu/waktu.h"
 
 /**
  * @brief Tipe Data AksiLokasi
  * @param aksi: Nama aksi yang bisa dilakukan
  * @param lokasi: ADT Point tempat aksi tersebut dilakukan
- * @param waktu: Lama waktu pengolahan
+ * @param waktu: ADT Waktu lama pengerjaan
  */
 typedef struct
 {
     Teks aksi;
     POINT lokasi;
-    int waktu;
+    Waktu waktu;
 
 } AksiLokasi;
 
@@ -29,8 +30,9 @@ typedef struct
 /**
  * @brief Membentuk Tipedata AksiLokasi
  * @param aksi: Nama aksi yang bisa dilakukan
- * @param lokasi: ADT Point tempat aksi tersebut dilakukan
- * @param waktu: Lama waktu pengolahan
+ * @param x : absis lokasi
+ * @param y : ordinat lokasi
+ * @param waktu: Lama waktu pengolahan dalam detik
  */
 void buatAksiLokasi(AksiLokasi *AL, Teks aksi, int x, int y, int waktu);
 
