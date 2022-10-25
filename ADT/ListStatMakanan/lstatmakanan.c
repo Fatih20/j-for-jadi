@@ -5,8 +5,12 @@ Makanan getMarkLStatMakanan()
 {
     Makanan MARK;
     char blank[] = "#";
+    Teks markTeks;
+    buatTeks(blank, &markTeks);
     Waktu markWaktu = buatWaktu(-1, -1, -1, -1);
-    buatMakanan(&MARK, blank, blank, blank, markWaktu, markWaktu);
+    AksiLokasi markAksi;
+    buatAksiLokasi(&markAksi, markTeks, -1, -1, -1, -1, -1, -1);
+    buatMakanan(&MARK, markTeks, markTeks, markTeks, markWaktu, markWaktu, markAksi);
     return MARK;
 }
 
@@ -56,7 +60,7 @@ boolean isFullLStatMakanan(LStatMakanan l)
     return panjangLStatMakanan(l) == capacityLSM;
 }
 
-void readLStatMakanan(LStatMakanan *l, char *file)
+void readLStatMakanan(LStatMakanan *l, char *file, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON)
 {
 
     startMBFile(file);
@@ -71,7 +75,10 @@ void readLStatMakanan(LStatMakanan *l, char *file)
         Makanan makananTemp;
         Teks idTemp, aksi, namaTemp, space;
         int hariKad, jamKad, menitKad, hariKirim, jamKirim, menitKirim, hariOlah, jamOlah, menitOlah;
+        /* BACA ID MAKANAN */
         idTemp = elmtLDT(currentRow, 0);
+
+        /* BACA NAMA MAKANAN*/
         advMBFile();
         buatTeks("", &namaTemp);
         buatTeks(" ", &space);
@@ -83,24 +90,31 @@ void readLStatMakanan(LStatMakanan *l, char *file)
             }
             gabungkanTeks(namaTemp, elmtLDT(currentRow, i), &namaTemp);
         }
+        /* BACA WAKTU KADALUARSA*/
         advMBFile();
         hariKad = teksToInt(elmtLDT(currentRow, 0));
         jamKad = teksToInt(elmtLDT(currentRow, 1));
         menitKad = teksToInt(elmtLDT(currentRow, 2));
-        /* BUAT WAKTU*/
         Waktu waktuKad = buatWaktu(hariKad, jamKad, menitKad, 0);
+
+        /* BACA LAMA PENGIRIMAN */
         advMBFile();
         hariKirim = teksToInt(elmtLDT(currentRow, 0));
         jamKirim = teksToInt(elmtLDT(currentRow, 1));
         menitKirim = teksToInt(elmtLDT(currentRow, 2));
         Waktu waktuKirim = buatWaktu(hariKirim, jamKirim, menitKirim, 0);
+
+        /* BACA AKSI */
         advMBFile();
         aksi = elmtLDT(currentRow, 0);
+
+        /* BACA WAKTU PENGOLAHAN*/
         advMBFile();
         hariOlah = teksToInt(elmtLDT(currentRow, 0));
         jamOlah = teksToInt(elmtLDT(currentRow, 1));
         menitOlah = teksToInt(elmtLDT(currentRow, 2));
-        Waktu waktuOlah = buatWaktu(hariOlah, jamOlah, menitOlah, 0);
+        
+        AksiLokasi aksiTemp;
         idTipe(makananTemp) = idTemp;
         basiDalam(makananTemp) = waktuKad;
         sampaiDalam(makananTemp) = waktuKirim;
