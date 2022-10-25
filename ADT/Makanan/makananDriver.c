@@ -1,5 +1,6 @@
 #include "makanan.h"
 #include "../boolean.h"
+#include "../AksiLokasi/aksiLokasi.h"
 #include <stdio.h>
 
 int main(int argc, char const *argv[])
@@ -9,7 +10,12 @@ int main(int argc, char const *argv[])
     Waktu wS;
     wB = buatWaktu(0, 0, 20, 0);
     wS = buatWaktu(0, 0, 20, 0);
-    buatMakanan(&m1, "bruh", "95", "100", wB, wS);
+
+    AksiLokasi aL;
+    Teks aLT;
+    buatTeks("Bruh", &aLT);
+    buatAksiLokasi(&aL, aLT, 2, 2, 0, 0, 5, 0);
+    buatMakanan(&m1, "bruh", "95", "100", wB, wS, aL);
     cetakMakanan(m1);
     // Makanan m2;
     // buatMakanan(&m2, "bruh", 101, 100, "12", "101");
