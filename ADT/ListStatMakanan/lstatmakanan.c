@@ -5,7 +5,8 @@ Makanan getMarkLStatMakanan()
 {
     Makanan MARK;
     char blank[] = "#";
-    buatMakanan(&MARK, blank, -1, -1, blank, blank);
+    Waktu markWaktu = buatWaktu(-1, -1, -1, -1);
+    buatMakanan(&MARK, blank, blank, blank, markWaktu, markWaktu);
     return MARK;
 }
 
@@ -87,19 +88,22 @@ void readLStatMakanan(LStatMakanan *l, char *file)
         jamKad = teksToInt(elmtLDT(currentRow, 1));
         menitKad = teksToInt(elmtLDT(currentRow, 2));
         /* BUAT WAKTU*/
+        Waktu waktuKad = buatWaktu(hariKad, jamKad, menitKad, 0);
         advMBFile();
         hariKirim = teksToInt(elmtLDT(currentRow, 0));
         jamKirim = teksToInt(elmtLDT(currentRow, 1));
         menitKirim = teksToInt(elmtLDT(currentRow, 2));
+        Waktu waktuKirim = buatWaktu(hariKirim, jamKirim, menitKirim, 0);
         advMBFile();
         aksi = elmtLDT(currentRow, 0);
         advMBFile();
         hariOlah = teksToInt(elmtLDT(currentRow, 0));
         jamOlah = teksToInt(elmtLDT(currentRow, 1));
         menitOlah = teksToInt(elmtLDT(currentRow, 2));
+        Waktu waktuOlah = buatWaktu(hariOlah, jamOlah, menitOlah, 0);
         idTipe(makananTemp) = idTemp;
-        basiDalam(makananTemp) = hariKad;
-        sampaiDalam(makananTemp) = hariKirim;
+        basiDalam(makananTemp) = waktuKad;
+        sampaiDalam(makananTemp) = waktuKirim;
         namaMakanan(makananTemp) = namaTemp;
         insertLastLStatMakanan(l, makananTemp);
     }
@@ -111,13 +115,16 @@ void printLStatMakanan(LStatMakanan l)
     printf("==============================\n");
     printf("         DAFTAR MAKANAN       \n");
     printf("==============================\n");
+    printf("Nama Makanan - Waktu Kadaluarsa - Lama Pengiriman\n");
     for (int i = 0; i < panjangLStatMakanan(l); i++)
     {
         printf("%d. ", i + 1);
         cetakTeks(namaMakanan(elmtLSM(l, i)));
         printf(" - ");
         /* CETAK WAKTU*/
-        cetakTeks(namaMakanan(elmtLSM(l, i)));
+        tulisWaktu(basiDalam(elmtLSM(l, i)));
+        printf(" - ");
+        tulisWaktu(sampaiDalam(elmtLSM(l, i)));
         /* ga pake cetakMakanan krn ini idUniknya undefined*/
         printf("\n");
     }
