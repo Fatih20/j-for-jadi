@@ -117,7 +117,7 @@ boolean isFullLDinMakanan(LDinMakanan l);
  *
  * @param l sudah dialokasikan sebelumnya
  */
-void readLDinMakanan(LDinMakanan *l);
+// void readLDinMakanan(LDinMakanan *l);
 
 /**
  * @brief Menampilkan isi list makanan dengan format
