@@ -83,15 +83,9 @@ void saveKataF()
         {
             actualLetter = false;
         }
-        else if (panjangT(currentWord) < NMax)
-        {
-            plusKar(&currentWord, currentChar);
-            // currentWord.Length++;
-            // currentWord.TabWord[currentWord.Length - 1] = currentChar;
-            advMCFile();
-        }
         else
         {
+            plusKar(&currentWord, currentChar);
             advMCFile();
         }
     }
