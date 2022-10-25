@@ -1,6 +1,8 @@
 #include "../boolean.h"
 #include "../Point/point.h"
 #include "../MBFile/mbFile.h"
+#include "../AksiLokasi/aksiLokasi.h"
+#include "../Waktu/waktu.h"
 
 #ifndef MATRIKS_H
 #define MATRIKS_H
@@ -94,9 +96,14 @@ void copyMatriks(Matriks mIn, Matriks *mOut);
  * @param m: Matriks
  * @param namaFile: namaFile konfigurasi
  * @param lokasiSimulator: titik koordinat simulator
+ * @param MIX: AksiLokasi mix
+ * @param BOIL: AksiLokasi boil
+ * @param CHOP: AksiLokasi chop
+ * @param FRY: AksiLokasi fry
+ * @param TELEPON: AksiLokasi telepon
  * @return m terdefinisi nilai elemen efektifnya, berukuran nRow x nCol
  */
-void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator);
+void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator, AksiLokasi *MIX, AksiLokasi *BOIL, AksiLokasi *CHOP, AksiLokasi *FRY, AksiLokasi *TELEPON);
 
 /**
  * @brief Menulis nilai setiap elemen m ke layar dengan traversal per baris dan per kolom
