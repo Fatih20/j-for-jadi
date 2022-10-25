@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include "point.h"
+#include "Point.h"
 
 void CreatePoint(POINT *P, int X, int Y)
 {

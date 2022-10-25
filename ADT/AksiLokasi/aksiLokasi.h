@@ -16,7 +16,7 @@ typedef struct
 {
     Teks aksi;
     POINT lokasi;
-    Waktu waktu;
+    Waktu durasi;
 
 } AksiLokasi;
 
@@ -25,16 +25,19 @@ typedef struct
  */
 #define aksi(AL) (AL).aksi
 #define lokasi(AL) (AL).lokasi
-#define waktu(AL) (AL).waktu
+#define durasi(AL) (AL).durasi
 
 /**
  * @brief Membentuk Tipedata AksiLokasi
  * @param aksi: Nama aksi yang bisa dilakukan
  * @param x : absis lokasi
  * @param y : ordinat lokasi
- * @param waktu: Lama waktu pengolahan dalam detik
+ * @param HH : hari dari durasi aksiLokasi
+ * @param JJ : jam dari durasi aksiLokasi
+ * @param MM : menit dari durasi aksiLokasi
+ * @param DD : detik dari durasi aksiLokasi
  */
-void buatAksiLokasi(AksiLokasi *AL, Teks aksi, int x, int y, int waktu);
+void buatAksiLokasi(AksiLokasi *AL, Teks aksi, int x, int y, int HH, int JJ, int MM, int DD);
 
 /**
  * @brief Menampilkan Tipedata Aksilokasi

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "state.h"
 
-void buatState(State *S, int x, int y, int waktu, FoodQueue inventory)
+void buatState(State *S, int x, int y, int HH, int JJ, int MM, int DD, FoodQueue inventory)
 {
     FoodQueue inventoryBaru;
     copyFoodQueue(inventory, &inventoryBaru);
@@ -10,7 +10,7 @@ void buatState(State *S, int x, int y, int waktu, FoodQueue inventory)
     Absis(posisi) = x;
     Ordinat(posisi) = y;
     posisiState(*S) = posisi;
-    waktuState(*S) = detikToWaktu(waktu);
+    waktuState(*S) = buatWaktu(HH, JJ, MM, DD);
 }
 
 void cetakState(State S)

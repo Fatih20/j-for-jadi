@@ -5,9 +5,9 @@ int main()
     AksiLokasi CHOP;
     Teks aksi;
     POINT lokasi;
-    int waktu = 180;
+    // int waktu = 180;
     buatTeks("CHOP", &aksi);
-    buatAksiLokasi(&CHOP, aksi, 2, 5, waktu);
+    buatAksiLokasi(&CHOP, aksi, 2, 5, 10, 0, 0, 10);
     displayAksiLokasi(CHOP);
     return 0;
 }
