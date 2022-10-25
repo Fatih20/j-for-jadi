@@ -59,6 +59,7 @@ boolean isEmptyListNode(ListNode l)
 {
     return ListNodeNEff(l) == 0;
 }
+
 void displayTree(Tree t)
 {
     if (t != NULL)
@@ -150,9 +151,48 @@ void displayListTree(ListTree t)
     }
     int makanan;
     scanf("%d", &makanan);
+    printf("==================================\n");
+    printf("          Resep ");
+    cetakTeks(MakananTree(ListTreeELMT(t, makanan - 1)));
+    printf("          \n");
+    printf("==================================\n");
     displayTree(ListTreeELMT(t, makanan - 1));
 }
-void readTree(ListTree *t, char *file)
+
+boolean isChildOf(Teks val, Tree t)
+{
+    for (int i = 0; i < ListNodeNEff(Children(t)); i++)
+    {
+        if (teksSama(MakananTree(Child(t, i)), val))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+Tree getParent(ListTree t, LDinTeks lt)
+{
+    Tree parent = NULL;
+    for (int i = 0; i < panjangListTree(t) && parent == NULL; i++)
+    {
+        boolean isParent = true;
+        for (int j = 0; j < nEffLDT(lt); j++)
+        {
+            if (!isChildOf(elmtLDT(lt, j), ListTreeELMT(t, i)))
+            {
+                isParent = false;
+            }
+        }
+        if (isParent)
+        {
+            parent = ListTreeELMT(t, i);
+        }
+    }
+    return parent;
+}
+
+void readTree(ListTree *t, char *file, LStatMakanan(listMakanan))
 {
     startMBFile(file);
     int n = teksToInt(elmtLDT(currentRow, 0));
@@ -161,7 +201,8 @@ void readTree(ListTree *t, char *file)
     {
         advMBFile();
         int jumlahChild = teksToInt(elmtLDT(currentRow, 1));
-        Teks makananTemp = elmtLDT(currentRow, 0);
+        Teks idTemp = elmtLDT(currentRow, 0);
+        Teks makananTemp = getNameFromID(listMakanan, idTemp);
         Address addressTemp = isAllocated(makananTemp, *t);
         if (addressTemp != NULL)
         {
@@ -175,7 +216,8 @@ void readTree(ListTree *t, char *file)
         for (int j = 2; j < panjangLDinTeks(currentRow); j++)
         {
 
-            makananTemp = elmtLDT(currentRow, j);
+            idTemp = elmtLDT(currentRow, j);
+            makananTemp = getNameFromID(listMakanan, idTemp);
             addressTemp = isAllocated(makananTemp, *t);
             if (addressTemp != NULL)
             {
@@ -187,7 +229,6 @@ void readTree(ListTree *t, char *file)
             }
         }
     }
-    displayListTree(*t);
     // for (int i = 0; i < panjangListTree(*t); i++)
     // {
     //     displayTree(ListTreeELMT(*t, i));
