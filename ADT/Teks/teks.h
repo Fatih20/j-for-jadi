@@ -4,8 +4,6 @@
 #ifndef teks_H
 #define teks_H
 
-#define NMax 100
-
 /**
  * @brief String pengganti string yang memiliki batas 100 karakter
  * @param karArray array berisi karakter dari String
@@ -15,11 +13,11 @@
 typedef struct
 {
     LDinKar karArray;
-    int length;
 } Teks;
 
 #define panjangT(T) nEffLDC((T).karArray)
 #define karArrayT(T) (T).karArray
+#define nthChar(T, i) elmtLDC(karArrayT(T), i)
 
 /**
  * @brief Fungsi untuk membuat Teks dari string
