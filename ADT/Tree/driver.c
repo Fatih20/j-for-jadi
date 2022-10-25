@@ -1,2 +1,8 @@
 #include "tree.h"
-#include 
+#include <stdio.h>
+
+int main()
+{
+    ListTree t;
+    readTree(&t, "resepcfg.txt");
+}

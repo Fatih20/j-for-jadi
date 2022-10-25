@@ -1,0 +1,1 @@
+gcc driver.c tree.c ../Makanan/makanan.c ../Teks/teks.c ../MKFile/mKFile.c ../MCFile/mCFile.c ../MBFile/mBfile.c ../ListDinTeks/ldinteks.c ../ListDinKar/ldinkar.c

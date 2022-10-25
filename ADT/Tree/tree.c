@@ -1,30 +1,20 @@
 #include "tree.h"
+#include "../MBFile/mBFile.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-Address newTreeNode(treeEl val)
+Address newTreeNode(treeEl val, int childCnt)
 {
     Address p = (Address)malloc(sizeof(TreeNode));
     if (p != NULL)
     {
         MakananTree(p) = val;
         ListNode temp;
-        createListNode(&temp, CAPACITY);
+        createListNode(&temp, childCnt);
         Children(p) = temp;
     }
     return p;
 }
-
-void CreateTree(treeEl makanan, ListNode children, Tree *p)
-{
-    if ((*p) != NULL)
-    {
-        MakananTree((*p)) = makanan;
-        ListNode temp;
-        copyListNode(children, &temp);
-        Children(*p) = temp;
-    }
-};
 
 void expandListNode(ListNode *l, int n)
 {
@@ -96,81 +86,149 @@ void displayTree(Tree t)
         }
     }
 }
+/* LIST TREE */
 
-Tree *readTree()
+Tree getMarkListTree()
 {
-    int n;
-    printf("Masukkan jumlah resep: ");
-    scanf("%d", &n);
-    Teks mark;
-    buatTeks("#", &mark);
-    Tree ListResep[n];
-    for (int i = 0; i < n; i++)
+    Teks MARK;
+    buatTeks("#", &MARK);
+    Tree ret = newTreeNode(MARK, 0);
+    return ret;
+}
+
+void buatListTree(ListTree *l)
+{
+    for (int i = 0; i < ListTreeCap; i++)
     {
-        ListResep[i] = newTreeNode(mark);
+        ListTreeELMT(*l, i) = getMarkListTree();
     }
-    for (int i = 0; i < n; i++)
+}
+
+int panjangListTree(ListTree l)
+{
+    int res = 0;
+    for (int i = 0; i < ListTreeCap; i++)
     {
-        char temp[100];
-        scanf("%s", &temp);
-        Teks tempTeks;
-        buatTeks(temp, &tempTeks);
-        MakananTree(ListResep[i]) = tempTeks;
-        cetakTeks(MakananTree(ListResep[i]));
-        printf("Masukkan jumlah bahan untuk resep ini: ");
-        int c;
-        scanf("%d", &c);
-        for (int j = 0; j < c; j++)
+        if (!teksSama(MakananTree(ListTreeELMT(l, i)), MakananTree(getMarkListTree())))
         {
-            char bahan[100];
-            scanf("%s", &bahan);
-            Teks Bahan;
-            buatTeks(bahan, &Bahan);
-            Tree BAHAN = newTreeNode(Bahan);
-            insertLastListNode(&Children(ListResep[i]), BAHAN);
+            res += 1;
         }
     }
-    for (int i = 0; !teksSama(MakananTree(ListResep[i]), mark); i++)
+    return res;
+}
+Address isAllocated(treeEl val, ListTree l)
+{
+    for (int i = 0; i < panjangListTree(l); i++)
     {
-        displayTree(ListResep[i]);
+        if (teksSama(MakananTree(ListTreeELMT(l, i)), val))
+        {
+            return ListTreeELMT(l, i);
+        }
+        for (int j = 0; j < ListNodeNEff(Children(ListTreeELMT(l, i))); j++)
+        {
+            if (teksSama(MakananTree(Child(ListTreeELMT(l, i), j)), val))
+            {
+                return Child(ListTreeELMT(l, i), j);
+            }
+        }
     }
+    return NULL;
+}
+
+void displayListTree(ListTree t)
+{
+
+    /* bagian cookbooknya nnti dipindahin ke mainn*/
+    printf("==================================\n");
+    printf("             COOKBOOK             \n");
+    printf("==================================\n");
+    for (int i = 0; i < panjangListTree(t); i++)
+    {
+        printf("%d. ", i + 1);
+        cetakTeks(MakananTree(ListTreeELMT(t, i)));
+        printf("\n");
+    }
+    int makanan;
+    scanf("%d", &makanan);
+    displayTree(ListTreeELMT(t, makanan - 1));
+}
+void readTree(ListTree *t, char *file)
+{
+    startMBFile(file);
+    int n = teksToInt(elmtLDT(currentRow, 0));
+    buatListTree(t);
+    for (int i = 0; i < n; i++)
+    {
+        advMBFile();
+        int jumlahChild = teksToInt(elmtLDT(currentRow, 1));
+        Teks makananTemp = elmtLDT(currentRow, 0);
+        Address addressTemp = isAllocated(makananTemp, *t);
+        if (addressTemp != NULL)
+        {
+            ListTreeELMT(*t, i) = addressTemp;
+        }
+        else
+        {
+            ListTreeELMT(*t, i) = newTreeNode(makananTemp, jumlahChild);
+        }
+        int k = 0;
+        for (int j = 2; j < panjangLDinTeks(currentRow); j++)
+        {
+
+            makananTemp = elmtLDT(currentRow, j);
+            addressTemp = isAllocated(makananTemp, *t);
+            if (addressTemp != NULL)
+            {
+                insertLastListNode(&Children(ListTreeELMT(*t, i)), addressTemp);
+            }
+            else
+            {
+                insertLastListNode(&Children(ListTreeELMT(*t, i)), newTreeNode(makananTemp, 0));
+            }
+        }
+    }
+    displayListTree(*t);
+    // for (int i = 0; i < panjangListTree(*t); i++)
+    // {
+    //     displayTree(ListTreeELMT(*t, i));
+    // }
 };
 
 /* BUAT IS ALLOCATED --> parameternya Tree* listoftree yang mau ditraverse, Teks makanan yang mau dicarii --> returnnya Address*/
-int main()
-{
-    Teks nasi, lalapan, ayamgorengsambal, nasiuduk, ayamgoreng, sambalgoreng, ayamtepung, minyakgoreng, sambal;
-    buatTeks("nasi uduk pecel", &nasi);
-    buatTeks("ayam goreng extra sambal", &ayamgorengsambal);
-    buatTeks("lalapan", &lalapan);
-    buatTeks("nasi uduk", &nasiuduk);
-    buatTeks("ayam goreng", &ayamgoreng);
-    buatTeks("sambal goreng", &sambalgoreng);
-    buatTeks("ayam tepung", &ayamtepung);
-    buatTeks("minyak goreng", &minyakgoreng);
-    buatTeks("sambal", &sambal);
+// int main()
+// {
+//     // Teks nasi, lalapan, ayamgorengsambal, nasiuduk, ayamgoreng, sambalgoreng, ayamtepung, minyakgoreng, sambal;
+//     // buatTeks("nasi uduk pecel", &nasi);
+//     // buatTeks("ayam goreng extra sambal", &ayamgorengsambal);
+//     // buatTeks("lalapan", &lalapan);
+//     // buatTeks("nasi uduk", &nasiuduk);
+//     // buatTeks("ayam goreng", &ayamgoreng);
+//     // buatTeks("sambal goreng", &sambalgoreng);
+//     // buatTeks("ayam tepung", &ayamtepung);
+//     // buatTeks("minyak goreng", &minyakgoreng);
+//     // buatTeks("sambal", &sambal);
 
-    Tree Nasi = newTreeNode(nasi);
-    Tree Lalapan = newTreeNode(lalapan);
-    Tree Ayamgorengsambal = newTreeNode(ayamgorengsambal);
-    Tree Nasiuduk = newTreeNode(nasiuduk);
-    Tree Ayamgoreng = newTreeNode(ayamgoreng);
-    Tree Sambalgoreng = newTreeNode(sambalgoreng);
-    Tree Ayamtepung = newTreeNode(ayamtepung);
-    Tree Minyakgoreng = newTreeNode(minyakgoreng);
-    Tree Sambal = newTreeNode(sambal);
+//     // Tree Nasi = newTreeNode(nasi, 0);
+//     // Tree Lalapan = newTreeNode(lalapan, 0);
+//     // Tree Ayamgorengsambal = newTreeNode(ayamgorengsambal, 0);
+//     // Tree Nasiuduk = newTreeNode(nasiuduk, 0);
+//     // Tree Ayamgoreng = newTreeNode(ayamgoreng, 0);
+//     // Tree Sambalgoreng = newTreeNode(sambalgoreng, 0);
+//     // Tree Ayamtepung = newTreeNode(ayamtepung, 0);
+//     // Tree Minyakgoreng = newTreeNode(minyakgoreng, 0);
+//     // Tree Sambal = newTreeNode(sambal, 0);
 
-    insertLastListNode(&(Children(Nasi)), Lalapan);
-    insertLastListNode(&(Children(Nasi)), Ayamgorengsambal);
-    insertLastListNode(&(Children(Nasi)), Nasiuduk);
-    insertLastListNode(&(Children(Ayamgorengsambal)), Ayamgoreng);
-    insertLastListNode(&(Children(Ayamgorengsambal)), Sambalgoreng);
-    insertLastListNode(&(Children(Ayamgoreng)), Ayamtepung);
-    insertLastListNode(&(Children(Ayamgoreng)), Minyakgoreng);
-    insertLastListNode(&(Children(Sambalgoreng)), Minyakgoreng);
-    insertLastListNode(&(Children(Sambalgoreng)), Sambal);
+//     // insertLastListNode(&(Children(Nasi)), Lalapan);
+//     // insertLastListNode(&(Children(Nasi)), Ayamgorengsambal);
+//     // insertLastListNode(&(Children(Nasi)), Nasiuduk);
+//     // insertLastListNode(&(Children(Ayamgorengsambal)), Ayamgoreng);
+//     // insertLastListNode(&(Children(Ayamgorengsambal)), Sambalgoreng);
+//     // insertLastListNode(&(Children(Ayamgoreng)), Ayamtepung);
+//     // insertLastListNode(&(Children(Ayamgoreng)), Minyakgoreng);
+//     // insertLastListNode(&(Children(Sambalgoreng)), Minyakgoreng);
+//     // insertLastListNode(&(Children(Sambalgoreng)), Sambal);
 
-    displayTree(Nasi);
-
-    readTree();
-}
+//     // displayTree(Nasi);
+//     ListTree t;
+//     readTree(&t, "resepcfg.txt");
+// }
