@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
     startMBFile("test.txt");
     while (!endMBF)
     {
-        printf("%d = ", i);
+        printf("panjang: %d ", panjangLDinTeks(currentRow));
         printLDinTeks(currentRow);
         advMBFile();
         i++;

@@ -1,0 +1,1 @@
+gcc tesBKFile.c mBFile.c ../MKFile/mKFile.c ../MCFile/mCFile.c ../Teks/teks.c ../ListDinTeks/ldinteks.c ../ListDinKar/ldinkar.c -o tes
