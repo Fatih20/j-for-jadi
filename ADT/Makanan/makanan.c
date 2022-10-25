@@ -30,6 +30,7 @@ void cetakMakanan(Makanan makanan)
     tulisWaktu(sampaiDalam(makanan));
     printf("\n");
     displayAksiLokasi(aksiLokasi(makanan));
+    printf("\n");
 }
 
 Teks idMakanan(Makanan makanan)
