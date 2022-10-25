@@ -14,9 +14,14 @@ int main(int argc, char const *argv[])
     AksiLokasi aL;
     Teks aLT;
     buatTeks("Bruh", &aLT);
-    buatAksiLokasi(&aL, aLT, 2, 2, 0, 0, 5, 0);
+    buatAksiLokasi(&aL, aLT, 2, 2, 0, 1, 5, 0);
     buatMakanan(&m1, "bruh", "95", "100", wB, wS, aL);
     cetakMakanan(m1);
+    printf("\n");
+    TulisPOINT(getFInPlace(m1));
+    tulisWaktu(getFInTime(m1));
+    cetakTeks(getFHow(m1));
+
     // Makanan m2;
     // buatMakanan(&m2, "bruh", 101, 100, "12", "101");
     // cetakMakanan(m2);
