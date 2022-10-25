@@ -46,40 +46,51 @@ boolean isFullLDinMakanan(LDinMakanan l)
     return (nEffLDM(l) == capacityLDM(l));
 }
 
-void readLDinMakanan(LDinMakanan *l)
-{
-    int n, i = IDX_MIN;
-    scanf("%d", &n);
-    while (n < 0)
-    {
-        scanf("%d", &n);
-    }
-    if (n > capacityLDM(*l))
-    {
-        expandLDinMakanan(l, n - capacityLDM(*l));
-    }
-    nEffLDM(*l) = n;
-    for (i; i < n; i++)
-    {
-        Makanan temp;
-        char *idMakanan;
-        char *namaMakanan;
-        Waktu wB;
-        Waktu wS;
-        int waktuKadaluarsa, lamaPengiriman;
-        printf("Masukkan ID makanan: ");
-        scanf("%s", idMakanan);
-        printf("Masukkan nama makanan: ");
-        scanf("%s", namaMakanan);
-        printf("Masukkan waktu kadaluarsa: ");
-        bacaWaktu(&wB);
-        printf("Masukkan lama pengiriman: ");
-        bacaWaktu(&wS);
-        scanf("%d", &lamaPengiriman);
-        buatMakanan(&temp, namaMakanan, idMakanan, idMakanan, wB, wS);
-        elmtLDM(*l, i) = temp;
-    }
-}
+// Commented untuk sementara karena ribet untuk baca aksi lokasi dari sini. Sebaiknya aksi lokasi diadakan fungsi baca untuk mempermudah, kemudian dimasukkan ke sini.
+// void readLDinMakanan(LDinMakanan *l)
+// {
+//     int n, i = IDX_MIN;
+//     scanf("%d", &n);
+//     while (n < 0)
+//     {
+//         scanf("%d", &n);
+//     }
+//     if (n > capacityLDM(*l))
+//     {
+//         expandLDinMakanan(l, n - capacityLDM(*l));
+//     }
+//     nEffLDM(*l) = n;
+//     for (i; i < n; i++)
+//     {
+//         Makanan temp;
+//         char *idUnik;
+//         char *idTipe;
+//         char *namaMakanan;
+//         char *namaMakanan;
+//         char *namaMakanan;
+//         char *namaMakanan;
+//         Waktu wB;
+//         Waktu wS;
+//         int waktuKadaluarsa, lamaPengiriman;
+//         printf("Masukkan ID Tipe makanan: ");
+//         scanf("%s", &idTipe);
+//         printf("Masukkan ID Unik makanan: ");
+//         scanf("%s", &idUnik);
+//         printf("Masukkan nama makanan: ");
+//         scanf("%s", namaMakanan);
+//         printf("Masukkan waktu kadaluarsa: ");
+//         bacaWaktu(&wB);
+//         printf("Masukkan lama pengiriman: ");
+//         bacaWaktu(&wS);
+//         scanf("%d", &lamaPengiriman);
+//         Teks nM, idU, idT;
+//         buatTeks(idUnik, &idU);
+//         buatTeks(namaMakanan, &nM);
+//         buatTeks(idTipe, &idT);
+//         buatMakanan(&temp, nM, idT, idU, wB, wS, );
+//         elmtLDM(*l, i) = temp;
+//     }
+// }
 
 void printLDinMakanan(LDinMakanan l)
 {
