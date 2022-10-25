@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "../boolean.h"
 
-void buatMakanan(Makanan *makanan, char namaMakanan[], int waktuBasi, int waktuSampai, char idTipe[], char idUnik[])
+void buatMakanan(Makanan *makanan, char namaMakanan[], char idTipe[], char idUnik[], Waktu waktuBasi, Waktu waktuSampai)
 {
     int i = 0;
 
@@ -24,8 +24,12 @@ void cetakMakanan(Makanan makanan)
     cetakTeks(idMakanan(makanan));
     printf("\n");
 
-    printf("Basi dalam : %d menit\n", basiDalam(makanan));
-    printf("Sampai dalam : %d menit\n", sampaiDalam(makanan));
+    printf("Basi dalam : ");
+    tulisWaktu(basiDalam(makanan));
+    printf("\n");
+    printf("Sampai dalam : ");
+    tulisWaktu(sampaiDalam(makanan));
+    printf("\n");
 }
 
 Teks idMakanan(Makanan makanan)
@@ -47,12 +51,12 @@ boolean tipeMakananSama(Makanan m1, Makanan m2)
 
 boolean basiBersamaan(Makanan m1, Makanan m2)
 {
-    return basiDalam(m1) == basiDalam(m2);
+    return WEQ(basiDalam(m1), basiDalam(m2));
 };
 
 boolean basiDuluan(Makanan m1, Makanan m2)
 {
-    return basiDalam(m1) < basiDalam(m2);
+    return WLT(basiDalam(m1), basiDalam(m2));
 };
 
 boolean basiDuluanAtauSama(Makanan m1, Makanan m2)
@@ -67,12 +71,12 @@ boolean basiSetelahAtauSama(Makanan m1, Makanan m2)
 
 boolean sampaiBersamaan(Makanan m1, Makanan m2)
 {
-    return sampaiDalam(m1) == sampaiDalam(m2);
+    return WEQ(sampaiDalam(m1), sampaiDalam(m2));
 };
 
 boolean sampaiDuluan(Makanan m1, Makanan m2)
 {
-    return sampaiDalam(m1) < sampaiDalam(m2);
+    return WLT(sampaiDalam(m1), sampaiDalam(m2));
 };
 
 boolean sampaiDuluanAtauSama(Makanan m1, Makanan m2)
@@ -84,3 +88,8 @@ boolean sampaiSetelahAtauSama(Makanan m1, Makanan m2)
 {
     return !sampaiDuluan(m1, m2) || sampaiBersamaan(m1, m2);
 };
+
+boolean isMakananEqual(Makanan m1, Makanan m2)
+{
+    return teksSama(namaMakanan(m1), namaMakanan(m2)) && teksSama(idTipe(m1), idTipe(m2)) && teksSama(idUnik(m1), idUnik(m2)) && WEQ(basiDalam(m1), basiDalam(m2)) && WEQ(sampaiDalam(m1), sampaiDalam(m2));
+}

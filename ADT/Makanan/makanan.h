@@ -1,5 +1,6 @@
 #include "../boolean.h"
 #include "../Teks/teks.h"
+#include "../Waktu/waktu.h"
 
 #ifndef makanan_H
 #define makanan_H
@@ -20,8 +21,8 @@ typedef struct
     Teks nama;
     makananID idUnik;
     makananID idTipe;
-    int waktuBasi;
-    int waktuSampai;
+    Waktu waktuBasi;
+    Waktu waktuSampai;
 } Makanan;
 
 #define namaMakanan(S) (S).nama
@@ -33,14 +34,15 @@ typedef struct
 /**
  * @brief Fungsi untuk menginisialisasi makanan
  * @param makanan pointer ke makanan yang ingin dibuat
- * @param waktuBasi waktuBasi yang akan diberikan ke makanan yang dibuat
- * @param waktuSampai waktuSampai yang akan diberikan ke makanan yang dibuat
+ * @param namaMakanan nama dari makanan yang ingin dibuat
  * @param idTipe id dari tipe makanan yang dibuat
  * @param idUnik id unik dari makanan yang dibuat
+ * @param waktuBasi waktu ketika makanan akan basi. Default ketika di dalam delivery queue.
+ * @param waktuSampai waktu ketika makanan akan sampai. 0 di dalam inventory queue.
  *
  * @return Makanan pada address yang diberikan terdefinisi dengan parameter yang diberikan
  */
-void buatMakanan(Makanan *makanan, char namaMakanan[], int waktuBasi, int waktuSampai, char idTipe[], char idUnik[]);
+void buatMakanan(Makanan *makanan, char namaMakanan[], char idTipe[], char idUnik[], Waktu waktuBasi, Waktu waktuSampai);
 
 /**
  * @brief Fungsi untuk mendapatkan id gabungan makanan
@@ -184,4 +186,12 @@ boolean sampaiDuluanAtauSama(Makanan m1, Makanan m2);
  */
 boolean sampaiSetelahAtauSama(Makanan m1, Makanan m2);
 
+/**
+ * @brief Fungsi untuk mengecek apakah 2 makanan sama (nama, id, waktu kadaluarsa, lama pengiriman sama)
+ *
+ * @param m1 makanan yang ingin dicek infonya
+ * @param m2 makanan yang ingin dicek infonya
+ * @return boolean apakah m1 == m2
+ */
+boolean isMakananEqual(Makanan m1, Makanan m2);
 #endif

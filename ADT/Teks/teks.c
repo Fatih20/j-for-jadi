@@ -82,3 +82,13 @@ void gabungkanTeks(Teks t1, Teks t2, Teks *t3)
         plusKar(t3, elmtLDC(karArrayT(t2), j));
     }
 };
+
+int teksToInt(Teks t)
+{
+    int val = 0;
+    for (int i = 0; i < panjangT(t); i++)
+    {
+        val = val * 10 + (elmtLDC(karArrayT(t), i) - '0');
+    }
+    return val;
+}
