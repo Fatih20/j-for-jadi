@@ -34,6 +34,7 @@ typedef struct
 /**
  * @brief Fungsi untuk menginisialisasi makanan
  * @param makanan pointer ke makanan yang ingin dibuat
+ * @param namaMakanan nama dari makanan yang ingin dibuat
  * @param idTipe id dari tipe makanan yang dibuat
  * @param idUnik id unik dari makanan yang dibuat
  * @param waktuBasi waktu ketika makanan akan basi. Default ketika di dalam delivery queue.

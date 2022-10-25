@@ -192,7 +192,7 @@ int idxMakanan(FoodQueue FQ, char idTipeS[])
 
 void hapusBasi(FoodQueue *IQ)
 {
-    while ((!isEmptyFQ(*IQ)) && basiDalam(headElFQ(*IQ)) == 0)
+    while ((!isEmptyFQ(*IQ)) && isWZero(basiDalam(headElFQ(*IQ))))
     {
         FoodQueueEl temp;
         dequeue(IQ, &temp);
@@ -200,7 +200,7 @@ void hapusBasi(FoodQueue *IQ)
 };
 void hapusSampai(FoodQueue *DQ, FoodQueue *IQ)
 {
-    while ((!isEmptyFQ(*DQ)) && sampaiDalam((headElFQ(*DQ))) == 0)
+    while ((!isEmptyFQ(*DQ)) && isWZero(sampaiDalam((headElFQ(*DQ)))))
     {
         FoodQueueEl temp;
         dequeue(DQ, &temp);
@@ -211,7 +211,7 @@ void majukanWSampai(FoodQueue *DQ, FoodQueue *IQ)
 {
     for (int i = headFQ(*DQ); i <= tailFQ(*DQ); i++)
     {
-        sampaiDalam(elmtFQ((*DQ), i))--;
+        sampaiDalam(elmtFQ((*DQ), i)) = prevMenit(sampaiDalam(elmtFQ((*DQ), i)));
     }
     hapusSampai(DQ, IQ);
 };
@@ -219,7 +219,7 @@ void majukanWBasi(FoodQueue *IQ)
 {
     for (int i = 0; i <= tailFQ(*IQ); i++)
     {
-        basiDalam(elmtFQ((*IQ), i))--;
+        basiDalam(elmtFQ((*IQ), i)) = prevMenit(basiDalam(elmtFQ((*IQ), i)));
     }
 
     hapusBasi(IQ);
