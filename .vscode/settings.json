@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "teks.h": "c",
+        "mbfile.h": "c"
+    }
+}
