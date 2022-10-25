@@ -87,6 +87,9 @@ void enqueueDelivery(FoodQueue *DQ, FoodQueueEl X)
 void enqueueInventory(FoodQueue *IQ, FoodQueueEl X)
 {
 
+    Waktu wSampaiReset;
+    wSampaiReset = buatWaktu(0, 0, 0, 0);
+    sampaiDalam(X) = wSampaiReset;
     // Jika kosong maka lakukan ini
     boolean added = false;
     if (isEmptyFQ(*IQ))
