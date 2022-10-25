@@ -1,6 +1,7 @@
 #include "../boolean.h"
 #include "../Teks/teks.h"
 #include "../Waktu/waktu.h"
+#include "../AksiLokasi/aksiLokasi.h"
 
 #ifndef makanan_H
 #define makanan_H
@@ -23,6 +24,8 @@ typedef struct
     makananID idTipe;
     Waktu waktuBasi;
     Waktu waktuSampai;
+    AksiLokasi aksiLokasi;
+
 } Makanan;
 
 #define namaMakanan(S) (S).nama
@@ -30,6 +33,10 @@ typedef struct
 #define sampaiDalam(S) (S).waktuSampai
 #define idUnik(S) (S).idUnik
 #define idTipe(S) (S).idTipe
+#define aksiLokasi(S) (S).aksiLokasi
+#define getFHow(S) aksi(aksiLokasi(S))
+#define getFInPlace(S) lokasi(aksiLokasi(S))
+#define getFInTime(S) durasi(aksiLokasi(S))
 
 /**
  * @brief Fungsi untuk menginisialisasi makanan
@@ -39,10 +46,11 @@ typedef struct
  * @param idUnik id unik dari makanan yang dibuat
  * @param waktuBasi waktu ketika makanan akan basi. Default ketika di dalam delivery queue.
  * @param waktuSampai waktu ketika makanan akan sampai. 0 di dalam inventory queue.
+ * @param aksiLokasi bagaimana, di mana, berapa lama makanan bisa didapatkan
  *
  * @return Makanan pada address yang diberikan terdefinisi dengan parameter yang diberikan
  */
-void buatMakanan(Makanan *makanan, char namaMakanan[], char idTipe[], char idUnik[], Waktu waktuBasi, Waktu waktuSampai);
+void buatMakanan(Makanan *makanan, char namaMakanan[], char idTipe[], char idUnik[], Waktu waktuBasi, Waktu waktuSampai, AksiLokasi aksiLokasi);
 
 /**
  * @brief Fungsi untuk mendapatkan id gabungan makanan
