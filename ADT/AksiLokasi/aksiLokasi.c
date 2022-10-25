@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include "aksiLokasi.h"
 
-void buatAksiLokasi(AksiLokasi *AL, Teks aksi, int x, int y, int waktu)
+void buatAksiLokasi(AksiLokasi *AL, Teks aksi, int x, int y, int HH, int JJ, int MM, int DD)
 {
     aksi(*AL) = aksi;
     POINT lokasi;
     Absis(lokasi) = x;
     Ordinat(lokasi) = y;
     lokasi(*AL) = lokasi;
-    waktu(*AL) = detikToWaktu(waktu);
+    durasi(*AL) = buatWaktu(HH, JJ, MM, DD);
 }
 
 void displayAksiLokasi(AksiLokasi AL)
@@ -17,6 +17,6 @@ void displayAksiLokasi(AksiLokasi AL)
     cetakTeks(aksi(AL));
     printf("\nLokasi : ");
     TulisPOINT(lokasi(AL));
-    printf("\nWaktu  : ");
-    tulisWaktu(waktu(AL));
+    printf("\nDurasi : ");
+    tulisWaktu(durasi(AL));
 }
