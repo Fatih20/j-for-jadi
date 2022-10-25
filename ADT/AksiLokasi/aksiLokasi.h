@@ -32,7 +32,7 @@ typedef struct
  * @param lokasi: ADT Point tempat aksi tersebut dilakukan
  * @param waktu: Lama waktu pengolahan
  */
-AksiLokasi buatAksiLokasi(AksiLokasi *AL, Teks aksi, POINT lokasi, int waktu);
+void buatAksiLokasi(AksiLokasi *AL, Teks aksi, int x, int y, int waktu);
 
 /**
  * @brief Menampilkan Tipedata Aksilokasi
