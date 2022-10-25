@@ -44,7 +44,7 @@ boolean isWaktuValid(int H, int J, int M, int D);
  *
  * @return waktu terdefinisi dengan parameter yang diberikan
  */
-Waktu buatWaktu(int HH, int JJ, int MM, int);
+Waktu buatWaktu(int HH, int JJ, int MM, int DD);
 
 /**
  * @brief Prosedur untuk membuat waktu berdasarkan masukan yang dibaca
