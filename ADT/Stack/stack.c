@@ -11,6 +11,44 @@ void CreateEmptyStack(Stack *S, int capacity)
     Info(*S) = (infoStack *)malloc(capacity * sizeof(infoStack));
 }
 
+void dealocateStack(Stack *S)
+{
+    // KAMUS LOKAL
+    // ALGORITMA
+    free(Info(*S));
+    Top(*S) = Nil;
+    Capacity(*S) = 0;
+}
+
+void inverseStack(Stack SIn, Stack *SOut)
+{
+    // KAMUS LOKAL
+    State state;
+    // ALGORITMA
+
+    CreateEmptyStack(SOut, Capacity(SIn));
+    while (!IsEmptyStack(SIn))
+    {
+        Pop(&SIn, &state);
+        Push(SOut, state);
+    }
+}
+
+void copyStack(Stack SIn, Stack *SOut)
+{
+    // KAMUS LOKAL
+    Stack STemp;
+    State state;
+    // ALGORITMA
+    inverseStack(SIn, &STemp);
+    CreateEmptyStack(SOut, Capacity(SIn));
+    while (!IsEmptyStack(STemp))
+    {
+        Pop(&STemp, &state);
+        Push(SOut, state);
+    }
+}
+
 boolean IsEmptyStack(Stack S)
 {
     // KAMUS LOKAL

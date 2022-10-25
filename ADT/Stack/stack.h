@@ -36,6 +36,29 @@ typedef struct
 void CreateEmptyStack(Stack *S, int capacity);
 
 /**
+ * @brief Destructor: Mendealokasikan memori stack, capacity di set menjadi 0, TOP menjadi Nil
+ * @param S: Stack of State
+ * @return Stack menjadi kosong dengan capacity 0
+ */
+void dealocateStack(Stack *S);
+
+/**
+ * @brief Mengisi SOut dengan inverse dari SIn
+ * @param SIn: Stack yang akan diinverse
+ * @param SOut: Stack salinan dari inverse SIn
+ * @return SOut merupakan inverse dari SIn
+ */
+void inverseStack(Stack SIn, Stack *SOut);
+
+/**
+ * @brief Menyimpan salinan SIn ke dalam SOut
+ * @param SIn: Stack yang akan dicopy
+ * @param Sout: Stack hasil copy
+ * @return: SOut merupakan salinan dari SIn
+ */
+void copyStack(Stack SIn, Stack *Sout);
+
+/**
  * @brief Mengirim true jika Stack kosong
  * @param S: Stack of State
  * @return boolean

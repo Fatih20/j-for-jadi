@@ -3,7 +3,7 @@
 
 int main()
 {
-    Stack SState;
+    Stack SState, SInverse, SCopy;
     State state;
     POINT lokasi;
     Absis(lokasi) = 4;
@@ -34,7 +34,7 @@ int main()
 
     enqueueDelivery(&inventory, temp2);
     buatState(&state, lokasi, waktu, inventory);
-    cetakState(state);
+    // cetakState(state);
     Push(&SState, state);
     printf("IsFull: %d\n", IsFullStack(SState));
     printf("IsEmpty: %d\n", IsEmptyStack(SState));
@@ -42,7 +42,7 @@ int main()
     shrinkStack(&SState, 7);
     enqueueDelivery(&inventory, temp3);
     buatState(&state, lokasi, waktu, inventory);
-    cetakState(state);
+    // cetakState(state);
     Push(&SState, state);
     printf("IsFull: %d\n", IsFullStack(SState));
     printf("IsEmpty: %d\n", IsEmptyStack(SState));
@@ -50,18 +50,43 @@ int main()
     expandStack(&SState, 2);
     enqueueDelivery(&inventory, temp4);
     buatState(&state, lokasi, waktu, inventory);
-    cetakState(state);
+    // cetakState(state);
     Push(&SState, state);
     printf("IsFull: %d\n", IsFullStack(SState));
     printf("IsEmpty: %d\n", IsEmptyStack(SState));
 
     shrinkStack(&SState, 1);
     printf("IsFull: %d\n", IsFullStack(SState));
+    printf("IsEmpty: %d\n\n", IsEmptyStack(SState));
+
+    inverseStack(SState, &SInverse);
+
+    printf("inverseStack Mang\n");
+    printf("IsFull: %d\n", IsFullStack(SState));
     printf("IsEmpty: %d\n", IsEmptyStack(SState));
+    printf("IsFull: %d\n", IsFullStack(SInverse));
+    printf("IsEmpty: %d\n", IsEmptyStack(SInverse));
+    cetakState(state);
+    Pop(&SInverse, &state);
+    cetakState(state);
+
+    copyStack(SState, &SCopy);
+    printf("copyStack\n");
+    printf("IsFull: %d\n", IsFullStack(SState));
+    printf("IsEmpty: %d\n", IsEmptyStack(SState));
+    printf("IsFull: %d\n", IsFullStack(SCopy));
+    printf("IsEmpty: %d\n", IsEmptyStack(SCopy));
+    cetakState(state);
+    Pop(&SCopy, &state);
+    cetakState(state);
 
     Pop(&SState, &state);
     printf("IsFull: %d\n", IsFullStack(SState));
     printf("IsEmpty: %d\n", IsEmptyStack(SState));
+
+    dealocateStack(&SState);
+    printf("IsFull: %d\n", IsFullStack(SState));
+    printf("Capacity: %d\n", Capacity(SState));
 }
 
 /*
