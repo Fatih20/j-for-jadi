@@ -8,30 +8,31 @@
 /**
  * @brief Tipedata State
  * @param posisi: ADT Point tempat aksi tersebut dilakukan
- * @param waktu: ADT Waktu di-state tertentu
+ * @param waktu: ADT Waktu penunjuk waktu sebuah state
  * @param inventory: ADT FoodQueue sebagai inventory
  */
 typedef struct
 {
     POINT posisi;
-    int waktu;
+    Waktu waktu;
     FoodQueue inventory;
 } State;
 
 /**
  * @brief Notasi Akses: Selektor AksiLokasi
  */
-#define posisi(S) (S).posisi
-#define inventory(S) (S).inventory
-#define waktu(S) (S).waktu
+#define posisiState(S) (S).posisi
+#define waktuState(S) (S).waktu
+#define inventoryState(S) (S).inventory
 
 /**
  * @brief Membuat state baru dengan mengcopy inventory ke inventoryBaru
- * @param posisi: ADT Point tempat aksi tersebut dilakukan
- * @param waktu: ADT Waktu di-state tertentu
+ * @param x : absis posisi
+ * @param y : ordinat posisi
+ * @param waktu: waktu di state tertentu dalam detik
  * @param inventory: ADT FoodQueue sebagai inventory
  */
-void buatState(State *S, POINT posisi, int waktu, FoodQueue inventory);
+void buatState(State *S, int x, int y, int waktu, FoodQueue inventory);
 
 /**
  * @brief Menampilkan Tipedata State
