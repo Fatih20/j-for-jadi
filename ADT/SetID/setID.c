@@ -68,7 +68,7 @@ void removeElmtSet(SetID *S, setIDEl val)
         }
 
         idx = idx - 1;
-        for (i = idx; i < (length(S) - 2); i++)
+        for (i = idx; i < (lengthSet(*S) - 2); i++)
         {
             elmtSetID(*S, idx) = elmtSetID(*S, (idx + 1));
         }
@@ -224,7 +224,7 @@ void printSetID(SetID S)
 {
     int i;
 
-    printf('[');
+    printf("[");
     if (!isEmptySet(S))
     {
         i = 0;
@@ -235,5 +235,5 @@ void printSetID(SetID S)
         }
         cetakTeks(elmtSetID(S, (lengthSet(S) - 1)));
     }
-    printf(']');
+    printf("]");
 }
