@@ -49,7 +49,6 @@ void addElmtSet(SetID *S, setIDEl val)
     elmtSetID(*S, i) = val;
 }
 
-/* remove belum selesai */
 void removeElmtSet(SetID *S, setIDEl val)
 {
     int idx, i;

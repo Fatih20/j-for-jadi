@@ -14,7 +14,8 @@ typedef int SetIdxType;
 
 /**
  * @brief ADT SetID yang menyimpan daftar idTipe makanan
- * Indeks yang digunakan [0..capacitySetID1]
+ * Representasi yang digunakan adalah array statik implisit rata kiri
+ * Indeks yang digunakan [0..capacitySetID-1]
  * Definisi :
    Set kosong: semua elemen bernilai MARK
    Definisi elemen pertama: elmtSetID(S,i) dengan i=0

@@ -36,7 +36,7 @@ int main()
     buatTeks(string3, &teks3);
     addElmtSet(&s1, teks2);
     addElmtSet(&s1, teks3);
-    removeElmtSet(&s1, &teks2);
+    removeElmtSet(&s1, teks2);
     printf("Set s1 setelah ditambahkan teks2 dan teks3, serta dihapuskan teks2: ");
     printSetID(s1);
     printf("\n");
