@@ -60,7 +60,7 @@ boolean isEmptySet(SetID S);
 int lengthSet(SetID S);
 
 /**
- * @brief menambahkan satu elemen ke dalam Set
+ * @brief menambahkan satu elemen ke dalam Set pada indeks pertama bernilai MARK
  *
  * @param S set yang akan ditambahkan satu elemen ke dalamnya
  * @param val elemen yang akan ditambahkan ke dalam set
@@ -70,7 +70,7 @@ int lengthSet(SetID S);
 void addElmtSet(SetID *S, setIDEl val);
 
 /**
- * @brief menghapus satu elemen dari dalam set
+ * @brief menghapus nilai val dari dalam set
  *
  * @param S set yang akan dihapus salah satu elemennya
  * @param val elemen yang akan dihapus dari set
@@ -95,7 +95,7 @@ boolean isElmtInSet(SetID S, setIDEl val);
  * @param S1 set pertama
  * @param S2 set kedua
  *
- * @return boolean apakah S1 sama dengan S2
+ * @return boolean apakah semua elemen pada S1 ada di S2
  */
 boolean isSetEqual(SetID S1, SetID S2);
 
@@ -104,7 +104,7 @@ boolean isSetEqual(SetID S1, SetID S2);
  * @param S1 set pertama
  * @param S2 set kedua
  *
- * @return S3 yang merupakan sebuah set hasil operasi union S1 dan S2
+ * @return S3 yang merupakan sebuah set hasil operasi gabungan S1 dan S2
  */
 SetID setUnion(SetID S1, SetID S2);
 
@@ -113,7 +113,7 @@ SetID setUnion(SetID S1, SetID S2);
  * @param S1 set pertama
  * @param S2 set kedua
  *
- * @return S3 yang merupakan sebuah set hasil operasi intersection S1 dan S2
+ * @return S3 yang merupakan sebuah set hasil operasi irisan S1 dan S2
  */
 SetID setIntersection(SetID S1, SetID S2);
 

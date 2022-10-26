@@ -59,6 +59,8 @@ int main()
     }
 
     createSet(&s3);
+    buatTeks(string4, &teks4);
+    buatTeks(string5, &teks5);
     addElmtSet(&s3, teks1);
     addElmtSet(&s3, teks2);
     addElmtSet(&s3, teks3);
@@ -74,6 +76,8 @@ int main()
     }
 
     createSet(&s4);
+    buatTeks(string6, &teks6);
+    buatTeks(string7, &teks7);
     addElmtSet(&s4, teks3);
     addElmtSet(&s4, teks6);
     addElmtSet(&s4, teks7);
@@ -100,6 +104,11 @@ int main()
     printf("Salinan s4: ");
     printSetID(s8);
     printf("\n");
+
+    if (isSubset(s1, s3))
+    {
+        printf("Set s1 adalah subset dari s3");
+    }
 
     return 0;
 }

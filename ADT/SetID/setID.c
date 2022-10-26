@@ -68,10 +68,11 @@ void removeElmtSet(SetID *S, setIDEl val)
         }
 
         idx = idx - 1;
-        for (i = idx; i < (lengthSet(*S) - 2); i++)
+        for (i = idx; i < (lengthSet(*S) - 1); i++)
         {
             elmtSetID(*S, idx) = elmtSetID(*S, (idx + 1));
         }
+        elmtSetID(*S, lengthSet(*S) - 1) = getMarkSetID();
     }
 }
 
@@ -165,6 +166,7 @@ SetID setIntersection(SetID S1, SetID S2)
     SetID S3;
     int i;
 
+    createSet(&S3);
     for (i = 0; i < lengthSet(S1); i++)
     {
         if (isElmtInSet(S2, elmtSetID(S1, i)))
@@ -180,6 +182,7 @@ SetID setDifference(SetID S1, SetID S2)
     SetID S3;
     int i;
 
+    createSet(&S3);
     for (i = 0; i < lengthSet(S1); i++)
     {
         if (!isElmtInSet(S2, elmtSetID(S1, i)))
@@ -195,6 +198,7 @@ SetID copySet(SetID S)
     SetID copy;
     int i;
 
+    createSet(&copy);
     for (i = 0; i < lengthSet(S); i++)
     {
         addElmtSet(&copy, elmtSetID(S, i));
