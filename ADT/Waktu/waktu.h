@@ -265,6 +265,6 @@ Waktu prevHari(Waktu W);
  *
  * @return nilai dari durasi antara waktu awal dengan waktu akhir
  */
-long durasi(Waktu WAw, Waktu WAkh);
+long durasiW(Waktu WAw, Waktu WAkh);
 
 #endif

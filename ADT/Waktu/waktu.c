@@ -185,7 +185,7 @@ Waktu prevHari(Waktu W)
     return (prevNHari(W, 1));
 }
 
-long durasi(Waktu WAw, Waktu WAkh)
+long durasiW(Waktu WAw, Waktu WAkh)
 {
     long detikAw, detikAkh, durasi;
 
