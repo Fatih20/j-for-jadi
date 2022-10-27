@@ -94,3 +94,17 @@ boolean isMakananEqual(Makanan m1, Makanan m2)
 {
     return teksSama(namaMakanan(m1), namaMakanan(m2)) && teksSama(idTipe(m1), idTipe(m2)) && teksSama(idUnik(m1), idUnik(m2)) && WEQ(basiDalam(m1), basiDalam(m2)) && WEQ(sampaiDalam(m1), sampaiDalam(m2));
 }
+
+void majukanWBasiM(Makanan *m, Waktu w)
+{
+    Waktu currentWB = basiDalam(*m);
+    basiDalam(*m) = WLT(w, currentWB) ? detikToWaktu(durasiW(currentWB, w)) : buatWaktu(0, 0, 0, 0);
+}
+
+Waktu majukanWSampaiM(Makanan *m, Waktu w)
+{
+    Waktu currentWS = sampaiDalam(*m);
+    boolean overflow = WLT(currentWS, w);
+    sampaiDalam(*m) = overflow ? buatWaktu(0, 0, 0, 0) : detikToWaktu(durasiW(currentWS, w));
+    return !overflow ? buatWaktu(0, 0, 0, 0) : detikToWaktu(durasiW(currentWS, w));
+}

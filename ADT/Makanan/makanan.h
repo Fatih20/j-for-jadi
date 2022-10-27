@@ -202,4 +202,23 @@ boolean sampaiSetelahAtauSama(Makanan m1, Makanan m2);
  * @return boolean apakah m1 == m2
  */
 boolean isMakananEqual(Makanan m1, Makanan m2);
+
+/**
+ * @brief Majukan waktu basi m sebesar w. Jika waktu basi kurang dari w maka jadikan 0.
+ *
+ * @param m
+ * @param w
+ */
+void majukanWBasiM(Makanan *m, Waktu w);
+
+/**
+ * @brief Majukan waktu sampai m sebesar w. Jika waktu sampai kurang dari w maka jadikan 0 dan kembalikan sisa pengurangannya.
+ *
+ * @param m
+ * @param w
+ *
+ * @return waktu Zero jika w < waktuSampai, w - waktuSampai jika w >= waktuSampai
+ */
+Waktu majukanWSampaiM(Makanan *m, Waktu w);
+
 #endif
