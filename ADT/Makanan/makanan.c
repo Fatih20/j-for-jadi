@@ -95,16 +95,61 @@ boolean isMakananEqual(Makanan m1, Makanan m2)
     return teksSama(namaMakanan(m1), namaMakanan(m2)) && teksSama(idTipe(m1), idTipe(m2)) && teksSama(idUnik(m1), idUnik(m2)) && WEQ(basiDalam(m1), basiDalam(m2)) && WEQ(sampaiDalam(m1), sampaiDalam(m2));
 }
 
-void majukanWBasiM(Makanan *m, Waktu w)
+void majukanWMInventory(Makanan *m, Waktu w)
 {
     Waktu currentWB = basiDalam(*m);
     basiDalam(*m) = WLT(w, currentWB) ? detikToWaktu(durasiW(currentWB, w)) : buatWaktu(0, 0, 0, 0);
 }
 
-Waktu majukanWSampaiM(Makanan *m, Waktu w)
+void majukanWMDelivery(Makanan *m, Waktu w, char newPosisi)
 {
-    Waktu currentWS = sampaiDalam(*m);
-    boolean overflow = WLT(currentWS, w);
-    sampaiDalam(*m) = overflow ? buatWaktu(0, 0, 0, 0) : detikToWaktu(durasiW(currentWS, w));
-    return !overflow ? buatWaktu(0, 0, 0, 0) : detikToWaktu(durasiW(currentWS, w));
+
+    if (newPosisi == 'c')
+    {
+        newPosisi = newPosisiMDelivery(*m, w);
+        printf("%c\n", newPosisi);
+    }
+
+    switch (newPosisi)
+    {
+    case 'd':
+        sampaiDalam(*m) = kurangWaktu(sampaiDalam(*m), w);
+        break;
+    case 'i':
+        basiDalam(*m) = kurangWaktu(jumlahWaktu(basiDalam(*m), sampaiDalam(*m)), w);
+        sampaiDalam(*m) = buatWaktu(0, 0, 0, 0);
+        break;
+    case 'b':
+        sampaiDalam(*m) = buatWaktu(0, 0, 0, 0);
+        basiDalam(*m) = buatWaktu(0, 0, 0, 0);
+        break;
+
+    default:
+        break;
+    }
+}
+
+char newPosisiMDelivery(Makanan m, Waktu w)
+{
+    Waktu totalTime = jumlahWaktu(basiDalam(m), sampaiDalam(m));
+    char result;
+    tulisWaktu(w);
+    printf("\n");
+
+    if (WGT(sampaiDalam(m), w))
+    {
+        // Makanan masih ada di delivery queue
+        result = 'd';
+    }
+    else if (WGT(totalTime, w))
+    {
+        // Makanan berpindah ke inventory queue
+        result = 'i';
+    }
+    else
+    {
+        // Makanan berpindah ke inventory queue lalu basi
+        result = 'b';
+    }
+    return result;
 }

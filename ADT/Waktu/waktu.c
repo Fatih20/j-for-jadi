@@ -204,6 +204,11 @@ int durasiW(Waktu WAw, Waktu WAkh)
     return (durasi);
 }
 
+Waktu kurangWaktu(Waktu w1, Waktu w2)
+{
+    return detikToWaktu(durasiW(w1, w2));
+};
+
 Waktu jumlahWaktu(Waktu w1, Waktu w2)
 {
     return detikToWaktu(waktuToDetik(w1) + waktuToDetik(w2));

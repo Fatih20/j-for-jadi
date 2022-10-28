@@ -20,10 +20,17 @@ int main(int argc, char const *argv[])
     buatAksiLokasi(&aL, aLT1, 2, 2, 0, 1, 5, 0);
     buatMakanan(&m1, namaM1, idTM1, idUM1, wB, wS, aL);
     cetakMakanan(m1);
-    printf("\n");
-    TulisPOINT(getFInPlace(m1));
-    tulisWaktu(getFInTime(m1));
-    cetakTeks(getFHow(m1));
+
+    printf("\n\n");
+    // TulisPOINT(getFInPlace(m1));
+    // tulisWaktu(getFInTime(m1));
+    // cetakTeks(getFHow(m1));
+    printf("\n\n");
+
+    Waktu wOffset = buatWaktu(0, 0, 21, 0);
+    // majukanWMDelivery(&m1, wOffset, 'c');
+    majukanWMInventory(&m1, wOffset);
+    cetakMakanan(m1);
 
     // Makanan m2;
     // buatMakanan(&m2, "bruh", 101, 100, "12", "101");

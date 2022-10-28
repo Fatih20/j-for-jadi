@@ -204,21 +204,29 @@ boolean sampaiSetelahAtauSama(Makanan m1, Makanan m2);
 boolean isMakananEqual(Makanan m1, Makanan m2);
 
 /**
- * @brief Majukan waktu basi m sebesar w. Jika waktu basi kurang dari w maka jadikan 0.
+ * @brief Majukan waktu dari makanan di dalam inventory m sebesar w. Jika waktu basi kurang dari w maka jadikan 0.
  *
  * @param m
  * @param w
  */
-void majukanWBasiM(Makanan *m, Waktu w);
+void majukanWMInventory(Makanan *m, Waktu w);
 
 /**
- * @brief Majukan waktu sampai m sebesar w. Jika waktu sampai kurang dari w maka jadikan 0 dan kembalikan sisa pengurangannya.
+ * @brief Majukan waktu dari makanan di dalam delivery m sebesar w. Lingkup fungsi termasuk seluruh lifecycle makanan, bukan hanya dari delivery ke inventory saja (waktu basi juga bisa dikurangkan).
  *
  * @param m
  * @param w
- *
- * @return waktu Zero jika w < waktuSampai, w - waktuSampai jika w >= waktuSampai
+ * @param newPosisi char d, i, b apakah makanan w akan tetap di delivery, pindah ke inventory, atau ke inventory lalu basi. Masukkan c jika ingin fungsinya menghitung sendiri
  */
-Waktu majukanWSampaiM(Makanan *m, Waktu w);
+void majukanWMDelivery(Makanan *m, Waktu w, char newPosisi);
+
+/**
+ * @brief Menentukan apakah suatu makanan m di delivery queue setelah waktu w akan masih ada di delivery queue, sampai ke inventory queue, atau sampai ke inventory queue lalu basi
+ *
+ * @param m
+ * @param w
+ * @return char d untuk delivery, i untuk inventory, b untuk basi
+ */
+char newPosisiMDelivery(Makanan m, Waktu w);
 
 #endif

@@ -276,4 +276,13 @@ int durasiW(Waktu WAw, Waktu WAkh);
  */
 Waktu jumlahWaktu(Waktu w1, Waktu w2);
 
+/**
+ * @brief Mengurangkan w1 dengan w2 dan mengembalikan hasil pengurangannya dimutlakkan
+ *
+ * @param w1
+ * @param w2
+ * @return Waktu w1 - w2 dimutlakkan
+ */
+Waktu kurangWaktu(Waktu w1, Waktu w2);
+
 #endif
