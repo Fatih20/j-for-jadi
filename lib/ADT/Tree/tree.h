@@ -5,6 +5,7 @@
 #include "../Teks/teks.h"
 #include "../ListStatMakanan/lstatmakanan.h"
 #include "../ListDinTeks/ldinteks.h"
+#include "../MBFile/mBFile.h"
 
 /*  ADT TREE  */
 /* ADT TREE adalah ADT berupa Tree yang memuat resep makanan,
@@ -27,8 +28,6 @@ Kapasitas maksimumnya = 100 */
 #define AksiTree(p) (p)->aksi
 #define ListNodeCap(l) (l).capacity
 #define ListNodeELMT(l, i) (l).child[i]
-#define ListTreeCap 100
-#define ListTreeELMT(l, i) (l).tree[i]
 #define ListNodeNEff(l) (l).nEff
 
 typedef Teks treeEl;
@@ -64,16 +63,6 @@ typedef struct treeNode
 
 typedef Address Tree;
 
-/**
- * @brief List Tree adalah sebuah list statik yang memuat tree
- *
- */
-typedef struct listTree
-{
-   Tree tree[ListTreeCap];
-} ListTree;
-
-typedef Tree *ListOfTree;
 /**
  * @brief memasukkan val sebagai elemen terakhir dalam list l
  *
@@ -138,54 +127,6 @@ Address newTreeNode(treeEl val, int childCnt);
  * @param t
  */
 void displayTree(Tree t);
-
-/**
- * @brief membaca tree dari file
- *
- * @param t
- * @param file
- * @param listMakanan
- */
-void readTree(ListTree *t, char *file, LStatMakanan listMakanan);
-
-/* LIST TREE */
-/**
- * @brief membuat list statik kosong l dengan kapasitas 100
- *
- * @param l
- */
-void buatListTree(ListTree *l);
-
-/**
- * @brief men-generate mark untuk List Tree
- *
- * @return Tree
- */
-Tree getMarkListTree();
-
-/**
- * @brief mengembalikan panjang dari List Tree
- *
- * @param l
- * @return int
- */
-int panjangListTree(ListTree l);
-
-/**
- * @brief mencetak semua tree pada list tree
- *
- * @param t
- */
-void displayListTree(ListTree t);
-
-/**
- * @brief mengembalikan parent dengan children lt
- *
- * @param t
- * @param lt
- * @return Tree
- */
-Tree getParent(ListTree t, LDinTeks lt);
 
 /**
  * @brief mengecek apakah val merupakan child dari t

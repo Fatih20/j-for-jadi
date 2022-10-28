@@ -1,1 +1,0 @@
-gcc driver.c tree.c ../Makanan/makanan.c ../Teks/teks.c ../MKFile/mKFile.c ../MCFile/mCFile.c ../MBFile/mBfile.c ../ListDinTeks/ldinteks.c ../ListDinKar/ldinkar.c ../Waktu/waktu.c ../ListStatMakanan/lstatmakanan.c ../AksiLokasi/aksiLokasi.c ../Point/point.c
