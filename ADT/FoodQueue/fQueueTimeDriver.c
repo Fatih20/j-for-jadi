@@ -72,58 +72,9 @@ int main(int argc, char const *argv[])
     cetakFoodQueue(iq);
     printf("\n\n");
 
-    // // Majukan waktu delivery
-    // printf("Delivery dimajukan satu\n");
-    // majukanWSampai(&dq, &iq);
-    // printf("DQ\n");
-    // cetakFoodQueue(dq);
-    // printf("\nIQ\n");
-    // cetakFoodQueue(iq);
-    // printf("\n");
+    Waktu wOffset = buatWaktu(0, 5, 2, 0);
+    majukanWFQ(&dq, &iq, wOffset);
 
-    // // Majukan waktu delivery
-    // printf("Delivery dimajukan satu\n");
-    // majukanWSampai(&dq, &iq);
-    // printf("DQ\n");
-    // cetakFoodQueue(dq);
-    // printf("\nIQ\n");
-    // cetakFoodQueue(iq);
-    // printf("\n");
-
-    // // Majukan waktu inventory
-    // printf("Inventory dimajukan satu\n");
-    // majukanWBasi(&iq);
-    // printf("\nIQ\n");
-    // cetakFoodQueue(iq);
-    // printf("\n");
-
-    // // Majukan waktu inventory
-    // printf("Inventory dimajukan satu\n");
-    // majukanWBasi(&iq);
-    // printf("\nIQ\n");
-    // cetakFoodQueue(iq);
-
-    // Majukan waktu semua
-    printf("\nWaktu dimajukan satu\n");
-    majukanWFQ(&dq, &iq);
-    printf("\nDQ\n");
-    cetakFoodQueue(dq);
-    printf("\nIQ\n");
-    cetakFoodQueue(iq);
-
-    // Majukan waktu semua
-    printf("\nWaktu dimajukan satu\n");
-    majukanWFQ(&dq, &iq);
-    printf("\nDQ\n");
-    cetakFoodQueue(dq);
-    printf("\nIQ\n");
-    cetakFoodQueue(iq);
-
-    // Majukan waktu semua
-    printf("\nWaktu dimajukan satu\n");
-    majukanWFQ(&dq, &iq);
-    printf("\nDQ\n");
-    cetakFoodQueue(dq);
-    printf("\nIQ\n");
-    cetakFoodQueue(iq);
+    majukanWDQ(&dq, &iq, wOffset);
+    majukanWIQ(&iq, wOffset);
 }

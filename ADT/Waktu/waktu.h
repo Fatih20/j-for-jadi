@@ -265,6 +265,24 @@ Waktu prevHari(Waktu W);
  *
  * @return nilai dari durasi antara waktu awal dengan waktu akhir
  */
-long durasi(Waktu WAw, Waktu WAkh);
+int durasiW(Waktu WAw, Waktu WAkh);
+
+/**
+ * @brief Menjumlahkan 2 waktu dan mengembalikan hasil penjumlahannya
+ *
+ * @param w1
+ * @param w2
+ * @return Waktu penjumlahan w1 dan w2
+ */
+Waktu jumlahWaktu(Waktu w1, Waktu w2);
+
+/**
+ * @brief Mengurangkan w1 dengan w2 dan mengembalikan hasil pengurangannya dimutlakkan
+ *
+ * @param w1
+ * @param w2
+ * @return Waktu w1 - w2 dimutlakkan
+ */
+Waktu kurangWaktu(Waktu w1, Waktu w2);
 
 #endif
