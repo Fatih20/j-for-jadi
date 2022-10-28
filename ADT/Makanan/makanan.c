@@ -133,9 +133,6 @@ char newPosisiMDelivery(Makanan m, Waktu w)
 {
     Waktu totalTime = jumlahWaktu(basiDalam(m), sampaiDalam(m));
     char result;
-    tulisWaktu(w);
-    printf("\n");
-
     if (WGT(sampaiDalam(m), w))
     {
         // Makanan masih ada di delivery queue

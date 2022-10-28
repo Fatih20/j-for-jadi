@@ -207,11 +207,29 @@ void majukanWSampai(FoodQueue *DQ, FoodQueue *IQ);
 void majukanWBasi(FoodQueue *IQ);
 
 /**
- * @brief Lakukan majukanWBasi ke IQ lalu lakukan majukanWSampai kepada DQ dan IQ
+ * @brief Lakukan majukanWIQ ke IQ lalu lakukan majukanWDQ kepada DQ dan IQ sebesar w
  *
  * @param DQ Delivery queue
  * @param IQ Inventory queue
+ * @param w
  */
-void majukanWFQ(FoodQueue *DQ, FoodQueue *IQ);
+void majukanWFQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w);
+
+/**
+ * @brief Majukan waktu sebesar w untuk makanan-makanan di dalam DQ, termasuk di dalamnya menentukan makanan masih di DQ, pindah ke IQ, atau pindah ke IQ tapi kemudian basi
+ *
+ * @param DQ
+ * @param IQ
+ * @param w
+ */
+void majukanWDQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w);
+
+/**
+ * @brief Majukan waktu sebesar w untuk makanan-makanan di dalam IQ. Jika basi maka akan dikeluarkan.
+ *
+ * @param IQ
+ * @param w
+ */
+void majukanWIQ(FoodQueue *IQ, Waktu w);
 
 #endif

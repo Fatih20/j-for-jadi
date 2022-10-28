@@ -1,5 +1,8 @@
+Tes time advanced
+gcc fQueueTimeAdv.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c ../Waktu/waktu.c ../AksiLokasi/aksiLokasi.c ../Point/Point.c -o tesFQWaktuAdv -lm && ./tesFQWaktuAdv
+
 Tes time
-gcc fQueueTimeDriver.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c -o tesFQWaktu -lm
+gcc fQueueTimeDriver.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c ../Waktu/waktu.c ../AksiLokasi/aksiLokasi.c ../Point/Point.c -o tesFQWaktu -lm && ./tesFQWaktu
 
 Tes in general
-gcc fQueueDriver.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c -o tesFQ -lm
+gcc fQueueDriver.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c ../Waktu/waktu.c ../AksiLokasi/aksiLokasi.c ../Point/Point.c -o tesFQ -lm && ./tesFQ

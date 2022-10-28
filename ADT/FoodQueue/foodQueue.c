@@ -201,6 +201,7 @@ void hapusBasi(FoodQueue *IQ)
         dequeue(IQ, &temp);
     }
 };
+
 void hapusSampai(FoodQueue *DQ, FoodQueue *IQ)
 {
     while ((!isEmptyFQ(*DQ)) && isWZero(sampaiDalam((headElFQ(*DQ)))))
@@ -210,6 +211,7 @@ void hapusSampai(FoodQueue *DQ, FoodQueue *IQ)
         enqueueInventory(IQ, temp);
     }
 };
+
 void majukanWSampai(FoodQueue *DQ, FoodQueue *IQ)
 {
     for (int i = headFQ(*DQ); i <= tailFQ(*DQ); i++)
@@ -228,8 +230,50 @@ void majukanWBasi(FoodQueue *IQ)
     hapusBasi(IQ);
 };
 
-void majukanWFQ(FoodQueue *DQ, FoodQueue *IQ)
+void majukanWDQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w)
 {
-    majukanWBasi(IQ);
-    majukanWSampai(DQ, IQ);
+    if (isEmptyFQ(*DQ))
+    {
+        return;
+    }
+    Makanan currentM = headElFQ(*DQ);
+    char nP = newPosisiMDelivery(currentM, w);
+    while (nP != 'd' && !isEmptyFQ(*DQ))
+    {
+        Makanan movedFood;
+        dequeue(DQ, &movedFood);
+        majukanWMDelivery(&movedFood, w, nP);
+        if (nP == 'i')
+        {
+            enqueueInventory(IQ, movedFood);
+        }
+        currentM = headElFQ(*DQ);
+        nP = newPosisiMDelivery(currentM, w);
+    }
+
+    if (isEmptyFQ(*DQ))
+    {
+        return;
+    }
+
+    for (int i = headFQ(*DQ); i <= tailFQ(*DQ); i++)
+    {
+        majukanWMDelivery(&elmtFQ(*DQ, i), w, 'd');
+    }
+};
+
+void majukanWIQ(FoodQueue *IQ, Waktu w)
+{
+    for (int i = headFQ(*IQ); i <= tailFQ(*IQ); i++)
+    {
+        majukanWMInventory(&elmtFQ(*IQ, i), w);
+    }
+
+    hapusBasi(IQ);
+};
+
+void majukanWFQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w)
+{
+    majukanWIQ(IQ, w);
+    majukanWDQ(DQ, IQ, w);
 };

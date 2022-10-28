@@ -102,28 +102,4 @@ int main(int argc, char const *argv[])
     // majukanWBasi(&iq);
     // printf("\nIQ\n");
     // cetakFoodQueue(iq);
-
-    // Majukan waktu semua
-    printf("\nWaktu dimajukan satu\n");
-    majukanWFQ(&dq, &iq);
-    printf("\nDQ\n");
-    cetakFoodQueue(dq);
-    printf("\nIQ\n");
-    cetakFoodQueue(iq);
-
-    // Majukan waktu semua
-    printf("\nWaktu dimajukan satu\n");
-    majukanWFQ(&dq, &iq);
-    printf("\nDQ\n");
-    cetakFoodQueue(dq);
-    printf("\nIQ\n");
-    cetakFoodQueue(iq);
-
-    // Majukan waktu semua
-    printf("\nWaktu dimajukan satu\n");
-    majukanWFQ(&dq, &iq);
-    printf("\nDQ\n");
-    cetakFoodQueue(dq);
-    printf("\nIQ\n");
-    cetakFoodQueue(iq);
 }
