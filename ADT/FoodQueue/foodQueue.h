@@ -183,30 +183,6 @@ int idxMakanan(FoodQueue FQ, char idTipeS[]);
 void hapusBasi(FoodQueue *IQ);
 
 /**
- * @brief Men-dequeue elemen di-head queue pertama yang memiliki waktu sampai 0 sampai elemen di-head belum sampai. Elemen yang di-dequeue dimasukkan ke queue kedua. Gunakan sesuai spek parameter.
- *
- * @param DQ Delivery queue yang makanan sampainya akan dikeluarkan
- * @param IQ Inventory queue yang akan menerima elemen yang dikeluarkan dari DQ
- *
- */
-void hapusSampai(FoodQueue *DQ, FoodQueue *IQ);
-
-/**
- * @brief Memajukan waktu untuk delivery queue. Mengurangi waktu sampai semua makanan di dalamnya. Kemudian menjalankan hapusSampai.
- *
- * @param DQ Delivery queue yang dimajukan waktunya kemudian dipindah ke IQ makanannya yang sudah sampai
- * @param IQ Inventory queue yang menerima makanan yang sampai setelah waktu dimajukan
- */
-void majukanWSampai(FoodQueue *DQ, FoodQueue *IQ);
-
-/**
- * @brief Memajukan waktu untuk inventory queue. Mengurangi waktu basi semua makanan di dalamnya. Kemudian menjalankan hapusBasi
- *
- * @param IQ yang ingin dimajukan waktunya lalu dihapus elemennya yang basi setelah waktu dimajukan
- */
-void majukanWBasi(FoodQueue *IQ);
-
-/**
  * @brief Lakukan majukanWIQ ke IQ lalu lakukan majukanWDQ kepada DQ dan IQ sebesar w
  *
  * @param DQ Delivery queue

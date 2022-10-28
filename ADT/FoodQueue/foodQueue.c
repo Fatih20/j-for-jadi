@@ -202,34 +202,6 @@ void hapusBasi(FoodQueue *IQ)
     }
 };
 
-void hapusSampai(FoodQueue *DQ, FoodQueue *IQ)
-{
-    while ((!isEmptyFQ(*DQ)) && isWZero(sampaiDalam((headElFQ(*DQ)))))
-    {
-        FoodQueueEl temp;
-        dequeue(DQ, &temp);
-        enqueueInventory(IQ, temp);
-    }
-};
-
-void majukanWSampai(FoodQueue *DQ, FoodQueue *IQ)
-{
-    for (int i = headFQ(*DQ); i <= tailFQ(*DQ); i++)
-    {
-        sampaiDalam(elmtFQ((*DQ), i)) = prevMenit(sampaiDalam(elmtFQ((*DQ), i)));
-    }
-    hapusSampai(DQ, IQ);
-};
-void majukanWBasi(FoodQueue *IQ)
-{
-    for (int i = 0; i <= tailFQ(*IQ); i++)
-    {
-        basiDalam(elmtFQ((*IQ), i)) = prevMenit(basiDalam(elmtFQ((*IQ), i)));
-    }
-
-    hapusBasi(IQ);
-};
-
 void majukanWDQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w)
 {
     if (isEmptyFQ(*DQ))
