@@ -126,10 +126,6 @@ void readLStatMakanan(LStatMakanan *l, char *file)
 /* BELUM FINALL tar aja klo adt makanan dah fixx */
 void printLStatMakanan(LStatMakanan l)
 {
-    printf("==============================\n");
-    printf("         DAFTAR MAKANAN       \n");
-    printf("==============================\n");
-    printf("Nama Makanan - Waktu Kadaluarsa - Lama Pengiriman\n");
     for (int i = 0; i < panjangLStatMakanan(l); i++)
     {
         printf("%d. ", i + 1);
@@ -137,6 +133,8 @@ void printLStatMakanan(LStatMakanan l)
         printf(" - ");
         /* CETAK WAKTU*/
         tulisWaktu(basiDalam(elmtLSM(l, i)));
+        printf(" - ");
+        cetakTeks(aksi(aksiLokasi(elmtLSM(l, i))));
         printf(" - ");
         tulisWaktu(sampaiDalam(elmtLSM(l, i)));
         /* ga pake cetakMakanan krn ini idUniknya undefined*/

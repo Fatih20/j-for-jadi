@@ -74,5 +74,43 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
     {
         cetakTeks(NamaMakananTree(foodChoice));
         printf(" berhasil dibuat dan sudah masuk ke inventory!");
+        /* TO DO --> 
+        1. buat generate IDUnik (ini juga dipakai di BUY)
+        2. enqueue makanan ke inventory
+        3. ubah currState (waktunya)
+        */
     }
+}
+
+void displayCookbook(ListNode *daftarResep)
+{
+    printf("==================================================\n");
+    printf("                      COOKBOOK                    \n");
+    printf("==================================================\n");
+    displayListNode(*daftarResep);
+    int makanan;
+    printf("Pilih resep yang ingin dilihat (%d - %d): ", 1, ListNodeNEff(*daftarResep));
+    scanf("%d", &makanan);
+    while (makanan < 1 || makanan > ListNodeNEff(*daftarResep))
+    {
+        printf("Pilihan tidak dikenali!\n");
+        printf("Pilih resep yang ingin dilihat (%d - %d): ", 1, ListNodeNEff(*daftarResep));
+        scanf("%d", &makanan);
+    }
+    printf("==================================================\n");
+    printf("               Resep ");
+    cetakTeks(NamaMakananTree(ListNodeELMT(*daftarResep, makanan - 1)));
+    printf("               \n");
+    printf("==================================================\n");
+    displayTree(ListNodeELMT(*daftarResep, makanan - 1));
+}
+
+void displayCatalog(LStatMakanan *daftarMakanan)
+{
+    
+    printf("==================================================\n");
+    printf("                    DAFTAR MAKANAN                \n");
+    printf("==================================================\n");
+    printf("Nama Makanan - Waktu Kadaluarsa - Aksi yang Diperlukan - Lama Pengiriman\n");
+    printLStatMakanan(*daftarMakanan);
 }
