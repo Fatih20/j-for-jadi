@@ -140,12 +140,12 @@ int indexOfLStatMakanan(LStatMakanan l, LStatMakananEl val);
 
 /**
  * @brief Mengembalikan nama makanan dengan idMakanan ID
- * 
- * @param l 
- * @param id 
- * @return Teks 
+ *
+ * @param l
+ * @param id
+ * @return Teks
  */
-Teks getNameFromID(LStatMakanan l, Teks id);
+Makanan getMakananFromID(LStatMakanan l, Teks idTipe);
 
 void insertLastLStatMakanan(LStatMakanan *l, LStatMakananEl val);
 /* Proses: Menambahkan val sebagai elemen terakhir List */

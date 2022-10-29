@@ -20,12 +20,16 @@ ADT ini digunakan untuk menyimpan children dari sebuah node dan menyimpan daftar
 #define Child(p, i) (p)->children.child[i]
 #define Children(p) (p)->children
 #define MakananTree(p) (p)->makanan
-#define AksiTree(p) (p)->aksi
+#define NamaMakananTree(p) namaMakanan((p)->makanan)
+#define AksiLokasiTree(p) aksiLokasi((p)->makanan)
+#define IdTipeTree(o) idTipe((p)->makanan)
+#define IdUnikTree(p) idUnik((p)->makanan)
+#define AksiTree(p) aksi(aksiLokasi((p)->makanan))
 #define ListNodeCap(l) (l).capacity
 #define ListNodeELMT(l, i) (l).child[i]
 #define ListNodeNEff(l) (l).nEff
 
-typedef Teks treeEl;
+typedef Makanan treeEl;
 typedef struct treeNode *Address;
 typedef Address ListNodeEl;
 
@@ -51,7 +55,6 @@ typedef struct listNode
  */
 typedef struct treeNode
 {
-   treeEl aksi;
    treeEl makanan;
    ListNode children;
 } TreeNode;
@@ -83,7 +86,7 @@ void displayTree(Tree t);
  * @param t
  * @return boolean
  */
-boolean isChildOf(Teks val, Tree t);
+boolean isChildOf(treeEl val, Tree t);
 
 /* LIST NODE */
 /**
@@ -148,7 +151,7 @@ void displayListNode(ListNode l);
  *
  * @param t
  */
-void readListResep(ListNode *t, char *file, LStatMakanan(listMakanan));
+void readListNode(ListNode *t, char *file, LStatMakanan(listMakanan));
 
 /* OPERASI LAIN-LAIN */
 /**

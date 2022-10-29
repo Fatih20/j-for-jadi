@@ -26,12 +26,12 @@ void displayTree(Tree t)
         }
         if (!isEmptyListNode(Children(t)))
         {
-            cetakTeks(MakananTree(t));
+            cetakTeks(NamaMakananTree(t));
             printf(" - ");
         }
         for (int i = 0; i < ListNodeNEff(Children(t)); i++)
         {
-            cetakTeks(MakananTree(Child(t, i)));
+            cetakTeks(NamaMakananTree(Child(t, i)));
             if (i != ListNodeNEff((Children(t))) - 1)
             {
                 printf(", ");
@@ -44,11 +44,11 @@ void displayTree(Tree t)
     }
 }
 
-boolean isChildOf(Teks val, Tree t)
+boolean isChildOf(treeEl val, Tree t)
 {
     for (int i = 0; i < ListNodeNEff(Children(t)); i++)
     {
-        if (teksSama(MakananTree(Child(t, i)), val))
+        if (isMakananEqual(MakananTree(Child(t, i)), val))
         {
             return true;
         }
@@ -102,7 +102,7 @@ boolean isEmptyListNode(ListNode l)
     return ListNodeNEff(l) == 0;
 }
 
-void readListResep(ListNode *t, char *file, LStatMakanan(listMakanan))
+void readListNode(ListNode *t, char *file, LStatMakanan(listMakanan))
 {
     startMBFile(file);
     int n = teksToInt(elmtLDT(currentRow, 0));
@@ -112,7 +112,7 @@ void readListResep(ListNode *t, char *file, LStatMakanan(listMakanan))
         advMBFile();
         int jumlahChild = teksToInt(elmtLDT(currentRow, 1));
         Teks idTemp = elmtLDT(currentRow, 0);
-        Teks makananTemp = getNameFromID(listMakanan, idTemp);
+        treeEl makananTemp = getMakananFromID(listMakanan, idTemp);
         Address addressTemp = isAllocated(makananTemp, *t);
         if (addressTemp != NULL)
         {
@@ -127,7 +127,7 @@ void readListResep(ListNode *t, char *file, LStatMakanan(listMakanan))
         {
 
             idTemp = elmtLDT(currentRow, j);
-            makananTemp = getNameFromID(listMakanan, idTemp);
+            makananTemp = getMakananFromID(listMakanan, idTemp);
             addressTemp = isAllocated(makananTemp, *t);
             if (addressTemp != NULL)
             {
@@ -151,14 +151,14 @@ void displayListNode(ListNode l)
     for (int i = 0; i < ListNodeNEff(l); i++)
     {
         printf("%d. ", i + 1);
-        cetakTeks(MakananTree(ListNodeELMT(l, i)));
+        cetakTeks(NamaMakananTree(ListNodeELMT(l, i)));
         printf("\n");
     }
     int makanan;
     scanf("%d", &makanan);
     printf("==================================\n");
     printf("          Resep ");
-    cetakTeks(MakananTree(ListNodeELMT(l, makanan - 1)));
+    cetakTeks(NamaMakananTree(ListNodeELMT(l, makanan - 1)));
     printf("          \n");
     printf("==================================\n");
     displayTree(ListNodeELMT(l, makanan - 1));
@@ -167,14 +167,15 @@ void displayListNode(ListNode l)
 Address isAllocated(treeEl val, ListNode l)
 {
     for (int i = 0; i < ListNodeNEff(l); i++)
+
     {
-        if (teksSama(MakananTree(ListNodeELMT(l, i)), val))
+        if (isMakananEqual(MakananTree(ListNodeELMT(l, i)), val))
         {
             return ListNodeELMT(l, i);
         }
         for (int j = 0; j < ListNodeNEff(Children(ListNodeELMT(l, i))); j++)
         {
-            if (teksSama(MakananTree(Child(ListNodeELMT(l, i), j)), val))
+            if (isMakananEqual(MakananTree(Child(ListNodeELMT(l, i), j)), val))
             {
                 return Child(ListNodeELMT(l, i), j);
             }
@@ -183,26 +184,27 @@ Address isAllocated(treeEl val, ListNode l)
     return NULL;
 }
 
-Tree getParent(ListNode t, LDinTeks lt)
-{
-    Tree parent = NULL;
-    for (int i = 0; i < panjangListNode(t) && parent == NULL; i++)
-    {
-        boolean isParent = true;
-        for (int j = 0; j < nEffLDT(lt); j++)
-        {
-            if (!isChildOf(elmtLDT(lt, j), ListNodeELMT(t, i)))
-            {
-                isParent = false;
-            }
-        }
-        if (isParent)
-        {
-            parent = ListNodeELMT(t, i);
-        }
-    }
-    return parent;
-}
+/* untuk sementara ga perlu */
+// Tree getParent(ListNode t, LDinTeks lt)
+// {
+//     Tree parent = NULL;
+//     for (int i = 0; i < panjangListNode(t) && parent == NULL; i++)
+//     {
+//         boolean isParent = true;
+//         for (int j = 0; j < nEffLDT(lt); j++)
+//         {
+//             if (!isChildOf(elmtLDT(lt, j), ListNodeELMT(t, i)))
+//             {
+//                 isParent = false;
+//             }
+//         }
+//         if (isParent)
+//         {
+//             parent = ListNodeELMT(t, i);
+//         }
+//     }
+//     return parent;
+// }
 // void readTree(ListTree *t, char *file, LStatMakanan(listMakanan))
 // {
 //     startMBFile(file);

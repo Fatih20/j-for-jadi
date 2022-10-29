@@ -177,3 +177,15 @@ void expandLDinMakanan(LDinMakanan *l, int num)
     capacityLDM(*l) += num;
     makanan(*l) = realloc(makanan(*l), (capacityLDM(*l)) * sizeof(LDinMakananEl));
 }
+
+boolean isMakananInList(LDinMakanan l, Teks namaMakanan)
+{
+    for (int i = 0; i < panjangLDinMakanan(l); i++)
+    {
+        if (teksSama(namaMakanan(elmtLDM(l, i)), namaMakanan))
+        {
+            return true;
+        }
+    }
+    return false;
+};
