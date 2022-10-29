@@ -10,16 +10,11 @@
 /*  ADT TREE  */
 /* ADT TREE adalah ADT berupa Tree yang memuat resep makanan,
  sehingga elemen yang disimpan pada setiap node adalah info makanan.
- Pada ADT ini juga dimanfaatkan ADT ListNode dan ADT ListTree. */
+ Pada ADT ini juga dimanfaatkan ADT ListNode. */
 
 /* ADT ListNode */
 /* ADT ini adalah sebuah list dinamis dengan elemen berupa Tree.
-ADT ini digunakan untuk menyimpan children dari sebuah node.*/
-
-/* ADT ListTree */
-/* ADT ini adalah sebuah list statis dengan elemen berupa Tree.
-ADT ini digunakan untuk menyimapan semua resep dalam file config.
-Kapasitas maksimumnya = 100 */
+ADT ini digunakan untuk menyimpan children dari sebuah node dan menyimpan daftar tree.*/
 
 /* Selektor */
 #define Child(p, i) (p)->children.child[i]
@@ -63,53 +58,6 @@ typedef struct treeNode
 
 typedef Address Tree;
 
-/**
- * @brief memasukkan val sebagai elemen terakhir dalam list l
- *
- * @param l
- * @param val nilai yang akan dimasukkan ke dalam list l
- */
-void insertLastListNode(ListNode *l, Address val);
-
-/**
- * @brief membuat list node kosong dengan kapasitas capacity
- *
- * @param l
- * @param capacity
- */
-void createListNode(ListNode *l, int capacity);
-
-/**
- * @brief menyalin isi dari l1 ke l2
- *
- * @param l1
- * @param l2
- */
-void copyListNode(ListNode l1, ListNode *l2);
-
-/**
- * @brief mengirimkan ture jika list node l full
- *
- * @param l
- * @return boolean
- */
-boolean isFullListNode(ListNode l);
-/**
- * @brief mengirimkan false jika list node l kosong
- *
- * @param l
- * @return boolean
- */
-boolean isEmptyListNode(ListNode l);
-
-/**
- * @brief memperbesar memory listnode l sebesar n
- *
- * @param l
- * @param n
- */
-void expandListNode(ListNode *l, int n);
-
 /* TREE */
 /* KONSTRUKTOR */
 /**
@@ -136,5 +84,89 @@ void displayTree(Tree t);
  * @return boolean
  */
 boolean isChildOf(Teks val, Tree t);
+
+/* LIST NODE */
+/**
+ * @brief membuat list node kosong dengan kapasitas capacity
+ *
+ * @param l
+ * @param capacity
+ */
+void createListNode(ListNode *l, int capacity);
+
+/**
+ * @brief memperbesar memory listnode l sebesar n
+ *
+ * @param l
+ * @param n
+ */
+void expandListNode(ListNode *l, int n);
+
+/**
+ * @brief mengirimkan ture jika list node l full
+ *
+ * @param l
+ * @return boolean
+ */
+boolean isFullListNode(ListNode l);
+
+/**
+ * @brief memasukkan val sebagai elemen terakhir dalam list l
+ *
+ * @param l
+ * @param val nilai yang akan dimasukkan ke dalam list l
+ */
+void insertLastListNode(ListNode *l, Address val);
+
+/**
+ * @brief menyalin isi dari l1 ke l2
+ *
+ * @param l1
+ * @param l2
+ */
+void copyListNode(ListNode l1, ListNode *l2);
+
+/**
+ * @brief mengirimkan false jika list node l kosong
+ *
+ * @param l
+ * @return boolean
+ */
+boolean isEmptyListNode(ListNode l);
+
+/* INPUT / OUTPUT */
+/**
+ * @brief mencetak semua tree pada list tree
+ *
+ * @param t
+ */
+void displayListNode(ListNode l);
+
+/**
+ * @brief membaca list tree. Proses : Baca n (jumlah resep), n baris selanjutnya adalah elemen tree dan
+ * childnya (dibaca dengan readTree pada tree.h )
+ *
+ * @param t
+ */
+void readListResep(ListNode *t, char *file, LStatMakanan(listMakanan));
+
+/* OPERASI LAIN-LAIN */
+/**
+ * @brief mengembalikan parent dengan children lt
+ *
+ * @param t
+ * @param lt
+ * @return Tree
+ */
+Tree getParent(ListNode t, LDinTeks lt);
+
+/**
+ * @brief mengecek apakah val telah dialokasi dalam tree yang ada di list l
+ *
+ * @param val
+ * @param l
+ * @return Address
+ */
+Address isAllocated(treeEl val, ListNode l);
 
 #endif

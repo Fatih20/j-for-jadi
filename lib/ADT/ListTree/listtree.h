@@ -81,6 +81,6 @@ Address isAllocated(treeEl val, ListTree l);
  * @param t
  * @param l
  */
-void insertLastListTree(Tree t, ListTree l);
+void insertLastListTree(Tree t, ListTree *l);
 
 #endif
