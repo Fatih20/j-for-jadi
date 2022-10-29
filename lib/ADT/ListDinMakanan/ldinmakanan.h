@@ -197,4 +197,13 @@ void insertAtLDinMakanan(LDinMakanan *l, LDinMakananEl val, IdxType idx);
  */
 
 void expandLDinMakanan(LDinMakanan *l, int num);
+
+/**
+ * @brief mengecek apakah makanan dengan nama namaMakanan ada dalam list
+ *
+ * @param l list Makanan yang ingin ditraverse
+ * @param namaMakanan nama Makanan yang ingin dicari
+ * @return boolean
+ */
+boolean isMakananInList(LDinMakanan l, Teks namaMakanan);
 #endif

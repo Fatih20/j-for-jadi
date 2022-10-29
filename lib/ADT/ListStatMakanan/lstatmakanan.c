@@ -144,18 +144,16 @@ void printLStatMakanan(LStatMakanan l)
     }
 }
 
-Teks getNameFromID(LStatMakanan l, Teks idTipe)
+Makanan getMakananFromID(LStatMakanan l, Teks idTipe)
 {
     for (int i = 0; i < panjangLStatMakanan(l); i++)
     {
         if (teksSama(idTipe(elmtLSM(l, i)), idTipe))
         {
-            return namaMakanan(elmtLSM(l, i));
+            return (elmtLSM(l, i));
         }
     }
-    Teks blank;
-    buatTeks("#", &blank);
-    return blank;
+    return getMarkLStatMakanan();
 };
 
 int indexOfLStatMakanan(LStatMakanan l, LStatMakananEl val)
