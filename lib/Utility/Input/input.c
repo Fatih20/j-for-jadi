@@ -7,7 +7,7 @@ int askForNumber(int min, int max, char prompt[])
     int inputV;
     do
     {
-        printf(prompt);
+        printf("%s", prompt);
         inputV = scanf("%d", &choice);
         if (!inputV)
         {
@@ -29,7 +29,7 @@ int askForNumberNMin(int max, char prompt[])
     int inputV;
     do
     {
-        printf(prompt);
+        printf("%s", prompt);
         inputV = scanf("%d", &choice);
         if (!inputV)
         {
@@ -50,7 +50,7 @@ int askForNumberNMax(int min, char prompt[])
     int inputV;
     do
     {
-        printf(prompt);
+        printf("%s", prompt);
         inputV = scanf("%d", &choice);
         if (!inputV)
         {
