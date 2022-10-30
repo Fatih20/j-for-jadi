@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "..lib/ADT/Teks/teks.h"
+#include "lib/ADT/MKInput/mKInput.h"
+#include "lib/Utility/Loader/Loader.h"
+#include "lib/Utility/String/String.h"
 
 int main(int argc, char const *argv[])
 {
@@ -18,30 +20,53 @@ int main(int argc, char const *argv[])
     printf("\n");
 
     /* Struktur main */
-    char inputString[10];
-    char startString[] = "START";
-    char exitString[] = "EXIT";
     Teks inputTeks;
     Teks startTeks;
     Teks exitTeks;
 
-    printf("Masukkan command: START atau EXIT\n");
-    buatTeks(startString, &startTeks);
-    buatTeks(exitString, &exitTeks);
-    scanf("%s", inputString);
-    buatTeks(inputString, &inputTeks);
-    while (!teksSama(inputTeks, exitTeks))
+    buatTeks("START", &startTeks);
+    buatTeks("EXIT", &exitTeks);
+
+    boolean exitFirstLoop;
+    boolean entering = false;
+    boolean exiting = true;
+    char iInput[10];
+    do
     {
-        if (teksSama(inputTeks, startTeks))
-        {
-            /* Proses */
-        }
-        else if (!teksSama(inputTeks, startTeks) && !teksSama(inputTeks, exitTeks))
+        printf("Masukkan command (START atau EXIT) : \n");
+        scanf("%s", &iInput);
+        entering = stringSame(iInput, "START");
+        exiting = stringSame(iInput, "EXIT");
+        exitFirstLoop = entering || exiting;
+        if (!exitFirstLoop)
         {
             printf("Command yang dimasukkan salah\n");
         }
-        scanf("%s", inputString);
-        buatTeks(inputString, &inputTeks);
+    } while (!exitFirstLoop);
+
+    Matriks peta;
+    LStatMakanan lSMakanan;
+    ListNode lNMakanan;
+    POINT lokasiSimulator;
+    AksiLokasi MIX;
+    AksiLokasi BOIL;
+    AksiLokasi CHOP;
+    AksiLokasi FRY;
+    AksiLokasi TELEPON;
+
+    if (entering)
+    {
+        loader(&peta, &lSMakanan, &lNMakanan, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
+    }
+
+    while (!exiting)
+    {
+        // displayListNode(lNMakanan);
+        // printf("\n");
+        // displayMatriks(peta);
+        // printf("\n");
+
+        exiting = true;
     }
     return 0;
 }

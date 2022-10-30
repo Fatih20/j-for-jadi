@@ -102,7 +102,7 @@ boolean isEmptyListNode(ListNode l)
     return ListNodeNEff(l) == 0;
 }
 
-void readListNode(ListNode *t, char *file, LStatMakanan(listMakanan))
+void readListNode(ListNode *t, char *file, LStatMakanan listMakanan)
 {
     startMBFile(file);
     int n = teksToInt(elmtLDT(currentRow, 0));
@@ -157,6 +157,7 @@ void displayListNode(ListNode l)
     int makanan;
     scanf("%d", &makanan);
     printf("==================================\n");
+    printf("Finished printing cookbook\n");
     printf("          Resep ");
     cetakTeks(NamaMakananTree(ListNodeELMT(l, makanan - 1)));
     printf("          \n");
