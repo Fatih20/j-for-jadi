@@ -10,13 +10,22 @@ int main(int argc, char const *argv[])
     /* Convert gambar ke txt, baca per baris, diprint ke layar */
     int i;
     char baris[200];
-    FILE *fpointer = fopen("pic.txt", "r");
+    FILE *fpointer = fopen("robot.txt", "r");
 
-    for (i = 0; i < 28; i++)
+    for (i = 0; i < 16; i++)
     {
         fgets(baris, 200, fpointer);
         printf("%s", baris);
     }
+    printf("\n");
+    printf("Hai! Aku BNMO\n");
+    printf("Selamat datang di program simulasi masak\n");
+    printf("\n");
+    printf("Berikut adalah cara menjalankan program simulasi ini\n");
+    printf("1. Ketik START dan tekan enter untuk mulai menjalankan program simulasi\n");
+    printf("2. Ketik EXIT dan tekan enter mengakhiri program simulasi\n");
+    printf("\n");
+    printf("mari kita cobaaa\n");
     printf("\n");
 
     /* Struktur main */
