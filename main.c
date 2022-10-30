@@ -12,9 +12,7 @@ int main(int argc, char const *argv[])
     char baris[200];
     FILE *fpointer = fopen("robot.txt", "r");
 
-    printf("\n");
-    printf("\n");
-    for (i = 0; i < 117; i++)
+    for (i = 0; i < 16; i++)
     {
         fgets(baris, 200, fpointer);
         printf("%s", baris);
