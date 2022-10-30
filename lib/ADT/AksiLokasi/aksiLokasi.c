@@ -20,3 +20,15 @@ void displayAksiLokasi(AksiLokasi AL)
     printf("\nDurasi : ");
     tulisWaktu(durasi(AL));
 }
+
+POINT aksiLokasiDiMana(Teks aLT, AksiLokasi aLArray[])
+{
+    for (int i = 0; i < 5; i++)
+    {
+        if (teksSama(aLT, aksi(aLArray[i])))
+        {
+            return lokasi(aLArray[i]);
+        }
+    }
+    return lokasi(aLArray[0]);
+};

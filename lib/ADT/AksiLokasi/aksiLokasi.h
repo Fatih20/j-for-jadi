@@ -45,4 +45,13 @@ void buatAksiLokasi(AksiLokasi *AL, Teks aksi, int x, int y, int HH, int JJ, int
  */
 void displayAksiLokasi(AksiLokasi AL);
 
+/**
+ * @brief Mengembalikan tempat aksi lokasi yang sesuai untuk teks AL yang diberikan
+ *
+ * @param aLT Teks dari aLT yang ingin dicari aksi lokasinya
+ * @param aLArray
+ * @return POINT
+ */
+POINT aksiLokasiDiMana(Teks aLT, AksiLokasi aLArray[]);
+
 #endif
