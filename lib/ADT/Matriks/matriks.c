@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "matriks.h"
 
+LDinTeks currentRow;
+
 void createMatriks(int nRows, int nCols, Matriks *m)
 {
     // KAMUS LOKAL

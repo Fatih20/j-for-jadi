@@ -102,7 +102,7 @@ boolean isEmptyListNode(ListNode l)
     return ListNodeNEff(l) == 0;
 }
 
-void readListNode(ListNode *t, char *file, LStatMakanan(listMakanan))
+void readListNode(ListNode *t, char *file, LStatMakanan listMakanan)
 {
     startMBFile(file);
     int n = teksToInt(elmtLDT(currentRow, 0));

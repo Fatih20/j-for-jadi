@@ -63,7 +63,7 @@ void readLDinTeks(LDinTeks *l)
     for (i = IDX_MIN; i < n; i++)
     {
         Teks tempTeks;
-        scanf("%s", &tempString);
+        scanf("%s", tempString);
         buatTeks(tempString, &tempTeks);
         elmtLDT(*l, i) = tempTeks;
     }

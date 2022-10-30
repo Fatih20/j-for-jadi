@@ -1,5 +1,6 @@
 #include "commands.h"
 #include <stdio.h>
+#include "../Input/input.h"
 
 void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState)
 {
@@ -7,7 +8,7 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
     {
         if (teksSama(AksiTree(ListNodeELMT(*daftarResep, i)), command))
         {
-            if (EQ(lokasi(AksiLokasiTree(ListNodeELMT(*daftarResep, i))), posisiState(*currState)))
+            if (EQ(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))), posisiState(*currState)))
             {
                 break;
             }
@@ -63,7 +64,7 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
                 cetakTeks(NamaMakananTree(foodChoice));
                 printf("karena kamu tidak memiliki bahan berikut: \n");
             }
-            printf("%d. ", cnt);
+            // printf("%d. ", cnt);
             cetakTeks(NamaMakananTree(Child(foodChoice, i)));
             printf("\n");
             success = false;
@@ -74,7 +75,7 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
     {
         cetakTeks(NamaMakananTree(foodChoice));
         printf(" berhasil dibuat dan sudah masuk ke inventory!");
-        /* TO DO --> 
+        /* TO DO -->
         1. buat generate IDUnik (ini juga dipakai di BUY)
         2. enqueue makanan ke inventory
         3. ubah currState (waktunya)
@@ -107,10 +108,78 @@ void displayCookbook(ListNode *daftarResep)
 
 void displayCatalog(LStatMakanan *daftarMakanan)
 {
-    
+
     printf("==================================================\n");
     printf("                    DAFTAR MAKANAN                \n");
     printf("==================================================\n");
     printf("Nama Makanan - Waktu Kadaluarsa - Aksi yang Diperlukan - Lama Pengiriman\n");
     printLStatMakanan(*daftarMakanan);
 }
+
+void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi telepon)
+{
+    if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))
+    {
+        printf("\nBNMO tidak berada pada area telepon!\n");
+        return;
+    }
+
+    printf("==================================================\n");
+    printf("                       \n");
+    printf("BUY");
+    printf("                       \n");
+    printf("==================================================\n");
+    printf("List Bahan Makanan:\n");
+    int lastIdx = lastIdxLStatMakanan(lMakanan);
+    int nBuyable = 0;
+    Teks buyT;
+    buatTeks("Buy", &buyT);
+
+    LDinMakanan mBuyableList;
+    buatLDinMakanan(&mBuyableList, 20);
+    for (int i = 0; i <= lastIdx; i++)
+    {
+        Teks teksAksiM = aksi(aksiLokasi(elmtLSM(lMakanan, i)));
+        // cetakMakanan(elmtLSM(lMakanan, i));
+        if (teksSama(buyT, teksAksiM))
+        {
+            Makanan mBuyable = elmtLSM(lMakanan, i);
+            printf("%d.", nBuyable + 1);
+            cetakTeks(namaMakanan(mBuyable));
+            printf(" ( ");
+            tulisWaktu(sampaiDalam(mBuyable));
+            printf(")\n");
+            insertLastLDinMakanan(&mBuyableList, mBuyable);
+            nBuyable++;
+        }
+    }
+    printf("\n");
+    printf("Kirim 0 untuk exit.\n");
+    printf("\n");
+
+    // scanf("%d", &choice);
+
+    int choice = askForNumber(0, nBuyable, "Enter command : ");
+
+    if (choice == 0)
+    {
+        return;
+    }
+    choice--;
+
+    if (choice >= nBuyable)
+    {
+        printf("Pilihannya cuma sampai %d!", nBuyable);
+        return;
+    }
+
+    Makanan boughtFood = elmtLDM(mBuyableList, choice);
+    printf("Berhasil memesan ");
+    cetakTeks(namaMakanan(boughtFood));
+    printf(". ");
+    cetakTeks(namaMakanan(boughtFood));
+    printf(" akan diantar dalam ");
+    tulisWaktu(sampaiDalam(boughtFood));
+    printf("\n");
+    enqueueDelivery(DQ, boughtFood);
+};
