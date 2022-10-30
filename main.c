@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "..lib/ADT/Teks/teks.h"
+#include "lib/ADT/Teks/teks.h"
 
 int main(int argc, char const *argv[])
 {
