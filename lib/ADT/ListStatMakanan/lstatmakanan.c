@@ -60,7 +60,7 @@ boolean isFullLStatMakanan(LStatMakanan l)
     return panjangLStatMakanan(l) == capacityLSM;
 }
 
-void readLStatMakanan(LStatMakanan *l, char *file)
+void readLStatMakanan(LStatMakanan *l, char *file, AksiLokasi aLArray[])
 {
 
     startMBFile(file);
@@ -74,7 +74,7 @@ void readLStatMakanan(LStatMakanan *l, char *file)
         advMBFile();
         Makanan makananTemp;
         Teks idTemp, aksi, namaTemp, space;
-        int hariKad, jamKad, menitKad, hariKirim, jamKirim, menitKirim, hariOlah, jamOlah, menitOlah;
+        int hB, jB, mB, hS, jS, mS, hariOlah, jamOlah, menitOlah;
         /* BACA ID MAKANAN */
         idTemp = elmtLDT(currentRow, 0);
 
@@ -92,17 +92,17 @@ void readLStatMakanan(LStatMakanan *l, char *file)
         }
         /* BACA WAKTU KADALUARSA*/
         advMBFile();
-        hariKad = teksToInt(elmtLDT(currentRow, 0));
-        jamKad = teksToInt(elmtLDT(currentRow, 1));
-        menitKad = teksToInt(elmtLDT(currentRow, 2));
-        Waktu waktuKad = buatWaktu(hariKad, jamKad, menitKad, 0);
+        hB = teksToInt(elmtLDT(currentRow, 0));
+        jB = teksToInt(elmtLDT(currentRow, 1));
+        mB = teksToInt(elmtLDT(currentRow, 2));
+        Waktu waktuKad = buatWaktu(hB, jB, mB, 0);
 
         /* BACA LAMA PENGIRIMAN */
         advMBFile();
-        hariKirim = teksToInt(elmtLDT(currentRow, 0));
-        jamKirim = teksToInt(elmtLDT(currentRow, 1));
-        menitKirim = teksToInt(elmtLDT(currentRow, 2));
-        Waktu waktuKirim = buatWaktu(hariKirim, jamKirim, menitKirim, 0);
+        hS = teksToInt(elmtLDT(currentRow, 0));
+        jS = teksToInt(elmtLDT(currentRow, 1));
+        mS = teksToInt(elmtLDT(currentRow, 2));
+        Waktu waktuKirim = buatWaktu(hS, jS, mS, 0);
 
         /* BACA AKSI */
         advMBFile();
@@ -113,12 +113,14 @@ void readLStatMakanan(LStatMakanan *l, char *file)
         hariOlah = teksToInt(elmtLDT(currentRow, 0));
         jamOlah = teksToInt(elmtLDT(currentRow, 1));
         menitOlah = teksToInt(elmtLDT(currentRow, 2));
+        POINT tempatAksi = aksiLokasiDiMana(aksi, aLArray);
 
+        /* BUAT AKSI LOKASI */
         AksiLokasi aksiTemp;
-        idTipe(makananTemp) = idTemp;
-        basiDalam(makananTemp) = waktuKad;
-        sampaiDalam(makananTemp) = waktuKirim;
-        namaMakanan(makananTemp) = namaTemp;
+        buatAksiLokasi(&aksiTemp, aksi, Absis(tempatAksi), Ordinat(tempatAksi), hariOlah, jamOlah, menitOlah, 0);
+        /* BUAT MAKANAN */
+        buatMakanan(&makananTemp, namaTemp, idTemp, idTemp, waktuKad, waktuKirim, aksiTemp);
+        /* MASUKKAN MAKANAN KE LSTAT */
         insertLastLStatMakanan(l, makananTemp);
     }
 }; /* blomm finalll */

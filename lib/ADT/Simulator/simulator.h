@@ -21,9 +21,9 @@ typedef struct
 /**
  * @brief Notasi Akses: Selektor AksiLokasi
  */
-#define userName(Simulator) (Simulator).userName
-#define lokasi(Simulator) (Simulator).lokasi
-#define inventory(Simulator) (Simulator).inventory
+#define userNameS(Simulator) (Simulator).userName
+#define lokasiS(Simulator) (Simulator).lokasi
+#define inventoryS(Simulator) (Simulator).inventory
 
 /**
  * @brief Membentuk Tipedata buatSimulator

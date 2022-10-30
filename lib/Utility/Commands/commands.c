@@ -7,7 +7,7 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
     {
         if (teksSama(AksiTree(ListNodeELMT(*daftarResep, i)), command))
         {
-            if (EQ(lokasi(AksiLokasiTree(ListNodeELMT(*daftarResep, i))), posisiState(*currState)))
+            if (EQ(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))), posisiState(*currState)))
             {
                 break;
             }

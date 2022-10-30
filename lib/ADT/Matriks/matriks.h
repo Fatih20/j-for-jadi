@@ -1,6 +1,6 @@
 #include "../boolean.h"
-#include "../Point/point.h"
-#include "../MBFile/mbFile.h"
+#include "../Point/Point.h"
+#include "../MBFile/mBFile.h"
 #include "../AksiLokasi/aksiLokasi.h"
 
 #ifndef MATRIKS_H

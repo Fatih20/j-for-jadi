@@ -6,7 +6,7 @@
 boolean endMKI;
 Teks currentWord;
 
-void ignoreBlanksF()
+void ignoreBlanksI()
 {
     while (currentChar == BLANK)
     {
@@ -24,7 +24,7 @@ void startMKInput(char namaFile[])
 
 void advMKInput()
 {
-    ignoreBlanksF();
+    ignoreBlanksI();
     if (currentChar == MARKI)
     {
         endMKI = true;
@@ -33,6 +33,7 @@ void advMKInput()
     {
 
         saveKataI();
+        endMKI = currentChar == MARKI;
     }
 }
 

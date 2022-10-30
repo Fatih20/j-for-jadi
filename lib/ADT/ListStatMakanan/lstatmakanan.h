@@ -118,8 +118,9 @@ boolean isFullLStatMakanan(LStatMakanan l);
  *
  * @param l
  * @param file
+ * @param aLArray aksi lokasi yang valid sesuai pembacaan file konfigurasi
  */
-void readLStatMakanan(LStatMakanan *l, char *file);
+void readLStatMakanan(LStatMakanan *l, char *file, AksiLokasi aLArray[]);
 
 /**
  * @brief Menuliskan isi list makanan

@@ -3,20 +3,20 @@
 
 void buatSimulator(Simulator *S, Teks userName, int x, int y, FoodQueue inventory)
 {
-    userName(*S) = userName;
+    userNameS(*S) = userName;
     POINT lokasi;
     Absis(lokasi) = x;
     Ordinat(lokasi) = y;
-    lokasi(*S) = lokasi;
-    inventory(*S) = inventory;
+    lokasiS(*S) = lokasi;
+    inventoryS(*S) = inventory;
 }
 
 void cetakSimulator(Simulator S)
 {
     printf("Username :");
-    cetakTeks(userName(S));
+    cetakTeks(userNameS(S));
     printf("\nLokasi   :");
-    TulisPOINT(lokasi(S));
+    TulisPOINT(lokasiS(S));
     printf("\nInvetory :\n");
-    cetakFoodQueue(inventory(S));
+    cetakFoodQueue(inventoryS(S));
 }

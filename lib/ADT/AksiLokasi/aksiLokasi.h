@@ -24,7 +24,7 @@ typedef struct
  * @brief Notasi Akses: Selektor AksiLokasi
  */
 #define aksi(AL) (AL).aksi
-#define lokasi(AL) (AL).lokasi
+#define lokasiAL(AL) (AL).lokasi
 #define durasi(AL) (AL).durasi
 
 /**
@@ -44,5 +44,14 @@ void buatAksiLokasi(AksiLokasi *AL, Teks aksi, int x, int y, int HH, int JJ, int
  * @param AL: Tipedata AksiLokasi yang akan ditampilkan
  */
 void displayAksiLokasi(AksiLokasi AL);
+
+/**
+ * @brief Mengembalikan tempat aksi lokasi yang sesuai untuk teks AL yang diberikan
+ *
+ * @param aLT Teks dari aLT yang ingin dicari aksi lokasinya
+ * @param aLArray
+ * @return POINT
+ */
+POINT aksiLokasiDiMana(Teks aLT, AksiLokasi aLArray[]);
 
 #endif
