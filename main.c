@@ -49,7 +49,6 @@ int main(int argc, char const *argv[])
         entering = stringSame(iInput, "START");
         exiting = stringSame(iInput, "EXIT");
         exitFirstLoop = entering || exiting;
-        // exitFirstLoop = exiting;
 
         if (!exitFirstLoop)
         {
@@ -72,17 +71,16 @@ int main(int argc, char const *argv[])
 
     if (entering)
     {
-        printf("Test\n");
         loader(&peta, &lSMakanan, &lNMakanan, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
         buatFQKosong(&inventoryQ, 20);
         buatFQKosong(&deliveryQ, 20);
         buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ);
-        displayMatriks(peta);
     }
 
     while (!exiting)
     {
-        // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
+        displayListNode(lNMakanan);
+        buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
