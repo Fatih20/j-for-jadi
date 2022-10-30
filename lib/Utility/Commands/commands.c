@@ -1,5 +1,6 @@
 #include "commands.h"
 #include <stdio.h>
+#include "../Input/input.h"
 
 void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState)
 {
@@ -76,3 +77,71 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
         printf(" berhasil dibuat dan sudah masuk ke inventory!");
     }
 }
+
+void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi telepon)
+{
+    if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))
+    {
+        printf("\nBNMO tidak berada pada area telepon!\n");
+        return;
+    }
+
+    printf("==================================================\n");
+    printf("                       \n");
+    printf("BUY");
+    printf("                       \n");
+    printf("==================================================\n");
+    printf("List Bahan Makanan:\n");
+    int lastIdx = lastIdxLStatMakanan(lMakanan);
+    int nBuyable = 0;
+    Teks buyT;
+    buatTeks("Buy", &buyT);
+
+    LDinMakanan mBuyableList;
+    buatLDinMakanan(&mBuyableList, 20);
+    for (int i = 0; i <= lastIdx; i++)
+    {
+        Teks teksAksiM = aksi(aksiLokasi(elmtLSM(lMakanan, i)));
+        // cetakMakanan(elmtLSM(lMakanan, i));
+        if (teksSama(buyT, teksAksiM))
+        {
+            Makanan mBuyable = elmtLSM(lMakanan, i);
+            printf("%d.", nBuyable + 1);
+            cetakTeks(namaMakanan(mBuyable));
+            printf(" ( ");
+            tulisWaktu(sampaiDalam(mBuyable));
+            printf(")\n");
+            insertLastLDinMakanan(&mBuyableList, mBuyable);
+            nBuyable++;
+        }
+    }
+    printf("\n");
+    printf("Kirim 0 untuk exit.\n");
+    printf("\n");
+
+    // scanf("%d", &choice);
+
+    int choice = askForNumber(0, nBuyable, "Enter command : ");
+
+    if (choice == 0)
+    {
+        return;
+    }
+    choice--;
+
+    if (choice >= nBuyable)
+    {
+        printf("Pilihannya cuma sampai %d!", nBuyable);
+        return;
+    }
+
+    Makanan boughtFood = elmtLDM(mBuyableList, choice);
+    printf("Berhasil memesan ");
+    cetakTeks(namaMakanan(boughtFood));
+    printf(". ");
+    cetakTeks(namaMakanan(boughtFood));
+    printf(" akan diantar dalam ");
+    tulisWaktu(sampaiDalam(boughtFood));
+    printf("\n");
+    enqueueDelivery(DQ, boughtFood);
+};
