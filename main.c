@@ -1,11 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lib/ADT/MKInput/mKInput.h"
+#include "lib/ADT/FoodQueue/foodQueue.h"
 #include "lib/Utility/Loader/Loader.h"
 #include "lib/Utility/String/String.h"
+#include "lib/Utility/Commands/commands.h"
 
 int main(int argc, char const *argv[])
 {
+
     /* Splash screen */
     /* Convert gambar ke txt, baca per baris, diprint ke layar */
     int i;
@@ -29,14 +32,13 @@ int main(int argc, char const *argv[])
     printf("\n");
 
     /* Struktur main */
-    Teks inputTeks;
     Teks startTeks;
     Teks exitTeks;
 
     buatTeks("START", &startTeks);
     buatTeks("EXIT", &exitTeks);
 
-    boolean exitFirstLoop;
+    boolean exitFirstLoop = false;
     boolean entering = false;
     boolean exiting = true;
     char iInput[10];
@@ -47,6 +49,8 @@ int main(int argc, char const *argv[])
         entering = stringSame(iInput, "START");
         exiting = stringSame(iInput, "EXIT");
         exitFirstLoop = entering || exiting;
+        // exitFirstLoop = exiting;
+
         if (!exitFirstLoop)
         {
             printf("Command yang dimasukkan salah\n");
@@ -62,18 +66,27 @@ int main(int argc, char const *argv[])
     AksiLokasi CHOP;
     AksiLokasi FRY;
     AksiLokasi TELEPON;
+    FoodQueue inventoryQ;
+    FoodQueue deliveryQ;
+    State cState;
 
     if (entering)
     {
+        printf("Test\n");
         loader(&peta, &lSMakanan, &lNMakanan, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
+        buatFQKosong(&inventoryQ, 20);
+        buatFQKosong(&deliveryQ, 20);
+        buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ);
+        displayMatriks(peta);
     }
 
     while (!exiting)
     {
-        // displayListNode(lNMakanan);
-        // printf("\n");
-        // displayMatriks(peta);
-        // printf("\n");
+        // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
+        // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
+        // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
+        // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
+        // cetakFoodQueue(deliveryQ);
 
         exiting = true;
     }
