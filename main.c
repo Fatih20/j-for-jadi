@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lib/ADT/Teks/teks.h"
+#include "lib/ADT/MKInput/mKInput.h"
+#include "lib/Utility/Loader/Loader.h"
+
+Teks currentWord;
 
 int main(int argc, char const *argv[])
 {
@@ -18,30 +21,60 @@ int main(int argc, char const *argv[])
     printf("\n");
 
     /* Struktur main */
-    char inputString[10];
-    char startString[] = "START";
-    char exitString[] = "EXIT";
     Teks inputTeks;
     Teks startTeks;
     Teks exitTeks;
 
-    printf("Masukkan command: START atau EXIT\n");
-    buatTeks(startString, &startTeks);
-    buatTeks(exitString, &exitTeks);
-    scanf("%s", inputString);
-    buatTeks(inputString, &inputTeks);
-    while (!teksSama(inputTeks, exitTeks))
+    buatTeks("START", &startTeks);
+    buatTeks("EXIT", &exitTeks);
+
+    boolean exitFirstLoop;
+    boolean entering = false;
+    boolean exiting = true;
+    do
     {
-        if (teksSama(inputTeks, startTeks))
-        {
-            /* Proses */
-        }
-        else if (!teksSama(inputTeks, startTeks) && !teksSama(inputTeks, exitTeks))
+        printf("Masukkan command (START atau EXIT) : \n");
+        startMKInput();
+        entering = teksSama(currentWord, startTeks);
+        exiting = teksSama(currentWord, exitTeks);
+        exitFirstLoop = entering || exiting;
+        if (!exitFirstLoop)
         {
             printf("Command yang dimasukkan salah\n");
         }
-        scanf("%s", inputString);
-        buatTeks(inputString, &inputTeks);
+    } while (!exitFirstLoop);
+
+    Matriks peta;
+    LStatMakanan lSMakanan;
+    ListNode lNMakanan;
+    POINT lokasiSimulator;
+    AksiLokasi MIX;
+    AksiLokasi BOIL;
+    AksiLokasi CHOP;
+    AksiLokasi FRY;
+    AksiLokasi TELEPON;
+
+    if (entering)
+    {
+        loader(&peta, &lSMakanan, &lNMakanan, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
     }
+
+    while (!exiting)
+    {
+    }
+    // while (!teksSama(currentWord, exitTeks))
+    // {
+    //     if (teksSama(currentWord, startTeks))
+    //     {
+    //         /* Proses */
+    //     }
+    //     else if (!teksSama(currentWord, startTeks) && !teksSama(currentWord, exitTeks))
+    //     {
+    //         printf("Command yang dimasukkan salah\n");
+    //     }
+    //     scanf("%s", inputString);
+    //     buatTeks(inputString, &currentWord);
+    //     startMKInput();
+    // }
     return 0;
 }
