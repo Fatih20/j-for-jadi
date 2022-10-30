@@ -79,8 +79,7 @@ int main(int argc, char const *argv[])
 
     while (!exiting)
     {
-        displayListNode(lNMakanan);
-        buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
+        // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
