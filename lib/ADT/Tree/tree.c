@@ -26,7 +26,10 @@ void displayTree(Tree t)
         }
         if (!isEmptyListNode(Children(t)))
         {
+            printf("Buat ");
             cetakTeks(NamaMakananTree(t));
+            printf(" : ");
+            cetakTeks(AksiTree(t));
             printf(" - ");
         }
         for (int i = 0; i < ListNodeNEff(Children(t)); i++)

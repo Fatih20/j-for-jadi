@@ -1,6 +1,7 @@
 #include "commands.h"
 #include <stdio.h>
 #include "../Input/input.h"
+#include <stdlib.h>
 
 void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState)
 {
@@ -14,7 +15,9 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
             }
             else
             {
-                printf("Anda tidak berada pada lokasi ");
+                printf("Pindah ke ");
+                TulisPOINT(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))));
+                printf(" untuk melakukan aksi ");
                 cetakTeks(command);
                 printf("\n");
                 return;
@@ -22,8 +25,9 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
         }
     }
     ListNode daftarMakananTemp;
+    createListNode(&daftarMakananTemp, 0);
     printf("==================================================\n");
-    printf("                       \n");
+    printf("                       ");
     cetakTeks(command);
     printf("                       \n");
     printf("==================================================\n");
@@ -36,7 +40,7 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
         {
             insertLastListNode(&daftarMakananTemp, ListNodeELMT(*daftarResep, i));
             printf("%d. ", cnt);
-            cetakTeks(namaMakanan(elmtLSM(*daftarMakanan, i)));
+            cetakTeks(NamaMakananTree(ListNodeELMT(*daftarResep, i)));
             printf("\n");
             cnt++;
         }
@@ -47,7 +51,7 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
     while (choice <= 0 || choice > ListNodeNEff(daftarMakananTemp))
     {
         printf("Pilihan tidak dikenali!\n");
-        printf("Pilih makanan yang akan dibuat: ");
+        printf("Pilih makanan yang akan dibuat(%d - %d): ", 1, ListNodeNEff(daftarMakananTemp));
         scanf("%d", &choice);
     }
     boolean success = true;
@@ -56,15 +60,16 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
     cnt = 1;
     for (int i = 0; i < ListNodeNEff(Children(foodChoice)); i++)
     {
-        if (!isMakananInList(content(*inventory), NamaMakananTree(Child(foodChoice, i))))
+        if (!isMakananInList(&content(*inventory), NamaMakananTree(Child(foodChoice, i))))
         {
             if (isFirst)
             {
                 printf("Gagal membuat ");
                 cetakTeks(NamaMakananTree(foodChoice));
-                printf("karena kamu tidak memiliki bahan berikut: \n");
+                printf(" karena kamu tidak memiliki bahan berikut: \n");
+                isFirst = false;
             }
-            // printf("%d. ", cnt);
+            printf("%d. ", cnt);
             cetakTeks(NamaMakananTree(Child(foodChoice, i)));
             printf("\n");
             success = false;
@@ -81,6 +86,7 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
         3. ubah currState (waktunya)
         */
     }
+    free(daftarMakananTemp.child);
 }
 
 void displayCookbook(ListNode *daftarResep)
@@ -125,11 +131,10 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     }
 
     printf("==================================================\n");
-    printf("                       \n");
-    printf("BUY");
-    printf("                       \n");
+    printf("                        BUY                       \n");
     printf("==================================================\n");
-    printf("List Bahan Makanan:\n");
+    printf("List Bahan Makanan yang bisa Dibeli:\n");
+    printf("Nama Makanan - Waktu pengiriman\n");
     int lastIdx = lastIdxLStatMakanan(lMakanan);
     int nBuyable = 0;
     Teks buyT;
