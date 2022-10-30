@@ -61,6 +61,12 @@ int main(int argc, char const *argv[])
 
     while (!exiting)
     {
+        displayListNode(lNMakanan);
+        printf("\n");
+        displayMatriks(peta);
+        printf("\n");
+
+        exiting = true;
     }
     // while (!teksSama(currentWord, exitTeks))
     // {
