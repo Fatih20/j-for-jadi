@@ -64,8 +64,6 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator, AksiLokasi
     ctr = 0; // Untuk mengambi nRows dan nCols
     isRow = true;
     CreatePoint(lokasiSimulator, -1, -1);
-    printf("Entered read matriks\n");
-    printf("%s", namaFile);
     startMBFile(namaFile);
     while (!endMBF)
     {

@@ -43,7 +43,7 @@ int main(int argc, char const *argv[])
     do
     {
         printf("Masukkan command (START atau EXIT) : \n");
-        scanf("%s", &iInput);
+        scanf("%s", iInput);
         entering = stringSame(iInput, "START");
         exiting = stringSame(iInput, "EXIT");
         exitFirstLoop = entering || exiting;
