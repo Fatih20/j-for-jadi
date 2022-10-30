@@ -24,7 +24,7 @@ typedef struct
  * @brief Notasi Akses: Selektor AksiLokasi
  */
 #define aksi(AL) (AL).aksi
-#define lokasi(AL) (AL).lokasi
+#define lokasiAL(AL) (AL).lokasi
 #define durasi(AL) (AL).durasi
 
 /**

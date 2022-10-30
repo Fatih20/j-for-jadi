@@ -35,7 +35,7 @@ typedef struct
 #define idTipe(S) (S).idTipe
 #define aksiLokasi(S) (S).aksiLokasi
 #define getFHow(S) aksi(aksiLokasi(S))
-#define getFInPlace(S) lokasi(aksiLokasi(S))
+#define getFInPlace(S) lokasiAL(aksiLokasi(S))
 #define getFInTime(S) durasi(aksiLokasi(S))
 
 /**

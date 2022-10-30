@@ -1,6 +1,6 @@
-#include "../ADT/Matriks/matriks.h"
-#include "../ADT/ListStatMakanan/lstatmakanan.h"
-#include "../ADT/Tree/tree.h"
+#include "../../ADT/Matriks/matriks.h"
+#include "../../ADT/ListStatMakanan/lstatmakanan.h"
+#include "../../ADT/Tree/tree.h"
 
 /**
  * @brief Me-load file konfigurasi ke variabel-variabel yang dipakai di dalam aplikasi
