@@ -33,6 +33,7 @@ void advMKInput()
     {
 
         saveKataI();
+        endMKI = currentChar == MARKI;
     }
 }
 

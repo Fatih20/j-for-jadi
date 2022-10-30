@@ -115,13 +115,12 @@ void readLStatMakanan(LStatMakanan *l, char *file, AksiLokasi aLArray[])
         menitOlah = teksToInt(elmtLDT(currentRow, 2));
         POINT tempatAksi = aksiLokasiDiMana(aksi, aLArray);
 
+        /* BUAT AKSI LOKASI */
         AksiLokasi aksiTemp;
         buatAksiLokasi(&aksiTemp, aksi, Absis(tempatAksi), Ordinat(tempatAksi), hariOlah, jamOlah, menitOlah, 0);
+        /* BUAT MAKANAN */
         buatMakanan(&makananTemp, namaTemp, idTemp, idTemp, waktuKad, waktuKirim, aksiTemp);
-        // idTipe(makananTemp) = idTemp;
-        // basiDalam(makananTemp) = waktuKad;
-        // sampaiDalam(makananTemp) = waktuKirim;
-        // namaMakanan(makananTemp) = namaTemp;
+        /* MASUKKAN MAKANAN KE LSTAT */
         insertLastLStatMakanan(l, makananTemp);
     }
 }; /* blomm finalll */

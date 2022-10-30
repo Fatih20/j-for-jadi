@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include "lib/ADT/MKInput/mKInput.h"
 #include "lib/Utility/Loader/Loader.h"
-
-Teks currentWord;
+#include "lib/Utility/String/String.h"
 
 int main(int argc, char const *argv[])
 {
@@ -31,12 +30,13 @@ int main(int argc, char const *argv[])
     boolean exitFirstLoop;
     boolean entering = false;
     boolean exiting = true;
+    char iInput[10];
     do
     {
         printf("Masukkan command (START atau EXIT) : \n");
-        startMKInput();
-        entering = teksSama(currentWord, startTeks);
-        exiting = teksSama(currentWord, exitTeks);
+        scanf("%s", &iInput);
+        entering = stringSame(iInput, "START");
+        exiting = stringSame(iInput, "EXIT");
         exitFirstLoop = entering || exiting;
         if (!exitFirstLoop)
         {
@@ -61,26 +61,12 @@ int main(int argc, char const *argv[])
 
     while (!exiting)
     {
-        displayListNode(lNMakanan);
-        printf("\n");
-        displayMatriks(peta);
-        printf("\n");
+        // displayListNode(lNMakanan);
+        // printf("\n");
+        // displayMatriks(peta);
+        // printf("\n");
 
         exiting = true;
     }
-    // while (!teksSama(currentWord, exitTeks))
-    // {
-    //     if (teksSama(currentWord, startTeks))
-    //     {
-    //         /* Proses */
-    //     }
-    //     else if (!teksSama(currentWord, startTeks) && !teksSama(currentWord, exitTeks))
-    //     {
-    //         printf("Command yang dimasukkan salah\n");
-    //     }
-    //     scanf("%s", inputString);
-    //     buatTeks(inputString, &currentWord);
-    //     startMKInput();
-    // }
     return 0;
 }
