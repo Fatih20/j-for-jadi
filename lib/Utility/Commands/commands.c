@@ -145,3 +145,14 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     printf("\n");
     enqueueDelivery(DQ, boughtFood);
 };
+void undo(State *currState, Stack *stackUndo, Stack *stackRedo)
+{
+    // KAMUS LOKAL
+    // ALGORITMA
+}
+
+void redo(State *currState, Stack *stackUndo, Stack *stackRedo)
+{
+    // KAMUS LOKAL
+    // ALGORITMA
+}
