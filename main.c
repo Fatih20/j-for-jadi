@@ -58,7 +58,7 @@ int main(int argc, char const *argv[])
 
     Matriks peta;
     LStatMakanan lSMakanan;
-    ListNode lNMakanan;
+    ListNode lResep;
     POINT lokasiSimulator;
     AksiLokasi MIX;
     AksiLokasi BOIL;
@@ -71,21 +71,71 @@ int main(int argc, char const *argv[])
 
     if (entering)
     {
-        loader(&peta, &lSMakanan, &lNMakanan, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
+        loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
         buatFQKosong(&inventoryQ, 20);
         buatFQKosong(&deliveryQ, 20);
         buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ);
+        printf("===================================================\n");
+        printf("                   BNMO MASAK-MASAK                \n");
+        printf("===================================================\n");
     }
 
     while (!exiting)
     {
+        printf("BNMO di posisi: ");
+        TulisPOINT(posisiState(cState));
+        printf("\n");
+        printf("Waktu: ");
+        tulisWaktu(waktuState(cState));
+        printf("\n");
+        displayMatriks(peta);
+        printf("\n");
+        char command[100];
+        boolean isCommandValid = false;
+        do
+        {
+            printf("Enter command: ");
+            scanf("%s", command);
+            if (stringSame(command, "BUY"))
+            {
+                buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
+                isCommandValid = true;
+            }
+            else if (stringSame(command, "FRY") || stringSame(command, "BOIL") || stringSame(command, "MIX") || stringSame(command, "CHOP"))
+            {
+                Teks temp;
+                buatTeks(command, &temp);
+                olahMakanan(temp, &inventoryQ, &lResep, &lSMakanan, &cState);
+                cetakState(cState);
+                isCommandValid = true;
+                exiting = false;
+            }
+            else if (stringSame(command, "COOKBOOK"))
+            {
+                displayCookbook(&lResep);
+                isCommandValid = true;
+            }
+            else if (stringSame(command, "CATALOG"))
+            {
+                displayCatalog(&lSMakanan);
+                isCommandValid = true;
+            }
+            else if (stringSame(command, "0"))
+            {
+                isCommandValid = true;
+                exiting = true;
+            }
+            if (!isCommandValid)
+            {
+                printf("Command tidak dikenali!\n");
+            }
+        } while (!isCommandValid);
+
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // cetakFoodQueue(deliveryQ);
-
-        exiting = true;
     }
     return 0;
 }

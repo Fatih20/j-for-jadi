@@ -26,7 +26,10 @@ void displayTree(Tree t)
         }
         if (!isEmptyListNode(Children(t)))
         {
+            printf("Buat ");
             cetakTeks(NamaMakananTree(t));
+            printf(" : ");
+            cetakTeks(AksiTree(t));
             printf(" - ");
         }
         for (int i = 0; i < ListNodeNEff(Children(t)); i++)
@@ -143,26 +146,12 @@ void readListNode(ListNode *t, char *file, LStatMakanan listMakanan)
 
 void displayListNode(ListNode l)
 {
-
-    /* bagian cookbooknya nnti dipindahin ke mainn*/
-    printf("==================================\n");
-    printf("             COOKBOOK             \n");
-    printf("==================================\n");
     for (int i = 0; i < ListNodeNEff(l); i++)
     {
         printf("%d. ", i + 1);
         cetakTeks(NamaMakananTree(ListNodeELMT(l, i)));
         printf("\n");
     }
-    int makanan;
-    scanf("%d", &makanan);
-    printf("==================================\n");
-    printf("Finished printing cookbook\n");
-    printf("          Resep ");
-    cetakTeks(NamaMakananTree(ListNodeELMT(l, makanan - 1)));
-    printf("          \n");
-    printf("==================================\n");
-    displayTree(ListNodeELMT(l, makanan - 1));
 }
 
 Address isAllocated(treeEl val, ListNode l)

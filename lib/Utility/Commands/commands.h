@@ -8,6 +8,9 @@
 
 void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState);
 
+void displayCookbook(ListNode *daftarResep);
+
+void displayCatalog(LStatMakanan *daftarMakanan);
 /**
  * @brief Fungsi yang meng-handle pembelian makanan. Panggil ketika command BUY dimasukkan
  *
