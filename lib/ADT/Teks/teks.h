@@ -62,6 +62,14 @@ void plusKar(Teks *teks, char kar);
 void delKar(Teks *teks);
 
 /**
+ * @brief Mengonversi teks ke string yang alamat-nya di-pass. String harus sudah dialokasikan dengan panjang sebesar panjang teks
+ *
+ * @param string
+ * @param teks
+ */
+void teksKeString(char *string[], Teks teks);
+
+/**
  * @brief Fungsi untuk membandingkan dua teks dan mengecek kesamaannya
  * @param t1 teks yang ingin dibandingkan
  * @param t2 teks yang ingin dibandingkan
