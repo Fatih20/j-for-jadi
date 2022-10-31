@@ -15,6 +15,8 @@ typedef Teks makananID;
  * @param idTipe id yang berbeda untuk makanan dengan tipe yang berbeda
  * @param waktuSampai waktu sebuah makanan sampai pada BNMO. Jika makanan ada di inventory, memiliki nilai 0.
  * @param waktuBasi waktu sebuah makanan basi. Jika makanan ada di queue pengiriman, makanan memiliki waktuBasi default sesuai
+ * @param panjang ukuran panjang dari makanan untuk ADT Kulkas
+ * @param lebar ukuran lebar dari makanan untuk ADT Kulkas
  *
  */
 typedef struct
@@ -25,6 +27,8 @@ typedef struct
     Waktu waktuBasi;
     Waktu waktuSampai;
     AksiLokasi aksiLokasi;
+    int panjang;
+    int lebar;
 
 } Makanan;
 
@@ -34,6 +38,8 @@ typedef struct
 #define idUnik(S) (S).idUnik
 #define idTipe(S) (S).idTipe
 #define aksiLokasi(S) (S).aksiLokasi
+#define panjang(S) (S).panjang
+#define lebar(S) (S).lebar
 #define getFHow(S) aksi(aksiLokasi(S))
 #define getFInPlace(S) lokasiAL(aksiLokasi(S))
 #define getFInTime(S) durasi(aksiLokasi(S))
@@ -47,10 +53,12 @@ typedef struct
  * @param waktuBasi waktu ketika makanan akan basi. Default ketika di dalam delivery queue.
  * @param waktuSampai waktu ketika makanan akan sampai. 0 di dalam inventory queue.
  * @param aksiLokasi bagaimana, di mana, berapa lama makanan bisa didapatkan
+ * @param panjang ukuran panjang dari makanan untuk ADT Kulkas
+ * @param lebar ukuran lebar dari makanan untuk ADT Kulkas
  *
  * @return Makanan pada address yang diberikan terdefinisi dengan parameter yang diberikan
  */
-void buatMakanan(Makanan *makanan, Teks namaMakanan, Teks idTipe, Teks idUnik, Waktu waktuBasi, Waktu waktuSampai, AksiLokasi aksiLokasi);
+void buatMakanan(Makanan *makanan, Teks namaMakanan, Teks idTipe, Teks idUnik, Waktu waktuBasi, Waktu waktuSampai, AksiLokasi aksiLokasi, int panjang, int lebar);
 
 /**
  * @brief Fungsi untuk mendapatkan id gabungan makanan
