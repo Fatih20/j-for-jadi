@@ -123,6 +123,14 @@ void displayMatriks(Matriks m);
 boolean isCollide(Matriks m, POINT p);
 
 /**
+ * @brief Mengembalikan True jika titik P adalah border
+ * @param m: Peta
+ * @param p: Titik
+ * @return boolean
+ */
+boolean isBorder(Matriks m, POINT p);
+
+/**
  * @brief Memindahkan posisi simulator menuju koordinat p dan mengubah posisi sebelumnya menjadi blank
  *
  * @param m: Matriks(peta)

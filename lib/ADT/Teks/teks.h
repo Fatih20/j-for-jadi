@@ -7,8 +7,6 @@
 /**
  * @brief String pengganti string yang memiliki batas 100 karakter
  * @param karArray array berisi karakter dari String
- * @param length panjang dari String
- *
  */
 typedef struct
 {
@@ -60,6 +58,14 @@ void plusKar(Teks *teks, char kar);
  * @return Teks yang diberikan length-nya berkurang 1 sehingga karakter terakhir sebelumnya siap di-override
  */
 void delKar(Teks *teks);
+
+/**
+ * @brief Mengonversi teks ke string yang alamat-nya di-pass. String harus sudah dialokasikan dengan panjang sebesar panjang teks
+ *
+ * @param string
+ * @param teks
+ */
+void teksKeString(char *string[], Teks teks);
 
 /**
  * @brief Fungsi untuk membandingkan dua teks dan mengecek kesamaannya

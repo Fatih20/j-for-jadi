@@ -62,6 +62,19 @@ void tulisWaktu(Waktu W)
     }
 }
 
+void tulisWaktuDot(Waktu W)
+{
+    if(Jam(W)/10 == 0){
+        printf("0");
+    }
+    printf("%d.", Jam(W));
+    if (Menit(W) / 10 == 0)
+    {
+        printf("0");
+    }
+    printf("%d", Menit(W));
+}
+
 long waktuToDetik(Waktu W)
 {
     return (86400 * Hari(W) + 3600 * Jam(W) + 60 * Menit(W) + Detik(W));

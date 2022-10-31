@@ -5,6 +5,7 @@
 #include "lib/Utility/Loader/Loader.h"
 #include "lib/Utility/String/String.h"
 #include "lib/Utility/Commands/commands.h"
+#include "lib/Utility/String/String.h"
 
 int main(int argc, char const *argv[])
 {
@@ -58,8 +59,10 @@ int main(int argc, char const *argv[])
 
     Matriks peta;
     LStatMakanan lSMakanan;
-    ListNode lNMakanan;
+    ListNode lResep;
     POINT lokasiSimulator;
+    Simulator BNMO;
+    Teks userName;
     AksiLokasi MIX;
     AksiLokasi BOIL;
     AksiLokasi CHOP;
@@ -71,21 +74,181 @@ int main(int argc, char const *argv[])
 
     if (entering)
     {
-        loader(&peta, &lSMakanan, &lNMakanan, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
+        printf("Masukkan lokasi folder config relatif terhadap root folder :\n");
+        char lokasiFolder[200];
+        scanf("%s", lokasiFolder);
+        loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON, lokasiFolder);
         buatFQKosong(&inventoryQ, 20);
         buatFQKosong(&deliveryQ, 20);
-        buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ);
+        buatSimulator(&BNMO, userName, Absis(lokasiSimulator), Ordinat(lokasiSimulator), inventoryQ);
+        buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ, deliveryQ);
+        printf("===================================================\n");
+        printf("                   BNMO MASAK-MASAK                \n");
     }
 
     while (!exiting)
     {
+        printf("\n===================================================\n");
+        printf("\n");
+        printf("BNMO di posisi: ");
+        TulisPOINT(posisiState(cState));
+        printf("\n");
+        printf("Waktu: ");
+        tulisWaktuDot(waktuState(cState));
+        printf("\n");
+        displayMatriks(peta);
+        printf("\n");
+        char command[100];
+        boolean isCommandValid = false;
+        do
+        {
+            printf("Enter command: ");
+            scanf("%s", command);
+            if (stringSame(command, "BUY"))
+            {
+                buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
+                isCommandValid = true;
+            }
+            else if (stringSame(command, "FRY") || stringSame(command, "BOIL") || stringSame(command, "MIX") || stringSame(command, "CHOP"))
+            {
+                Teks temp;
+                buatTeks(command, &temp);
+                olahMakanan(temp, &inventoryQ, &deliveryQ, &lResep, &lSMakanan, &cState);
+                isCommandValid = true;
+                exiting = false;
+            }
+            else if (stringSame(command, "COOKBOOK"))
+            {
+                displayCookbook(&lResep);
+                isCommandValid = true;
+            }
+            else if (stringSame(command, "CATALOG"))
+            {
+                displayCatalog(&lSMakanan);
+                isCommandValid = true;
+            }
+            else if (stringSame(command, "CATALOG"))
+            {
+                displayCatalog(&lSMakanan);
+                isCommandValid = true;
+            }
+            else if (stringSame(command, "MOVE NORTH") || stringSame(command, "MOVE EAST") || stringSame(command, "MOVE SOUTH") || stringSame(command, "MOVE WEST"))
+            {
+                Teks direction;
+                if (stringSame(command, "MOVE NORTH"))
+                {
+                    buatTeks("NORTH", &direction);
+                }
+                else if (stringSame(command, "MOVE EAST"))
+                {
+                    buatTeks("EAST", &direction);
+                }
+                else if (stringSame(command, "MOVE SOUTH"))
+                {
+                    buatTeks("SOUTH", &direction);
+                }
+                else if (stringSame(command, "MOVE WEST"))
+                {
+                    buatTeks("WEST", &direction);
+                }
+
+                moveS(&cState, &peta, &BNMO, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON);
+                isCommandValid = true;
+            }
+            else if (stringSame(command, "0"))
+            {
+                isCommandValid = true;
+                exiting = true;
+            }
+            else // untuk kasus command lebih dari satu kata dan command tak valid
+            {
+                Teks teksCommand, move, wait, teksParsing;
+                int i;
+                buatTeks(command, &teksCommand);
+                buatTeks("MOVE", &move);
+                buatTeks("WAIT", &wait);
+                buatTeksKosong(&teksParsing);
+
+                // Pengecekan kata pertama
+                i = 0;
+                while (nthChar(teksCommand, i) != ' ')
+                {
+                    plusKar(&teksParsing, nthChar(teksCommand, i));
+                    i++;
+                }
+                // Telah selesai mengambil kata pertama
+                i++;                             // skip blank pertama
+                if (teksSama(teksParsing, move)) // Jika command move
+                {
+                    Teks direction, tDisplacement;
+                    int displacement;
+                    isCommandValid = true;
+
+                    buatTeksKosong(&direction);
+                    buatTeksKosong(&tDisplacement);
+                    // Mengambil direction
+                    while (nthChar(teksCommand, i) != ' ')
+                    {
+                        plusKar(&direction, nthChar(teksCommand, i));
+                        i++;
+                    }
+                    i++; // Skip blank kedua
+                    // Mengambil displacement
+
+                    while (i < panjangT(teksCommand))
+                    {
+                        plusKar(&tDisplacement, nthChar(teksCommand, i));
+                        i++;
+                    }
+
+                    displacement = teksToInt(tDisplacement);
+
+                    // Mengubah lokasi simulator
+                    moveS(&cState, &peta, &BNMO, direction, displacement, MIX, BOIL, CHOP, FRY, TELEPON);
+                }
+                else if (teksSama(teksParsing, wait)) // Jika command wait
+                {
+                    Teks tHH, tMM;
+                    int HH, MM;
+                    Waktu time;
+
+                    buatTeksKosong(&tHH);
+                    buatTeksKosong(&tMM);
+                    isCommandValid = true;
+
+                    // Mengambil durasi jam
+                    while (nthChar(teksCommand, i) != ' ')
+                    {
+                        plusKar(&tHH, nthChar(teksCommand, i));
+                        i++;
+                    }
+                    HH = teksToInt(tHH);
+                    i++; // Skip blank kedua
+
+                    // Mengambil durasi menit
+                    while (i < panjangT(teksCommand))
+                    {
+                        plusKar(&tMM, nthChar(teksCommand, i));
+                        i++;
+                    }
+                    MM = teksToInt(tMM);
+
+                    // Memajukan waktu state
+                    time = buatWaktu(0, HH, MM, 0);
+                    majukanWaktuState(&cState, time);
+                }
+            }
+            if (!isCommandValid)
+            {
+                printf("Command tidak dikenali!\n");
+            }
+        } while (!isCommandValid);
+
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
         // cetakFoodQueue(deliveryQ);
-
-        exiting = true;
     }
     return 0;
 }

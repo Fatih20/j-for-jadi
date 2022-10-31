@@ -6,9 +6,14 @@
 #include "../../ADT/FoodQueue/foodQueue.h"
 #include "../../ADT/AksiLokasi/aksiLokasi.h"
 #include "../../ADT/Stack/stack.h"
+#include "../../ADT/Matriks/matriks.h"
+#include "../../ADT/Simulator/simulator.h"
 
-void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState);
+void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState);
 
+void displayCookbook(ListNode *daftarResep);
+
+void displayCatalog(LStatMakanan *daftarMakanan);
 /**
  * @brief Fungsi yang meng-handle pembelian makanan. Panggil ketika command BUY dimasukkan
  *
@@ -35,4 +40,18 @@ void undo(State *currState, Stack *stackUndo, Stack *stackRedo);
  * @param stackRedo: Stack of State Redo
  */
 void redo(State *currState, Stack *stackUndo, Stack *stackRedo);
+*@brief Prosedur untuk memindahkan simulator
+        *
+            *@param peta
+                *@param S : Simulator
+                                *@param direction : Arah perpindahan
+                                                        *@param displacement : Besar perpindahan
+                                                                                   *@param MIX : AksiLokasi mix
+                                                                                                     *@param BOIL : AksiLokasi boil
+                                                                                                                        *@param CHOP : AksiLokasi chop
+                                                                                                                                           *@param FRY : AksiLokasi fry
+                                                                                                                                                             *@param TELEPON : AksiLokasi telepon
+                                                                                                                                                                                   * /
+    void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON);
+
 #endif
