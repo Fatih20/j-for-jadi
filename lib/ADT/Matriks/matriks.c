@@ -197,3 +197,14 @@ void moveSimulator(Matriks *m, POINT *lokasiSimulator, POINT p)
     Absis(*lokasiSimulator) = x2 - 1;
     Ordinat(*lokasiSimulator) = y2 - 1;
 }
+
+boolean isBorder(Matriks m, POINT p)
+{
+    // KAMUS LOKAL
+    int x, y;
+    // ALGORITMA
+    x = Absis(p) + 1;
+    y = Ordinat(p) + 1;
+
+    return (x == 0 || x == getLastIdxCol(m) || y == 0 || y == getLastIdxRow(m));
+}

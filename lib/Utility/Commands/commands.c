@@ -145,3 +145,100 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     printf("\n");
     enqueueDelivery(DQ, boughtFood);
 };
+
+void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON)
+{
+    // KAMUS LOKAL
+    Teks north, east, south, west;
+    int arah; // 1: utara, 2: timur, 3: selatan, 4: barat
+    POINT dest;
+    Waktu waktu;
+    // ALGORITMA
+
+    // Inisialisasi teks
+    buatTeks("NORTH", &north);
+    buatTeks("EAST", &east);
+    buatTeks("SOUTH", &south);
+    buatTeks("WEST", &west);
+
+    // Menentukan dest
+    if (teksSama(north, direction))
+    {
+        dest = PlusDelta(lokasiS(*S), 0, -1); // Dest Bergeser ke utara
+        arah = 1;
+    }
+    else if (teksSama(east, direction))
+    {
+        dest = PlusDelta(lokasiS(*S), -1, 0); // Dest Bergeser ke timur
+        arah = 2;
+    }
+    else if (teksSama(south, direction))
+    {
+        dest = PlusDelta(lokasiS(*S), 0, 1); // Dest Bergeser ke selatan
+        arah = 3;
+    }
+    else if (teksSama(west, direction))
+    {
+        dest = PlusDelta(lokasiS(*S), 1, 0); // Dest Bergeser ke barat
+        arah = 4;
+    }
+
+    // Pemindahan Simulator
+    if (!isCollide(*peta, dest)) // Jika bisa berpindah
+    {
+        moveSimulator(peta, &lokasiS(*S), dest);
+        printf("Simulator berhasil berpindah ke ");
+        if (arah == 1)
+        {
+            printf("Utara!\n");
+        }
+        else if (arah == 2)
+        {
+            printf("Timur!\n");
+        }
+        if (arah == 3)
+        {
+            printf("Selatan!\n");
+        }
+        if (arah == 4)
+        {
+            printf("Barat!\n");
+        }
+        waktu = buatWaktu(0, 0, 1, 0);
+        majukanWaktuState(currState, waktu);
+    }
+    else // Jika tak bisa berpindah
+    {
+        if (EQ(dest, lokasiAL(MIX)))
+        {
+            printf("Tidak bisa berpindah karena merupakan lokasi mixing!\n");
+        }
+        else if (EQ(dest, lokasiAL(BOIL)))
+        {
+            printf("Tidak bisa berpindah karena merupakan lokasi boiling!\n");
+        }
+        else if (EQ(dest, lokasiAL(CHOP)))
+        {
+            printf("Tidak bisa berpindah karena merupakan lokasi chopping!\n");
+        }
+        else if (EQ(dest, lokasiAL(TELEPON)))
+        {
+            printf("Tidak bisa berpindah karena merupakan lokasi telepon!\n");
+        }
+        else if (EQ(dest, lokasiAL(FRY)))
+        {
+            printf("Tidak bisa berpindah karena merupakan lokasi frying!\n");
+        }
+        else
+        {
+            if (isBorder(*peta, dest))
+            {
+                printf("Tidak bisa berpindah karena merupakan batas peta!\n");
+            }
+            else
+            {
+                printf("Tidak bisa berpindah karena merupakan tembok!\n");
+            }
+        }
+    }
+}
