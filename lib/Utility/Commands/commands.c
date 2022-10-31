@@ -195,6 +195,9 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     tulisWaktu(sampaiDalam(boughtFood));
     printf("\n");
     enqueueDelivery(DQ, boughtFood);
+    Waktu time;
+    time = buatWaktu(0, 0, 1, 0);
+    majukanWaktuState(currState, time);
     *isChangeState = true;
 };
 void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState)
