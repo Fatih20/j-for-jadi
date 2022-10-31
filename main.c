@@ -100,37 +100,45 @@ int main(int argc, char const *argv[])
         printf("\n");
         char command[100];
         boolean isCommandValid = false;
+        boolean isChangeState = true;
+        boolean isUndoRedo = false;
+        State salinanState;
+        Stack stackUndo, stackRedo;
+        // Inisialisasi
+        CreateEmptyStack(&stackUndo, 10);
+        CreateEmptyStack(&stackRedo, 10);
         do
         {
             printf("Enter command: ");
             scanf("%s", command);
+            copyState(cState, &salinanState);
             if (stringSame(command, "BUY"))
             {
-                buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
+                buyFood(&deliveryQ, lSMakanan, &cState, TELEPON, &isChangeState);
                 isCommandValid = true;
+                isUndoRedo = false;
             }
             else if (stringSame(command, "FRY") || stringSame(command, "BOIL") || stringSame(command, "MIX") || stringSame(command, "CHOP"))
             {
                 Teks temp;
                 buatTeks(command, &temp);
-                olahMakanan(temp, &inventoryQ, &deliveryQ, &lResep, &lSMakanan, &cState);
+                olahMakanan(temp, &inventoryQ, &deliveryQ, &lResep, &lSMakanan, &cState, &isChangeState);
                 isCommandValid = true;
-                exiting = false;
+                isUndoRedo = false;
             }
             else if (stringSame(command, "COOKBOOK"))
             {
                 displayCookbook(&lResep);
                 isCommandValid = true;
+                isUndoRedo = false;
+                isChangeState = false;
             }
             else if (stringSame(command, "CATALOG"))
             {
                 displayCatalog(&lSMakanan);
                 isCommandValid = true;
-            }
-            else if (stringSame(command, "CATALOG"))
-            {
-                displayCatalog(&lSMakanan);
-                isCommandValid = true;
+                isUndoRedo = false;
+                isChangeState = false;
             }
             else if (stringSame(command, "MOVE NORTH") || stringSame(command, "MOVE EAST") || stringSame(command, "MOVE SOUTH") || stringSame(command, "MOVE WEST"))
             {
@@ -152,15 +160,30 @@ int main(int argc, char const *argv[])
                     buatTeks("WEST", &direction);
                 }
 
-                moveS(&cState, &peta, &BNMO, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON);
+                moveS(&cState, &peta, &BNMO, &isChangeState, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON);
                 isCommandValid = true;
+                isUndoRedo = false;
+            }
+            else if (stringSame(command, "UNDO"))
+            {
+                isCommandValid = true;
+                isUndoRedo = true;
+                undo(&cState, &stackUndo, &stackRedo, salinanState);
+            }
+            else if (stringSame(command, "REDO"))
+            {
+                isCommandValid = true;
+                isUndoRedo = true;
+                redo(&cState, &stackUndo, &stackRedo, salinanState);
             }
             else if (stringSame(command, "0"))
             {
                 isCommandValid = true;
+                isChangeState = false;
                 exiting = true;
             }
-            else // untuk kasus command lebih dari satu kata dan command tak valid
+
+            else // untuk kasus command lebih dari satu kata atau command tak valid
             {
                 Teks teksCommand, move, wait, teksParsing;
                 int i;
@@ -204,7 +227,7 @@ int main(int argc, char const *argv[])
                     displacement = teksToInt(tDisplacement);
 
                     // Mengubah lokasi simulator
-                    moveS(&cState, &peta, &BNMO, direction, displacement, MIX, BOIL, CHOP, FRY, TELEPON);
+                    moveS(&cState, &peta, &BNMO, &isChangeState, direction, displacement, MIX, BOIL, CHOP, FRY, TELEPON);
                 }
                 else if (teksSama(teksParsing, wait)) // Jika command wait
                 {
@@ -237,10 +260,28 @@ int main(int argc, char const *argv[])
                     time = buatWaktu(0, HH, MM, 0);
                     majukanWaktuState(&cState, time);
                 }
+                else
+                {
+                    isCommandValid = false;
+                }
             }
+
             if (!isCommandValid)
             {
                 printf("Command tidak dikenali!\n");
+            }
+            else
+            {
+                // Push stack undo dan delete All stack redo jika terjadi perubahan state dan bukan undo redo
+                if (isChangeState && !isUndoRedo)
+                {
+                    dealocateStack(&stackRedo);
+                    if (IsFullStack(stackUndo))
+                    {
+                        expandStack(&stackUndo, 10);
+                    }
+                    Push(&stackUndo, salinanState);
+                }
             }
         } while (!isCommandValid);
 
