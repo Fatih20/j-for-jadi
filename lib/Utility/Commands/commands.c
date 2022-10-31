@@ -189,7 +189,7 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     enqueueDelivery(DQ, boughtFood);
 };
 
-void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON)
+void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON)
 {
     // KAMUS LOKAL
     Teks north, east, south, west;
@@ -207,22 +207,22 @@ void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, AksiLo
     // Menentukan dest
     if (teksSama(north, direction))
     {
-        dest = PlusDelta(lokasiS(*S), 0, -1); // Dest Bergeser ke utara
+        dest = PlusDelta(lokasiS(*S), 0, (-1) * displacement); // Dest Bergeser ke utara
         arah = 1;
     }
     else if (teksSama(east, direction))
     {
-        dest = PlusDelta(lokasiS(*S), -1, 0); // Dest Bergeser ke timur
+        dest = PlusDelta(lokasiS(*S), (-1) * displacement, 0); // Dest Bergeser ke timur
         arah = 2;
     }
     else if (teksSama(south, direction))
     {
-        dest = PlusDelta(lokasiS(*S), 0, 1); // Dest Bergeser ke selatan
+        dest = PlusDelta(lokasiS(*S), 0, displacement); // Dest Bergeser ke selatan
         arah = 3;
     }
     else if (teksSama(west, direction))
     {
-        dest = PlusDelta(lokasiS(*S), 1, 0); // Dest Bergeser ke barat
+        dest = PlusDelta(lokasiS(*S), displacement, 0); // Dest Bergeser ke barat
         arah = 4;
     }
 

@@ -11,6 +11,7 @@
  * @param posisi: ADT Point tempat aksi tersebut dilakukan
  * @param waktu: ADT Waktu penunjuk waktu sebuah state
  * @param inventory: ADT FoodQueue sebagai inventory
+ * @param delivery: ADT FoodQueue sebagai delivery
  */
 typedef struct
 {
@@ -37,8 +38,9 @@ typedef struct
  * @param MM : menit dari waktu state
  * @param DD : detik dari waktu state
  * @param inventory: ADT FoodQueue sebagai inventory
+ * @param delivery: ADT FoodQueue sebagai delivery
  */
-void buatState(State *S, int x, int y, int HH, int JJ, int MM, int DD, FoodQueue inventory);
+void buatState(State *S, int x, int y, int HH, int JJ, int MM, int DD, FoodQueue inventory, FoodQueue delivery);
 
 /**
  * @brief Menampilkan Tipedata State
@@ -61,5 +63,13 @@ void copyState(State SIn, State *SOut);
  * @param waktu: Waktu yang dimajukan
  */
 void majukanWaktuState(State *S, Waktu waktu);
+/**
+ * @brief Mengembalikan true jika kedua state sama
+ *
+ * @param S1
+ * @param S2
+ * @return boolean
+ */
+boolean isEqualState(State S1, State S2);
 
 #endif

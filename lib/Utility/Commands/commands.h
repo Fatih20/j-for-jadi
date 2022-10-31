@@ -30,12 +30,13 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
  * @param peta
  * @param S: Simulator
  * @param direction: Arah perpindahan
+ * @param displacement: Besar perpindahan
  * @param MIX: AksiLokasi mix
  * @param BOIL: AksiLokasi boil
  * @param CHOP: AksiLokasi chop
  * @param FRY: AksiLokasi fry
  * @param TELEPON: AksiLokasi telepon
  */
-void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON);
+void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON);
 
 #endif
