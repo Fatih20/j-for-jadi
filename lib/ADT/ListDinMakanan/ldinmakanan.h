@@ -205,5 +205,5 @@ void expandLDinMakanan(LDinMakanan *l, int num);
  * @param namaMakanan nama Makanan yang ingin dicari
  * @return boolean
  */
-boolean isMakananInList(LDinMakanan l, Teks namaMakanan);
+boolean isMakananInList(LDinMakanan *l, Teks namaMakanan);
 #endif
