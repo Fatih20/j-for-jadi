@@ -6,7 +6,7 @@
 #include "../../ADT/FoodQueue/foodQueue.h"
 #include "../../ADT/AksiLokasi/aksiLokasi.h"
 
-void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState);
+void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState);
 
 void displayCookbook(ListNode *daftarResep);
 

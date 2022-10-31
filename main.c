@@ -74,19 +74,20 @@ int main(int argc, char const *argv[])
         loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
         buatFQKosong(&inventoryQ, 20);
         buatFQKosong(&deliveryQ, 20);
-        buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ);
+        buatState(&cState, 1, 4, 0, 0, 0, 0, inventoryQ);
         printf("===================================================\n");
         printf("                   BNMO MASAK-MASAK                \n");
-        printf("===================================================\n");
     }
 
     while (!exiting)
     {
+        printf("\n===================================================\n");
+        printf("\n");
         printf("BNMO di posisi: ");
         TulisPOINT(posisiState(cState));
         printf("\n");
         printf("Waktu: ");
-        tulisWaktu(waktuState(cState));
+        tulisWaktuDot(waktuState(cState));
         printf("\n");
         displayMatriks(peta);
         printf("\n");
@@ -105,8 +106,7 @@ int main(int argc, char const *argv[])
             {
                 Teks temp;
                 buatTeks(command, &temp);
-                olahMakanan(temp, &inventoryQ, &lResep, &lSMakanan, &cState);
-                cetakState(cState);
+                olahMakanan(temp, &inventoryQ, &deliveryQ, &lResep, &lSMakanan, &cState);
                 isCommandValid = true;
                 exiting = false;
             }
