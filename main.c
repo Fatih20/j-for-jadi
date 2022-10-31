@@ -5,6 +5,7 @@
 #include "lib/Utility/Loader/Loader.h"
 #include "lib/Utility/String/String.h"
 #include "lib/Utility/Commands/commands.h"
+#include "lib/Utility/String/String.h"
 
 int main(int argc, char const *argv[])
 {
@@ -71,7 +72,10 @@ int main(int argc, char const *argv[])
 
     if (entering)
     {
-        loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
+        printf("Masukkan lokasi folder config relatif terhadap root folder :\n");
+        char lokasiFolder[200];
+        scanf("%s", lokasiFolder);
+        loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON, lokasiFolder);
         buatFQKosong(&inventoryQ, 20);
         buatFQKosong(&deliveryQ, 20);
         buatState(&cState, 1, 4, 0, 0, 0, 0, inventoryQ);
