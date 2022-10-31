@@ -40,18 +40,20 @@ void undo(State *currState, Stack *stackUndo, Stack *stackRedo);
  * @param stackRedo: Stack of State Redo
  */
 void redo(State *currState, Stack *stackUndo, Stack *stackRedo);
-*@brief Prosedur untuk memindahkan simulator
-        *
-            *@param peta
-                *@param S : Simulator
-                                *@param direction : Arah perpindahan
-                                                        *@param displacement : Besar perpindahan
-                                                                                   *@param MIX : AksiLokasi mix
-                                                                                                     *@param BOIL : AksiLokasi boil
-                                                                                                                        *@param CHOP : AksiLokasi chop
-                                                                                                                                           *@param FRY : AksiLokasi fry
-                                                                                                                                                             *@param TELEPON : AksiLokasi telepon
-                                                                                                                                                                                   * /
-    void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON);
+/**
+ *@brief Prosedur untuk memindahkan simulator
+ *
+ *@param peta
+ *@param S : Simulator
+ *@param direction : Arah perpindahan
+ *@param displacement : Besar perpindahan
+ *@param MIX : AksiLokasi mix
+ *@param BOIL : AksiLokasi boil
+ *@param CHOP : AksiLokasi chop
+ *@param FRY : AksiLokasi fry
+ *@param TELEPON : AksiLokasi telepon
+ * /
+ */
+void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON);
 
 #endif
