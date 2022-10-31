@@ -3,7 +3,7 @@
 #include "../Input/input.h"
 #include <stdlib.h>
 
-void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState)
+void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState, boolean *isChangeState)
 {
     for (int i = 0; i < ListNodeNEff(*daftarResep); i++)
     {
@@ -84,6 +84,11 @@ void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNo
         majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)));
         enqueueInventory(inventory, MakananTree(foodChoice));
         inventoryState(*currState) = *inventory;
+        *isChangeState = true;
+    }
+    else
+    {
+        *isChangeState = false;
     }
     free(daftarMakananTemp.child);
 }
@@ -121,7 +126,7 @@ void displayCatalog(LStatMakanan *daftarMakanan)
     printLStatMakanan(*daftarMakanan);
 }
 
-void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi telepon)
+void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState)
 {
     if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))
     {
@@ -129,6 +134,7 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
         printf("Pindah ke ");
         TulisPOINT(lokasiAL(telepon));
         printf(" untuk melakukan aksi BUY");
+        *isChangeState = false;
         return;
     }
 
@@ -189,9 +195,48 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     tulisWaktu(sampaiDalam(boughtFood));
     printf("\n");
     enqueueDelivery(DQ, boughtFood);
+    *isChangeState = true;
 };
+void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState)
+{
+    // KAMUS LOKAL
+    // ALGORITMA
 
-void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON)
+    if (!IsEmptyStack(*stackUndo)) // Jika stack redo tak kosong
+    {
+        if (IsFullStack(*stackRedo))
+        {
+            expandStack(stackRedo, 10);
+        }
+        Pop(stackUndo, currState);     // Ubah currState menjadi state satu aksi sebelumnya
+        Push(stackRedo, salinanState); // Push salinanState ke dalam stackRedo
+
+        if ((Top(*stackUndo) + 1) < (Capacity(*stackUndo) / 2)) // Shrink stackUndo jika hanya terisi < 50%
+        {
+            shrinkStack(stackUndo, ((Capacity(*stackUndo) / 2) - 5));
+        }
+    }
+}
+
+void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState)
+{
+    // KAMUS LOKAL
+    // ALGORITMA
+    if (!IsEmptyStack(*stackRedo)) // Jika stack redo tak kosong
+    {
+        if (IsFullStack(*stackUndo))
+        {
+            expandStack(stackUndo, 10);
+        }
+        Pop(stackRedo, currState);                              // Ubah currState menjadi state satu aksi setelahnya
+        Push(stackUndo, salinanState);                          // Push salinanState ke dalam stackUndo
+        if ((Top(*stackRedo) + 1) < (Capacity(*stackRedo) / 2)) // Shrink stackRedo jika hanya terisi < 50%
+        {
+            shrinkStack(stackRedo, ((Capacity(*stackRedo) / 2) - 5));
+        }
+    }
+}
+void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON)
 {
     // KAMUS LOKAL
     Teks north, east, south, west;
@@ -231,6 +276,7 @@ void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, int di
     // Pemindahan Simulator
     if (!isCollide(*peta, dest)) // Jika bisa berpindah
     {
+        *isChangeState = true;
         moveSimulator(peta, &lokasiS(*S), dest);
         printf("Simulator berhasil berpindah ke ");
         if (arah == 1)
@@ -254,6 +300,7 @@ void moveS(State *currState, Matriks *peta, Simulator *S, Teks direction, int di
     }
     else // Jika tak bisa berpindah
     {
+        *isChangeState = false;
         if (EQ(dest, lokasiAL(MIX)))
         {
             printf("Tidak bisa berpindah karena merupakan lokasi mixing!\n");
