@@ -7,8 +7,6 @@
 /**
  * @brief String pengganti string yang memiliki batas 100 karakter
  * @param karArray array berisi karakter dari String
- * @param length panjang dari String
- *
  */
 typedef struct
 {
