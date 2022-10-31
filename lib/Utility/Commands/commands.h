@@ -8,7 +8,7 @@
 #include "../../ADT/Matriks/matriks.h"
 #include "../../ADT/Simulator/simulator.h"
 
-void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState);
+void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState);
 
 void displayCookbook(ListNode *daftarResep);
 

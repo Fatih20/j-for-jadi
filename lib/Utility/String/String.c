@@ -11,3 +11,30 @@ boolean stringSame(char a[], char b[])
     }
     return sameSoFar;
 };
+
+int stringLen(char a[])
+{
+    int i = 0;
+    for (char kar = *a; kar != '\0'; kar = *++a)
+    {
+        i += 1;
+    }
+    return i;
+};
+
+void stringConcat(char a[], char b[], char c[])
+{
+    int i = 0;
+    for (char karA = *a; karA != '\0'; karA = *++a)
+    {
+        c[i] = karA;
+        i++;
+    }
+
+    for (char karB = *b; karB != '\0'; karB = *++b)
+    {
+        c[i] = karB;
+        i++;
+    }
+    c[i] = '\0';
+}

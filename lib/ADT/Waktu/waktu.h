@@ -63,6 +63,13 @@ void bacaWaktu(Waktu *W);
 void tulisWaktu(Waktu W);
 
 /**
+ * @brief cetak waktu dengan format MM.DD
+ *
+ * @param W
+ */
+void tulisWaktuDot(Waktu W);
+
+/**
  * @brief Fungsi untuk mengubah Waktu menjadi detik
  * @param W waktu yang akan ditentukan nilai detiknya
  *

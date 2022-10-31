@@ -3,13 +3,13 @@
 #include "../Input/input.h"
 #include <stdlib.h>
 
-void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState)
+void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState)
 {
     for (int i = 0; i < ListNodeNEff(*daftarResep); i++)
     {
         if (teksSama(AksiTree(ListNodeELMT(*daftarResep, i)), command))
         {
-            if (EQ(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))), posisiState(*currState)))
+            if (IsAdjacent(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))), posisiState(*currState)))
             {
                 break;
             }
@@ -80,11 +80,10 @@ void olahMakanan(Teks command, FoodQueue *inventory, ListNode *daftarResep, LSta
     {
         cetakTeks(NamaMakananTree(foodChoice));
         printf(" berhasil dibuat dan sudah masuk ke inventory!");
-        /* TO DO -->
-        1. buat generate IDUnik (ini juga dipakai di BUY)
-        2. enqueue makanan ke inventory
-        3. ubah currState (waktunya)
-        */
+        waktuState(*currState) = jumlahWaktu(waktuState(*currState), durasi(AksiLokasiTree(foodChoice)));
+        majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)));
+        enqueueInventory(inventory, MakananTree(foodChoice));
+        inventoryState(*currState) = *inventory;
     }
     free(daftarMakananTemp.child);
 }
@@ -127,6 +126,9 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))
     {
         printf("\nBNMO tidak berada pada area telepon!\n");
+        printf("Pindah ke ");
+        TulisPOINT(lokasiAL(telepon));
+        printf(" untuk melakukan aksi BUY");
         return;
     }
 

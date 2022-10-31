@@ -5,6 +5,7 @@
 #include "lib/Utility/Loader/Loader.h"
 #include "lib/Utility/String/String.h"
 #include "lib/Utility/Commands/commands.h"
+#include "lib/Utility/String/String.h"
 
 int main(int argc, char const *argv[])
 {
@@ -73,23 +74,27 @@ int main(int argc, char const *argv[])
 
     if (entering)
     {
-        loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
+        printf("Masukkan lokasi folder config relatif terhadap root folder :\n");
+        char lokasiFolder[200];
+        scanf("%s", lokasiFolder);
+        loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON, lokasiFolder);
         buatFQKosong(&inventoryQ, 20);
         buatFQKosong(&deliveryQ, 20);
         buatSimulator(&BNMO, userName, Absis(lokasiSimulator), Ordinat(lokasiSimulator), inventoryQ);
         buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ, deliveryQ);
         printf("===================================================\n");
         printf("                   BNMO MASAK-MASAK                \n");
-        printf("===================================================\n");
     }
 
     while (!exiting)
     {
+        printf("\n===================================================\n");
+        printf("\n");
         printf("BNMO di posisi: ");
         TulisPOINT(posisiState(cState));
         printf("\n");
         printf("Waktu: ");
-        tulisWaktu(waktuState(cState));
+        tulisWaktuDot(waktuState(cState));
         printf("\n");
         displayMatriks(peta);
         printf("\n");
@@ -108,8 +113,7 @@ int main(int argc, char const *argv[])
             {
                 Teks temp;
                 buatTeks(command, &temp);
-                olahMakanan(temp, &inventoryQ, &lResep, &lSMakanan, &cState);
-                cetakState(cState);
+                olahMakanan(temp, &inventoryQ, &deliveryQ, &lResep, &lSMakanan, &cState);
                 isCommandValid = true;
                 exiting = false;
             }
