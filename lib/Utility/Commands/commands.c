@@ -232,8 +232,11 @@ void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
         Pop(stackUndo, currState);     // Ubah currState menjadi state satu aksi sebelumnya
         Push(stackRedo, salinanState); // Push salinanState ke dalam stackRedo
 
-        CreatePoint(&p, Absis(posisiState(salinanState)), Ordinat(posisiState(salinanState))); // Salin posisi salinan agar salinan tak berubah
-        moveSimulator(peta, &p, posisiState(*currState));                                      // Mengembalikan posisi simulator
+        if (!EQ(posisiState(salinanState), posisiState(*currState))) // Mengembalikan posisi simulator
+        {
+            CreatePoint(&p, Absis(posisiState(salinanState)), Ordinat(posisiState(salinanState))); // Salin posisi salinan agar salinan tak berubah
+            moveSimulator(peta, &p, posisiState(*currState));
+        }
 
         if ((Top(*stackUndo) + 1) < (Capacity(*stackUndo) / 2)) // Shrink stackUndo jika hanya terisi < 50%
         {
@@ -253,10 +256,13 @@ void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
         {
             expandStack(stackUndo, 10);
         }
-        Pop(stackRedo, currState);                                                             // Ubah currState menjadi state satu aksi setelahnya
-        Push(stackUndo, salinanState);                                                         // Push salinanState ke dalam stackUndo
-        CreatePoint(&p, Absis(posisiState(salinanState)), Ordinat(posisiState(salinanState))); // Salin posisi salinan agar salinan tak berubah
-        moveSimulator(peta, &p, posisiState(*currState));                                      // Mengembalikan posisi simulator
+        Pop(stackRedo, currState);                                   // Ubah currState menjadi state satu aksi setelahnya
+        Push(stackUndo, salinanState);                               // Push salinanState ke dalam stackUndo
+        if (!EQ(posisiState(salinanState), posisiState(*currState))) // Mengembalikan posisi simulator
+        {
+            CreatePoint(&p, Absis(posisiState(salinanState)), Ordinat(posisiState(salinanState))); // Salin posisi salinan agar salinan tak berubah
+            moveSimulator(peta, &p, posisiState(*currState));
+        }
 
         if ((Top(*stackRedo) + 1) < (Capacity(*stackRedo) / 2)) // Shrink stackRedo jika hanya terisi < 50%
         {
