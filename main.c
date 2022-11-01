@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lib/ADT/MKInput/mKInput.h"
+#include "lib/ADT/MBInput/mBInput.h"
 #include "lib/ADT/FoodQueue/foodQueue.h"
 #include "lib/Utility/Loader/Loader.h"
 #include "lib/Utility/String/String.h"
@@ -42,15 +43,19 @@ int main(int argc, char const *argv[])
     boolean exitFirstLoop = false;
     boolean entering = false;
     boolean exiting = true;
-    char iInput[10];
+    Teks start;
+    buatTeks("START", &start);
+    Teks exit;
+    buatTeks("EXIT", &exit);
+
     do
     {
         printf("Masukkan command (START atau EXIT) : \n");
-        scanf("%s", iInput);
-        entering = stringSame(iInput, "START");
-        exiting = stringSame(iInput, "EXIT");
+        startMBInput();
+        Teks iInput = elmtLDT(currentRowI, 0);
+        entering = teksSama(iInput, start);
+        exiting = teksSama(iInput, exit);
         exitFirstLoop = entering || exiting;
-
         if (!exitFirstLoop)
         {
             printf("Command yang dimasukkan salah\n");
@@ -75,9 +80,9 @@ int main(int argc, char const *argv[])
     if (entering)
     {
         printf("Masukkan lokasi folder config relatif terhadap root folder :\n");
-        char lokasiFolder[200];
-        scanf("%s", lokasiFolder);
-        loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON, lokasiFolder);
+        startMBInput();
+        Teks inputFolder = elmtLDT(currentRowI, 0);
+        loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON, inputFolder);
         buatFQKosong(&inventoryQ, 20);
         buatFQKosong(&deliveryQ, 20);
         buatSimulator(&BNMO, userName, Absis(lokasiSimulator), Ordinat(lokasiSimulator), inventoryQ);
@@ -85,6 +90,32 @@ int main(int argc, char const *argv[])
         printf("===================================================\n");
         printf("                   BNMO MASAK-MASAK                \n");
     }
+    Teks fryT;
+    buatTeks("FRY", &fryT);
+    Teks chopT;
+    buatTeks("CHOP", &chopT);
+    Teks boilT;
+    buatTeks("BOIL", &boilT);
+    Teks mixT;
+    buatTeks("MIX", &mixT);
+    Teks cookBT;
+    buatTeks("COOKBOOK", &cookBT);
+    Teks ctlgT;
+    buatTeks("CATALOG", &ctlgT);
+    Teks buyT;
+    buatTeks("BUY", &buyT);
+    Teks moveT;
+    buatTeks("MOVE", &moveT);
+    Teks northT;
+    buatTeks("NORTH", &northT);
+    Teks southT;
+    buatTeks("SOUTH", &southT);
+    Teks eastT;
+    buatTeks("EAST", &eastT);
+    Teks westT;
+    buatTeks("WEST", &westT);
+    Teks waitT;
+    buatTeks("WAIT", &waitT);
 
     while (!exiting)
     {
@@ -98,7 +129,6 @@ int main(int argc, char const *argv[])
         printf("\n");
         displayMatriks(peta);
         printf("\n");
-        char command[100];
         boolean isCommandValid = false;
         boolean isChangeState = true;
         boolean isUndoRedo = false;
@@ -107,12 +137,14 @@ int main(int argc, char const *argv[])
         // Inisialisasi
         CreateEmptyStack(&stackUndo, 10);
         CreateEmptyStack(&stackRedo, 10);
+        LDinTeks command;
         do
         {
             printf("Enter command: ");
-            scanf("%s", command);
+            startMBInput();
+            command = currentRowI;
             copyState(cState, &salinanState);
-            if (stringSame(command, "BUY"))
+            if (panjangLDinTeks(command) == 1 && teksSama(buyT, elmtLDT(command, 0)))
             {
                 buyFood(&deliveryQ, lSMakanan, &cState, TELEPON, &isChangeState);
                 isCommandValid = true;
@@ -284,12 +316,6 @@ int main(int argc, char const *argv[])
                 }
             }
         } while (!isCommandValid);
-
-        // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
-        // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
-        // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
-        // buyFood(&deliveryQ, lSMakanan, &cState, TELEPON);
-        // cetakFoodQueue(deliveryQ);
     }
     return 0;
 }
