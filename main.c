@@ -7,6 +7,7 @@
 #include "lib/Utility/String/String.h"
 #include "lib/Utility/Commands/commands.h"
 #include "lib/Utility/String/String.h"
+#include "lib/Utility/Output/output.h"
 
 int main(int argc, char const *argv[])
 {
@@ -170,19 +171,12 @@ int main(int argc, char const *argv[])
     Teks deliveryT;
     buatTeks("DELIVERY", &deliveryT);
 
+    boolean justUndo;
     while (!exiting)
     {
-        printf("\n===================================================\n");
-        printf("\n");
-        printf("BNMO di posisi: ");
-        TulisPOINT(posisiState(cState));
-        printf("\n");
-        printf("Waktu: ");
-        tulisWaktuDot(waktuState(cState));
-        printf("\n");
-        displayMatriks(peta);
-        printf("\n");
+        displayCondition(cState, peta);
         Teks command;
+        justUndo = false;
         do
         {
             isCommandValid = true;
@@ -224,6 +218,7 @@ int main(int argc, char const *argv[])
                 else if (teksSama(command, undoT))
                 {
                     isUndoRedo = true;
+                    justUndo = true;
                     undo(&cState, &stackUndo, &stackRedo, salinanState, &peta);
                 }
                 else if (teksSama(command, redoT))
