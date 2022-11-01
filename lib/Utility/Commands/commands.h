@@ -47,8 +47,9 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
  * @param stackUndo: Stack of State Undo
  * @param stackRedo: Stack of State Redo
  * @param salinanState: Salinan state sebelum aksi
+ * @param peta
  */
-void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState);
+void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta);
 
 /**
  * @brief Prosedur Redo, Mengubah currState menjadi state satu action setelahnya
@@ -56,8 +57,9 @@ void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
  * @param stackUndo: Stack of State Undo
  * @param stackRedo: Stack of State Redo
  * @param salinanState: Salinan state sebelum aksi
+ * @param peta
  */
-void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState);
+void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta);
 /**
  *@brief Prosedur untuk memindahkan simulator
  *@param currState: State Saat ini
