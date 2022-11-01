@@ -297,8 +297,6 @@ void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState
         dest = PlusDelta(lokasiS(*S), 0, (-1) * displacement); // Dest Bergeser ke barat
         arah = 4;
     }
-    TulisPOINT(lokasiS(*S));
-    TulisPOINT(dest);
     // Pemindahan Simulator
     if (!isCollide(*peta, dest)) // Jika bisa berpindah
     {
@@ -324,7 +322,6 @@ void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState
         waktu = buatWaktu(0, 0, 1, 0);
         posisiState(*currState) = dest;
         majukanWaktuState(currState, waktu);
-        TulisPOINT(lokasiS(*S));
     }
     else // Jika tak bisa berpindah
     {
