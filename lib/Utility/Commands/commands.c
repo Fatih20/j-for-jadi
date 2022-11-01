@@ -168,7 +168,7 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     int lastIdx = lastIdxLStatMakanan(lMakanan);
     int nBuyable = 0;
     Teks buyT;
-    buatTeks("Buy", &buyT);
+    buatTeks("BUY", &buyT);
 
     LDinMakanan mBuyableList;
     buatLDinMakanan(&mBuyableList, 20);
@@ -201,12 +201,6 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
         return;
     }
     choice--;
-
-    if (choice >= nBuyable)
-    {
-        printf("Pilihannya cuma sampai %d!", nBuyable);
-        return;
-    }
 
     Makanan boughtFood = elmtLDM(mBuyableList, choice);
     printf("Berhasil memesan ");
