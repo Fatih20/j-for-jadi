@@ -6,30 +6,33 @@ int main(int argc, char const *argv[])
 {
 
     Teks t1;
-    buatTeks("quis auctor elit sed vulputate mi sit amet mauris commodo quis imperdiet massa tincidunt", &t1);
+    char tString[100];
+    scanf("%[^\n]", tString);
+    buatTeks(tString, &t1);
     cetakTeks(t1);
-    printf("\n");
-    delKar(&t1);
-    delKar(&t1);
-    delKar(&t1);
-    delKar(&t1);
-    cetakTeks(t1);
-    printf("\n");
+    // cetakTeks(t1);
+    // printf("\n");
+    // delKar(&t1);
+    // delKar(&t1);
+    // delKar(&t1);
+    // delKar(&t1);
+    // cetakTeks(t1);
+    // printf("\n");
 
-    Teks t2;
-    buatTeks("Dgklg", &t2);
-    cetakTeks(t2);
-    printf("\n");
-    plusKar(&t2, 'o');
-    plusKar(&t2, 'o');
-    plusKar(&t2, 'o');
-    cetakTeks(t2);
-    printf("\n");
+    // Teks t2;
+    // buatTeks("Dgklg", &t2);
+    // cetakTeks(t2);
+    // printf("\n");
+    // plusKar(&t2, 'o');
+    // plusKar(&t2, 'o');
+    // plusKar(&t2, 'o');
+    // cetakTeks(t2);
+    // printf("\n");
 
-    Teks t3;
-    gabungkanTeks(t1, t2, &t3);
-    cetakTeks(t3);
-    printf("\n");
+    // Teks t3;
+    // gabungkanTeks(t1, t2, &t3);
+    // cetakTeks(t3);
+    // printf("\n");
 
     return 0;
 }

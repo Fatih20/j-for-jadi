@@ -38,3 +38,55 @@ void stringConcat(char a[], char b[], char c[])
     }
     c[i] = '\0';
 }
+
+LDinTeks terimaInput()
+{
+    LDinTeks result;
+
+    return result;
+    buatLDinTeks(&result, 5);
+    char input[5000];
+    scanf("%[^n]", input);
+    int i = 0;
+    boolean createdT = false;
+    Teks teks;
+    char kar = input[i];
+    while (kar != '\0')
+    {
+        // printf("%d\n", i);
+        if (kar != ' ')
+        {
+            if (!createdT)
+            {
+                buatTeksKosong(&teks);
+                createdT = true;
+            }
+            plusKar(&teks, kar);
+        }
+        else if (kar == ' ' && createdT)
+        {
+            insertLastLDinTeks(&result, teks);
+            createdT = false;
+        }
+        i++;
+        kar = input[i];
+    }
+    return result;
+    // for (char kar = input[i]; kar != '\0'; i++)
+    // {
+    //     if (kar != ' ')
+    //     {
+    //         if (!createdT)
+    //         {
+    //             buatTeksKosong(&teks);
+    //             createdT = true;
+    //         }
+    //         plusKar(&teks, kar);
+    //     }
+    //     else if (kar == ' ' && createdT)
+    //     {
+    //         insertLastLDinTeks(&result, teks);
+    //         createdT = false;
+    //     }
+    // }
+}

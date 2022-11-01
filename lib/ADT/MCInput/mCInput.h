@@ -16,13 +16,13 @@
  * @brief Karakter yang sekarang sedang dibaca MKI
  *
  */
-extern char currentChar;
+extern char currentCharI;
 
 /**
  * @brief Apakah MKI telah berhenti karena menemukan MARK
  *
  */
-extern boolean EOP;
+extern boolean EOPI;
 
 /**
  * @brief Menyiapkan mesin untuk pengoperasian dan pita untuk dibaca. Pembaca karakter ada pada karakter pertama setelah fungsi dijalankan.

@@ -14,6 +14,26 @@ int main(int argc, char const *argv[])
         printf("\n");
         advMKInput();
     }
+    printf("MK Ended\n\n");
+    char test[100];
+    scanf("%s", test);
+    printf("%s", test);
+    printf("Restarting MK\n\n");
+    startMKInput();
+    startMKInput();
+    // printf("%d\n", endMKI);
+    do
+    {
+        cetakTeks(currentWord);
+        advMKInput();
+
+    } while (!endMKI);
+    // while (!endMKI)
+    // {
+    //     cetakTeks(currentWord);
+    //     printf("\n");
+    //     advMKInput();
+    // }
 
     return 0;
 }

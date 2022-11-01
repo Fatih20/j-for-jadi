@@ -1,4 +1,6 @@
 #include "../../ADT/boolean.h"
+#include "../../ADT/Teks/teks.h"
+#include "../../ADT/ListDinTeks/ldinteks.h"
 
 /**
  * @brief Membandingkan apakah string a dan b sama atau tidak
@@ -25,3 +27,10 @@ int stringLen(char a[]);
  * @param c Pointer ke string yang sudah dialokasikan punya panjang sebesar a dan b
  */
 void stringConcat(char a[], char b[], char c[]);
+
+/**
+ * @brief Menerima input dari pengguna dan mengembalikan LDinTeks berisi tiap kata dipisahkan spasi
+ *
+ * @return LDinTeks
+ */
+LDinTeks terimaInput();

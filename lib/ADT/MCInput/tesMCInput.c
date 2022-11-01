@@ -5,9 +5,9 @@
 int main(int argc, char const *argv[])
 {
     startMCInput();
-    while (currentChar != MARKI)
+    while (currentCharI != MARKI)
     {
-        printf("%c\n", currentChar);
+        printf("%c\n", currentCharI);
         advMCInput();
     }
     return 0;
