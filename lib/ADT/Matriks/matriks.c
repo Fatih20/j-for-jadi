@@ -110,7 +110,7 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator, AksiLokasi
                 {
                     if (nthChar(elmtLDT(currentRow, 0), j - 1) == 'S')
                     {
-                        CreatePoint(lokasiSimulator, i - 1, j - 1);
+                        CreatePoint(lokasiSimulator, j - 1, i - 1);
                     }
                     else if (nthChar(elmtLDT(currentRow, 0), j - 1) == 'M')
                     {
@@ -187,15 +187,15 @@ void moveSimulator(Matriks *m, POINT *lokasiSimulator, POINT p)
     // ALGORITMA
 
     // Setup
-    x1 = Absis(*lokasiSimulator) + 1;
-    y1 = Ordinat(*lokasiSimulator) + 1;
-    x2 = Absis(p) + 1;
-    y2 = Ordinat(p) + 1;
-    ELMT(*m, x2, y2) = 'S'; // Mengisi tanda 'S' pada koordinat p
-    ELMT(*m, x1, y1) = ' '; // Menghapus tanda 'S' pada posisi sebelumnya
+    y1 = Absis(*lokasiSimulator) + 1;
+    x1 = Ordinat(*lokasiSimulator) + 1;
+    y2 = Absis(p) + 1;
+    x2 = Ordinat(p) + 1;
+    ELMT(*m, y2, x2) = 'S'; // Mengisi tanda 'S' pada koordinat p
+    ELMT(*m, y1, x1) = ' '; // Menghapus tanda 'S' pada posisi sebelumnya
     // Mengubah lokasi simulator
-    Absis(*lokasiSimulator) = x2 - 1;
-    Ordinat(*lokasiSimulator) = y2 - 1;
+    Absis(*lokasiSimulator) = y2 - 1;
+    Ordinat(*lokasiSimulator) = x2 - 1;
 }
 
 boolean isBorder(Matriks m, POINT p)
@@ -203,8 +203,8 @@ boolean isBorder(Matriks m, POINT p)
     // KAMUS LOKAL
     int x, y;
     // ALGORITMA
-    x = Absis(p) + 1;
-    y = Ordinat(p) + 1;
+    y = Absis(p) + 1;
+    x = Ordinat(p) + 1;
 
-    return (x == 0 || x == getLastIdxCol(m) || y == 0 || y == getLastIdxRow(m));
+    return (x == 0 || x == getLastIdxRow(m) || y == 0 || y == getLastIdxCol(m));
 }

@@ -115,6 +115,14 @@ boolean teksLPanjang(Teks t1, Teks t2);
 void gabungkanTeks(Teks t1, Teks t2, Teks *t3);
 
 /**
+ * @brief mengembalikan true jika teks t adalah sebuah integer
+ *
+ * @param t
+ * @return boolean
+ */
+boolean isTeksInt(Teks t);
+
+/**
  * @brief mengembalikan integer yang direpresentasikan oleh teks t
  *
  * @param t teks yang akan diubah menjadi integer

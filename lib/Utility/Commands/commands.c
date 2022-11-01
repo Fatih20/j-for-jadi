@@ -46,16 +46,36 @@ void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNo
         }
     }
     int choice;
-    printf("Pilih makanan yang akan dibuat(%d - %d): ", 1, ListNodeNEff(daftarMakananTemp));
-    startMBInput();
-    choice = teksToInt(teks(currentRow)[0]);
-    scanf("%d", &choice);
-    while (choice <= 0 || choice > ListNodeNEff(daftarMakananTemp))
+    boolean isChoiceValid;
+    do
     {
-        printf("Pilihan tidak dikenali!\n");
+        isChoiceValid = true;
         printf("Pilih makanan yang akan dibuat(%d - %d): ", 1, ListNodeNEff(daftarMakananTemp));
-        scanf("%d", &choice);
-    }
+        startMBInput();
+        if (panjangLDinTeks(currentRowI) != 1)
+        {
+            isChoiceValid = false;
+        }
+        else
+        {
+            if (!isTeksInt(elmtLDT(currentRowI, 0)))
+            {
+                isChoiceValid = false;
+            }
+            else
+            {
+                choice = teksToInt(elmtLDT(currentRowI, 0));
+                if (choice <= 0 || choice > ListNodeNEff(daftarMakananTemp))
+                {
+                    isChoiceValid = false;
+                }
+            }
+        }
+        if (!isChoiceValid)
+        {
+            printf("Pilihan tidak dikenali!\n");
+        }
+    } while (!isChoiceValid);
     boolean success = true;
     boolean isFirst = true;
     Tree foodChoice = ListNodeELMT(daftarMakananTemp, choice - 1);
@@ -259,25 +279,25 @@ void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState
     // Menentukan dest
     if (teksSama(north, direction))
     {
-        dest = PlusDelta(lokasiS(*S), 0, (-1) * displacement); // Dest Bergeser ke utara
+        dest = PlusDelta(lokasiS(*S), (-1) * displacement, 0); // Dest Bergeser ke utara
         arah = 1;
     }
     else if (teksSama(east, direction))
     {
-        dest = PlusDelta(lokasiS(*S), (-1) * displacement, 0); // Dest Bergeser ke timur
+        dest = PlusDelta(lokasiS(*S), 0, displacement); // Dest Bergeser ke timur
         arah = 2;
     }
     else if (teksSama(south, direction))
     {
-        dest = PlusDelta(lokasiS(*S), 0, displacement); // Dest Bergeser ke selatan
+        dest = PlusDelta(lokasiS(*S), displacement, 0); // Dest Bergeser ke selatan
         arah = 3;
     }
     else if (teksSama(west, direction))
     {
-        dest = PlusDelta(lokasiS(*S), displacement, 0); // Dest Bergeser ke barat
+        dest = PlusDelta(lokasiS(*S), 0, (-1) * displacement); // Dest Bergeser ke barat
         arah = 4;
     }
-
+    TulisPOINT(dest);
     // Pemindahan Simulator
     if (!isCollide(*peta, dest)) // Jika bisa berpindah
     {
@@ -301,6 +321,7 @@ void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState
             printf("Barat!\n");
         }
         waktu = buatWaktu(0, 0, 1, 0);
+        posisiState(*currState) = dest;
         majukanWaktuState(currState, waktu);
     }
     else // Jika tak bisa berpindah

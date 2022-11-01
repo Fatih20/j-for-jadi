@@ -93,6 +93,18 @@ int teksToInt(Teks t)
     return val;
 }
 
+boolean isTeksInt(Teks t)
+{
+    for (int i = 0; i < panjangT(t); i++)
+    {
+        if (elmtLDC(karArrayT(t), i) < '0' || elmtLDC(karArrayT(t), i) > '9')
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
 void teksKeString(char string[], Teks teks)
 {
     int i = 0;
