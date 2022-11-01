@@ -54,6 +54,15 @@ boolean teksSama(Teks t1, Teks t2)
     return same;
 };
 
+void tambahkanTeks(Teks *t1, Teks t2)
+{
+    int pT2 = panjangT(t2);
+    for (int i = 0; i < pT2; i++)
+    {
+        plusKar(t1, nthChar(t2, i));
+    }
+};
+
 boolean teksLPendek(Teks t1, Teks t2)
 {
     return panjangT(t1) < panjangT(t2);
