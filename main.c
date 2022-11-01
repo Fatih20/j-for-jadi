@@ -83,7 +83,6 @@ int main(int argc, char const *argv[])
     FoodQueue inventoryQ;
     FoodQueue deliveryQ;
     State cState;
-    Teks userName;
 
     if (entering)
     {
@@ -119,8 +118,8 @@ int main(int argc, char const *argv[])
             }
             else
             {
-                username = elmtLDT(currentRowI, 1);
-                userNameS(BNMO) = username;
+                userName = elmtLDT(currentRowI, 1);
+                userNameS(BNMO) = userName;
             }
         } while (!unameFilled);
 
