@@ -83,6 +83,14 @@ int main(int argc, char const *argv[])
     FoodQueue inventoryQ;
     FoodQueue deliveryQ;
     State cState;
+    State salinanState;
+    Stack stackUndo, stackRedo;
+    // Inisialisasi
+    CreateEmptyStack(&stackUndo, 10);
+    CreateEmptyStack(&stackRedo, 10);
+    boolean isCommandValid = true;
+    boolean isChangeState = true;
+    boolean isUndoRedo = false;
 
     if (entering)
     {
@@ -95,7 +103,6 @@ int main(int argc, char const *argv[])
         buatFQKosong(&deliveryQ, 20);
         buatSimulator(&BNMO, userName, Absis(lokasiSimulator), Ordinat(lokasiSimulator), inventoryQ);
         buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ, deliveryQ);
-
         // Load username
         boolean unameFilled = false;
         do
@@ -171,14 +178,6 @@ int main(int argc, char const *argv[])
         printf("\n");
         displayMatriks(peta);
         printf("\n");
-        boolean isCommandValid = true;
-        boolean isChangeState = true;
-        boolean isUndoRedo = false;
-        State salinanState;
-        Stack stackUndo, stackRedo;
-        // Inisialisasi
-        CreateEmptyStack(&stackUndo, 10);
-        CreateEmptyStack(&stackRedo, 10);
         Teks command;
         do
         {
@@ -221,12 +220,12 @@ int main(int argc, char const *argv[])
                 else if (teksSama(command, undoT))
                 {
                     isUndoRedo = true;
-                    undo(&cState, &stackUndo, &stackRedo, salinanState);
+                    undo(&cState, &stackUndo, &stackRedo, salinanState, &peta);
                 }
                 else if (teksSama(command, redoT))
                 {
                     isUndoRedo = true;
-                    redo(&cState, &stackUndo, &stackRedo, salinanState);
+                    redo(&cState, &stackUndo, &stackRedo, salinanState, &peta);
                 }
                 else if (teksSama(command, zeroT))
                 {
@@ -293,7 +292,11 @@ int main(int argc, char const *argv[])
                 // Push stack undo dan delete all stack redo jika terjadi perubahan state dan bukan undo redo
                 if (isChangeState && !isUndoRedo)
                 {
-                    dealocateStack(&stackRedo);
+                    if (!IsEmptyStack(stackRedo))
+                    {
+                        dealocateStack(&stackRedo);
+                        CreateEmptyStack(&stackRedo, 5);
+                    }
                     if (IsFullStack(stackUndo))
                     {
                         expandStack(&stackUndo, 10);

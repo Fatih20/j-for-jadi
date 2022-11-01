@@ -222,19 +222,24 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     majukanWaktuState(currState, time);
     *isChangeState = true;
 };
-void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState)
+void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta)
 {
     // KAMUS LOKAL
+    POINT p;
     // ALGORITMA
 
-    if (!IsEmptyStack(*stackUndo)) // Jika stack redo tak kosong
+    if (!IsEmptyStack(*stackUndo)) // Jika stack undo tak kosong
     {
         if (IsFullStack(*stackRedo))
         {
             expandStack(stackRedo, 10);
         }
+
         Pop(stackUndo, currState);     // Ubah currState menjadi state satu aksi sebelumnya
         Push(stackRedo, salinanState); // Push salinanState ke dalam stackRedo
+
+        CreatePoint(&p, Absis(posisiState(salinanState)), Ordinat(posisiState(salinanState))); // Salin posisi salinan agar salinan tak berubah
+        moveSimulator(peta, &p, posisiState(*currState));                                      // Mengembalikan posisi simulator
 
         if ((Top(*stackUndo) + 1) < (Capacity(*stackUndo) / 2)) // Shrink stackUndo jika hanya terisi < 50%
         {
@@ -243,9 +248,10 @@ void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
     }
 }
 
-void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState)
+void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta)
 {
     // KAMUS LOKAL
+    POINT p;
     // ALGORITMA
     if (!IsEmptyStack(*stackRedo)) // Jika stack redo tak kosong
     {
@@ -253,8 +259,11 @@ void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
         {
             expandStack(stackUndo, 10);
         }
-        Pop(stackRedo, currState);                              // Ubah currState menjadi state satu aksi setelahnya
-        Push(stackUndo, salinanState);                          // Push salinanState ke dalam stackUndo
+        Pop(stackRedo, currState);                                                             // Ubah currState menjadi state satu aksi setelahnya
+        Push(stackUndo, salinanState);                                                         // Push salinanState ke dalam stackUndo
+        CreatePoint(&p, Absis(posisiState(salinanState)), Ordinat(posisiState(salinanState))); // Salin posisi salinan agar salinan tak berubah
+        moveSimulator(peta, &p, posisiState(*currState));                                      // Mengembalikan posisi simulator
+
         if ((Top(*stackRedo) + 1) < (Capacity(*stackRedo) / 2)) // Shrink stackRedo jika hanya terisi < 50%
         {
             shrinkStack(stackRedo, ((Capacity(*stackRedo) / 2) - 5));
@@ -279,29 +288,29 @@ void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState
     // Menentukan dest
     if (teksSama(north, direction))
     {
-        dest = PlusDelta(lokasiS(*S), (-1) * displacement, 0); // Dest Bergeser ke utara
+        dest = PlusDelta(posisiState(*currState), (-1) * displacement, 0); // Dest Bergeser ke utara
         arah = 1;
     }
     else if (teksSama(east, direction))
     {
-        dest = PlusDelta(lokasiS(*S), 0, displacement); // Dest Bergeser ke timur
+        dest = PlusDelta(posisiState(*currState), 0, displacement); // Dest Bergeser ke timur
         arah = 2;
     }
     else if (teksSama(south, direction))
     {
-        dest = PlusDelta(lokasiS(*S), displacement, 0); // Dest Bergeser ke selatan
+        dest = PlusDelta(posisiState(*currState), displacement, 0); // Dest Bergeser ke selatan
         arah = 3;
     }
     else if (teksSama(west, direction))
     {
-        dest = PlusDelta(lokasiS(*S), 0, (-1) * displacement); // Dest Bergeser ke barat
+        dest = PlusDelta(posisiState(*currState), 0, (-1) * displacement); // Dest Bergeser ke barat
         arah = 4;
     }
     // Pemindahan Simulator
     if (!isCollide(*peta, dest)) // Jika bisa berpindah
     {
         *isChangeState = true;
-        moveSimulator(peta, &lokasiS(*S), dest);
+        moveSimulator(peta, &posisiState(*currState), dest);
         printf("Simulator berhasil berpindah ke ");
         if (arah == 1)
         {
@@ -320,7 +329,7 @@ void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState
             printf("Barat!\n");
         }
         waktu = buatWaktu(0, 0, 1, 0);
-        posisiState(*currState) = dest;
+        lokasiS(*S) = dest;
         majukanWaktuState(currState, waktu);
     }
     else // Jika tak bisa berpindah
