@@ -93,10 +93,13 @@ int teksToInt(Teks t)
     return val;
 }
 
-void teksKeString(char *string[], Teks teks)
+void teksKeString(char string[], Teks teks)
 {
-    for (int i = 0; i < panjangT(teks); i++)
+    int i = 0;
+    while (i < panjangT(teks))
     {
-        *string[i] = nthChar(teks, i);
+        string[i] = nthChar(teks, i);
+        i++;
     }
+    string[i] = '\0';
 };

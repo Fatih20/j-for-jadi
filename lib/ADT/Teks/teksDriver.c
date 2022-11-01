@@ -6,10 +6,16 @@ int main(int argc, char const *argv[])
 {
 
     Teks t1;
-    char tString[100];
-    scanf("%[^\n]", tString);
-    buatTeks(tString, &t1);
-    cetakTeks(t1);
+    buatTeks("jvndjnjvnvdhjhbbhhjbhjbhj", &t1);
+    // cetakTeks(t1);
+    char s1[panjangT(t1) + 1];
+    teksKeString(s1, t1);
+    printf("%s", s1);
+
+    // char tString[100];
+    // scanf("%[^\n]", tString);
+    // buatTeks(tString, &t1);
+    // cetakTeks(t1);
     // cetakTeks(t1);
     // printf("\n");
     // delKar(&t1);
