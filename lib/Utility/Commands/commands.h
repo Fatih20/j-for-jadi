@@ -39,7 +39,7 @@ void displayInventory(FoodQueue iQ);
  * @param Telepon aksiLokasi telepon
  * @param isChangeStack Apakah state berubah atau tidak
  */
-void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeStack);
+void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeStack);
 
 /**
  * @brief Prosedur Undo, Mengubah currState menjadi state satu action sebelumnya

@@ -151,17 +151,24 @@ void displayCatalog(LStatMakanan *daftarMakanan)
 void displayDelivery(FoodQueue dQ)
 {
 
-    printf("List Nama Makanan di Perjalanan\n");
-    printf("(nama - waktu sisa delivery)\n");
     int panjangDQ = nElmt(dQ);
-    for (int i = 0; i < panjangDQ; i++)
+    if (panjangDQ == 0)
     {
-        printf("    %d. ", i + 1);
-        Makanan mToShow = elmtFQ(dQ, i);
-        cetakTeks(namaMakanan(mToShow));
-        printf(" - ");
-        tulisWaktu(sampaiDalam(mToShow));
-        printf("\n");
+        printf("Tidak ada makanan yang sedang dalam proses pengiriman! Pesan makanan yuk dengan pergi ke telepon dan menggunakan command BUY!");
+    }
+    else
+    {
+        printf("List Nama Makanan di Perjalanan\n");
+        printf("(nama - waktu sisa delivery)\n");
+        for (int i = 0; i < panjangDQ; i++)
+        {
+            printf("    %d. ", i + 1);
+            Makanan mToShow = elmtFQ(dQ, i);
+            cetakTeks(namaMakanan(mToShow));
+            printf(" - ");
+            tulisWaktu(sampaiDalam(mToShow));
+            printf("\n");
+        }
     }
     printf("\n");
 }
@@ -169,21 +176,28 @@ void displayDelivery(FoodQueue dQ)
 void displayInventory(FoodQueue iQ)
 {
 
-    printf("List Nama Makanan di Perjalanan\n");
-    printf("(nama - waktu sisa kadaluarsa)\n");
     int panjangIQ = nElmt(iQ);
-    for (int i = 0; i < panjangIQ; i++)
+    if (panjangIQ == 0)
     {
-        printf("%d. ", i + 1);
-        Makanan mToShow = elmtFQ(iQ, i);
-        cetakTeks(namaMakanan(mToShow));
-        printf(" - ");
-        tulisWaktu(basiDalam(mToShow));
+        printf("Tidak ada makanan di dalam inventory kamu!");
+    }
+    else
+    {
+        printf("List Nama Makanan di Perjalanan\n");
+        printf("(nama - waktu sisa kadaluarsa)\n");
+        for (int i = 0; i < panjangIQ; i++)
+        {
+            printf("%d. ", i + 1);
+            Makanan mToShow = elmtFQ(iQ, i);
+            cetakTeks(namaMakanan(mToShow));
+            printf(" - ");
+            tulisWaktu(basiDalam(mToShow));
+        }
     }
     printf("\n");
 }
 
-void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState)
+void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState)
 {
     if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))
     {
@@ -245,7 +259,7 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     printf(" akan diantar dalam ");
     tulisWaktu(sampaiDalam(boughtFood));
     printf("\n");
-    enqueueDelivery(DQ, boughtFood);
+    enqueueDelivery(&deliveryState(*currState), boughtFood);
     Waktu time;
     time = buatWaktu(0, 0, 1, 0);
     majukanWaktuState(currState, time);

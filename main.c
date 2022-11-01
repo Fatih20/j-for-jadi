@@ -166,9 +166,9 @@ int main(int argc, char const *argv[])
     Teks zeroT;
     buatTeks("0", &zeroT);
     Teks inventoryT;
-    buatTeks("DELIVERY", &inventoryT);
+    buatTeks("INVENTORY", &inventoryT);
     Teks deliveryT;
-    buatTeks("INVENTORY", &deliveryT);
+    buatTeks("DELIVERY", &deliveryT);
 
     while (!exiting)
     {
@@ -201,7 +201,7 @@ int main(int argc, char const *argv[])
             {
                 if (teksSama(command, buyT))
                 {
-                    buyFood(&deliveryQ, lSMakanan, &cState, TELEPON, &isChangeState);
+                    buyFood(lSMakanan, &cState, TELEPON, &isChangeState);
                     isUndoRedo = false;
                 }
                 else if (teksSama(command, fryT) || teksSama(command, boilT) || teksSama(command, mixT) || teksSama(command, chopT))
@@ -233,12 +233,12 @@ int main(int argc, char const *argv[])
                 }
                 else if (teksSama(command, inventoryT))
                 {
-                    displayInventory(inventoryQ);
+                    displayInventory(inventoryState(cState));
                     isChangeState = false;
                 }
                 else if (teksSama(command, deliveryT))
                 {
-                    displayDelivery(deliveryQ);
+                    displayDelivery(deliveryState(cState));
                     isChangeState = false;
                 }
                 else if (teksSama(command, zeroT))
