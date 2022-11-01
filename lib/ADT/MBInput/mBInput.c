@@ -7,7 +7,7 @@ LDinTeks currentRowI;
 
 void startMBInput()
 {
-    endMKI = false;
+    endMBI = false;
     startMKInput();
     advMBInput();
 }
