@@ -259,11 +259,11 @@ void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolea
     printf(" akan diantar dalam ");
     tulisWaktu(sampaiDalam(boughtFood));
     printf("\n");
-    enqueueDelivery(&deliveryState(*currState), boughtFood);
     Waktu time;
     time = buatWaktu(0, 0, 1, 0);
     majukanWaktuState(currState, time);
     *isChangeState = true;
+    enqueueDelivery(&deliveryState(*currState), boughtFood);
 };
 void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta)
 {
