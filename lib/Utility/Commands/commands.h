@@ -8,6 +8,7 @@
 #include "../../ADT/Stack/stack.h"
 #include "../../ADT/Matriks/matriks.h"
 #include "../../ADT/Simulator/simulator.h"
+#include "../../ADT/MBInput/mBInput.h"
 
 void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState, boolean *isChangeStack);
 

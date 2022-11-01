@@ -116,6 +116,12 @@ int main(int argc, char const *argv[])
     buatTeks("WEST", &westT);
     Teks waitT;
     buatTeks("WAIT", &waitT);
+    Teks undoT;
+    buatTeks("UNDO", &undoT);
+    Teks redoT;
+    buatTeks("REDO", &redoT);
+    Teks zeroT;
+    buatTeks("0", &zeroT);
 
     while (!exiting)
     {
@@ -137,57 +143,64 @@ int main(int argc, char const *argv[])
         // Inisialisasi
         CreateEmptyStack(&stackUndo, 10);
         CreateEmptyStack(&stackRedo, 10);
-        LDinTeks command;
+        Teks command;
         do
         {
             printf("Enter command: ");
             startMBInput();
-            command = currentRowI;
+            if (panjangLDinTeks(currentRowI) < 1)
+            {
+                continue;
+            }
+            command = elmtLDT(currentRowI, 0);
             copyState(cState, &salinanState);
-            if (panjangLDinTeks(command) == 1 && teksSama(buyT, elmtLDT(command, 0)))
+            if (teksSama(command, buyT))
             {
                 buyFood(&deliveryQ, lSMakanan, &cState, TELEPON, &isChangeState);
                 isCommandValid = true;
                 isUndoRedo = false;
             }
-            else if (stringSame(command, "FRY") || stringSame(command, "BOIL") || stringSame(command, "MIX") || stringSame(command, "CHOP"))
+            else if (teksSama(command, fryT) || teksSama(command, boilT) || teksSama(command, mixT) || teksSama(command, chopT))
             {
-                Teks temp;
-                buatTeks(command, &temp);
-                olahMakanan(temp, &inventoryQ, &deliveryQ, &lResep, &lSMakanan, &cState, &isChangeState);
+                olahMakanan(command, &inventoryQ, &deliveryQ, &lResep, &lSMakanan, &cState, &isChangeState);
                 isCommandValid = true;
                 isUndoRedo = false;
             }
-            else if (stringSame(command, "COOKBOOK"))
+            else if (teksSama(command, cookBT))
             {
                 displayCookbook(&lResep);
                 isCommandValid = true;
                 isUndoRedo = false;
                 isChangeState = false;
             }
-            else if (stringSame(command, "CATALOG"))
+            else if (teksSama(command, ctlgT))
             {
                 displayCatalog(&lSMakanan);
                 isCommandValid = true;
                 isUndoRedo = false;
                 isChangeState = false;
             }
-            else if (stringSame(command, "MOVE NORTH") || stringSame(command, "MOVE EAST") || stringSame(command, "MOVE SOUTH") || stringSame(command, "MOVE WEST"))
+            else if (teksSama(command, moveT))
             {
-                Teks direction;
-                if (stringSame(command, "MOVE NORTH"))
+                if (panjangLDinTeks(currentRowI) != 2)
+                {
+                    isCommandValid = false;
+                    continue;
+                }
+                Teks direction = teks(currentRowI)[1];
+                if (teksSama(direction, northT))
                 {
                     buatTeks("NORTH", &direction);
                 }
-                else if (stringSame(command, "MOVE EAST"))
+                else if (teksSama(direction, eastT))
                 {
                     buatTeks("EAST", &direction);
                 }
-                else if (stringSame(command, "MOVE SOUTH"))
+                else if (teksSama(direction, southT))
                 {
                     buatTeks("SOUTH", &direction);
                 }
-                else if (stringSame(command, "MOVE WEST"))
+                else if (teksSama(direction, westT))
                 {
                     buatTeks("WEST", &direction);
                 }
@@ -196,107 +209,107 @@ int main(int argc, char const *argv[])
                 isCommandValid = true;
                 isUndoRedo = false;
             }
-            else if (stringSame(command, "UNDO"))
+            else if (teksSama(command, undoT))
             {
                 isCommandValid = true;
                 isUndoRedo = true;
                 undo(&cState, &stackUndo, &stackRedo, salinanState);
             }
-            else if (stringSame(command, "REDO"))
+            else if (teksSama(command, redoT))
             {
                 isCommandValid = true;
                 isUndoRedo = true;
                 redo(&cState, &stackUndo, &stackRedo, salinanState);
             }
-            else if (stringSame(command, "0"))
+            else if (teksSama(command, zeroT))
             {
                 isCommandValid = true;
                 isChangeState = false;
                 exiting = true;
             }
 
-            else // untuk kasus command lebih dari satu kata atau command tak valid
-            {
-                Teks teksCommand, move, wait, teksParsing;
-                int i;
-                buatTeks(command, &teksCommand);
-                buatTeks("MOVE", &move);
-                buatTeks("WAIT", &wait);
-                buatTeksKosong(&teksParsing);
+            // else // untuk kasus command lebih dari satu kata atau command tak valid
+            // {
+            //     Teks teksCommand, move, wait, teksParsing;
+            //     int i;
+            //     buatTeks(command, &teksCommand);
+            //     buatTeks("MOVE", &move);
+            //     buatTeks("WAIT", &wait);
+            //     buatTeksKosong(&teksParsing);
 
-                // Pengecekan kata pertama
-                i = 0;
-                while (nthChar(teksCommand, i) != ' ')
-                {
-                    plusKar(&teksParsing, nthChar(teksCommand, i));
-                    i++;
-                }
-                // Telah selesai mengambil kata pertama
-                i++;                             // skip blank pertama
-                if (teksSama(teksParsing, move)) // Jika command move
-                {
-                    Teks direction, tDisplacement;
-                    int displacement;
-                    isCommandValid = true;
+            //     // Pengecekan kata pertama
+            //     i = 0;
+            //     while (nthChar(teksCommand, i) != ' ')
+            //     {
+            //         plusKar(&teksParsing, nthChar(teksCommand, i));
+            //         i++;
+            //     }
+            //     // Telah selesai mengambil kata pertama
+            //     i++;                             // skip blank pertama
+            //     if (teksSama(teksParsing, move)) // Jika command move
+            //     {
+            //         Teks direction, tDisplacement;
+            //         int displacement;
+            //         isCommandValid = true;
 
-                    buatTeksKosong(&direction);
-                    buatTeksKosong(&tDisplacement);
-                    // Mengambil direction
-                    while (nthChar(teksCommand, i) != ' ')
-                    {
-                        plusKar(&direction, nthChar(teksCommand, i));
-                        i++;
-                    }
-                    i++; // Skip blank kedua
-                    // Mengambil displacement
+            //         buatTeksKosong(&direction);
+            //         buatTeksKosong(&tDisplacement);
+            //         // Mengambil direction
+            //         while (nthChar(teksCommand, i) != ' ')
+            //         {
+            //             plusKar(&direction, nthChar(teksCommand, i));
+            //             i++;
+            //         }
+            //         i++; // Skip blank kedua
+            //         // Mengambil displacement
 
-                    while (i < panjangT(teksCommand))
-                    {
-                        plusKar(&tDisplacement, nthChar(teksCommand, i));
-                        i++;
-                    }
+            //         while (i < panjangT(teksCommand))
+            //         {
+            //             plusKar(&tDisplacement, nthChar(teksCommand, i));
+            //             i++;
+            //         }
 
-                    displacement = teksToInt(tDisplacement);
+            //         displacement = teksToInt(tDisplacement);
 
-                    // Mengubah lokasi simulator
-                    moveS(&cState, &peta, &BNMO, &isChangeState, direction, displacement, MIX, BOIL, CHOP, FRY, TELEPON);
-                }
-                else if (teksSama(teksParsing, wait)) // Jika command wait
-                {
-                    Teks tHH, tMM;
-                    int HH, MM;
-                    Waktu time;
+            //         // Mengubah lokasi simulator
+            //         moveS(&cState, &peta, &BNMO, &isChangeState, direction, displacement, MIX, BOIL, CHOP, FRY, TELEPON);
+            //     }
+            //     else if (teksSama(teksParsing, wait)) // Jika command wait
+            //     {
+            //         Teks tHH, tMM;
+            //         int HH, MM;
+            //         Waktu time;
 
-                    buatTeksKosong(&tHH);
-                    buatTeksKosong(&tMM);
-                    isCommandValid = true;
+            //         buatTeksKosong(&tHH);
+            //         buatTeksKosong(&tMM);
+            //         isCommandValid = true;
 
-                    // Mengambil durasi jam
-                    while (nthChar(teksCommand, i) != ' ')
-                    {
-                        plusKar(&tHH, nthChar(teksCommand, i));
-                        i++;
-                    }
-                    HH = teksToInt(tHH);
-                    i++; // Skip blank kedua
+            //         // Mengambil durasi jam
+            //         while (nthChar(teksCommand, i) != ' ')
+            //         {
+            //             plusKar(&tHH, nthChar(teksCommand, i));
+            //             i++;
+            //         }
+            //         HH = teksToInt(tHH);
+            //         i++; // Skip blank kedua
 
-                    // Mengambil durasi menit
-                    while (i < panjangT(teksCommand))
-                    {
-                        plusKar(&tMM, nthChar(teksCommand, i));
-                        i++;
-                    }
-                    MM = teksToInt(tMM);
+            //         // Mengambil durasi menit
+            //         while (i < panjangT(teksCommand))
+            //         {
+            //             plusKar(&tMM, nthChar(teksCommand, i));
+            //             i++;
+            //         }
+            //         MM = teksToInt(tMM);
 
-                    // Memajukan waktu state
-                    time = buatWaktu(0, HH, MM, 0);
-                    majukanWaktuState(&cState, time);
-                }
-                else
-                {
-                    isCommandValid = false;
-                }
-            }
+            //         // Memajukan waktu state
+            //         time = buatWaktu(0, HH, MM, 0);
+            //         majukanWaktuState(&cState, time);
+            //     }
+            //     else
+            //     {
+            //         isCommandValid = false;
+            //     }
+            // }
 
             if (!isCommandValid)
             {

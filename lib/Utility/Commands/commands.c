@@ -47,6 +47,8 @@ void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNo
     }
     int choice;
     printf("Pilih makanan yang akan dibuat(%d - %d): ", 1, ListNodeNEff(daftarMakananTemp));
+    startMBInput();
+    choice = teksToInt(teks(currentRow)[0]);
     scanf("%d", &choice);
     while (choice <= 0 || choice > ListNodeNEff(daftarMakananTemp))
     {
