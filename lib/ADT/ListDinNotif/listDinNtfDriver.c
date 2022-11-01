@@ -5,11 +5,8 @@
 int main()
 {
     LDinNotif l, ltemp;
-    char temp1[] = "temp1";
-    char temp2[] = "temp2";
     LDinNtfEl teks1, teks2;
     buatLDinNotif(&l, 5);
-    // readLDinNotif(&l);
     printLDinNotif(l);
 
     Notif n1;
