@@ -99,7 +99,6 @@ int main(int argc, char const *argv[])
 
         // Load username
         boolean unameFilled = false;
-        Teks username;
         do
         {
             printf("Username (without space) :\n");
