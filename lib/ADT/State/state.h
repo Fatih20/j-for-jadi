@@ -5,6 +5,7 @@
 #include "../Point/Point.h"
 #include "../FoodQueue/foodQueue.h"
 #include "../Waktu/waktu.h"
+#include "../NotificationState/notificationState.h"
 
 /**
  * @brief Tipedata State
@@ -19,6 +20,7 @@ typedef struct
     Waktu waktu;
     FoodQueue inventory;
     FoodQueue delivery;
+    NotifState notifS;
 } State;
 
 /**
@@ -28,9 +30,10 @@ typedef struct
 #define waktuState(S) (S).waktu
 #define inventoryState(S) (S).inventory
 #define deliveryState(S) (S).delivery
+#define notifS(S) (S).notifS
 
 /**
- * @brief Membuat state baru dengan mengcopy inventory ke inventoryBaru
+ * @brief Membuat state baru dengan mengcopy inventory ke inventoryBaru. State baru akan memiliki notifikasiState yang kosong pada awalnya, tetapi bisa kemudian ditambahkan
  * @param x : absis posisi
  * @param y : ordinat posisi
  * @param HH : hari dari waktu state

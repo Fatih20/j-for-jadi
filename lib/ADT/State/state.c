@@ -14,6 +14,13 @@ void buatState(State *S, int x, int y, int HH, int JJ, int MM, int DD, FoodQueue
     Ordinat(posisi) = y;
     posisiState(*S) = posisi;
     waktuState(*S) = buatWaktu(HH, JJ, MM, DD);
+    NotifState notifState;
+    LDinNotif notifStateF;
+    buatLDinNotif(&notifState, 5);
+    LDinNotif notifStateB;
+    buatLDinNotif(&notifState, 5);
+    buatNotifState(&notifState, notifStateF, notifStateB);
+    notifS(*S) = notifState;
 }
 
 void cetakState(State S)
@@ -47,6 +54,7 @@ void copyState(State SIn, State *SOut)
     JJ = Jam(waktuState(SIn));
     MM = Menit(waktuState(SIn));
     DD = Detik(waktuState(SIn));
+    notifS(*SOut) = notifS(SIn);
 
     waktuState(*SOut) = buatWaktu(HH, JJ, MM, DD);
 }
