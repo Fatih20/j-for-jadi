@@ -202,12 +202,6 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     }
     choice--;
 
-    if (choice >= nBuyable)
-    {
-        printf("Pilihannya cuma sampai %d!", nBuyable);
-        return;
-    }
-
     Makanan boughtFood = elmtLDM(mBuyableList, choice);
     printf("Berhasil memesan ");
     cetakTeks(namaMakanan(boughtFood));
@@ -297,7 +291,6 @@ void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState
         dest = PlusDelta(lokasiS(*S), 0, (-1) * displacement); // Dest Bergeser ke barat
         arah = 4;
     }
-    TulisPOINT(dest);
     // Pemindahan Simulator
     if (!isCollide(*peta, dest)) // Jika bisa berpindah
     {
