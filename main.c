@@ -83,9 +83,11 @@ int main(int argc, char const *argv[])
     FoodQueue inventoryQ;
     FoodQueue deliveryQ;
     State cState;
+    Teks userName;
 
     if (entering)
     {
+        // Load config
         printf("Masukkan lokasi folder config relatif terhadap root folder :\n");
         startMBInput();
         Teks inputFolder = elmtLDT(currentRowI, 0);
@@ -94,6 +96,35 @@ int main(int argc, char const *argv[])
         buatFQKosong(&deliveryQ, 20);
         buatSimulator(&BNMO, userName, Absis(lokasiSimulator), Ordinat(lokasiSimulator), inventoryQ);
         buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ, deliveryQ);
+
+        // Load username
+        boolean unameFilled = false;
+        Teks username;
+        do
+        {
+            printf("Username (without space) :\n");
+            startMBInput();
+            int panjangU = panjangLDinTeks(currentRowI);
+            unameFilled = panjangU == 1;
+            if (!unameFilled)
+            {
+                if (panjangU > 1)
+                {
+
+                    printf("Username tidak boleh mengandung spasi!\n");
+                }
+                else
+                {
+                    printf("Username tidak boleh kosong!\n");
+                }
+            }
+            else
+            {
+                username = elmtLDT(currentRowI, 1);
+                userNameS(BNMO) = username;
+            }
+        } while (!unameFilled);
+
         printf("===================================================\n");
         printf("                   BNMO MASAK-MASAK                \n");
     }
@@ -213,7 +244,7 @@ int main(int argc, char const *argv[])
             {
                 if (teksSama(command, moveT))
                 {
-                    Teks direction = teks(currentRowI)[1];
+                    Teks direction = elmtLDT(currentRowI, 1);
                     if (teksSama(direction, southT) || teksSama(direction, northT) || teksSama(direction, westT) || teksSama(direction, eastT))
                     {
                         moveS(&cState, &peta, &BNMO, &isChangeState, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON);
@@ -233,16 +264,15 @@ int main(int argc, char const *argv[])
             {
                 if (teksSama(command, waitT))
                 {
-                    Teks x, y;
                     int JJ, MM;
                     Waktu time;
-                    x = elmtLDT(currentRowI, 1);
-                    y = elmtLDT(currentRowI, 2);
+                    Teks x = elmtLDT(currentRowI, 1);
+                    Teks y = elmtLDT(currentRowI, 2);
                     isCommandValid = isTeksInt(x) && isTeksInt(y);
-                    JJ = teksToInt(x);
-                    MM = teksToInt(y);
                     if (isCommandValid)
                     {
+                        JJ = teksToInt(x);
+                        MM = teksToInt(y);
                         time = buatWaktu(0, JJ, MM, 0);
                         majukanWaktuState(&cState, time);
                     }
@@ -262,7 +292,7 @@ int main(int argc, char const *argv[])
             }
             else
             {
-                // Push stack undo dan delete All stack redo jika terjadi perubahan state dan bukan undo redo
+                // Push stack undo dan delete all stack redo jika terjadi perubahan state dan bukan undo redo
                 if (isChangeState && !isUndoRedo)
                 {
                     dealocateStack(&stackRedo);
