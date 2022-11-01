@@ -1,3 +1,6 @@
+#ifndef NOTIF
+#define NOTIF
+
 #include "../Teks/teks.h"
 
 /**
@@ -37,3 +40,5 @@ void buatNotif(char kode, Teks subject, Notif *notif);
  * @param notif
  */
 void cetakNotif(Notif notif);
+
+#endif
