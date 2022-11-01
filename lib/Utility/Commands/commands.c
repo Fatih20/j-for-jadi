@@ -168,7 +168,7 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     int lastIdx = lastIdxLStatMakanan(lMakanan);
     int nBuyable = 0;
     Teks buyT;
-    buatTeks("Buy", &buyT);
+    buatTeks("BUY", &buyT);
 
     LDinMakanan mBuyableList;
     buatLDinMakanan(&mBuyableList, 20);
