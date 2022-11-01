@@ -148,6 +148,41 @@ void displayCatalog(LStatMakanan *daftarMakanan)
     printLStatMakanan(*daftarMakanan);
 }
 
+void displayDelivery(FoodQueue dQ)
+{
+
+    printf("List Nama Makanan di Perjalanan\n");
+    printf("(nama - waktu sisa delivery)\n");
+    int panjangDQ = nElmt(dQ);
+    for (int i = 0; i < panjangDQ; i++)
+    {
+        printf("    %d. ", i + 1);
+        Makanan mToShow = elmtFQ(dQ, i);
+        cetakTeks(namaMakanan(mToShow));
+        printf(" - ");
+        tulisWaktu(sampaiDalam(mToShow));
+        printf("\n");
+    }
+    printf("\n");
+}
+
+void displayInventory(FoodQueue iQ)
+{
+
+    printf("List Nama Makanan di Perjalanan\n");
+    printf("(nama - waktu sisa kadaluarsa)\n");
+    int panjangIQ = nElmt(iQ);
+    for (int i = 0; i < panjangIQ; i++)
+    {
+        printf("%d. ", i + 1);
+        Makanan mToShow = elmtFQ(iQ, i);
+        cetakTeks(namaMakanan(mToShow));
+        printf(" - ");
+        tulisWaktu(basiDalam(mToShow));
+    }
+    printf("\n");
+}
+
 void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState)
 {
     if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))

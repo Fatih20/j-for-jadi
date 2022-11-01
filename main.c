@@ -158,6 +158,10 @@ int main(int argc, char const *argv[])
     buatTeks("WAIT", &waitT);
     Teks zeroT;
     buatTeks("0", &zeroT);
+    Teks inventoryT;
+    buatTeks("DELIVERY", &inventoryT);
+    Teks deliveryT;
+    buatTeks("INVENTORY", &deliveryT);
 
     while (!exiting)
     {
@@ -227,6 +231,16 @@ int main(int argc, char const *argv[])
                 {
                     isUndoRedo = true;
                     redo(&cState, &stackUndo, &stackRedo, salinanState);
+                }
+                else if (teksSama(command, inventoryT))
+                {
+                    displayInventory(inventoryQ);
+                    isChangeState = false;
+                }
+                else if (teksSama(command, deliveryT))
+                {
+                    displayDelivery(deliveryQ);
+                    isChangeState = false;
                 }
                 else if (teksSama(command, zeroT))
                 {

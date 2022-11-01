@@ -15,6 +15,21 @@ void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNo
 void displayCookbook(ListNode *daftarResep);
 
 void displayCatalog(LStatMakanan *daftarMakanan);
+
+/**
+ * @brief Menunjukkan makanan apa yang sedang dalam proses pengiriman ke pengguna
+ *
+ * @param dQ
+ */
+void displayDelivery(FoodQueue dQ);
+
+/**
+ * @brief Menunjukkan makanan apa yang sudah ada dalam inventory pengguna
+ *
+ * @param iQ
+ */
+void displayInventory(FoodQueue iQ);
+
 /**
  * @brief Fungsi yang meng-handle pembelian makanan. Panggil ketika command BUY dimasukkan
  *
