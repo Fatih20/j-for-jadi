@@ -148,7 +148,56 @@ void displayCatalog(LStatMakanan *daftarMakanan)
     printLStatMakanan(*daftarMakanan);
 }
 
-void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState)
+void displayDelivery(FoodQueue dQ)
+{
+
+    int panjangDQ = nElmt(dQ);
+    if (panjangDQ == 0)
+    {
+        printf("Tidak ada makanan yang sedang dalam proses pengiriman! Pesan makanan yuk dengan pergi ke telepon dan menggunakan command BUY!");
+    }
+    else
+    {
+        printf("List Nama Makanan di Perjalanan\n");
+        printf("(nama - waktu sisa delivery)\n");
+        for (int i = 0; i < panjangDQ; i++)
+        {
+            printf("    %d. ", i + 1);
+            Makanan mToShow = elmtFQ(dQ, i);
+            cetakTeks(namaMakanan(mToShow));
+            printf(" - ");
+            tulisWaktu(sampaiDalam(mToShow));
+            printf("\n");
+        }
+    }
+    printf("\n");
+}
+
+void displayInventory(FoodQueue iQ)
+{
+
+    int panjangIQ = nElmt(iQ);
+    if (panjangIQ == 0)
+    {
+        printf("Tidak ada makanan di dalam inventory kamu!");
+    }
+    else
+    {
+        printf("List Nama Makanan di Perjalanan\n");
+        printf("(nama - waktu sisa kadaluarsa)\n");
+        for (int i = 0; i < panjangIQ; i++)
+        {
+            printf("%d. ", i + 1);
+            Makanan mToShow = elmtFQ(iQ, i);
+            cetakTeks(namaMakanan(mToShow));
+            printf(" - ");
+            tulisWaktu(basiDalam(mToShow));
+        }
+    }
+    printf("\n");
+}
+
+void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState)
 {
     if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))
     {
@@ -210,11 +259,11 @@ void buyFood(FoodQueue *DQ, LStatMakanan lMakanan, State *currState, AksiLokasi 
     printf(" akan diantar dalam ");
     tulisWaktu(sampaiDalam(boughtFood));
     printf("\n");
-    enqueueDelivery(DQ, boughtFood);
     Waktu time;
     time = buatWaktu(0, 0, 1, 0);
     majukanWaktuState(currState, time);
     *isChangeState = true;
+    enqueueDelivery(&deliveryState(*currState), boughtFood);
 };
 void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta)
 {
