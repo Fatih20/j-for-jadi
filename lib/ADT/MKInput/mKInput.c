@@ -4,28 +4,27 @@
 #include <stdio.h>
 
 boolean endMKI;
-Teks currentWord;
+Teks currentWordI;
 
 void ignoreBlanksI()
 {
-    while (currentChar == BLANK)
+    while (currentCharI == BLANK)
     {
         advMCInput();
     }
 }
 
-void startMKInput(char namaFile[])
+void startMKInput()
 {
     endMKI = false;
-
-    startMCInput(namaFile);
+    startMCInput();
     advMKInput();
 }
 
 void advMKInput()
 {
     ignoreBlanksI();
-    if (currentChar == MARKI)
+    if (currentCharI == MARKI)
     {
         endMKI = true;
     }
@@ -33,23 +32,23 @@ void advMKInput()
     {
 
         saveKataI();
-        endMKI = currentChar == MARKI;
+        endMKI = currentCharI == MARKI;
     }
 }
 
 void saveKataI()
 {
-    buatTeks("", &currentWord);
+    buatTeks("", &currentWordI);
     boolean actualLetter = true;
     while (actualLetter)
     {
-        if (currentChar == BLANK || currentChar == MARKI)
+        if (currentCharI == BLANK || currentCharI == MARKI)
         {
             actualLetter = false;
         }
         else
         {
-            plusKar(&currentWord, currentChar);
+            plusKar(&currentWordI, currentCharI);
             advMCInput();
         }
     }
