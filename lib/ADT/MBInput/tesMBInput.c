@@ -10,6 +10,12 @@ int main(int argc, char const *argv[])
     startMBInput();
     printLDinTeks(currentRowI);
 
+    startMBInput();
+    printLDinTeks(currentRowI);
+
+    startMBInput();
+    printLDinTeks(currentRowI);
+
     // do
     // {
     //     printLDinTeks(currentRowI);
