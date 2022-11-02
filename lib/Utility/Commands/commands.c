@@ -3,7 +3,7 @@
 #include "../Input/input.h"
 #include <stdlib.h>
 
-void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean *isChangeState)
+void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean *isChangeState, NotifState *notifS)
 {
     for (int i = 0; i < ListNodeNEff(*daftarResep); i++)
     {
@@ -114,10 +114,13 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
                 for (int i = 0; i < ListNodeNEff(Children(foodChoice)); i++)
                 {
                     Makanan temp;
+                    Notif notifTemp;
+                    buatNotifCookUndo(command, namaMakanan(temp), &notifTemp);
+                    insertLastLDinNotif(&backNS(*notifS), notifTemp);
                     deleteByIdTipe(inventory, IdTipeTree(Child(foodChoice, i)), &temp);
                 }
                 waktuState(*currState) = jumlahWaktu(waktuState(*currState), durasi(AksiLokasiTree(foodChoice)));
-                majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)));
+                majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)), notifS);
                 enqueueInventory(inventory, MakananTree(foodChoice));
                 *isChangeState = true;
             }
@@ -213,7 +216,7 @@ void displayInventory(FoodQueue iQ)
     printf("\n");
 }
 
-void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState, LDinNotif *forwardNotif, LDinNotif *backwardNotif)
+void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState, NotifState *notifS)
 {
     if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))
     {
@@ -275,7 +278,7 @@ void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolea
     printf(" akan diantar dalam ");
     tulisWaktu(sampaiDalam(boughtFood));
     printf("\n");
-    insertLastLDinNotifRaw(backwardNotif, 'p', namaMakanan(boughtFood));
+    insertLastLDinNotifRaw(&backNS(*notifS), 'p', namaMakanan(boughtFood));
     Waktu time;
     time = buatWaktu(0, 0, 1, 0);
     majukanWaktuState(currState, time);
