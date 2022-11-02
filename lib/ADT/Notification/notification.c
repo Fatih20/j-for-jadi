@@ -66,6 +66,40 @@ void buatNotif(char kode, Teks subject, Notif *notif)
     kodeNTF(*notif) = kode;
 };
 
+void buatNotifCookUndo(Teks command, Teks subject, Notif *notif)
+{
+    Teks fryT;
+    buatTeks("FRY", &fryT);
+    Teks chopT;
+    buatTeks("CHOP", &chopT);
+    Teks boilT;
+    buatTeks("BOIL", &boilT);
+    Teks mixT;
+    buatTeks("MIX", &mixT);
+    char kodeNTF;
+    if (teksSama(command, fryT))
+    {
+        kodeNTF = 'f';
+    }
+    else if (teksSama(command, chopT))
+    {
+        kodeNTF = 'c';
+    }
+    else if (teksSama(command, boilT))
+    {
+        kodeNTF = 'b';
+    }
+    else if (teksSama(command, mixT))
+    {
+        kodeNTF = 'm';
+    }
+    else
+    {
+        kodeNTF = 'f';
+    }
+    buatNotif(kodeNTF, subject, notif);
+};
+
 void cetakNotif(Notif notif)
 {
     cetakTeks(notifTeks(notif));
