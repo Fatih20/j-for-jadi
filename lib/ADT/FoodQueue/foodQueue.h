@@ -3,6 +3,7 @@
 
 #include "../boolean.h"
 #include "../ListDinMakanan/ldinmakanan.h"
+#include "../NotificationState/notificationState.h"
 #include "../Makanan/makanan.h"
 
 /**
@@ -176,36 +177,39 @@ void deleteByIdTipe(FoodQueue *FQ, Teks idTipe, Makanan *deletedVal);
 int idxMakanan(FoodQueue FQ, Teks idTipe);
 
 /**
- * @brief Men-dequeue elemen di-head yang memiliki waktu basi 0 sampai elemen di-head belum basi. Gunakan sesuai spek parameter.
+ * @brief Men-dequeue elemen di-head yang memiliki waktu basi 0 sampai elemen di-head belum basi. Gunakan sesuai spek parameter. Menyimpan record kejadian ke dalam nS.
  *
  * @param IQ Inventory queue yang ingin dihapus elemennya yang sudah basi
+ * @param nS
  */
-void hapusBasi(FoodQueue *IQ);
+void hapusBasi(FoodQueue *IQ, NotifState *nS);
 
 /**
- * @brief Lakukan majukanWIQ ke IQ lalu lakukan majukanWDQ kepada DQ dan IQ sebesar w
+ * @brief Lakukan majukanWIQ ke IQ lalu lakukan majukanWDQ kepada DQ dan IQ sebesar w. Menyimpan record kejadian ke dalam nS.
  *
  * @param DQ Delivery queue
  * @param IQ Inventory queue
  * @param w
+ * @param nS
  */
-void majukanWFQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w);
+void majukanWFQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w, NotifState *nS);
 
 /**
- * @brief Majukan waktu sebesar w untuk makanan-makanan di dalam DQ, termasuk di dalamnya menentukan makanan masih di DQ, pindah ke IQ, atau pindah ke IQ tapi kemudian basi
+ * @brief Majukan waktu sebesar w untuk makanan-makanan di dalam DQ, termasuk di dalamnya menentukan makanan masih di DQ, pindah ke IQ, atau pindah ke IQ tapi kemudian basi. Menyimpan record kejadian ke dalam nS.
  *
  * @param DQ
  * @param IQ
  * @param w
  */
-void majukanWDQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w);
+void majukanWDQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w, NotifState *nS);
 
 /**
- * @brief Majukan waktu sebesar w untuk makanan-makanan di dalam IQ. Jika basi maka akan dikeluarkan.
+ * @brief Majukan waktu sebesar w untuk makanan-makanan di dalam IQ. Jika basi maka akan dikeluarkan. Menyimpan record kejadian ke dalam nS.
  *
  * @param IQ
  * @param w
+ * @param nS
  */
-void majukanWIQ(FoodQueue *IQ, Waktu w);
+void majukanWIQ(FoodQueue *IQ, Waktu w, NotifState *nS);
 
 #endif

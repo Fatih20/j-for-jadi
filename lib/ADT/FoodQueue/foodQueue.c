@@ -191,16 +191,18 @@ int idxMakanan(FoodQueue FQ, Teks idTipe)
     return found ? i : IDX_UNDEF;
 };
 
-void hapusBasi(FoodQueue *IQ)
+void hapusBasi(FoodQueue *IQ, NotifState *nS)
 {
     while ((!isEmptyFQ(*IQ)) && isWZero(basiDalam(headElFQ(*IQ))))
     {
         FoodQueueEl temp;
+        insertLastLDinNotifRaw(&forNS(*nS), 'e', namaMakanan(temp));
+        insertLastLDinNotifRaw(&backNS(*nS), 'n', namaMakanan(temp));
         dequeue(IQ, &temp);
     }
 };
 
-void majukanWDQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w)
+void majukanWDQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w, NotifState *nS)
 {
     if (isEmptyFQ(*DQ))
     {
@@ -215,7 +217,15 @@ void majukanWDQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w)
         majukanWMDelivery(&movedFood, w, nP);
         if (nP == 'i')
         {
+            insertLastLDinNotifRaw(&forNS(*nS), 'd', namaMakanan(movedFood));
+            insertLastLDinNotifRaw(&backNS(*nS), 's', namaMakanan(movedFood));
+
             enqueueInventory(IQ, movedFood);
+        }
+        else
+        {
+            insertLastLDinNotifRaw(&forNS(*nS), 'e', namaMakanan(movedFood));
+            insertLastLDinNotifRaw(&backNS(*nS), 'n', namaMakanan(movedFood));
         }
         currentM = headElFQ(*DQ);
         nP = newPosisiMDelivery(currentM, w);
@@ -232,18 +242,18 @@ void majukanWDQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w)
     }
 };
 
-void majukanWIQ(FoodQueue *IQ, Waktu w)
+void majukanWIQ(FoodQueue *IQ, Waktu w, NotifState *nS)
 {
     for (int i = headFQ(*IQ); i <= tailFQ(*IQ); i++)
     {
         majukanWMInventory(&elmtFQ(*IQ, i), w);
     }
 
-    hapusBasi(IQ);
+    hapusBasi(IQ, nS);
 };
 
-void majukanWFQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w)
+void majukanWFQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w, NotifState *nS)
 {
-    majukanWIQ(IQ, w);
-    majukanWDQ(DQ, IQ, w);
+    majukanWIQ(IQ, w, nS);
+    majukanWDQ(DQ, IQ, w, nS);
 };
