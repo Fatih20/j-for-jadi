@@ -13,12 +13,14 @@ int main(int argc, char const *argv[])
 
     AksiLokasi aL;
     Teks namaM1, idTM1, idUM1, aLT1;
+    int panjang = 3;
+    int lebar = 4;
     buatTeks("Bruh", &aLT1);
     buatTeks("bruh", &namaM1);
     buatTeks("095", &idTM1);
     buatTeks("100", &idUM1);
     buatAksiLokasi(&aL, aLT1, 2, 2, 0, 1, 5, 0);
-    buatMakanan(&m1, namaM1, idTM1, idUM1, wB, wS, aL);
+    buatMakanan(&m1, namaM1, idTM1, idUM1, wB, wS, aL, panjang, lebar);
     cetakMakanan(m1);
 
     printf("\n\n");
@@ -40,3 +42,4 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
+// gcc -o main lib\ADT\Teks\teks.c lib\ADT\Waktu\waktu.c lib\ADT\AksiLokasi\aksiLokasi.c lib\ADT\ListDinKar\ldinkar.c lib\ADT\Makanan\makananDriver.c lib\ADT\Makanan\makanan.c lib\ADT\Point\Point.c
