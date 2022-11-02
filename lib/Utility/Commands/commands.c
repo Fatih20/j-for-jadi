@@ -114,10 +114,10 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
                 for (int i = 0; i < ListNodeNEff(Children(foodChoice)); i++)
                 {
                     Makanan temp;
+                    deleteByIdTipe(inventory, IdTipeTree(Child(foodChoice, i)), &temp);
                     Notif notifTemp;
                     buatNotifCookUndo(command, namaMakanan(temp), &notifTemp);
                     insertLastLDinNotif(&backNS(*notifS), notifTemp);
-                    deleteByIdTipe(inventory, IdTipeTree(Child(foodChoice, i)), &temp);
                 }
                 waktuState(*currState) = jumlahWaktu(waktuState(*currState), durasi(AksiLokasiTree(foodChoice)));
                 majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)), notifS);
@@ -211,6 +211,7 @@ void displayInventory(FoodQueue iQ)
             cetakTeks(namaMakanan(mToShow));
             printf(" - ");
             tulisWaktu(basiDalam(mToShow));
+            printf("\n");
         }
     }
     printf("\n");
