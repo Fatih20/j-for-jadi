@@ -196,9 +196,9 @@ void hapusBasi(FoodQueue *IQ, NotifState *nS)
     while ((!isEmptyFQ(*IQ)) && isWZero(basiDalam(headElFQ(*IQ))))
     {
         FoodQueueEl temp;
+        dequeue(IQ, &temp);
         insertLastLDinNotifRaw(&forNS(*nS), 'e', namaMakanan(temp));
         insertLastLDinNotifRaw(&backNS(*nS), 'n', namaMakanan(temp));
-        dequeue(IQ, &temp);
     }
 };
 
