@@ -22,7 +22,7 @@ ADT ini digunakan untuk menyimpan children dari sebuah node dan menyimpan daftar
 #define MakananTree(p) (p)->makanan
 #define NamaMakananTree(p) namaMakanan((p)->makanan)
 #define AksiLokasiTree(p) aksiLokasi((p)->makanan)
-#define IdTipeTree(o) idTipe((p)->makanan)
+#define IdTipeTree(p) idTipe((p)->makanan)
 #define IdUnikTree(p) idUnik((p)->makanan)
 #define AksiTree(p) aksi(aksiLokasi((p)->makanan))
 #define ListNodeCap(l) (l).capacity
