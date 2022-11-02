@@ -30,8 +30,8 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
     printf("                       ");
     cetakTeks(command);
     printf("                       \n");
-    printf("==================================================\n");
-    printf("\n Ketik 0 untuk keluar.\n\n");
+    printf("==================================================\n\n");
+    printf("Ketik 0 untuk keluar.\n\n");
     printf("Daftar Makanan yang Bisa dibuat");
     printf(": \n");
     int cnt = 1;
@@ -52,7 +52,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
     do
     {
         isChoiceValid = true;
-        printf("Pilih makanan yang akan dibuat(%d - %d): ", 1, ListNodeNEff(daftarMakananTemp));
+        printf("\nPilih makanan yang akan dibuat(%d - %d): ", 1, ListNodeNEff(daftarMakananTemp));
         startMBInput();
         if (panjangLDinTeks(currentRowI) != 1)
         {
@@ -95,7 +95,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
                 {
                     if (isFirst)
                     {
-                        printf("Gagal membuat ");
+                        printf("\nGagal membuat ");
                         cetakTeks(NamaMakananTree(foodChoice));
                         printf(" karena kamu tidak memiliki bahan berikut: \n");
                         isFirst = false;
@@ -136,21 +136,22 @@ void displayCookbook(ListNode *daftarResep)
     printf("                      COOKBOOK                    \n");
     printf("==================================================\n");
     displayListNode(*daftarResep);
-    int makanan;
-    printf("Pilih resep yang ingin dilihat (%d - %d): ", 1, ListNodeNEff(*daftarResep));
-    scanf("%d", &makanan);
-    while (makanan < 1 || makanan > ListNodeNEff(*daftarResep))
+    boolean isExit = false;
+    do
     {
-        printf("Pilihan tidak dikenali!\n");
-        printf("Pilih resep yang ingin dilihat (%d - %d): ", 1, ListNodeNEff(*daftarResep));
-        scanf("%d", &makanan);
-    }
-    printf("==================================================\n");
-    printf("               Resep ");
-    cetakTeks(NamaMakananTree(ListNodeELMT(*daftarResep, makanan - 1)));
-    printf("               \n");
-    printf("==================================================\n");
-    displayTree(ListNodeELMT(*daftarResep, makanan - 1));
+        int choice = askForNumber(0, ListNodeNEff(*daftarResep), "Pilih resep yang ingin dilihat: ");
+        if (choice == 0)
+        {
+            isExit = true;
+            return;
+        }
+        printf("==================================================\n");
+        printf("               Resep ");
+        cetakTeks(NamaMakananTree(ListNodeELMT(*daftarResep, choice - 1)));
+        printf("               \n");
+        printf("==================================================\n\n");
+        displayTree(ListNodeELMT(*daftarResep, choice - 1));
+    } while (!isExit);
 }
 
 void displayCatalog(LStatMakanan *daftarMakanan)
