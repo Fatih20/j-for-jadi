@@ -237,4 +237,11 @@ void majukanWMDelivery(Makanan *m, Waktu w, char newPosisi);
  */
 char newPosisiMDelivery(Makanan m, Waktu w);
 
+/**
+ * @brief Menentukan luas dari makanan untuk ADT Kulkas
+ *
+ * @param m
+ */
+int luasMakanan(Makanan m);
+
 #endif

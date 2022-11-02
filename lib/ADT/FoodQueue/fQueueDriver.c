@@ -6,6 +6,8 @@ int main(int argc, char const *argv[])
     FoodQueue fq1, fq2;
     Makanan temp1, temp2, temp3, temp4;
     Waktu wB1, wB2, wB3, wB4, wS1, wS2, wS3, wS4;
+    int panjang = 6;
+    int lebar = 4;
     wB1 = buatWaktu(0, 0, 3, 0);
     wB2 = buatWaktu(0, 0, 2, 0);
     wB3 = buatWaktu(0, 0, 2, 0);
@@ -46,10 +48,10 @@ int main(int argc, char const *argv[])
     buatTeks("000", &idUM4);
     buatAksiLokasi(&aL4, aLT4, 2, 2, 0, 1, 5, 0);
 
-    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
-    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
-    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3);
-    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4);
+    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1, panjang, lebar);
+    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2, panjang, lebar);
+    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3, panjang, lebar);
+    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4, panjang, lebar);
 
     cetakMakanan(temp1);
     // Uji membuat queue

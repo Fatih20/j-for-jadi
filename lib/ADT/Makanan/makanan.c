@@ -154,3 +154,8 @@ char newPosisiMDelivery(Makanan m, Waktu w)
     }
     return result;
 }
+
+int luasMakanan(Makanan m)
+{
+    return panjang(m) * lebar(m);
+}

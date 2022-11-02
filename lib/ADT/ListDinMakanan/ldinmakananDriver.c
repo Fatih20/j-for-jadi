@@ -8,6 +8,8 @@ int main()
 
     Makanan temp1, temp2;
     Waktu wB1, wB2, wB3, wB4, wS1, wS2, wS3, wS4;
+    int panjang = 6;
+    int lebar = 4;
     wB1 = buatWaktu(0, 0, 3, 0);
     wB2 = buatWaktu(0, 0, 2, 0);
     wB3 = buatWaktu(0, 0, 2, 0);
@@ -36,8 +38,8 @@ int main()
     buatTeks("000", &idUM2);
     buatAksiLokasi(&aL2, aLT2, 2, 2, 0, 1, 5, 0);
 
-    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
-    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
+    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1, panjang, lebar);
+    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2, panjang, lebar);
 
     buatLDinMakanan(&l, 1);
     readLDinMakanan(&l);

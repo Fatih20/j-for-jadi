@@ -7,6 +7,8 @@ void tC1()
     Makanan temp1, temp2, temp3, temp4, temp5, temp6;
     Waktu wB1, wB2, wB3, wB4, wB5, wB6;
     Waktu wS1, wS2, wS3, wS4, wS5, wS6;
+    int panjang = 6;
+    int lebar = 4;
     wB1 = buatWaktu(0, 0, 10, 0);
     wB2 = buatWaktu(0, 0, 7, 0);
     wB3 = buatWaktu(0, 0, 1, 0);
@@ -65,12 +67,12 @@ void tC1()
     buatTeks("000", &idUM6);
     buatAksiLokasi(&aL6, aLT6, 2, 2, 0, 1, 5, 0);
 
-    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
-    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
-    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3);
-    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4);
-    buatMakanan(&temp5, namaM5, idTM5, idUM5, wB5, wS5, aL5);
-    buatMakanan(&temp6, namaM6, idTM6, idUM6, wB6, wS6, aL6);
+    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1, panjang, lebar);
+    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2, panjang, lebar);
+    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3, panjang, lebar);
+    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4, panjang, lebar);
+    buatMakanan(&temp5, namaM5, idTM5, idUM5, wB5, wS5, aL5, panjang, lebar);
+    buatMakanan(&temp6, namaM6, idTM6, idUM6, wB6, wS6, aL6, panjang, lebar);
 
     // Uji membuat queue
     buatFQKosong(&dq, 5);
@@ -114,6 +116,8 @@ void tC2()
     Makanan temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9;
     Waktu wB1, wB2, wB3, wB4, wB5, wB6, wB7, wB8, wB9;
     Waktu wS1, wS2, wS3, wS4, wS5, wS6, wS7, wS8, wS9;
+    int panjang = 6;
+    int lebar = 4;
     wB1 = buatWaktu(0, 0, 5, 0);
     wB2 = buatWaktu(0, 0, 6, 0);
     wB3 = buatWaktu(0, 0, 7, 0);
@@ -190,14 +194,14 @@ void tC2()
     buatTeks("000", &idUM8);
     buatAksiLokasi(&aL8, aLT8, 2, 2, 0, 1, 5, 0);
 
-    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
-    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
-    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3);
-    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4);
-    buatMakanan(&temp5, namaM5, idTM5, idUM5, wB5, wS5, aL5);
-    buatMakanan(&temp6, namaM6, idTM6, idUM6, wB6, wS6, aL6);
-    buatMakanan(&temp7, namaM7, idTM7, idUM7, wB7, wS7, aL7);
-    buatMakanan(&temp8, namaM8, idTM8, idUM8, wB8, wS8, aL8);
+    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1, panjang, lebar);
+    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2, panjang, lebar);
+    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3, panjang, lebar);
+    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4, panjang, lebar);
+    buatMakanan(&temp5, namaM5, idTM5, idUM5, wB5, wS5, aL5, panjang, lebar);
+    buatMakanan(&temp6, namaM6, idTM6, idUM6, wB6, wS6, aL6, panjang, lebar);
+    buatMakanan(&temp7, namaM7, idTM7, idUM7, wB7, wS7, aL7, panjang, lebar);
+    buatMakanan(&temp8, namaM8, idTM8, idUM8, wB8, wS8, aL8, panjang, lebar);
 
     // Uji membuat queue
     buatFQKosong(&dq, 5);
@@ -243,6 +247,8 @@ void tC3()
     Makanan temp1, temp2;
     Waktu wB1, wB2;
     Waktu wS1, wS2;
+    int panjang = 6;
+    int lebar = 4;
 
     wB1 = buatWaktu(0, 0, 59, 0);
     wB2 = buatWaktu(0, 0, 1, 0);
@@ -272,8 +278,8 @@ void tC3()
     buatTeks("000", &idUM2);
     buatAksiLokasi(&aL2, aLT2, 2, 2, 0, 1, 5, 0);
 
-    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
-    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
+    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1, panjang, lebar);
+    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2, panjang, lebar);
 
     // Uji membuat queue
     buatFQKosong(&dq, 5);
@@ -313,6 +319,8 @@ void tC4()
     Makanan temp1, temp2;
     Waktu wB1, wB2;
     Waktu wS1, wS2;
+    int panjang = 6;
+    int lebar = 4;
 
     wB1 = buatWaktu(0, 0, 58, 0);
     wB2 = buatWaktu(0, 0, 2, 0);
@@ -336,8 +344,8 @@ void tC4()
     buatTeks("000", &idUM2);
     buatAksiLokasi(&aL2, aLT2, 2, 2, 0, 1, 5, 0);
 
-    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
-    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
+    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1, panjang, lebar);
+    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2, panjang, lebar);
 
     // Uji membuat queue
     buatFQKosong(&dq, 5);
@@ -377,6 +385,8 @@ void tC5()
     Makanan temp1, temp2, temp3, temp4, temp5, temp6;
     Waktu wB1, wB2, wB3, wB4, wB5, wB6;
     Waktu wS1, wS2, wS3, wS4, wS5, wS6;
+    int panjang = 6;
+    int lebar = 4;
     wB1 = buatWaktu(0, 0, 50, 0);
     wB2 = buatWaktu(0, 0, 51, 0);
     wB3 = buatWaktu(0, 0, 52, 0);
@@ -435,12 +445,12 @@ void tC5()
     buatTeks("000", &idUM6);
     buatAksiLokasi(&aL6, aLT6, 2, 2, 0, 1, 5, 0);
 
-    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
-    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
-    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3);
-    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4);
-    buatMakanan(&temp5, namaM5, idTM5, idUM5, wB5, wS5, aL5);
-    buatMakanan(&temp6, namaM6, idTM6, idUM6, wB6, wS6, aL6);
+    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1, panjang, lebar);
+    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2, panjang, lebar);
+    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3, panjang, lebar);
+    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4, panjang, lebar);
+    buatMakanan(&temp5, namaM5, idTM5, idUM5, wB5, wS5, aL5, panjang, lebar);
+    buatMakanan(&temp6, namaM6, idTM6, idUM6, wB6, wS6, aL6, panjang, lebar);
 
     // Uji membuat queue
     buatFQKosong(&dq, 5);
@@ -484,6 +494,8 @@ void tC6()
     Makanan temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9;
     Waktu wB1, wB2, wB3, wB4, wB5, wB6, wB7, wB8, wB9;
     Waktu wS1, wS2, wS3, wS4, wS5, wS6, wS7, wS8, wS9;
+    int panjang = 6;
+    int lebar = 4;
     wB1 = buatWaktu(0, 5, 3, 0);
     wB2 = buatWaktu(0, 6, 7, 0);
     wB3 = buatWaktu(0, 19, 2, 0);
@@ -560,14 +572,14 @@ void tC6()
     buatTeks("000", &idUM8);
     buatAksiLokasi(&aL8, aLT8, 2, 2, 0, 1, 5, 0);
 
-    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
-    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
-    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3);
-    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4);
-    buatMakanan(&temp5, namaM5, idTM5, idUM5, wB5, wS5, aL5);
-    buatMakanan(&temp6, namaM6, idTM6, idUM6, wB6, wS6, aL6);
-    buatMakanan(&temp7, namaM7, idTM7, idUM7, wB7, wS7, aL7);
-    buatMakanan(&temp8, namaM8, idTM8, idUM8, wB8, wS8, aL8);
+    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1, panjang, lebar);
+    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2, panjang, lebar);
+    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3, panjang, lebar);
+    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4, panjang, lebar);
+    buatMakanan(&temp5, namaM5, idTM5, idUM5, wB5, wS5, aL5, panjang, lebar);
+    buatMakanan(&temp6, namaM6, idTM6, idUM6, wB6, wS6, aL6, panjang, lebar);
+    buatMakanan(&temp7, namaM7, idTM7, idUM7, wB7, wS7, aL7, panjang, lebar);
+    buatMakanan(&temp8, namaM8, idTM8, idUM8, wB8, wS8, aL8, panjang, lebar);
 
     // Uji membuat queue
     buatFQKosong(&dq, 5);
