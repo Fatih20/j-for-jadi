@@ -31,6 +31,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
     cetakTeks(command);
     printf("                       \n");
     printf("==================================================\n");
+    printf("\n Ketik 0 untuk keluar.\n\n");
     printf("Daftar Makanan yang Bisa dibuat");
     printf(": \n");
     int cnt = 1;
@@ -47,6 +48,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
     }
     int choice;
     boolean isChoiceValid;
+    boolean isExit = false;
     do
     {
         isChoiceValid = true;
@@ -65,6 +67,10 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
             else
             {
                 choice = teksToInt(elmtLDT(currentRowI, 0));
+                if (choice == 0)
+                {
+                    return;
+                }
                 if (choice <= 0 || choice > ListNodeNEff(daftarMakananTemp))
                 {
                     isChoiceValid = false;
@@ -75,45 +81,53 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
         {
             printf("Pilihan tidak dikenali!\n");
         }
-    } while (!isChoiceValid);
-    boolean success = true;
-    boolean isFirst = true;
-    Tree foodChoice = ListNodeELMT(daftarMakananTemp, choice - 1);
-    FoodQueue *inventory = &inventoryState(*currState);
-    FoodQueue *delivery = &deliveryState(*currState);
-    cnt = 1;
-    for (int i = 0; i < ListNodeNEff(Children(foodChoice)); i++)
-    {
-        if (!isMakananInList(&content(*inventory), NamaMakananTree(Child(foodChoice, i))))
+        else
         {
-            if (isFirst)
+            boolean success = true;
+            boolean isFirst = true;
+            Tree foodChoice = ListNodeELMT(daftarMakananTemp, choice - 1);
+            FoodQueue *inventory = &inventoryState(*currState);
+            FoodQueue *delivery = &deliveryState(*currState);
+            cnt = 1;
+            for (int i = 0; i < ListNodeNEff(Children(foodChoice)); i++)
             {
-                printf("Gagal membuat ");
-                cetakTeks(NamaMakananTree(foodChoice));
-                printf(" karena kamu tidak memiliki bahan berikut: \n");
-                isFirst = false;
+                if (!isMakananInList(&content(*inventory), NamaMakananTree(Child(foodChoice, i))))
+                {
+                    if (isFirst)
+                    {
+                        printf("Gagal membuat ");
+                        cetakTeks(NamaMakananTree(foodChoice));
+                        printf(" karena kamu tidak memiliki bahan berikut: \n");
+                        isFirst = false;
+                    }
+                    printf("%d. ", cnt);
+                    cetakTeks(NamaMakananTree(Child(foodChoice, i)));
+                    printf("\n");
+                    success = false;
+                    cnt++;
+                }
             }
-            printf("%d. ", cnt);
-            cetakTeks(NamaMakananTree(Child(foodChoice, i)));
-            printf("\n");
-            success = false;
-            cnt++;
+            if (success)
+            {
+                cetakTeks(NamaMakananTree(foodChoice));
+                printf(" berhasil dibuat dan sudah masuk ke inventory!\n");
+                for (int i = 0; i < ListNodeNEff(Children(foodChoice)); i++)
+                {
+                    Makanan temp;
+                    deleteByIdTipe(inventory, IdTipeTree(Child(foodChoice, i)), &temp);
+                }
+                waktuState(*currState) = jumlahWaktu(waktuState(*currState), durasi(AksiLokasiTree(foodChoice)));
+                majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)));
+                enqueueInventory(inventory, MakananTree(foodChoice));
+                *isChangeState = true;
+            }
+            else
+            {
+                *isChangeState = false;
+            }
+            free(daftarMakananTemp.child);
         }
-    }
-    if (success)
-    {
-        cetakTeks(NamaMakananTree(foodChoice));
-        printf(" berhasil dibuat dan sudah masuk ke inventory!");
-        waktuState(*currState) = jumlahWaktu(waktuState(*currState), durasi(AksiLokasiTree(foodChoice)));
-        majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)));
-        enqueueInventory(inventory, MakananTree(foodChoice));
-        *isChangeState = true;
-    }
-    else
-    {
-        *isChangeState = false;
-    }
-    free(daftarMakananTemp.child);
+    } while (!isChoiceValid || !isExit);
 }
 
 void displayCookbook(ListNode *daftarResep)

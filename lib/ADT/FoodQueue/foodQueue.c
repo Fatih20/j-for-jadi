@@ -179,7 +179,6 @@ int idxMakanan(FoodQueue FQ, Teks idTipe)
 {
     int i = 0;
     boolean found = false;
-    Teks idTipe;
     while (!found && i <= tailFQ(FQ))
     {
         found = teksSama(idTipe(elmtFQ((FQ), i)), idTipe);

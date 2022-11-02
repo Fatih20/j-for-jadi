@@ -136,7 +136,7 @@ int main(int argc, char const *argv[])
             }
         } while (!unameFilled);
 
-        printf("===================================================\n");
+        printf("===================================================\n\n");
         printf("                   BNMO MASAK-MASAK                \n");
     }
     Teks fryT;
