@@ -150,6 +150,27 @@ void insertAtLDinNotif(LDinNotif *l, LDinNtfEl val, IdxType idx)
     }
 }
 
+void insertFirstLDinNotifRaw(LDinNotif *l, char kode, Teks subject)
+{
+    Notif nTFToAdd;
+    buatNotif(kode, subject, &nTFToAdd);
+    insertFirstLDinNotif(l, nTFToAdd);
+};
+
+void insertLastLDinNotifRaw(LDinNotif *l, char kode, Teks subject)
+{
+    Notif nTFToAdd;
+    buatNotif(kode, subject, &nTFToAdd);
+    insertLastLDinNotif(l, nTFToAdd);
+};
+
+void insertAtLDinNotifRaw(LDinNotif *l, char kode, Teks subject, int idx)
+{
+    Notif nTFToAdd;
+    buatNotif(kode, subject, &nTFToAdd);
+    insertAtLDinNotif(l, nTFToAdd, idx);
+};
+
 void expandLDinNotif(LDinNotif *l, int num)
 {
     capacityLDN(*l) += num;

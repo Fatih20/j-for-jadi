@@ -16,9 +16,9 @@ void buatState(State *S, int x, int y, int HH, int JJ, int MM, int DD, FoodQueue
     waktuState(*S) = buatWaktu(HH, JJ, MM, DD);
     NotifState notifState;
     LDinNotif notifStateF;
-    buatLDinNotif(&notifState, 5);
+    buatLDinNotif(&notifStateF, 5);
     LDinNotif notifStateB;
-    buatLDinNotif(&notifState, 5);
+    buatLDinNotif(&notifStateB, 5);
     buatNotifState(&notifState, notifStateF, notifStateB);
     notifS(*S) = notifState;
 }

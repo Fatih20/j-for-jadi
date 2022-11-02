@@ -155,6 +155,34 @@ void insertLastLDinNotif(LDinNotif *l, LDinNtfEl val);
 void insertAtLDinNotif(LDinNotif *l, LDinNtfEl val, IdxType idx);
 
 /**
+ * @brief memasukkan sebagai elemen terakhir l sebuah notif dengan subject subject dan kodeNotif kode
+ *
+ * @param l
+ * @param kode
+ * @param subject
+ */
+void insertLastLDinNotifRaw(LDinNotif *l, char kode, Teks subject);
+
+/**
+ * @brief memasukkan sebagai elemen pertama l sebuah notif dengan subject subject dan kodeNotif kode
+ *
+ * @param l
+ * @param kode
+ * @param subject
+ */
+void insertFirstLDinNotifRaw(LDinNotif *l, char kode, Teks subject);
+
+/**
+ * @brief memasukkan sebagai elemen ke-idx l sebuah notif dengan subject subject dan kodeNotif kode
+ *
+ * @param l
+ * @param kode
+ * @param subject
+ * @param idx
+ */
+void insertAtLDinNotifRaw(LDinNotif *l, char kode, Teks subject, int idx);
+
+/**
  * @brief Mengeluarkan elemen pertama dari l lalu menyimpannya ke dalam X
  *
  * @param l

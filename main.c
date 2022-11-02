@@ -104,6 +104,11 @@ int main(int argc, char const *argv[])
         buatFQKosong(&deliveryQ, 20);
         buatSimulator(&BNMO, userName, Absis(lokasiSimulator), Ordinat(lokasiSimulator), inventoryQ);
         buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ, deliveryQ);
+        State initialState;
+        copyState(cState, &initialState);
+        Absis(posisiState(initialState)) = -1;
+        Ordinat(posisiState(initialState)) = -1;
+        Push(&stackUndo, initialState);
         // Load username
         boolean unameFilled = false;
         do
@@ -176,9 +181,13 @@ int main(int argc, char const *argv[])
     {
         displayCondition(cState, peta, justUndo, &stackUndo);
         Teks command;
-        justUndo = false;
+        LDinNotif forwardN;
+        buatLDinNotif(&forwardN, 5);
+        LDinNotif backwardN;
+        buatLDinNotif(&backwardN, 5);
         do
         {
+            justUndo = false;
             isCommandValid = true;
             printf("Enter command: ");
             startMBInput();
@@ -195,7 +204,7 @@ int main(int argc, char const *argv[])
             {
                 if (teksSama(command, buyT))
                 {
-                    buyFood(lSMakanan, &cState, TELEPON, &isChangeState);
+                    buyFood(lSMakanan, &cState, TELEPON, &isChangeState, &forwardN, &backwardN);
                     isUndoRedo = false;
                 }
                 else if (teksSama(command, fryT) || teksSama(command, boilT) || teksSama(command, mixT) || teksSama(command, chopT))
@@ -310,6 +319,8 @@ int main(int argc, char const *argv[])
                     {
                         expandStack(&stackUndo, 10);
                     }
+                    backNS(notifS(InfoTop(stackUndo))) = backwardN;
+                    forNS(notifS(salinanState)) = forwardN;
                     Push(&stackUndo, salinanState);
                 }
             }
