@@ -22,6 +22,13 @@ typedef struct
 void buatNotifState(NotifState *notifState, LDinNotif forward, LDinNotif backward);
 
 /**
+ * @brief Membuat notifState dengan forward dan backward kosong
+ *
+ * @param notifState
+ */
+void buatNotifStateR(NotifState *notifState);
+
+/**
  * @brief  Membuat salinan nSIn ke nSOut
  *
  * @param nSIn
