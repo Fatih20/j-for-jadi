@@ -43,6 +43,7 @@ void copyState(State SIn, State *SOut)
     FoodQueue inventorySalinan;
     FoodQueue deliverySalinan;
     POINT posisi;
+    NotifState notifSSalinan;
     int HH, JJ, MM, DD;
     copyFoodQueue(inventoryState(SIn), &inventorySalinan);
     inventoryState(*SOut) = inventorySalinan;
@@ -54,7 +55,8 @@ void copyState(State SIn, State *SOut)
     JJ = Jam(waktuState(SIn));
     MM = Menit(waktuState(SIn));
     DD = Detik(waktuState(SIn));
-    notifS(*SOut) = notifS(SIn);
+    copyNotifState(notifS(SIn), &notifSSalinan);
+    notifS(*SOut) = notifSSalinan;
 
     waktuState(*SOut) = buatWaktu(HH, JJ, MM, DD);
 }

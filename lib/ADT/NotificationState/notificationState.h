@@ -21,4 +21,12 @@ typedef struct
  */
 void buatNotifState(NotifState *notifState, LDinNotif forward, LDinNotif backward);
 
+/**
+ * @brief  Membuat salinan nSIn ke nSOut
+ *
+ * @param nSIn
+ * @param nSOut
+ */
+void copyNotifState(NotifState nSIn, NotifState *nSOut);
+
 #endif
