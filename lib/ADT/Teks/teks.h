@@ -115,6 +115,13 @@ boolean teksLPanjang(Teks t1, Teks t2);
 void gabungkanTeks(Teks t1, Teks t2, Teks *t3);
 
 /**
+ * @brief Fungsi untuk menambahkan t2 ke t1. t1 harus sudah terdefinisi.
+ * @param t1 target teks
+ * @param t2 source teks
+ */
+void tambahkanTeks(Teks *t1, Teks t2);
+
+/**
  * @brief mengembalikan true jika teks t adalah sebuah integer
  *
  * @param t

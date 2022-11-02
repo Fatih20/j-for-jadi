@@ -197,7 +197,7 @@ void displayInventory(FoodQueue iQ)
     printf("\n");
 }
 
-void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState)
+void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState, LDinNotif *forwardNotif, LDinNotif *backwardNotif)
 {
     if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))
     {
@@ -259,6 +259,7 @@ void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolea
     printf(" akan diantar dalam ");
     tulisWaktu(sampaiDalam(boughtFood));
     printf("\n");
+    insertLastLDinNotifRaw(backwardNotif, 'p', namaMakanan(boughtFood));
     Waktu time;
     time = buatWaktu(0, 0, 1, 0);
     majukanWaktuState(currState, time);
@@ -271,7 +272,7 @@ void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
     POINT p;
     // ALGORITMA
 
-    if (!IsEmptyStack(*stackUndo)) // Jika stack undo tak kosong
+    if (!IsEmptyStack(*stackUndo) && Absis(posisiState(InfoTop(*stackUndo))) != -1) // Jika stack undo tak kosong dan elemen top-nya bukan initialState
     {
         if (IsFullStack(*stackRedo))
         {
@@ -291,6 +292,16 @@ void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
         {
             shrinkStack(stackUndo, ((Capacity(*stackUndo) / 2) - 5));
         }
+    }
+    else if (!IsEmptyStack(*stackUndo) && Absis(posisiState(InfoTop(*stackUndo))) == -1)
+    {
+        LDinNotif notifF;
+        LDinNotif notifB;
+        buatLDinNotif(&notifF, 5);
+        buatLDinNotif(&notifB, 5);
+        NotifState notifS;
+        buatNotifState(&notifS, notifF, notifB);
+        notifS(InfoTop(*stackUndo)) = notifS;
     }
 }
 

@@ -7,6 +7,7 @@
 #include "lib/Utility/String/String.h"
 #include "lib/Utility/Commands/commands.h"
 #include "lib/Utility/String/String.h"
+#include "lib/Utility/Output/output.h"
 
 int main(int argc, char const *argv[])
 {
@@ -103,6 +104,11 @@ int main(int argc, char const *argv[])
         buatFQKosong(&deliveryQ, 20);
         buatSimulator(&BNMO, userName, Absis(lokasiSimulator), Ordinat(lokasiSimulator), inventoryQ);
         buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ, deliveryQ);
+        State initialState;
+        copyState(cState, &initialState);
+        Absis(posisiState(initialState)) = -1;
+        Ordinat(posisiState(initialState)) = -1;
+        Push(&stackUndo, initialState);
         // Load username
         boolean unameFilled = false;
         do
@@ -170,21 +176,18 @@ int main(int argc, char const *argv[])
     Teks deliveryT;
     buatTeks("DELIVERY", &deliveryT);
 
+    boolean justUndo = false;
     while (!exiting)
     {
-        printf("\n===================================================\n");
-        printf("\n");
-        printf("BNMO di posisi: ");
-        TulisPOINT(posisiState(cState));
-        printf("\n");
-        printf("Waktu: ");
-        tulisWaktuDot(waktuState(cState));
-        printf("\n");
-        displayMatriks(peta);
-        printf("\n");
+        displayCondition(cState, peta, justUndo, &stackUndo);
         Teks command;
+        LDinNotif forwardN;
+        buatLDinNotif(&forwardN, 5);
+        LDinNotif backwardN;
+        buatLDinNotif(&backwardN, 5);
         do
         {
+            justUndo = false;
             isCommandValid = true;
             printf("Enter command: ");
             startMBInput();
@@ -201,7 +204,7 @@ int main(int argc, char const *argv[])
             {
                 if (teksSama(command, buyT))
                 {
-                    buyFood(lSMakanan, &cState, TELEPON, &isChangeState);
+                    buyFood(lSMakanan, &cState, TELEPON, &isChangeState, &forwardN, &backwardN);
                     isUndoRedo = false;
                 }
                 else if (teksSama(command, fryT) || teksSama(command, boilT) || teksSama(command, mixT) || teksSama(command, chopT))
@@ -224,6 +227,7 @@ int main(int argc, char const *argv[])
                 else if (teksSama(command, undoT))
                 {
                     isUndoRedo = true;
+                    justUndo = true;
                     undo(&cState, &stackUndo, &stackRedo, salinanState, &peta);
                 }
                 else if (teksSama(command, redoT))
@@ -315,6 +319,8 @@ int main(int argc, char const *argv[])
                     {
                         expandStack(&stackUndo, 10);
                     }
+                    backNS(notifS(InfoTop(stackUndo))) = backwardN;
+                    forNS(notifS(salinanState)) = forwardN;
                     Push(&stackUndo, salinanState);
                 }
             }

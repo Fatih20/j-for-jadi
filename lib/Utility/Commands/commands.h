@@ -38,8 +38,11 @@ void displayInventory(FoodQueue iQ);
  * @param currState
  * @param Telepon aksiLokasi telepon
  * @param isChangeStack Apakah state berubah atau tidak
+ * @param forwardNotif list berisi notifikasi forward. Sudah terdefinisi.
+ * @param backwardNotif list berisi notifikasi backward. Sudah terdefinisi.
+ *
  */
-void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeStack);
+void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState, LDinNotif *forwardNotif, LDinNotif *backwardNotif);
 
 /**
  * @brief Prosedur Undo, Mengubah currState menjadi state satu action sebelumnya
