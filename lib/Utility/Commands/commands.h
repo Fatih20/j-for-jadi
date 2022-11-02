@@ -88,6 +88,6 @@ void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
  *@param TELEPON : AksiLokasi telepon
  * /
  */
-void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON);
+void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, NotifState *notifS);
 
 #endif

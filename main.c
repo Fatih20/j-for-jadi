@@ -260,7 +260,7 @@ int main(int argc, char const *argv[])
                     Teks direction = elmtLDT(currentRowI, 1);
                     if (teksSama(direction, southT) || teksSama(direction, northT) || teksSama(direction, westT) || teksSama(direction, eastT))
                     {
-                        moveS(&cState, &peta, &BNMO, &isChangeState, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON);
+                        moveS(&cState, &peta, &BNMO, &isChangeState, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON, &currentNS);
                         isUndoRedo = false;
                     }
                     else
@@ -287,7 +287,7 @@ int main(int argc, char const *argv[])
                         JJ = teksToInt(x);
                         MM = teksToInt(y);
                         time = buatWaktu(0, JJ, MM, 0);
-                        majukanWaktuState(&cState, time);
+                        majukanWaktuState(&cState, time, &currentNS);
                     }
                 }
                 else
