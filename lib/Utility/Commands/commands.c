@@ -293,6 +293,16 @@ void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
             shrinkStack(stackUndo, ((Capacity(*stackUndo) / 2) - 5));
         }
     }
+    else if (!IsEmptyStack(*stackUndo) && Absis(posisiState(InfoTop(*stackUndo))) == -1)
+    {
+        LDinNotif notifF;
+        LDinNotif notifB;
+        buatLDinNotif(&notifF, 5);
+        buatLDinNotif(&notifB, 5);
+        NotifState notifS;
+        buatNotifState(&notifS, notifF, notifB);
+        notifS(InfoTop(*stackUndo)) = notifS;
+    }
 }
 
 void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta)
