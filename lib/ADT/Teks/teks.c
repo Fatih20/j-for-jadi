@@ -54,6 +54,15 @@ boolean teksSama(Teks t1, Teks t2)
     return same;
 };
 
+void tambahkanTeks(Teks *t1, Teks t2)
+{
+    int pT2 = panjangT(t2);
+    for (int i = 0; i < pT2; i++)
+    {
+        plusKar(t1, nthChar(t2, i));
+    }
+};
+
 boolean teksLPendek(Teks t1, Teks t2)
 {
     return panjangT(t1) < panjangT(t2);
@@ -92,3 +101,26 @@ int teksToInt(Teks t)
     }
     return val;
 }
+
+boolean isTeksInt(Teks t)
+{
+    for (int i = 0; i < panjangT(t); i++)
+    {
+        if (elmtLDC(karArrayT(t), i) < '0' || elmtLDC(karArrayT(t), i) > '9')
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void teksKeString(char string[], Teks teks)
+{
+    int i = 0;
+    while (i < panjangT(teks))
+    {
+        string[i] = nthChar(teks, i);
+        i++;
+    }
+    string[i] = '\0';
+};

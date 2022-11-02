@@ -7,8 +7,6 @@
 /**
  * @brief String pengganti string yang memiliki batas 100 karakter
  * @param karArray array berisi karakter dari String
- * @param length panjang dari String
- *
  */
 typedef struct
 {
@@ -62,6 +60,14 @@ void plusKar(Teks *teks, char kar);
 void delKar(Teks *teks);
 
 /**
+ * @brief mengubah t menjadi string. String harus lebih dahulu diinisialisasikan dengan panjang minimal panjang t ditambah 1
+ *
+ * @param t teks yang akan diubah menjadi string
+ * @param string string yang sudah diinisialisasi dengan panjang panjangT ditambah 1
+ */
+void teksKeString(char string[], Teks teks);
+
+/**
  * @brief Fungsi untuk membandingkan dua teks dan mengecek kesamaannya
  * @param t1 teks yang ingin dibandingkan
  * @param t2 teks yang ingin dibandingkan
@@ -107,6 +113,21 @@ boolean teksLPanjang(Teks t1, Teks t2);
  * @return teks baru yang merupakan penggabungan kedua teks
  */
 void gabungkanTeks(Teks t1, Teks t2, Teks *t3);
+
+/**
+ * @brief Fungsi untuk menambahkan t2 ke t1. t1 harus sudah terdefinisi.
+ * @param t1 target teks
+ * @param t2 source teks
+ */
+void tambahkanTeks(Teks *t1, Teks t2);
+
+/**
+ * @brief mengembalikan true jika teks t adalah sebuah integer
+ *
+ * @param t
+ * @return boolean
+ */
+boolean isTeksInt(Teks t);
 
 /**
  * @brief mengembalikan integer yang direpresentasikan oleh teks t
