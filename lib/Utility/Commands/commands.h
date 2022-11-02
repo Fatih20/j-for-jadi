@@ -10,7 +10,16 @@
 #include "../../ADT/Simulator/simulator.h"
 #include "../../ADT/MBInput/mBInput.h"
 
-void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState, boolean *isChangeStack);
+/**
+ * @brief prosedur untuk melakukan pengolahan makanan
+ *
+ * @param command command yang hendak dilakukan (FRY, MIX, BOIL, atau CHOP)
+ * @param daftarResep daftar resep yang ada
+ * @param daftarMakanan daftar makanan yang ada
+ * @param currState current state
+ * @param isChangeState boolean untuk menyimpan apakah terjadi perubahan state atau tidak
+ */
+void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean *isChangeState);
 
 void displayCookbook(ListNode *daftarResep);
 

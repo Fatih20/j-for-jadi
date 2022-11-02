@@ -3,7 +3,7 @@
 #include "../Input/input.h"
 #include <stdlib.h>
 
-void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNode *daftarResep, LStatMakanan *daftarMakanan, State *currState, boolean *isChangeState)
+void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean *isChangeState)
 {
     for (int i = 0; i < ListNodeNEff(*daftarResep); i++)
     {
@@ -79,10 +79,12 @@ void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNo
     boolean success = true;
     boolean isFirst = true;
     Tree foodChoice = ListNodeELMT(daftarMakananTemp, choice - 1);
+    FoodQueue inventory = inventoryState(*currState);
+    FoodQueue delivery = deliveryState(*currState);
     cnt = 1;
     for (int i = 0; i < ListNodeNEff(Children(foodChoice)); i++)
     {
-        if (!isMakananInList(&content(*inventory), NamaMakananTree(Child(foodChoice, i))))
+        if (!isMakananInList(&content(inventory), NamaMakananTree(Child(foodChoice, i))))
         {
             if (isFirst)
             {
@@ -103,9 +105,8 @@ void olahMakanan(Teks command, FoodQueue *inventory, FoodQueue *delivery, ListNo
         cetakTeks(NamaMakananTree(foodChoice));
         printf(" berhasil dibuat dan sudah masuk ke inventory!");
         waktuState(*currState) = jumlahWaktu(waktuState(*currState), durasi(AksiLokasiTree(foodChoice)));
-        majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)));
-        enqueueInventory(inventory, MakananTree(foodChoice));
-        inventoryState(*currState) = *inventory;
+        majukanWFQ(&delivery, &inventory, durasi(AksiLokasiTree(foodChoice)));
+        enqueueInventory(&inventory, MakananTree(foodChoice));
         *isChangeState = true;
     }
     else

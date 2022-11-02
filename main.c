@@ -209,7 +209,7 @@ int main(int argc, char const *argv[])
                 }
                 else if (teksSama(command, fryT) || teksSama(command, boilT) || teksSama(command, mixT) || teksSama(command, chopT))
                 {
-                    olahMakanan(command, &inventoryQ, &deliveryQ, &lResep, &lSMakanan, &cState, &isChangeState);
+                    olahMakanan(command, &lResep, &cState, &isChangeState);
                     isUndoRedo = false;
                 }
                 else if (teksSama(command, cookBT))
