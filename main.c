@@ -288,6 +288,7 @@ int main(int argc, char const *argv[])
                         MM = teksToInt(y);
                         time = buatWaktu(0, JJ, MM, 0);
                         majukanWaktuState(&cState, time, &currentNS);
+                        isChangeState = true;
                     }
                 }
                 else
