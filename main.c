@@ -171,10 +171,10 @@ int main(int argc, char const *argv[])
     Teks deliveryT;
     buatTeks("DELIVERY", &deliveryT);
 
-    boolean justUndo;
+    boolean justUndo = false;
     while (!exiting)
     {
-        displayCondition(cState, peta);
+        displayCondition(cState, peta, justUndo, &stackUndo);
         Teks command;
         justUndo = false;
         do

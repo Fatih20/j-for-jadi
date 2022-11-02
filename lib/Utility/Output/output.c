@@ -1,7 +1,7 @@
 #include "output.h"
-#include "stdio.h"
+#include <stdio.h>
 
-void displayCondition(State cState, Matriks peta)
+void displayCondition(State cState, Matriks peta, boolean justUndo, Stack *undoStack)
 {
     printf("\n===================================================\n");
     printf("\n");
@@ -11,6 +11,21 @@ void displayCondition(State cState, Matriks peta)
     printf("Waktu: ");
     tulisWaktuDot(waktuState(cState));
     printf("\n");
+    if (IsEmptyStack(*undoStack))
+    {
+        printf("Notifikasi : -\n");
+    }
+    else
+    {
+        if (justUndo)
+        {
+            printLDinNotif(backNS(notifS(InfoTop(*undoStack))));
+        }
+        else
+        {
+            printLDinNotif(forNS(notifS(InfoTop(*undoStack))));
+        }
+    }
     displayMatriks(peta);
     printf("\n");
 };

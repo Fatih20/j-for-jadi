@@ -70,3 +70,17 @@ void majukanWaktuState(State *S, Waktu waktu)
     // Memajukan waktu di deliveryState
     majukanWDQ(&deliveryState(*S), &inventoryState(*S), waktu);
 }
+
+void tambahNotifF(char kode, Teks subject, State *state)
+{
+    Notif addedNotif;
+    buatNotif(kode, subject, &addedNotif);
+    insertLastLDinNotif(&(forNS(notifS(*state))), addedNotif);
+}
+
+void tambahNotifB(char kode, Teks subject, State *state)
+{
+    Notif addedNotif;
+    buatNotif(kode, subject, &addedNotif);
+    insertLastLDinNotif(&(backNS(notifS(*state))), addedNotif);
+};

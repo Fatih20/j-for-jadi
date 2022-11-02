@@ -75,4 +75,22 @@ void majukanWaktuState(State *S, Waktu waktu);
  */
 boolean isEqualState(State S1, State S2);
 
+/**
+ * @brief Menambahkan notif forward ke state
+ *
+ * @param kode
+ * @param subject
+ * @param state
+ */
+void tambahNotifF(char kode, Teks subject, State *state);
+
+/**
+ * @brief Menambahkan notif backward ke state
+ *
+ * @param kode
+ * @param subject
+ * @param state
+ */
+void tambahNotifB(char kode, Teks subject, State *state);
+
 #endif
