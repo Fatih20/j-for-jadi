@@ -157,9 +157,9 @@ void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2)
     copyLDinMakanan(FQ1.content, &(content(*FQ2)));
 };
 
-void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal)
+void deleteByIdTipe(FoodQueue *FQ, Teks idTipe, Makanan *deletedVal)
 {
-    int deletedIdx = idxMakanan(*FQ, idTipeS);
+    int deletedIdx = idxMakanan(*FQ, idTipe);
     if (deletedIdx != IDX_UNDEF)
     {
         if (nElmt(*FQ) == 1)
@@ -175,12 +175,11 @@ void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal)
     }
 };
 
-int idxMakanan(FoodQueue FQ, char idTipeS[])
+int idxMakanan(FoodQueue FQ, Teks idTipe)
 {
     int i = 0;
     boolean found = false;
     Teks idTipe;
-    buatTeks(idTipeS, &idTipe);
     while (!found && i <= tailFQ(FQ))
     {
         found = teksSama(idTipe(elmtFQ((FQ), i)), idTipe);

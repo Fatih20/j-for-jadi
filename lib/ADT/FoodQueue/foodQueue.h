@@ -164,7 +164,7 @@ void copyFoodQueue(FoodQueue FQ1, FoodQueue *FQ2);
  * @param deletedVal alamat tempat makanan yang dihapus akan disimpan
  *
  */
-void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal);
+void deleteByIdTipe(FoodQueue *FQ, Teks idTipe, Makanan *deletedVal);
 
 /**
  * @brief Mengembalikan indeks makanan paling awal dari tipe yang diberikan
@@ -173,7 +173,7 @@ void deleteByIdTipe(FoodQueue *FQ, char idTipeS[], Makanan *deletedVal);
  * @param idTipe id dari tipe makanan yang ingin dicari
  * @return int indeks dari tipe makanan yang diberikan yang paling awal dalam queue. -1 jika makanan tidak ada.
  */
-int idxMakanan(FoodQueue FQ, char idTipeS[]);
+int idxMakanan(FoodQueue FQ, Teks idTipe);
 
 /**
  * @brief Men-dequeue elemen di-head yang memiliki waktu basi 0 sampai elemen di-head belum basi. Gunakan sesuai spek parameter.
