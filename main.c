@@ -139,8 +139,8 @@ int main(int argc, char const *argv[])
         printf("===================================================\n\n");
         printf("                   BNMO MASAK-MASAK                \n");
     }
-    Teks fryT;
-    buatTeks("FRY", &fryT);
+    // Teks fryT;
+    // buatTeks("FRY", &fryT);
     Teks chopT;
     buatTeks("CHOP", &chopT);
     Teks boilT;
