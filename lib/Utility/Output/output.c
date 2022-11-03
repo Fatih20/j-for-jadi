@@ -23,6 +23,7 @@ void displayCondition(State cState, Matriks peta, boolean justUndo, Stack *undoS
         }
         else
         {
+            // printf("Printing notif");
             printLDinNotif(forNS(notifS(InfoTop(*undoStack))));
         }
     }

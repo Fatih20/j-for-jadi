@@ -61,16 +61,14 @@ void copyState(State SIn, State *SOut)
     waktuState(*SOut) = buatWaktu(HH, JJ, MM, DD);
 }
 
-void majukanWaktuState(State *S, Waktu waktu)
+void majukanWaktuState(State *S, Waktu waktu, NotifState *nS)
 {
     // Memajukan waktuState
     long detik;
     detik = waktuToDetik(waktu);
     waktuState(*S) = nextNDetik(waktuState(*S), detik);
-    // Memajukan waktu di inventoryState
-    majukanWIQ(&inventoryState(*S), waktu);
-    // Memajukan waktu di deliveryState
-    majukanWDQ(&deliveryState(*S), &inventoryState(*S), waktu);
+    // Majukan waktu
+    majukanWFQ(&deliveryState(*S), &inventoryState(*S), waktu, nS);
 }
 
 void tambahNotifF(char kode, Teks subject, State *state)

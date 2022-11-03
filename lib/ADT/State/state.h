@@ -65,7 +65,7 @@ void copyState(State SIn, State *SOut);
  * @param S: State yang akan berubah
  * @param waktu: Waktu yang dimajukan
  */
-void majukanWaktuState(State *S, Waktu waktu);
+void majukanWaktuState(State *S, Waktu waktu, NotifState *nS);
 /**
  * @brief Mengembalikan true jika kedua state sama
  *

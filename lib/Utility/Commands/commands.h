@@ -11,15 +11,17 @@
 #include "../../ADT/MBInput/mBInput.h"
 
 /**
- * @brief prosedur untuk melakukan pengolahan makanan
+ * @brief prosedur untuk melakukan pengolahan makanan. Mencatat yang terjadi ke notifS
  *
  * @param command command yang hendak dilakukan (FRY, MIX, BOIL, atau CHOP)
  * @param daftarResep daftar resep yang ada
  * @param daftarMakanan daftar makanan yang ada
  * @param currState current state
  * @param isChangeState boolean untuk menyimpan apakah terjadi perubahan state atau tidak
+ * @param notifS
+ *
  */
-void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean *isChangeState);
+void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean *isChangeState, NotifState *notifS);
 
 void displayCookbook(ListNode *daftarResep);
 
@@ -40,18 +42,17 @@ void displayDelivery(FoodQueue dQ);
 void displayInventory(FoodQueue iQ);
 
 /**
- * @brief Fungsi yang meng-handle pembelian makanan. Panggil ketika command BUY dimasukkan
+ * @brief Fungsi yang meng-handle pembelian makanan. Panggil ketika command BUY dimasukkan. Menyimpan record hal yang terjadi ke notifState.
  *
  * @param DQ
  * @param daftarMakanan
  * @param currState
  * @param Telepon aksiLokasi telepon
  * @param isChangeStack Apakah state berubah atau tidak
- * @param forwardNotif list berisi notifikasi forward. Sudah terdefinisi.
- * @param backwardNotif list berisi notifikasi backward. Sudah terdefinisi.
+ * @param notifState
  *
  */
-void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState, LDinNotif *forwardNotif, LDinNotif *backwardNotif);
+void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState, NotifState *notifS);
 
 /**
  * @brief Prosedur Undo, Mengubah currState menjadi state satu action sebelumnya
@@ -87,6 +88,6 @@ void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
  *@param TELEPON : AksiLokasi telepon
  * /
  */
-void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON);
+void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, NotifState *notifS);
 
 #endif

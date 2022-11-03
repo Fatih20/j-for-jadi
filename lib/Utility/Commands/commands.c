@@ -3,7 +3,7 @@
 #include "../Input/input.h"
 #include <stdlib.h>
 
-void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean *isChangeState)
+void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean *isChangeState, NotifState *notifS)
 {
     for (int i = 0; i < ListNodeNEff(*daftarResep); i++)
     {
@@ -115,9 +115,12 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
                 {
                     Makanan temp;
                     deleteByIdTipe(inventory, IdTipeTree(Child(foodChoice, i)), &temp);
+                    Notif notifTemp;
+                    buatNotifCookUndo(command, namaMakanan(temp), &notifTemp);
+                    insertLastLDinNotif(&backNS(*notifS), notifTemp);
                 }
                 waktuState(*currState) = jumlahWaktu(waktuState(*currState), durasi(AksiLokasiTree(foodChoice)));
-                majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)));
+                majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)), notifS);
                 enqueueInventory(inventory, MakananTree(foodChoice));
                 *isChangeState = true;
             }
@@ -208,12 +211,13 @@ void displayInventory(FoodQueue iQ)
             cetakTeks(namaMakanan(mToShow));
             printf(" - ");
             tulisWaktu(basiDalam(mToShow));
+            printf("\n");
         }
     }
     printf("\n");
 }
 
-void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState, LDinNotif *forwardNotif, LDinNotif *backwardNotif)
+void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState, NotifState *notifS)
 {
     if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))
     {
@@ -275,10 +279,10 @@ void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolea
     printf(" akan diantar dalam ");
     tulisWaktu(sampaiDalam(boughtFood));
     printf("\n");
-    insertLastLDinNotifRaw(backwardNotif, 'p', namaMakanan(boughtFood));
+    insertLastLDinNotifRaw(&backNS(*notifS), 'p', namaMakanan(boughtFood));
     Waktu time;
     time = buatWaktu(0, 0, 1, 0);
-    majukanWaktuState(currState, time);
+    majukanWaktuState(currState, time, notifS);
     *isChangeState = true;
     enqueueDelivery(&deliveryState(*currState), boughtFood);
 };
@@ -346,7 +350,7 @@ void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
         }
     }
 }
-void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON)
+void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, NotifState *notifS)
 {
     // KAMUS LOKAL
     Teks north, east, south, west;
@@ -406,7 +410,7 @@ void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState
         }
         waktu = buatWaktu(0, 0, 1, 0);
         lokasiS(*S) = dest;
-        majukanWaktuState(currState, waktu);
+        majukanWaktuState(currState, waktu, notifS);
     }
     else // Jika tak bisa berpindah
     {

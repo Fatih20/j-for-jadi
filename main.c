@@ -181,10 +181,8 @@ int main(int argc, char const *argv[])
     {
         displayCondition(cState, peta, justUndo, &stackUndo);
         Teks command;
-        LDinNotif forwardN;
-        buatLDinNotif(&forwardN, 5);
-        LDinNotif backwardN;
-        buatLDinNotif(&backwardN, 5);
+        NotifState currentNS;
+        buatNotifStateR(&currentNS);
         do
         {
             justUndo = false;
@@ -204,12 +202,12 @@ int main(int argc, char const *argv[])
             {
                 if (teksSama(command, buyT))
                 {
-                    buyFood(lSMakanan, &cState, TELEPON, &isChangeState, &forwardN, &backwardN);
+                    buyFood(lSMakanan, &cState, TELEPON, &isChangeState, &currentNS);
                     isUndoRedo = false;
                 }
                 else if (teksSama(command, fryT) || teksSama(command, boilT) || teksSama(command, mixT) || teksSama(command, chopT))
                 {
-                    olahMakanan(command, &lResep, &cState, &isChangeState);
+                    olahMakanan(command, &lResep, &cState, &isChangeState, &currentNS);
                     isUndoRedo = false;
                 }
                 else if (teksSama(command, cookBT))
@@ -262,7 +260,7 @@ int main(int argc, char const *argv[])
                     Teks direction = elmtLDT(currentRowI, 1);
                     if (teksSama(direction, southT) || teksSama(direction, northT) || teksSama(direction, westT) || teksSama(direction, eastT))
                     {
-                        moveS(&cState, &peta, &BNMO, &isChangeState, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON);
+                        moveS(&cState, &peta, &BNMO, &isChangeState, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON, &currentNS);
                         isUndoRedo = false;
                     }
                     else
@@ -289,7 +287,8 @@ int main(int argc, char const *argv[])
                         JJ = teksToInt(x);
                         MM = teksToInt(y);
                         time = buatWaktu(0, JJ, MM, 0);
-                        majukanWaktuState(&cState, time);
+                        majukanWaktuState(&cState, time, &currentNS);
+                        isChangeState = true;
                     }
                 }
                 else
@@ -319,8 +318,8 @@ int main(int argc, char const *argv[])
                     {
                         expandStack(&stackUndo, 10);
                     }
-                    backNS(notifS(InfoTop(stackUndo))) = backwardN;
-                    forNS(notifS(salinanState)) = forwardN;
+                    backNS(notifS(InfoTop(stackUndo))) = backNS(currentNS);
+                    forNS(notifS(salinanState)) = forNS(currentNS);
                     Push(&stackUndo, salinanState);
                 }
             }

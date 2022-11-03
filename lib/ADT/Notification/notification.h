@@ -31,8 +31,18 @@ Teks notifTeks(Notif ntf);
  *
  * @param kode
  * @param subject
+ * @param notif
  */
 void buatNotif(char kode, Teks subject, Notif *notif);
+
+/**
+ * @brief Membuat sebuah notif khusus masak sesuai command yang diberikan dan subject
+ *
+ * @param command
+ * @param subject
+ * @param notif
+ */
+void buatNotifCookUndo(Teks command, Teks subject, Notif *notif);
 
 /**
  * @brief Mencetak notif dengan format sesuai spek

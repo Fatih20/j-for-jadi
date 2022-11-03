@@ -6,6 +6,15 @@ void buatNotifState(NotifState *notifState, LDinNotif forward, LDinNotif backwar
     backNS(*notifState) = backward;
 };
 
+void buatNotifStateR(NotifState *notifState)
+{
+    LDinNotif forward;
+    LDinNotif backward;
+    buatLDinNotif(&forward, 5);
+    buatLDinNotif(&backward, 5);
+    buatNotifState(notifState, forward, backward);
+};
+
 void copyNotifState(NotifState nSIn, NotifState *nSOut)
 {
     LDinNotif salinanF;
