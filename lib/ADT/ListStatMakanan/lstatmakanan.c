@@ -10,7 +10,7 @@ Makanan getMarkLStatMakanan()
     Waktu markWaktu = buatWaktu(-1, -1, -1, -1);
     AksiLokasi markAksi;
     buatAksiLokasi(&markAksi, markTeks, -1, -1, -1, -1, -1, -1);
-    buatMakanan(&MARK, markTeks, markTeks, markTeks, markWaktu, markWaktu, markAksi);
+    buatMakanan(&MARK, markTeks, markTeks, markTeks, markWaktu, markWaktu, markAksi, -1, -1);
     return MARK;
 }
 
@@ -118,8 +118,13 @@ void readLStatMakanan(LStatMakanan *l, char *file, AksiLokasi aLArray[])
         /* BUAT AKSI LOKASI */
         AksiLokasi aksiTemp;
         buatAksiLokasi(&aksiTemp, aksi, Absis(tempatAksi), Ordinat(tempatAksi), hariOlah, jamOlah, menitOlah, 0);
+
+        /* DAPATKAN PANJANG DAN LEBAR */
+        advMBFile();
+        int panjang = teksToInt(elmtLDT(currentRow, 0));
+        int lebar = teksToInt(elmtLDT(currentRow, 1));
         /* BUAT MAKANAN */
-        buatMakanan(&makananTemp, namaTemp, idTemp, idTemp, waktuKad, waktuKirim, aksiTemp);
+        buatMakanan(&makananTemp, namaTemp, idTemp, idTemp, waktuKad, waktuKirim, aksiTemp, panjang, lebar);
         /* MASUKKAN MAKANAN KE LSTAT */
         insertLastLStatMakanan(l, makananTemp);
     }
