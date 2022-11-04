@@ -7,7 +7,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
 {
     for (int i = 0; i < ListNodeNEff(*daftarResep); i++)
     {
-        if (teksSama(AksiTree(ListNodeELMT(*daftarResep, i)), command))
+        if (teksSamaCI(AksiTree(ListNodeELMT(*daftarResep, i)), command))
         {
             if (IsAdjacent(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))), posisiSimulator(*currSimulator)))
             {
@@ -37,7 +37,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
     int cnt = 1;
     for (int i = 0; i < ListNodeNEff(*daftarResep); i++)
     {
-        if (teksSama(command, AksiTree(ListNodeELMT(*daftarResep, i))))
+        if (teksSamaCI(command, AksiTree(ListNodeELMT(*daftarResep, i))))
         {
             insertLastListNode(&daftarMakananTemp, ListNodeELMT(*daftarResep, i));
             printf("%d. ", cnt);
@@ -245,7 +245,7 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
     {
         Teks teksAksiM = aksi(aksiLokasi(elmtLSM(lMakanan, i)));
         // cetakMakanan(elmtLSM(lMakanan, i));
-        if (teksSama(buyT, teksAksiM))
+        if (teksSamaCI(buyT, teksAksiM))
         {
             Makanan mBuyable = elmtLSM(lMakanan, i);
             printf("%d.", nBuyable + 1);
@@ -366,22 +366,22 @@ void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeSimulator, 
     buatTeks("WEST", &west);
 
     // Menentukan dest
-    if (teksSama(north, direction))
+    if (teksSamaCI(north, direction))
     {
         dest = PlusDelta(posisiSimulator(*currSimulator), (-1) * displacement, 0); // Dest Bergeser ke utara
         arah = 1;
     }
-    else if (teksSama(east, direction))
+    else if (teksSamaCI(east, direction))
     {
         dest = PlusDelta(posisiSimulator(*currSimulator), 0, displacement); // Dest Bergeser ke timur
         arah = 2;
     }
-    else if (teksSama(south, direction))
+    else if (teksSamaCI(south, direction))
     {
         dest = PlusDelta(posisiSimulator(*currSimulator), displacement, 0); // Dest Bergeser ke selatan
         arah = 3;
     }
-    else if (teksSama(west, direction))
+    else if (teksSamaCI(west, direction))
     {
         dest = PlusDelta(posisiSimulator(*currSimulator), 0, (-1) * displacement); // Dest Bergeser ke barat
         arah = 4;
