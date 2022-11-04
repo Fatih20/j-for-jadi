@@ -74,7 +74,6 @@ int main(int argc, char const *argv[])
     LStatMakanan lSMakanan;
     ListNode lResep;
     POINT lokasiSimulator;
-    Simulator BNMO;
     Teks userName;
     AksiLokasi MIX;
     AksiLokasi BOIL;
@@ -83,14 +82,16 @@ int main(int argc, char const *argv[])
     AksiLokasi TELEPON;
     FoodQueue inventoryQ;
     FoodQueue deliveryQ;
-    State cState;
-    State salinanState;
+    Simulator currSimulator;
+    Simulator salinanSimulator;
+    Kulkas kulkas;
     Stack stackUndo, stackRedo;
     // Inisialisasi
     CreateEmptyStack(&stackUndo, 10);
     CreateEmptyStack(&stackRedo, 10);
+    buatKulkas(&kulkas);
     boolean isCommandValid = true;
-    boolean isChangeState = true;
+    boolean isChangeSimulator = true;
     boolean isUndoRedo = false;
 
     if (entering)
@@ -99,16 +100,17 @@ int main(int argc, char const *argv[])
         printf("Masukkan lokasi folder config relatif terhadap root folder :\n");
         startMBInput();
         Teks inputFolder = elmtLDT(currentRowI, 0);
+        Teks fulan;
+        buatTeks("Fulan", &fulan);
         loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON, inputFolder);
         buatFQKosong(&inventoryQ, 20);
         buatFQKosong(&deliveryQ, 20);
-        buatSimulator(&BNMO, userName, Absis(lokasiSimulator), Ordinat(lokasiSimulator), inventoryQ);
-        buatState(&cState, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ, deliveryQ);
-        State initialState;
-        copyState(cState, &initialState);
-        Absis(posisiState(initialState)) = -1;
-        Ordinat(posisiState(initialState)) = -1;
-        Push(&stackUndo, initialState);
+        buatSimulator(&currSimulator, fulan, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ, deliveryQ, kulkas);
+        Simulator initialSimulator;
+        copySimulator(currSimulator, &initialSimulator);
+        Absis(posisiSimulator(initialSimulator)) = -1;
+        Ordinat(posisiSimulator(initialSimulator)) = -1;
+        Push(&stackUndo, initialSimulator);
         // Load username
         boolean unameFilled = false;
         do
@@ -132,7 +134,7 @@ int main(int argc, char const *argv[])
             else
             {
                 userName = elmtLDT(currentRowI, 1);
-                userNameS(BNMO) = userName;
+                userNameSimulator(currSimulator) = userName;
             }
         } while (!unameFilled);
 
@@ -179,7 +181,7 @@ int main(int argc, char const *argv[])
     boolean justUndo = false;
     while (!exiting)
     {
-        displayCondition(cState, peta, justUndo, &stackUndo);
+        displayCondition(currSimulator, peta, justUndo, &stackUndo);
         Teks command;
         NotifState currentNS;
         buatNotifStateR(&currentNS);
@@ -196,56 +198,56 @@ int main(int argc, char const *argv[])
             else
             {
                 command = elmtLDT(currentRowI, 0);
-                copyState(cState, &salinanState);
+                copySimulator(currSimulator, &salinanSimulator);
             }
             if (panjangLDinTeks(currentRowI) == 1)
             {
                 if (teksSama(command, buyT))
                 {
-                    buyFood(lSMakanan, &cState, TELEPON, &isChangeState, &currentNS);
+                    buyFood(lSMakanan, &currSimulator, TELEPON, &isChangeSimulator, &currentNS);
                     isUndoRedo = false;
                 }
                 else if (teksSama(command, fryT) || teksSama(command, boilT) || teksSama(command, mixT) || teksSama(command, chopT))
                 {
-                    olahMakanan(command, &lResep, &cState, &isChangeState, &currentNS);
+                    olahMakanan(command, &lResep, &currSimulator, &isChangeSimulator, &currentNS);
                     isUndoRedo = false;
                 }
                 else if (teksSama(command, cookBT))
                 {
                     displayCookbook(&lResep);
                     isUndoRedo = false;
-                    isChangeState = false;
+                    isChangeSimulator = false;
                 }
                 else if (teksSama(command, ctlgT))
                 {
                     displayCatalog(&lSMakanan);
                     isUndoRedo = false;
-                    isChangeState = false;
+                    isChangeSimulator = false;
                 }
                 else if (teksSama(command, undoT))
                 {
                     isUndoRedo = true;
                     justUndo = true;
-                    undo(&cState, &stackUndo, &stackRedo, salinanState, &peta);
+                    undo(&currSimulator, &stackUndo, &stackRedo, salinanSimulator, &peta);
                 }
                 else if (teksSama(command, redoT))
                 {
                     isUndoRedo = true;
-                    redo(&cState, &stackUndo, &stackRedo, salinanState, &peta);
+                    redo(&currSimulator, &stackUndo, &stackRedo, salinanSimulator, &peta);
                 }
                 else if (teksSama(command, inventoryT))
                 {
-                    displayInventory(inventoryState(cState));
-                    isChangeState = false;
+                    displayInventory(inventorySimulator(currSimulator));
+                    isChangeSimulator = false;
                 }
                 else if (teksSama(command, deliveryT))
                 {
-                    displayDelivery(deliveryState(cState));
-                    isChangeState = false;
+                    displayDelivery(deliverySimulator(currSimulator));
+                    isChangeSimulator = false;
                 }
                 else if (teksSama(command, zeroT))
                 {
-                    isChangeState = false;
+                    isChangeSimulator = false;
                     exiting = true;
                 }
                 else
@@ -260,7 +262,7 @@ int main(int argc, char const *argv[])
                     Teks direction = elmtLDT(currentRowI, 1);
                     if (teksSama(direction, southT) || teksSama(direction, northT) || teksSama(direction, westT) || teksSama(direction, eastT))
                     {
-                        moveS(&cState, &peta, &BNMO, &isChangeState, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON, &currentNS);
+                        moveS(&currSimulator, &peta, &isChangeSimulator, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON, &currentNS);
                         isUndoRedo = false;
                     }
                     else
@@ -287,8 +289,8 @@ int main(int argc, char const *argv[])
                         JJ = teksToInt(x);
                         MM = teksToInt(y);
                         time = buatWaktu(0, JJ, MM, 0);
-                        majukanWaktuState(&cState, time, &currentNS);
-                        isChangeState = true;
+                        majukanWaktuSimulator(&currSimulator, time, &currentNS);
+                        isChangeSimulator = true;
                     }
                 }
                 else
@@ -307,7 +309,7 @@ int main(int argc, char const *argv[])
             else
             {
                 // Push stack undo dan delete all stack redo jika terjadi perubahan state dan bukan undo redo
-                if (isChangeState && !isUndoRedo)
+                if (isChangeSimulator && !isUndoRedo)
                 {
                     if (!IsEmptyStack(stackRedo))
                     {
@@ -318,9 +320,9 @@ int main(int argc, char const *argv[])
                     {
                         expandStack(&stackUndo, 10);
                     }
-                    backNS(notifS(InfoTop(stackUndo))) = backNS(currentNS);
-                    forNS(notifS(salinanState)) = forNS(currentNS);
-                    Push(&stackUndo, salinanState);
+                    backNS(notifSimulator(InfoTop(stackUndo))) = backNS(currentNS);
+                    forNS(notifSimulator(salinanSimulator)) = forNS(currentNS);
+                    Push(&stackUndo, salinanSimulator);
                 }
             }
         } while (!isCommandValid);

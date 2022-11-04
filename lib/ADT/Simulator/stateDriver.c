@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "state.h"
+#include "simulator.h"
 
 int main()
 {
-    State state;
+    Simulator simulator;
     int absis = 4;
     int ordinat = 5;
     FoodQueue inventory;
@@ -49,28 +49,28 @@ int main()
     buatTeks("000", &idUM4);
     buatAksiLokasi(&aL4, aLT4, 2, 2, 0, 1, 5, 0);
 
-    buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
-    buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
-    buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3);
-    buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4);
+    // buatMakanan(&temp1, namaM1, idTM1, idUM1, wB1, wS1, aL1);
+    // buatMakanan(&temp2, namaM2, idTM2, idUM2, wB2, wS2, aL2);
+    // buatMakanan(&temp3, namaM3, idTM3, idUM3, wB3, wS3, aL3);
+    // buatMakanan(&temp4, namaM4, idTM4, idUM4, wB4, wS4, aL4);
 
     // Uji membuat queue
     buatFQKosong(&inventory, 5);
 
     // Uji print tiap enqueue inventory baru
-    printf("Tes enqueue delivery\n\n");
-    enqueueDelivery(&inventory, temp1);
-    buatState(&state, absis, ordinat, 0, 0, 10, 0, inventory);
-    cetakState(state);
-    enqueueDelivery(&inventory, temp2);
-    buatState(&state, absis, ordinat, 0, 0, 15, 0, inventory);
-    cetakState(state);
-    enqueueDelivery(&inventory, temp3);
-    buatState(&state, absis, ordinat, 0, 0, 20, 0, inventory);
-    cetakState(state);
-    enqueueDelivery(&inventory, temp4);
-    buatState(&state, absis, ordinat, 0, 0, 25, 0, inventory);
-    cetakState(state);
+    // printf("Tes enqueue delivery\n\n");
+    // enqueueDelivery(&inventory, temp1);
+    // buatSimulator(&simulator, absis, ordinat, 0, 0, 10, 0, inventory);
+    // cetakSimulator(simulator);
+    // enqueueDelivery(&inventory, temp2);
+    // buatSimulator(&simulator, absis, ordinat, 0, 0, 15, 0, inventory);
+    // cetakSimulator(simulator);
+    // enqueueDelivery(&inventory, temp3);
+    // buatSimulator(&simulator, absis, ordinat, 0, 0, 20, 0, inventory);
+    // cetakSimulator(simulator);
+    // enqueueDelivery(&inventory, temp4);
+    // buatSimulator(&simulator, absis, ordinat, 0, 0, 25, 0, inventory);
+    // cetakSimulator(simulator);
 }
 
 /*
