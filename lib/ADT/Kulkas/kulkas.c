@@ -85,10 +85,10 @@ void cetakKulkas(Kulkas k)
         for (int i = 0; i < panjangLDinMakanan(makananKulkas(k)); i++)
         {
             printf("%d. Nama makanan: ", i + 1);
-            cetakTeks(namaMakanan(elmtLDM(makananKulkas(k), i)));
+            cetakTeks(namaMakanan(elmtLDM(makananKulkas(k), i)), 'b');
             printf("\n");
             printf("   ID makanan: ");
-            cetakTeks(idUnik(elmtLDM(makananKulkas(k), i)));
+            cetakTeks(idUnik(elmtLDM(makananKulkas(k), i)), 'c');
             printf("\n\n");
         }
     }
@@ -259,7 +259,7 @@ void keluarkanIsiKulkas(Kulkas *k, Makanan *makanan)
         }
     }
     printf("Makanan ");
-    cetakTeks(namaMakanan(*makanan));
+    cetakTeks(namaMakanan(*makanan), 'b');
     printf("berhasil dikeluarkan.\n");
     cetakKulkas(*k);
 }

@@ -27,14 +27,14 @@ void displayTree(Tree t)
         if (!isEmptyListNode(Children(t)))
         {
             printf("Buat ");
-            cetakTeks(NamaMakananTree(t));
+            cetakTeks(NamaMakananTree(t), 'b');
             printf(" : ");
-            cetakTeks(AksiTree(t));
+            cetakTeks(AksiTree(t), 'm');
             printf(" - ");
         }
         for (int i = 0; i < ListNodeNEff(Children(t)); i++)
         {
-            cetakTeks(NamaMakananTree(Child(t, i)));
+            cetakTeks(NamaMakananTree(Child(t, i)), 'b');
             if (i != ListNodeNEff((Children(t))) - 1)
             {
                 printf(", ");
@@ -149,7 +149,7 @@ void displayListNode(ListNode l)
     for (int i = 0; i < ListNodeNEff(l); i++)
     {
         printf("%d. ", i + 1);
-        cetakTeks(NamaMakananTree(ListNodeELMT(l, i)));
+        cetakTeks(NamaMakananTree(ListNodeELMT(l, i)), 'b');
         printf("\n");
     }
 }

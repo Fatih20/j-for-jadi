@@ -18,20 +18,23 @@ int main(int argc, char const *argv[])
     char baris[200];
     FILE *fpointer = fopen("robot.txt", "r");
 
-    for (i = 0; i < 16; i++)
+    for (i = 0; i < 19; i++)
     {
         fgets(baris, 200, fpointer);
-        printf("%s", baris);
+        printSBlue(baris);
     }
-    printf("\n");
-    printf("Hai! Aku BNMO\n");
-    printf("Selamat datang di program simulasi masak\n");
+    printSCyan("\n\n                         Hai! Aku BNMO                      \n\n");
+    printSCyan("============================================================\n");
+    printSYellow("          SELAMAT DATANG DI PROGRAM SIMULASI MASAK         \n");
+    printSCyan("============================================================\n");
     printf("\n");
     printf("Berikut adalah cara menjalankan program simulasi ini\n");
-    printf("1. Ketik START dan tekan enter untuk mulai menjalankan program simulasi\n");
-    printf("2. Ketik EXIT dan tekan enter mengakhiri program simulasi\n");
-    printf("\n");
-    printf("mari kita cobaaa\n");
+    printf("1. Ketik ");
+    printSGreen("START");
+    printf(" dan tekan enter untuk mulai menjalankan program simulasi\n");
+    printf("2. Ketik ");
+    printSRed("EXIT");
+    printf(" dan tekan enter mengakhiri program simulasi\n");
     printf("\n");
 
     /* Struktur main */
@@ -51,7 +54,11 @@ int main(int argc, char const *argv[])
 
     do
     {
-        printf("Masukkan command (START atau EXIT) : \n");
+        printf("Masukkan command (");
+        printSGreen("START");
+        printf(" atau ");
+        printSRed("EXIT");
+        printf("): ");
         startMBInput();
         if (panjangLDinTeks(currentRowI) != 1)
         {
@@ -97,7 +104,7 @@ int main(int argc, char const *argv[])
     if (entering)
     {
         // Load config
-        printf("Masukkan lokasi folder config relatif terhadap root folder :\n");
+        printf("\nMasukkan lokasi folder config relatif terhadap root folder: ");
         startMBInput();
         Teks inputFolder = elmtLDT(currentRowI, 0);
         Teks fulan;
@@ -115,7 +122,7 @@ int main(int argc, char const *argv[])
         boolean unameFilled = false;
         do
         {
-            printf("Username (without space) :\n");
+            printf("\nUsername (without space): ");
             startMBInput();
             int panjangU = panjangLDinTeks(currentRowI);
             unameFilled = panjangU == 1;
@@ -138,8 +145,10 @@ int main(int argc, char const *argv[])
             }
         } while (!unameFilled);
 
-        printf("===================================================\n\n");
-        printf("                   BNMO MASAK-MASAK                \n");
+        printSCyan("============================================================\n\n");
+        printSYellow("                          HI,  ");
+        cetakTeks(elmtLDT(currentRowI, 0), 'y');
+        printf("                 \n");
     }
     Teks fryT;
     buatTeks("FRY", &fryT);
@@ -191,6 +200,7 @@ int main(int argc, char const *argv[])
             isCommandValid = true;
             printf("Enter command: ");
             startMBInput();
+            printf("\n");
             if (panjangLDinTeks(currentRowI) < 1)
             {
                 isCommandValid = false;
@@ -245,7 +255,7 @@ int main(int argc, char const *argv[])
                     displayDelivery(deliverySimulator(currSimulator));
                     isChangeSimulator = false;
                 }
-                else if (teksSamaCI(command, zeroT))
+                else if (teksSamaCI(command, exitTeks))
                 {
                     isChangeSimulator = false;
                     exiting = true;
@@ -304,7 +314,7 @@ int main(int argc, char const *argv[])
             }
             if (!isCommandValid)
             {
-                printf("Command tidak dikenali!\n");
+                printSRed("\nCommand tidak dikenali!\n");
             }
             else
             {
@@ -327,5 +337,8 @@ int main(int argc, char const *argv[])
             }
         } while (!isCommandValid);
     }
+    printSCyan("\n============================================================\n");
+    printSGreen("      Terima kasih telah memasak bersama BNMO <3 <3 <3     \n");
+    printSCyan("============================================================\n");
     return 0;
 }

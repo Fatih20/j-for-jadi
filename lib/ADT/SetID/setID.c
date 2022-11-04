@@ -234,10 +234,10 @@ void printSetID(SetID S)
         i = 0;
         for (i = 0; i < (lengthSet(S) - 1); i++)
         {
-            cetakTeks(elmtSetID(S, i));
+            cetakTeks(elmtSetID(S, i), 'b');
             printf(",");
         }
-        cetakTeks(elmtSetID(S, (lengthSet(S) - 1)));
+        cetakTeks(elmtSetID(S, (lengthSet(S) - 1)), 'c');
     }
     printf("]");
 }

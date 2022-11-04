@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
     Teks t2;
     buatTeks("1%^6&*FATIHGAY1", &t2);
 
-    cetakTeks(toUpper(t1));
+    cetakTeks(toUpper(t1), 'r');
 
     // printf("%d\n", teksSamaCI(t1, t2));
     // char tString[100];

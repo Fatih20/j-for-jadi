@@ -135,13 +135,13 @@ void printLStatMakanan(LStatMakanan l)
 {
     for (int i = 0; i < panjangLStatMakanan(l); i++)
     {
-        printf("%d. ", i + 1);
-        cetakTeks(namaMakanan(elmtLSM(l, i)));
+        printf("    %d. ", i + 1);
+        cetakTeks(namaMakanan(elmtLSM(l, i)), 'b');
         printf(" - ");
         /* CETAK WAKTU*/
         tulisWaktu(basiDalam(elmtLSM(l, i)));
         printf(" - ");
-        cetakTeks(aksi(aksiLokasi(elmtLSM(l, i))));
+        cetakTeks(aksi(aksiLokasi(elmtLSM(l, i))), 'm');
         printf(" - ");
         tulisWaktu(sampaiDalam(elmtLSM(l, i)));
         /* ga pake cetakMakanan krn ini idUniknya undefined*/
