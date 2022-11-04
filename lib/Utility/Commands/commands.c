@@ -187,7 +187,7 @@ void displayDelivery(FoodQueue dQ)
     }
     else
     {
-        printf("List Makanan di dalam Perjalanan\n\n");
+        printSYellow("List Makanan di dalam Perjalanan\n\n");
         printf("Nama Makanan - Waktu Sisa Delivery\n");
         for (int i = 0; i < panjangDQ; i++)
         {
@@ -242,8 +242,8 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
     printSCyan("============================================================\n");
     printSYellow("                             BUY                            \n");
     printSCyan("============================================================\n\n");
-    printSYellow("List Bahan Makanan yang Bisa Dibeli:\n");
-    printf("Nama Makanan ( Waktu pengiriman )\n");
+    printSYellow("List Bahan Makanan yang Bisa Dibeli:\n\n");
+    printf("Nama Makanan - Waktu pengiriman\n");
     int lastIdx = lastIdxLStatMakanan(lMakanan);
     int nBuyable = 0;
     Teks buyT;
@@ -260,9 +260,9 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
             Makanan mBuyable = elmtLSM(lMakanan, i);
             printf("    %d. ", nBuyable + 1);
             cetakTeks(namaMakanan(mBuyable), 'b');
-            printf(" ( ");
+            printf(" - ");
             tulisWaktu(sampaiDalam(mBuyable));
-            printf(")\n");
+            printf("\n");
             insertLastLDinMakanan(&mBuyableList, mBuyable);
             nBuyable++;
         }
@@ -287,7 +287,7 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
     cetakTeks(namaMakanan(boughtFood), 'b');
     printf(". ");
     cetakTeks(namaMakanan(boughtFood), 'b');
-    printf(" akan diantar dalam ");
+    printf(" akan sampai dalam ");
     tulisWaktu(sampaiDalam(boughtFood));
     printf("\n");
     insertLastLDinNotifRaw(&backNS(*notifS), 'p', namaMakanan(boughtFood));
@@ -451,11 +451,11 @@ void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeSimulator, 
         {
             if (isBorder(*peta, dest))
             {
-                printf("Tidak bisa berpindah karena merupakan batas peta!\n");
+                printSRed("Tidak bisa berpindah karena merupakan batas peta!\n");
             }
             else
             {
-                printf("Tidak bisa berpindah karena merupakan tembok!\n");
+                printSRed("Tidak bisa berpindah karena merupakan tembok!\n");
             }
         }
     }

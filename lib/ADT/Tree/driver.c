@@ -5,10 +5,11 @@ int main()
 {
     ListNode t;
     LStatMakanan daftarMakanan;
+    AksiLokasi al;
     buatLStatMakanan(&daftarMakanan);
-    readLStatMakanan(&daftarMakanan, "../../../config/makanancfg.txt");
+    readLStatMakanan(&daftarMakanan, "../../../config/tc1/makanan.txt", &al);
     printLStatMakanan(daftarMakanan);
-    readListNode(&t, "../../../config/resepcfg.txt", daftarMakanan);
+    readListNode(&t, "../../../config/tc1/resep.txt", daftarMakanan);
     displayListNode(t);
     printf("%d", ListNodeNEff(t));
     // Teks minyak;

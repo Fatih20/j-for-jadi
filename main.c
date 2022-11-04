@@ -140,7 +140,7 @@ int main(int argc, char const *argv[])
             }
             else
             {
-                userName = elmtLDT(currentRowI, 1);
+                userName = elmtLDT(currentRowI, 0);
                 userNameSimulator(currSimulator) = userName;
             }
         } while (!unameFilled);
@@ -338,7 +338,8 @@ int main(int argc, char const *argv[])
         } while (!isCommandValid);
     }
     printSCyan("\n============================================================\n");
-    printSGreen("      Terima kasih telah memasak bersama BNMO <3 <3 <3     \n");
+    printSGreen("      Terima kasih telah memasak bersama BNMO ");
+    printSRed("<3 <3 <3     \n");
     printSCyan("============================================================\n");
     return 0;
 }

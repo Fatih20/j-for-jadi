@@ -1,1 +1,1 @@
-gcc lstatmakananDriver.c ../Makanan/makanan.c lstatmakanan.c ../Teks/teks.c ../MKFile/mKFile.c ../MCFile/mCFile.c ../MBFile/mBfile.c ../ListDinTeks/ldinteks.c ../ListDinKar/ldinkar.c ../Waktu/waktu.c
+gcc lstatmakananDriver.c ../Makanan/makanan.c lstatmakanan.c ../Teks/teks.c ../MKFile/mKFile.c ../MCFile/mCFile.c ../MBFile/mBfile.c ../ListDinTeks/ldinteks.c ../ListDinKar/ldinkar.c ../Waktu/waktu.c ../../Utility/Printc/printc.c ../AksiLokasi/aksiLokasi.c ../Point/point.c

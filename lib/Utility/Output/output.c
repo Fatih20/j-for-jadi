@@ -5,7 +5,8 @@ void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stac
 {
     printSCyan("\n============================================================\n\n");
     printf("\n");
-    printf("BNMO di posisi: ");
+    cetakTeks(userNameSimulator(cSimulator), 'n');
+    printf(" di posisi: ");
     TulisPOINT(posisiSimulator(cSimulator));
     printf("\n");
     printf("Waktu: ");
