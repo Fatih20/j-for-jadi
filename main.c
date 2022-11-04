@@ -16,13 +16,81 @@ int main(int argc, char const *argv[])
     /* Convert gambar ke txt, baca per baris, diprint ke layar */
     int i;
     char baris[200];
-    FILE *fpointer = fopen("robot.txt", "r");
-
-    for (i = 0; i < 19; i++)
-    {
-        fgets(baris, 200, fpointer);
-        printSBlue(baris);
-    }
+    // FILE *fpointer = fopen("robot.txt", "r");
+    printSRed("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@@");
+    printSCyan(",**/////*#######....#########");
+    printSRed("@@@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@@");
+    printSCyan(",****** ##**#%&&&&&&&&&&%##(##,");
+    printSRed("@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@");
+    printSCyan("&*.******#/                  (#.");
+    printSRed("@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@");
+    printSCyan("(**,****##*                  (#.");
+    printSRed("@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@");
+    printSCyan(",*******##*      ^ \\/ ^      (#.");
+    printSRed("@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@&  @@@@@");
+    printSCyan(",*   ***##*                  (#,");
+    printSRed("@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@");
+    printSCyan(",(");
+    printSRed("@@@@@");
+    printSCyan(",*    *,##*                  (#*");
+    printSRed("@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@");
+    printSCyan("%,(");
+    printSRed("@@@@");
+    printSCyan(",*, . *.###..................(#*");
+    printSRed("@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@");
+    printSCyan(" ((");
+    printSRed("@@");
+    printSCyan(",**,  * #######################&");
+    printSRed("@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@");
+    printSCyan("# ((((/ ,* ######");
+    printSYellow("==");
+    printSCyan("###### * ###### .");
+    printSRed("&@@@@@@@@@@@\n@@@@@@@@@@@@@@@");
+    printSCyan("&*   ** #####");
+    printSYellow("====");
+    printSCyan("#########.. #/@,,((*");
+    printSRed("@@@@@@@@\n@@@@@@@@@@@@@@@@");
+    printSCyan(" ***** ######");
+    printSYellow("==");
+    printSCyan("######  * ####,");
+    printSRed("@@@@@( @@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@@@@@@");
+    printSCyan("..####################### ");
+    printSRed("@@@@@@");
+    printSCyan("/");
+    printSRed("@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@@@@@@@@@@@");
+    printSCyan("*( ");
+    printSRed("@@@@@@@@@");
+    printSCyan("*( ");
+    printSRed("@@@@@@@@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@@@@@@@@@@@");
+    printSCyan("*( ");
+    printSRed("@@@@@@@@@");
+    printSCyan("*( ");
+    printSRed("@@@@@@@@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@@@@@@@@@@@");
+    printSCyan(".(( ");
+    printSRed("@@@@@@@@");
+    printSCyan(".(( ");
+    printSRed("@@@@@@@@@@@@@@@@@@@\n");
+    printSRed("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+    // for (i = 0; i < 19; i++)
+    // {
+    //     fgets(baris, 200, fpointer);
+    //     printSRed(baris);
+    // }
     printSCyan("\n\n                         Hai! Aku BNMO                      \n\n");
     printSCyan("============================================================\n");
     printSYellow("          SELAMAT DATANG DI PROGRAM SIMULASI MASAK         \n");
