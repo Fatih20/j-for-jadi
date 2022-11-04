@@ -2,7 +2,6 @@
 #define COMMANDS_H
 #include "../../ADT/Tree/tree.h"
 #include <stdio.h>
-#include "../../ADT/State/state.h"
 #include "../../ADT/FoodQueue/foodQueue.h"
 #include "../../ADT/AksiLokasi/aksiLokasi.h"
 #include "../../ADT/Stack/stack.h"
@@ -16,12 +15,12 @@
  * @param command command yang hendak dilakukan (FRY, MIX, BOIL, atau CHOP)
  * @param daftarResep daftar resep yang ada
  * @param daftarMakanan daftar makanan yang ada
- * @param currState current state
- * @param isChangeState boolean untuk menyimpan apakah terjadi perubahan state atau tidak
+ * @param currSimulator current simulator
+ * @param isChangeSimulator boolean untuk menyimpan apakah terjadi perubahan simulator atau tidak
  * @param notifS
  *
  */
-void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean *isChangeState, NotifState *notifS);
+void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, boolean *isChangeSimulator, NotifState *notifS);
 
 void displayCookbook(ListNode *daftarResep);
 
@@ -48,37 +47,36 @@ void displayInventory(FoodQueue iQ);
  * @param daftarMakanan
  * @param currState
  * @param Telepon aksiLokasi telepon
- * @param isChangeStack Apakah state berubah atau tidak
+ * @param isChangeSimulator Apakah simulator berubah atau tidak
  * @param notifState
  *
  */
-void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState, NotifState *notifS);
+void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon, boolean *isChangeSimulator, NotifState *notifS);
 
 /**
- * @brief Prosedur Undo, Mengubah currState menjadi state satu action sebelumnya
- * @param currState: State saat ini
- * @param stackUndo: Stack of State Undo
- * @param stackRedo: Stack of State Redo
- * @param salinanState: Salinan state sebelum aksi
+ * @brief Prosedur Undo, Mengubah currSimulator menjadi simulator satu action sebelumnya
+ * @param currSimulator: Simulator saat ini
+ * @param stackUndo: Stack of Simulator Undo
+ * @param stackRedo: Stack of Simulator Redo
+ * @param salinanSimulator: Salinan simulator sebelum aksi
  * @param peta
  */
-void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta);
+void undo(Simulator *currSimulator, Stack *stackUndo, Stack *stackRedo, Simulator salinanSimulator, Matriks *peta);
 
 /**
- * @brief Prosedur Redo, Mengubah currState menjadi state satu action setelahnya
- * @param currState: State saat ini
- * @param stackUndo: Stack of State Undo
- * @param stackRedo: Stack of State Redo
- * @param salinanState: Salinan state sebelum aksi
+ * @brief Prosedur Redo, Mengubah currSimulator menjadi simulator satu action setelahnya
+ * @param currSimulator: Simulator saat ini
+ * @param stackUndo: Stack of Simulator Undo
+ * @param stackRedo: Stack of Simulator Redo
+ * @param salinanSimulator: Salinan simulator sebelum aksi
  * @param peta
  */
-void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta);
+void redo(Simulator *currSimulator, Stack *stackUndo, Stack *stackRedo, Simulator salinanSimulator, Matriks *peta);
 /**
  *@brief Prosedur untuk memindahkan simulator
- *@param currState: State Saat ini
+ *@param currSimulator: Simulator Saat ini
  *@param peta
- *@param S : Simulator
- *@param isChangeState: Apakah state berubah atau tidak
+ *@param isChangeSimulator: Apakah simulator berubah atau tidak
  *@param direction : Arah perpindahan
  *@param displacement : Besar perpindahan
  *@param MIX : AksiLokasi mix
@@ -88,6 +86,6 @@ void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
  *@param TELEPON : AksiLokasi telepon
  * /
  */
-void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, NotifState *notifS);
+void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, NotifState *notifS);
 
 #endif

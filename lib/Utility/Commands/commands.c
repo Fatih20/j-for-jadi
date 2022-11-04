@@ -3,13 +3,13 @@
 #include "../Input/input.h"
 #include <stdlib.h>
 
-void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean *isChangeState, NotifState *notifS)
+void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, boolean *isChangeSimulator, NotifState *notifS)
 {
     for (int i = 0; i < ListNodeNEff(*daftarResep); i++)
     {
         if (teksSama(AksiTree(ListNodeELMT(*daftarResep, i)), command))
         {
-            if (IsAdjacent(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))), posisiState(*currState)))
+            if (IsAdjacent(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))), posisiSimulator(*currSimulator)))
             {
                 break;
             }
@@ -86,8 +86,8 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
             boolean success = true;
             boolean isFirst = true;
             Tree foodChoice = ListNodeELMT(daftarMakananTemp, choice - 1);
-            FoodQueue *inventory = &inventoryState(*currState);
-            FoodQueue *delivery = &deliveryState(*currState);
+            FoodQueue *inventory = &inventorySimulator(*currSimulator);
+            FoodQueue *delivery = &deliverySimulator(*currSimulator);
             cnt = 1;
             for (int i = 0; i < ListNodeNEff(Children(foodChoice)); i++)
             {
@@ -119,14 +119,14 @@ void olahMakanan(Teks command, ListNode *daftarResep, State *currState, boolean 
                     buatNotifCookUndo(command, namaMakanan(temp), &notifTemp);
                     insertLastLDinNotif(&backNS(*notifS), notifTemp);
                 }
-                waktuState(*currState) = jumlahWaktu(waktuState(*currState), durasi(AksiLokasiTree(foodChoice)));
+                waktuSimulator(*currSimulator) = jumlahWaktu(waktuSimulator(*currSimulator), durasi(AksiLokasiTree(foodChoice)));
                 majukanWFQ(delivery, inventory, durasi(AksiLokasiTree(foodChoice)), notifS);
                 enqueueInventory(inventory, MakananTree(foodChoice));
-                *isChangeState = true;
+                *isChangeSimulator = true;
             }
             else
             {
-                *isChangeState = false;
+                *isChangeSimulator = false;
             }
             free(daftarMakananTemp.child);
         }
@@ -217,15 +217,15 @@ void displayInventory(FoodQueue iQ)
     printf("\n");
 }
 
-void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolean *isChangeState, NotifState *notifS)
+void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon, boolean *isChangeSimulator, NotifState *notifS)
 {
-    if (!IsAdjacent(lokasiAL(telepon), posisiState(*currState)))
+    if (!IsAdjacent(lokasiAL(telepon), posisiSimulator(*currSimulator)))
     {
         printf("\nBNMO tidak berada pada area telepon!\n");
         printf("Pindah ke ");
         TulisPOINT(lokasiAL(telepon));
         printf(" untuk melakukan aksi BUY");
-        *isChangeState = false;
+        *isChangeSimulator = false;
         return;
     }
 
@@ -282,30 +282,30 @@ void buyFood(LStatMakanan lMakanan, State *currState, AksiLokasi telepon, boolea
     insertLastLDinNotifRaw(&backNS(*notifS), 'p', namaMakanan(boughtFood));
     Waktu time;
     time = buatWaktu(0, 0, 1, 0);
-    majukanWaktuState(currState, time, notifS);
-    *isChangeState = true;
-    enqueueDelivery(&deliveryState(*currState), boughtFood);
+    majukanWaktuSimulator(currSimulator, time, notifS);
+    *isChangeSimulator = true;
+    enqueueDelivery(&deliverySimulator(*currSimulator), boughtFood);
 };
-void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta)
+void undo(Simulator *currSimulator, Stack *stackUndo, Stack *stackRedo, Simulator salinanSimulator, Matriks *peta)
 {
     // KAMUS LOKAL
     POINT p;
     // ALGORITMA
 
-    if (!IsEmptyStack(*stackUndo) && Absis(posisiState(InfoTop(*stackUndo))) != -1) // Jika stack undo tak kosong dan elemen top-nya bukan initialState
+    if (!IsEmptyStack(*stackUndo) && Absis(posisiSimulator(InfoTop(*stackUndo))) != -1) // Jika stack undo tak kosong dan elemen top-nya bukan initialState
     {
         if (IsFullStack(*stackRedo))
         {
             expandStack(stackRedo, 10);
         }
 
-        Pop(stackUndo, currState);     // Ubah currState menjadi state satu aksi sebelumnya
-        Push(stackRedo, salinanState); // Push salinanState ke dalam stackRedo
+        Pop(stackUndo, currSimulator);     // Ubah currState menjadi state satu aksi sebelumnya
+        Push(stackRedo, salinanSimulator); // Push salinanState ke dalam stackRedo
 
-        if (!EQ(posisiState(salinanState), posisiState(*currState))) // Mengembalikan posisi simulator
+        if (!EQ(posisiSimulator(salinanSimulator), posisiSimulator(*currSimulator))) // Mengembalikan posisi simulator
         {
-            CreatePoint(&p, Absis(posisiState(salinanState)), Ordinat(posisiState(salinanState))); // Salin posisi salinan agar salinan tak berubah
-            moveSimulator(peta, &p, posisiState(*currState));
+            CreatePoint(&p, Absis(posisiSimulator(salinanSimulator)), Ordinat(posisiSimulator(salinanSimulator))); // Salin posisi salinan agar salinan tak berubah
+            moveSimulator(peta, &p, posisiSimulator(*currSimulator));
         }
 
         if ((Top(*stackUndo) + 1) < (Capacity(*stackUndo) / 2)) // Shrink stackUndo jika hanya terisi < 50%
@@ -313,7 +313,7 @@ void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
             shrinkStack(stackUndo, ((Capacity(*stackUndo) / 2) - 5));
         }
     }
-    else if (!IsEmptyStack(*stackUndo) && Absis(posisiState(InfoTop(*stackUndo))) == -1)
+    else if (!IsEmptyStack(*stackUndo) && Absis(posisiSimulator(InfoTop(*stackUndo))) == -1)
     {
         LDinNotif notifF;
         LDinNotif notifB;
@@ -321,11 +321,11 @@ void undo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
         buatLDinNotif(&notifB, 5);
         NotifState notifS;
         buatNotifState(&notifS, notifF, notifB);
-        notifS(InfoTop(*stackUndo)) = notifS;
+        notifSimulator(InfoTop(*stackUndo)) = notifS;
     }
 }
 
-void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanState, Matriks *peta)
+void redo(Simulator *currSimulator, Stack *stackUndo, Stack *stackRedo, Simulator salinanSimulator, Matriks *peta)
 {
     // KAMUS LOKAL
     POINT p;
@@ -336,12 +336,12 @@ void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
         {
             expandStack(stackUndo, 10);
         }
-        Pop(stackRedo, currState);                                   // Ubah currState menjadi state satu aksi setelahnya
-        Push(stackUndo, salinanState);                               // Push salinanState ke dalam stackUndo
-        if (!EQ(posisiState(salinanState), posisiState(*currState))) // Mengembalikan posisi simulator
+        Pop(stackRedo, currSimulator);                                               // Ubah currState menjadi state satu aksi setelahnya
+        Push(stackUndo, salinanSimulator);                                           // Push salinanState ke dalam stackUndo
+        if (!EQ(posisiSimulator(salinanSimulator), posisiSimulator(*currSimulator))) // Mengembalikan posisi simulator
         {
-            CreatePoint(&p, Absis(posisiState(salinanState)), Ordinat(posisiState(salinanState))); // Salin posisi salinan agar salinan tak berubah
-            moveSimulator(peta, &p, posisiState(*currState));
+            CreatePoint(&p, Absis(posisiSimulator(salinanSimulator)), Ordinat(posisiSimulator(salinanSimulator))); // Salin posisi salinan agar salinan tak berubah
+            moveSimulator(peta, &p, posisiSimulator(*currSimulator));
         }
 
         if ((Top(*stackRedo) + 1) < (Capacity(*stackRedo) / 2)) // Shrink stackRedo jika hanya terisi < 50%
@@ -350,7 +350,7 @@ void redo(State *currState, Stack *stackUndo, Stack *stackRedo, State salinanSta
         }
     }
 }
-void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, NotifState *notifS)
+void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeSimulator, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, NotifState *notifS)
 {
     // KAMUS LOKAL
     Teks north, east, south, west;
@@ -368,29 +368,29 @@ void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState
     // Menentukan dest
     if (teksSama(north, direction))
     {
-        dest = PlusDelta(posisiState(*currState), (-1) * displacement, 0); // Dest Bergeser ke utara
+        dest = PlusDelta(posisiSimulator(*currSimulator), (-1) * displacement, 0); // Dest Bergeser ke utara
         arah = 1;
     }
     else if (teksSama(east, direction))
     {
-        dest = PlusDelta(posisiState(*currState), 0, displacement); // Dest Bergeser ke timur
+        dest = PlusDelta(posisiSimulator(*currSimulator), 0, displacement); // Dest Bergeser ke timur
         arah = 2;
     }
     else if (teksSama(south, direction))
     {
-        dest = PlusDelta(posisiState(*currState), displacement, 0); // Dest Bergeser ke selatan
+        dest = PlusDelta(posisiSimulator(*currSimulator), displacement, 0); // Dest Bergeser ke selatan
         arah = 3;
     }
     else if (teksSama(west, direction))
     {
-        dest = PlusDelta(posisiState(*currState), 0, (-1) * displacement); // Dest Bergeser ke barat
+        dest = PlusDelta(posisiSimulator(*currSimulator), 0, (-1) * displacement); // Dest Bergeser ke barat
         arah = 4;
     }
     // Pemindahan Simulator
     if (!isCollide(*peta, dest)) // Jika bisa berpindah
     {
-        *isChangeState = true;
-        moveSimulator(peta, &posisiState(*currState), dest);
+        *isChangeSimulator = true;
+        moveSimulator(peta, &posisiSimulator(*currSimulator), dest);
         printf("Simulator berhasil berpindah ke ");
         if (arah == 1)
         {
@@ -409,12 +409,11 @@ void moveS(State *currState, Matriks *peta, Simulator *S, boolean *isChangeState
             printf("Barat!\n");
         }
         waktu = buatWaktu(0, 0, 1, 0);
-        lokasiS(*S) = dest;
-        majukanWaktuState(currState, waktu, notifS);
+        majukanWaktuSimulator(currSimulator, waktu, notifS);
     }
     else // Jika tak bisa berpindah
     {
-        *isChangeState = false;
+        *isChangeSimulator = false;
         if (EQ(dest, lokasiAL(MIX)))
         {
             printf("Tidak bisa berpindah karena merupakan lokasi mixing!\n");

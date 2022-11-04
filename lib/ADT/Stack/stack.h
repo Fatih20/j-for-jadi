@@ -2,11 +2,11 @@
 #define stack_H
 
 #include "../boolean.h"
-#include "../State/state.h"
+#include "../Simulator/simulator.h"
 
 #define Nil -1
 
-typedef State infoStack;
+typedef Simulator infoStack;
 typedef int address; /* indeks tabel */
 
 /**
