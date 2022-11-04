@@ -77,19 +77,19 @@ void buatNotifCookUndo(Teks command, Teks subject, Notif *notif)
     Teks mixT;
     buatTeks("MIX", &mixT);
     char kodeNTF;
-    if (teksSama(command, fryT))
+    if (teksSamaCI(command, fryT))
     {
         kodeNTF = 'f';
     }
-    else if (teksSama(command, chopT))
+    else if (teksSamaCI(command, chopT))
     {
         kodeNTF = 'c';
     }
-    else if (teksSama(command, boilT))
+    else if (teksSamaCI(command, boilT))
     {
         kodeNTF = 'b';
     }
-    else if (teksSama(command, mixT))
+    else if (teksSamaCI(command, mixT))
     {
         kodeNTF = 'm';
     }

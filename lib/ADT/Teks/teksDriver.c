@@ -6,12 +6,15 @@ int main(int argc, char const *argv[])
 {
 
     Teks t1;
-    buatTeks("jvndjnjvnvdhjhbbhhjbhjbhj", &t1);
+    buatTeks("this is lowercase", &t1);
     // cetakTeks(t1);
-    char s1[panjangT(t1) + 1];
-    teksKeString(s1, t1);
-    printf("%s", s1);
 
+    Teks t2;
+    buatTeks("1%^6&*FATIHGAY1", &t2);
+
+    cetakTeks(toUpper(t1));
+
+    // printf("%d\n", teksSamaCI(t1, t2));
     // char tString[100];
     // scanf("%[^\n]", tString);
     // buatTeks(tString, &t1);
