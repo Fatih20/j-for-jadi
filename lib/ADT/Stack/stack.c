@@ -23,14 +23,14 @@ void dealocateStack(Stack *S)
 void inverseStack(Stack SIn, Stack *SOut)
 {
     // KAMUS LOKAL
-    State state;
+    Simulator simulator;
     // ALGORITMA
 
     CreateEmptyStack(SOut, Capacity(SIn));
     while (!IsEmptyStack(SIn))
     {
-        Pop(&SIn, &state);
-        Push(SOut, state);
+        Pop(&SIn, &simulator);
+        Push(SOut, simulator);
     }
 }
 
@@ -38,14 +38,14 @@ void copyStack(Stack SIn, Stack *SOut)
 {
     // KAMUS LOKAL
     Stack STemp;
-    State state;
+    Simulator simulator;
     // ALGORITMA
     inverseStack(SIn, &STemp);
     CreateEmptyStack(SOut, Capacity(SIn));
     while (!IsEmptyStack(STemp))
     {
-        Pop(&STemp, &state);
-        Push(SOut, state);
+        Pop(&STemp, &simulator);
+        Push(SOut, simulator);
     }
 }
 
