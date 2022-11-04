@@ -54,6 +54,31 @@ boolean teksSama(Teks t1, Teks t2)
     return same;
 };
 
+boolean teksSamaCI(Teks t1, Teks t2)
+{
+    boolean same = panjangT(t1) == panjangT(t2);
+    int i = 0;
+    int pTeks = panjangT(t1);
+    while (same && i < pTeks)
+    {
+        char oKar1 = elmtLDC(karArrayT(t1), i);
+        char oKar2 = elmtLDC(karArrayT(t2), i);
+        if (oKar1 >= 'a' && oKar1 <= 'z')
+        {
+            oKar1 -= ('a' - 'A');
+        }
+
+        if (oKar2 >= 'a' && oKar2 <= 'z')
+        {
+            oKar2 -= ('a' - 'A');
+        }
+
+        same = oKar1 == oKar2;
+        i += same;
+    }
+    return same;
+};
+
 void tambahkanTeks(Teks *t1, Teks t2)
 {
     int pT2 = panjangT(t2);

@@ -60,8 +60,8 @@ int main(int argc, char const *argv[])
         else
         {
             Teks iInput = elmtLDT(currentRowI, 0);
-            entering = teksSama(iInput, start);
-            exiting = teksSama(iInput, exit);
+            entering = teksSamaCI(iInput, start);
+            exiting = teksSamaCI(iInput, exit);
             exitFirstLoop = entering || exiting;
         }
         if (!exitFirstLoop)
@@ -141,8 +141,8 @@ int main(int argc, char const *argv[])
         printf("===================================================\n\n");
         printf("                   BNMO MASAK-MASAK                \n");
     }
-    // Teks fryT;
-    // buatTeks("FRY", &fryT);
+    Teks fryT;
+    buatTeks("FRY", &fryT);
     Teks chopT;
     buatTeks("CHOP", &chopT);
     Teks boilT;
@@ -202,50 +202,50 @@ int main(int argc, char const *argv[])
             }
             if (panjangLDinTeks(currentRowI) == 1)
             {
-                if (teksSama(command, buyT))
+                if (teksSamaCI(command, buyT))
                 {
                     buyFood(lSMakanan, &currSimulator, TELEPON, &isChangeSimulator, &currentNS);
                     isUndoRedo = false;
                 }
-                else if (teksSama(command, fryT) || teksSama(command, boilT) || teksSama(command, mixT) || teksSama(command, chopT))
+                else if (teksSamaCI(command, fryT) || teksSamaCI(command, boilT) || teksSamaCI(command, mixT) || teksSamaCI(command, chopT))
                 {
                     olahMakanan(command, &lResep, &currSimulator, &isChangeSimulator, &currentNS);
                     isUndoRedo = false;
                 }
-                else if (teksSama(command, cookBT))
+                else if (teksSamaCI(command, cookBT))
                 {
                     displayCookbook(&lResep);
                     isUndoRedo = false;
                     isChangeSimulator = false;
                 }
-                else if (teksSama(command, ctlgT))
+                else if (teksSamaCI(command, ctlgT))
                 {
                     displayCatalog(&lSMakanan);
                     isUndoRedo = false;
                     isChangeSimulator = false;
                 }
-                else if (teksSama(command, undoT))
+                else if (teksSamaCI(command, undoT))
                 {
                     isUndoRedo = true;
                     justUndo = true;
                     undo(&currSimulator, &stackUndo, &stackRedo, salinanSimulator, &peta);
                 }
-                else if (teksSama(command, redoT))
+                else if (teksSamaCI(command, redoT))
                 {
                     isUndoRedo = true;
                     redo(&currSimulator, &stackUndo, &stackRedo, salinanSimulator, &peta);
                 }
-                else if (teksSama(command, inventoryT))
+                else if (teksSamaCI(command, inventoryT))
                 {
                     displayInventory(inventorySimulator(currSimulator));
                     isChangeSimulator = false;
                 }
-                else if (teksSama(command, deliveryT))
+                else if (teksSamaCI(command, deliveryT))
                 {
                     displayDelivery(deliverySimulator(currSimulator));
                     isChangeSimulator = false;
                 }
-                else if (teksSama(command, zeroT))
+                else if (teksSamaCI(command, zeroT))
                 {
                     isChangeSimulator = false;
                     exiting = true;
@@ -257,10 +257,10 @@ int main(int argc, char const *argv[])
             }
             else if (panjangLDinTeks(currentRowI) == 2)
             {
-                if (teksSama(command, moveT))
+                if (teksSamaCI(command, moveT))
                 {
                     Teks direction = elmtLDT(currentRowI, 1);
-                    if (teksSama(direction, southT) || teksSama(direction, northT) || teksSama(direction, westT) || teksSama(direction, eastT))
+                    if (teksSamaCI(direction, southT) || teksSamaCI(direction, northT) || teksSamaCI(direction, westT) || teksSamaCI(direction, eastT))
                     {
                         moveS(&currSimulator, &peta, &isChangeSimulator, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON, &currentNS);
                         isUndoRedo = false;
@@ -277,7 +277,7 @@ int main(int argc, char const *argv[])
             }
             else if (panjangLDinTeks(currentRowI) == 3)
             {
-                if (teksSama(command, waitT))
+                if (teksSamaCI(command, waitT))
                 {
                     int JJ, MM;
                     Waktu time;

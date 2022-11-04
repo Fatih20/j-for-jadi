@@ -77,6 +77,14 @@ void teksKeString(char string[], Teks teks);
 boolean teksSama(Teks t1, Teks t2);
 
 /**
+ * @brief Fungsi untuk membandingkan dua teks dan mengecek kesamaannya tanpa membandingkan kapital
+ * @param t1 teks yang ingin dibandingkan
+ * @param t2 teks yang ingin dibandingkan
+ *  *
+ * @return boolean apakah teks yang diberikan sama atau tidak
+ */
+boolean teksSamaCI(Teks t1, Teks t2);
+/**
  * @brief Fungsi untuk mengecek teks pertama lebih pendek dari yang kedua. Return false jika sama
  * @param t1 teks yang ingin dibandingkan
  * @param t2 teks yang ingin dibandingkan
