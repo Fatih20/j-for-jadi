@@ -79,6 +79,40 @@ boolean teksSamaCI(Teks t1, Teks t2)
     return same;
 };
 
+Teks toUpper(Teks t1)
+{
+    int pTeks = panjangT(t1);
+    Teks t1U;
+    buatTeksKosong(&t1U);
+    for (int i = 0; i < pTeks; i++)
+    {
+        char uKar = elmtLDC(karArrayT(t1), i);
+        if (uKar >= 'a' && uKar <= 'z')
+        {
+            uKar -= ('a' - 'A');
+        }
+        plusKar(&t1U, uKar);
+    }
+    return t1U;
+}
+
+Teks toLower(Teks t1)
+{
+    int pTeks = panjangT(t1);
+    Teks t1L;
+    buatTeksKosong(&t1L);
+    for (int i = 0; i < pTeks; i++)
+    {
+        char lKar = elmtLDC(karArrayT(t1), i);
+        if (lKar >= 'a' && lKar <= 'z')
+        {
+            lKar += ('a' - 'A');
+        }
+        plusKar(&t1L, lKar);
+    }
+    return t1L;
+}
+
 void tambahkanTeks(Teks *t1, Teks t2)
 {
     int pT2 = panjangT(t2);

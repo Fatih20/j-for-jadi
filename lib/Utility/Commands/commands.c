@@ -18,7 +18,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
                 printf("Pindah ke ");
                 TulisPOINT(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))));
                 printf(" untuk melakukan aksi ");
-                cetakTeks(command);
+                cetakTeks(toUpper(command));
                 printf("\n");
                 return;
             }
@@ -28,7 +28,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
     createListNode(&daftarMakananTemp, 0);
     printf("==================================================\n");
     printf("                       ");
-    cetakTeks(command);
+    cetakTeks(toUpper(command));
     printf("                       \n");
     printf("==================================================\n\n");
     printf("Ketik 0 untuk keluar.\n\n");
@@ -116,7 +116,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
                     Makanan temp;
                     deleteByIdTipe(inventory, IdTipeTree(Child(foodChoice, i)), &temp);
                     Notif notifTemp;
-                    buatNotifCookUndo(command, namaMakanan(temp), &notifTemp);
+                    buatNotifCookUndo(toUpper(command), namaMakanan(temp), &notifTemp);
                     insertLastLDinNotif(&backNS(*notifS), notifTemp);
                 }
                 waktuSimulator(*currSimulator) = jumlahWaktu(waktuSimulator(*currSimulator), durasi(AksiLokasiTree(foodChoice)));

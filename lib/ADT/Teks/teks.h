@@ -94,6 +94,22 @@ boolean teksSamaCI(Teks t1, Teks t2);
 boolean teksLPendek(Teks t1, Teks t2);
 
 /**
+ * @brief Mengembalikan duplikat t1 yang semua karakternya diubah menjadi uppercase.
+ *
+ * @param t1
+ * @return Teks
+ */
+Teks toUpper(Teks t1);
+
+/**
+ * @brief Mengembalikan duplikat t1 yang semua karakternya diubah menjadi lowercase
+ *
+ * @param t1
+ * @return Teks
+ */
+Teks toLower(Teks t1);
+
+/**
  * @brief Fungsi untuk mengecek teks pertama sama panjang dengan yang kedua
  * @param t1 teks yang ingin dibandingkan
  * @param t2 teks yang ingin dibandingkan
