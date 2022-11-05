@@ -40,6 +40,10 @@ int main()
         {
             keluarkanIsiKulkas(&k, &buangan);
         }
+        else if (input == 3)
+        {
+            ubahIsiKulkas(&k);
+        }
         cetakKulkas(k);
     }
 }
