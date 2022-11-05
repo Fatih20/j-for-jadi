@@ -26,10 +26,17 @@ void buatKulkas(Kulkas *k)
 
 void cetakKulkas(Kulkas k)
 {
+    cetakIsiKulkas(k);
+    cetakListMakananKulkas(k);
+}
+
+void cetakIsiKulkas(Kulkas k)
+{
     // KAMUS
     int i, j;
 
     // ALGORITMA
+    printf("Isi Kulkas :\n");
     printf("     ");
     for (i = 1; i <= PanjangKulkas; i++)
     {
@@ -79,6 +86,10 @@ void cetakKulkas(Kulkas k)
         printf("---", i);
     }
     printf("\n");
+}
+
+void cetakListMakananKulkas(Kulkas k)
+{
     printf("Keterangan :\n");
     if (!isEmptyLDinMakanan(makananKulkas(k)))
     {
@@ -101,7 +112,7 @@ void cetakKulkas(Kulkas k)
 void tambahIsiKulkas(Kulkas *k, Makanan makanan)
 {
     // KAMUS
-    int i, j, opsi, idx;
+    int i, j, idx;
     int panjang = panjang(makanan);
     int lebar = lebar(makanan);
     int luas = luasMakanan(makanan);
@@ -148,36 +159,8 @@ void tambahIsiKulkas(Kulkas *k, Makanan makanan)
             }
             else if (isiKulkas(*k, pilihanY, pilihanX) == Nil)
             {
-                horizontal = cekHorizontal(*k, pilihanX, pilihanY, panjang, lebar);
-                vertikal = cekVertikal(*k, pilihanX, pilihanY, panjang, lebar);
-                if (!horizontal && !vertikal)
-                {
-                    printf("Makanan tidak muat di lokasi tersebut.\n");
-                }
-                else if (horizontal && vertikal)
-                {
-                    printf("Pilih opsi posisi makanan:\n");
-                    printf("(1) Horizontal\n");
-                    printf("(2) Vertikal\n");
-                    opsi = 0;
-                    while (opsi != 1 && opsi != 2)
-                    {
-                        printf("Pilihan: ");
-                        scanf("%d", &opsi);
-                        if (opsi != 1 && opsi != 2)
-                        {
-                            printf("Masukan salah! Silahkan ulangi.\n");
-                        }
-                    }
-                    if (opsi == 1)
-                    {
-                        vertikal = false;
-                    }
-                    else
-                    {
-                        horizontal = false;
-                    }
-                }
+                // Cek apakah horizontal atau vertikal
+                cekHorizontalVertical(&horizontal, &vertikal, *k, pilihanX, pilihanY, panjang, lebar);
 
                 // Masukkin makanan ke lisdin
                 if (horizontal || vertikal)
@@ -192,24 +175,12 @@ void tambahIsiKulkas(Kulkas *k, Makanan makanan)
                 // Horizontal
                 if (horizontal)
                 {
-                    for (i = pilihanY; i < pilihanY + lebar; i++)
-                    {
-                        for (j = pilihanX; j < pilihanX + panjang; j++)
-                        {
-                            isiKulkas(*k, i, j) = idx;
-                        }
-                    }
+                    isiHorizontal(k, idx, pilihanX, pilihanY, panjang, lebar);
                 }
                 // Vertikal
                 else if (vertikal)
                 {
-                    for (i = pilihanY; i < pilihanY + panjang; i++)
-                    {
-                        for (j = pilihanX; j < pilihanX + lebar; j++)
-                        {
-                            isiKulkas(*k, i, j) = idx;
-                        }
-                    }
+                    isiVertikal(k, idx, pilihanX, pilihanY, panjang, lebar);
                 }
             }
             else
@@ -227,41 +198,171 @@ void tambahIsiKulkas(Kulkas *k, Makanan makanan)
 void keluarkanIsiKulkas(Kulkas *k, Makanan *makanan)
 {
     // KAMUS
-    int idxKeluar;
+    int idxKeluar = Nil;
+    int idxMax = panjangLDinMakanan(makananKulkas(*k));
     int i, j;
 
     // ALGORITMA
-    cetakKulkas(*k);
-    printf("Pilih nomor makanan yang ingin dikeluarkan :\n");
-    printf(":: ");
-    scanf("%d", &idxKeluar);
-    idxKeluar--;
-    removeAtLDinMakanan(&makananKulkas(*k), makanan, idxKeluar);
-    sisaKapasitas(*k) += luasMakanan(*makanan);
-    for (i = 0; i < LebarKulkas; i++)
+    if (sisaKapasitas(*k) != PanjangKulkas * LebarKulkas)
     {
-        for (j = 0; i < PanjangKulkas; j++)
+        cetakKulkas(*k);
+        while (idxKeluar < 0 || idxKeluar > idxMax)
         {
-            if (isiKulkas(*k, i, j) == idxKeluar + 1)
+            printf("Pilih nomor makanan yang ingin dikeluarkan :\n");
+            printf("(0 untuk membatalkan)\n");
+            printf(":: ");
+            scanf("%d", &idxKeluar);
+            if (idxKeluar < 0 || idxKeluar > idxMax)
             {
-                isiKulkas(*k, i, j) = Nil;
+                printf("Tidak ada makanan dengan nomor %d.\n\n", idxKeluar);
             }
         }
-    }
-    for (i = 0; i < LebarKulkas; i++)
-    {
-        for (j = 0; i < PanjangKulkas; j++)
+        if (idxKeluar)
         {
-            if (isiKulkas(*k, i, j) > idxKeluar + 1)
+            idxKeluar--;
+            removeAtLDinMakanan(&makananKulkas(*k), makanan, idxKeluar);
+            sisaKapasitas(*k) += luasMakanan(*makanan);
+            for (i = 0; i < LebarKulkas; i++)
             {
-                isiKulkas(*k, i, j) -= 1;
+                for (j = 0; j < PanjangKulkas; j++)
+                {
+                    if (isiKulkas(*k, i, j) == idxKeluar)
+                    {
+                        isiKulkas(*k, i, j) = Nil;
+                    }
+                }
             }
+            printf("aman\n");
+            for (i = 0; i < LebarKulkas; i++)
+            {
+                for (j = 0; j < PanjangKulkas; j++)
+                {
+                    if (isiKulkas(*k, i, j) > idxKeluar)
+                    {
+                        isiKulkas(*k, i, j) -= 1;
+                    }
+                }
+            }
+
+            printf("Makanan ");
+            cetakTeks(namaMakanan(*makanan));
+            printf("berhasil dikeluarkan.\n");
+            cetakKulkas(*k);
+        }
+        else
+        {
+            printf("Perubahan dibatalkan.\n\n");
         }
     }
-    printf("Makanan ");
-    cetakTeks(namaMakanan(*makanan));
-    printf("berhasil dikeluarkan.\n");
-    cetakKulkas(*k);
+    else
+    {
+        printf("Maaf, Kulkas kosong.\n\n");
+    }
+}
+
+void ubahIsiKulkas(Kulkas *k)
+{
+    // KAMUS
+    int pilihanIsiKulkas = Nil;
+    int idxMax = panjangLDinMakanan(makananKulkas(*k));
+    IsiKulkas isiBaru;
+    int i, j;
+    int pilihanX, pilihanY;
+    boolean inputTrue, horizontal, vertikal;
+    int panjang, lebar;
+
+    // ALGORITMA
+    if (sisaKapasitas(*k) != PanjangKulkas * LebarKulkas)
+    {
+        cetakKulkas(*k);
+        while (pilihanIsiKulkas < 0 || pilihanIsiKulkas > idxMax)
+        {
+            printf("Pilih nomor makanan yang ingin diubah posisinya:\n");
+            printf("(0 untuk membatalkan)\n");
+            printf(":: ");
+            scanf("%d", &pilihanIsiKulkas);
+            if (pilihanIsiKulkas < 0 || pilihanIsiKulkas > idxMax)
+            {
+                printf("Tidak ada makanan dengan nomor %d.\n\n", pilihanIsiKulkas);
+            }
+        }
+        if (pilihanIsiKulkas)
+        {
+            int panjang = panjang(elmtLDM((*k).makananKulkas, pilihanIsiKulkas - 1));
+            int lebar = lebar(elmtLDM((*k).makananKulkas, pilihanIsiKulkas - 1));
+
+            // Untuk jaga" kalau dibatalkan
+            copyIsiKulkas(isiBaru, (*k).isi);
+
+            for (i = 0; i < LebarKulkas; i++)
+            {
+                for (j = 0; j < PanjangKulkas; j++)
+                {
+                    if (isiKulkas(*k, i, j) == pilihanIsiKulkas - 1)
+                    {
+                        isiKulkas(*k, i, j) = Nil;
+                    }
+                }
+            }
+            cetakIsiKulkas(*k);
+
+            inputTrue = true;
+            while (inputTrue)
+            {
+                printf("Masukkan lokasi kiri atas kulkas yang diinginkan\n");
+                printf("(input [0,0] untuk membatalkan proses)\n");
+                printf("X : ");
+                scanf("%d", &pilihanX);
+                printf("Y : ");
+                scanf("%d", &pilihanY);
+                printf("\n");
+
+                pilihanX--;
+                pilihanY--;
+
+                if (pilihanX == Nil && pilihanY == Nil)
+                {
+                    inputTrue = false;
+                    printf("Perubahan dibatalkan.\n");
+                    copyIsiKulkas((*k).isi, isiBaru);
+                }
+                else if (isiKulkas(*k, pilihanY, pilihanX) == Nil)
+                {
+                    // Cek apakah horizontal atau vertikal
+                    cekHorizontalVertical(&horizontal, &vertikal, *k, pilihanX, pilihanY, panjang, lebar);
+
+                    if (horizontal || vertikal)
+                    {
+                        inputTrue = false;
+                        pilihanIsiKulkas--;
+                    }
+                    // Horizontal
+                    if (horizontal)
+                    {
+                        isiHorizontal(k, pilihanIsiKulkas, pilihanX, pilihanY, panjang, lebar);
+                    }
+                    // Vertikal
+                    else if (vertikal)
+                    {
+                        isiHorizontal(k, pilihanIsiKulkas, pilihanX, pilihanY, panjang, lebar);
+                    }
+                }
+                else
+                {
+                    printf("Maaf, slot tersebut sudah diisi.\n");
+                }
+            }
+        }
+        else
+        {
+            printf("Perubahan dibatalkan.\n\n");
+            copyIsiKulkas((*k).isi, isiBaru);
+        }
+    }
+    else
+    {
+        printf("Maaf, Kulkas kosong.\n");
+    }
 }
 
 boolean cekHorizontal(Kulkas k, int pilihanX, int pilihanY, int panjang, int lebar)
@@ -324,4 +425,76 @@ boolean cekVertikal(Kulkas k, int pilihanX, int pilihanY, int panjang, int lebar
         }
     }
     return vertikal;
+}
+
+void cekHorizontalVertical(boolean *horizontal, boolean *vertikal, Kulkas k, int pilihanX, int pilihanY, int panjang, int lebar)
+{
+    *horizontal = cekHorizontal(k, pilihanX, pilihanY, panjang, lebar);
+    *vertikal = cekVertikal(k, pilihanX, pilihanY, panjang, lebar);
+    if (!(*horizontal) && !(*vertikal))
+    {
+        printf("Makanan tidak muat di lokasi tersebut.\n");
+    }
+    else if ((*horizontal) && (*vertikal) && (panjang != lebar))
+    {
+        printf("Pilih opsi posisi makanan:\n");
+        printf("(1) Horizontal\n");
+        printf("(2) Vertikal\n");
+        int opsi = 0;
+        while (opsi != 1 && opsi != 2)
+        {
+            printf("Pilihan: ");
+            scanf("%d", &opsi);
+            if (opsi != 1 && opsi != 2)
+            {
+                printf("Masukan salah! Silahkan ulangi.\n");
+            }
+        }
+        if (opsi == 1)
+        {
+            (*vertikal) = false;
+        }
+        else
+        {
+            (*horizontal) = false;
+        }
+    }
+}
+
+void isiVertikal(Kulkas *k, int idx, int pilihanX, int pilihanY, int panjang, int lebar)
+{
+    int i, j;
+    for (i = pilihanY; i < pilihanY + panjang; i++)
+    {
+        for (j = pilihanX; j < pilihanX + lebar; j++)
+        {
+            isiKulkas(*k, i, j) = idx;
+        }
+    }
+}
+
+void isiHorizontal(Kulkas *k, int idx, int pilihanX, int pilihanY, int panjang, int lebar)
+{
+    int i, j;
+    for (i = pilihanY; i < pilihanY + lebar; i++)
+    {
+        for (j = pilihanX; j < pilihanX + panjang; j++)
+        {
+            isiKulkas(*k, i, j) = idx;
+        }
+    }
+}
+
+void copyIsiKulkas(IsiKulkas baru, IsiKulkas lama)
+{
+    int panjangKulkas = PanjangKulkas;
+    int lebarKulkas = LebarKulkas;
+    int i, j;
+    for (i = 0; i < lebarKulkas; i++)
+    {
+        for (j = 0; j < panjangKulkas; j++)
+        {
+            aksesIsiKulkas(baru, i, j) = aksesIsiKulkas(lama, i, j);
+        }
+    }
 }
