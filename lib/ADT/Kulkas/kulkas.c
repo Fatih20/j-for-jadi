@@ -51,10 +51,10 @@ void cetakIsiKulkas(Kulkas k)
     }
     printf("\n");
     printf("    -");
-    for (i = 1; i <= PanjangKulkas; i++)
-    {
-        printf("---", i);
-    }
+    // for (i = 1; i <= PanjangKulkas; i++)
+    // {
+    //     printf("---", i);
+    // }
     printf("\n");
     for (i = 0; i < LebarKulkas; i++)
     {
