@@ -245,7 +245,7 @@ void keluarkanIsiKulkas(Kulkas *k, Makanan *makanan)
             }
 
             printf("Makanan ");
-            cetakTeks(namaMakanan(*makanan));
+            cetakTeks(namaMakanan(*makanan), 'b');
             printf("berhasil dikeluarkan.\n");
             cetakKulkas(*k);
         }
