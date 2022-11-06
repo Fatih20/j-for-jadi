@@ -19,10 +19,10 @@ void buatMakanan(Makanan *makanan, Teks namaMakanan, Teks idTipe, Teks idUnik, W
 void cetakMakanan(Makanan makanan)
 {
     printf("Nama makanan : ");
-    cetakTeks(namaMakanan(makanan));
+    cetakTeks(namaMakanan(makanan), 'b');
     printf("\n");
     printf("Makanan memiliki ID  : ");
-    cetakTeks(idMakanan(makanan));
+    cetakTeks(idMakanan(makanan), 'c');
     printf("\n");
 
     printf("Basi dalam : ");

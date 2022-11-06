@@ -19,12 +19,43 @@ void buatTeksKosong(Teks *teks)
     buatLDinKar(&karArrayT(*teks), 20);
 };
 
-void cetakTeks(Teks t)
+void cetakTeks(Teks t, char color)
 {
     for (int i = 0; i < panjangT(t); i++)
     {
         // printf("test");
-        printf("%c", elmtLDC(karArrayT(t), i));
+        if (color == 'r')
+        {
+            printRed(elmtLDC(karArrayT(t), i));
+        }
+        else if (color == 'g')
+        {
+            printGreen(elmtLDC(karArrayT(t), i));
+        }
+        else if (color == 'b')
+        {
+            printBlue(elmtLDC(karArrayT(t), i));
+        }
+        else if (color == 'y')
+        {
+            printYellow(elmtLDC(karArrayT(t), i));
+        }
+        else if (color == 'c')
+        {
+            printCyan(elmtLDC(karArrayT(t), i));
+        }
+        else if (color == 'm')
+        {
+            printMagenta(elmtLDC(karArrayT(t), i));
+        }
+        else if (color == 'p')
+        {
+            printPurple(elmtLDC(karArrayT(t), i));
+        }
+        else
+        {
+            printf("%c", elmtLDC(karArrayT(t), i));
+        }
     }
 };
 

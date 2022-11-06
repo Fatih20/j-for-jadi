@@ -75,7 +75,7 @@ void printLDinTeks(LDinTeks l)
     {
         for (int i = IDX_MIN; i < panjangLDinTeks(l); i++)
         {
-            cetakTeks(elmtLDT(l, i));
+            cetakTeks(elmtLDT(l, i), 'n');
             printf(" ");
         }
         printf("\n");

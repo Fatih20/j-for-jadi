@@ -1,5 +1,6 @@
 #include "../boolean.h"
 #include "../ListDinKar/ldinkar.h"
+#include "../../Utility/Printc/printc.h"
 
 #ifndef teks_H
 #define teks_H
@@ -37,10 +38,19 @@ void buatTeksKosong(Teks *teks);
 /**
  * @brief Mencetak isi teks dengan tidak diakhiri apapun
  * @param t teks yang ingin dicetak
+ * @param color warna teks yang ingin dicetak
+ * r = red
+ * g = green
+ * b = blue
+ * y = yellow
+ * c = cyan
+ * m = magenta
+ * p = purple
+ * n or else = none
  *  *
  * @return t tercetak
  */
-void cetakTeks(Teks t);
+void cetakTeks(Teks t, char color);
 
 /**
  * @brief Fungsi untuk menambahkan karakter ke Teks. Tidak melakukan apa-apa jika panjang sudah penuh.
