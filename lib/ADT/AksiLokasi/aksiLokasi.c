@@ -14,7 +14,7 @@ void buatAksiLokasi(AksiLokasi *AL, Teks aksi, int x, int y, int HH, int JJ, int
 void displayAksiLokasi(AksiLokasi AL)
 {
     printf("Aksi   : ");
-    cetakTeks(aksi(AL));
+    cetakTeks(aksi(AL),'n');
     printf("\nLokasi : ");
     TulisPOINT(lokasiAL(AL));
     printf("\nDurasi : ");

@@ -158,11 +158,23 @@ void displayMatriks(Matriks m)
         {
             if (j != getLastIdxCol(m))
             {
-                printf("%c ", ELMT(m, i, j));
+                if (ELMT(m, i, j) == '*' || ELMT(m, i, j) == 'X')
+                {
+                    printCyan(ELMT(m, i, j));
+                }
+                else if (ELMT(m, i, j) == 'S')
+                {
+                    printYellow(ELMT(m, i, j));
+                }
+                else
+                {
+                    printGreen(ELMT(m, i, j));
+                }
+                printf(" ");
             }
             else
             {
-                printf("%c", ELMT(m, i, j));
+                printCyan(ELMT(m, i, j));
             }
         }
         printf("\n");

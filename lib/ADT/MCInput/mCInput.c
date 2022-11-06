@@ -2,6 +2,7 @@
 /* Implementasi Mesin Karakter */
 
 #include "mCInput.h"
+#include "../../Utility/Printc/printc.h"
 #include <stdio.h>
 
 char currentCharI;
@@ -19,6 +20,8 @@ void startMCInput()
 
 void advMCInput()
 {
+    printf("%s", CYAN);
     retval = fscanf(pita, "%c", &currentCharI);
+    printf("%s", NORMAL);
     EOPI = (currentCharI == MARKI);
 }

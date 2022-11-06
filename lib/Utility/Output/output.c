@@ -3,9 +3,10 @@
 
 void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stack *undoStack)
 {
-    printf("\n===================================================\n");
+    printSCyan("\n============================================================\n\n");
     printf("\n");
-    printf("BNMO di posisi: ");
+    cetakTeks(userNameSimulator(cSimulator), 'n');
+    printf(" di posisi: ");
     TulisPOINT(posisiSimulator(cSimulator));
     printf("\n");
     printf("Waktu: ");
@@ -13,7 +14,7 @@ void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stac
     printf("\n");
     if (IsEmptyStack(*undoStack))
     {
-        printf("Notifikasi : -\n");
+        printf("Notifikasi: -\n");
     }
     else
     {
@@ -27,6 +28,7 @@ void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stac
             printLDinNotif(forNS(notifSimulator(InfoTop(*undoStack))));
         }
     }
+    printf("\n");
     displayMatriks(peta);
     printf("\n");
 };

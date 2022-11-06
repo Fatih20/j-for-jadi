@@ -18,7 +18,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
                 printf("Pindah ke ");
                 TulisPOINT(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))));
                 printf(" untuk melakukan aksi ");
-                cetakTeks(toUpper(command));
+                cetakTeks(toUpper(command), 'y');
                 printf("\n");
                 return;
             }
@@ -26,13 +26,15 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
     }
     ListNode daftarMakananTemp;
     createListNode(&daftarMakananTemp, 0);
-    printf("==================================================\n");
-    printf("                       ");
-    cetakTeks(toUpper(command));
+    printSCyan("============================================================\n");
+    printf("                               ");
+    cetakTeks(toUpper(command), 'y');
     printf("                       \n");
-    printf("==================================================\n\n");
-    printf("Ketik 0 untuk keluar.\n\n");
-    printf("Daftar Makanan yang Bisa dibuat");
+    printSCyan("============================================================\n\n");
+    printf("Ketik ");
+    printRed('0');
+    printf(" untuk keluar.\n\n");
+    printSYellow("Daftar Makanan yang Bisa dibuat");
     printf(": \n");
     int cnt = 1;
     for (int i = 0; i < ListNodeNEff(*daftarResep); i++)
@@ -41,7 +43,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
         {
             insertLastListNode(&daftarMakananTemp, ListNodeELMT(*daftarResep, i));
             printf("%d. ", cnt);
-            cetakTeks(NamaMakananTree(ListNodeELMT(*daftarResep, i)));
+            cetakTeks(NamaMakananTree(ListNodeELMT(*daftarResep, i)), 'b');
             printf("\n");
             cnt++;
         }
@@ -79,7 +81,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
         }
         if (!isChoiceValid)
         {
-            printf("Pilihan tidak dikenali!\n");
+            printSRed("Pilihan tidak dikenali!\n");
         }
         else
         {
@@ -95,13 +97,14 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
                 {
                     if (isFirst)
                     {
-                        printf("\nGagal membuat ");
-                        cetakTeks(NamaMakananTree(foodChoice));
+                        printSRed("\nGagal");
+                        printf(" membuat ");
+                        cetakTeks(NamaMakananTree(foodChoice), 'b');
                         printf(" karena kamu tidak memiliki bahan berikut: \n");
                         isFirst = false;
                     }
                     printf("%d. ", cnt);
-                    cetakTeks(NamaMakananTree(Child(foodChoice, i)));
+                    cetakTeks(NamaMakananTree(Child(foodChoice, i)), 'b');
                     printf("\n");
                     success = false;
                     cnt++;
@@ -109,8 +112,9 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
             }
             if (success)
             {
-                cetakTeks(NamaMakananTree(foodChoice));
-                printf(" berhasil dibuat dan sudah masuk ke inventory!\n");
+                cetakTeks(NamaMakananTree(foodChoice), 'b');
+                printSGreen(" berhasil");
+                printf(" dibuat dan sudah masuk ke inventory!\n");
                 for (int i = 0; i < ListNodeNEff(Children(foodChoice)); i++)
                 {
                     Makanan temp;
@@ -135,24 +139,28 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
 
 void displayCookbook(ListNode *daftarResep)
 {
-    printf("==================================================\n");
-    printf("                      COOKBOOK                    \n");
-    printf("==================================================\n");
+    printSCyan("============================================================\n");
+    printSYellow("                          COOKBOOK                          \n");
+    printSCyan("============================================================\n\n");
     displayListNode(*daftarResep);
     boolean isExit = false;
+    printf("\nKetik ");
+    printRed('0');
+    printf(" untuk keluar.\n\n");
     do
     {
+        printf("\n");
         int choice = askForNumber(0, ListNodeNEff(*daftarResep), "Pilih resep yang ingin dilihat: ");
         if (choice == 0)
         {
             isExit = true;
             return;
         }
-        printf("==================================================\n");
-        printf("               Resep ");
-        cetakTeks(NamaMakananTree(ListNodeELMT(*daftarResep, choice - 1)));
+        printSCyan("============================================================\n");
+        printSBlue("                      Resep ");
+        cetakTeks(NamaMakananTree(ListNodeELMT(*daftarResep, choice - 1)), 'b');
         printf("               \n");
-        printf("==================================================\n\n");
+        printSCyan("============================================================\n\n");
         displayTree(ListNodeELMT(*daftarResep, choice - 1));
     } while (!isExit);
 }
@@ -160,9 +168,9 @@ void displayCookbook(ListNode *daftarResep)
 void displayCatalog(LStatMakanan *daftarMakanan)
 {
 
-    printf("==================================================\n");
-    printf("                    DAFTAR MAKANAN                \n");
-    printf("==================================================\n");
+    printSCyan("============================================================\n");
+    printSYellow("                        DAFTAR MAKANAN                      \n");
+    printSCyan("============================================================\n\n");
     printf("Nama Makanan - Waktu Kadaluarsa - Aksi yang Diperlukan - Lama Pengiriman\n");
     printLStatMakanan(*daftarMakanan);
 }
@@ -173,17 +181,19 @@ void displayDelivery(FoodQueue dQ)
     int panjangDQ = nElmt(dQ);
     if (panjangDQ == 0)
     {
-        printf("Tidak ada makanan yang sedang dalam proses pengiriman! Pesan makanan yuk dengan pergi ke telepon dan menggunakan command BUY!");
+        printSRed("Tidak ada makanan yang sedang dalam proses pengiriman!\n");
+        printf("Pesan makanan yuk dengan pergi ke telepon dan menggunakan command ");
+        printSBlue("BUY\n");
     }
     else
     {
-        printf("List Nama Makanan di Perjalanan\n");
-        printf("(nama - waktu sisa delivery)\n");
+        printSYellow("List Makanan di dalam Perjalanan\n\n");
+        printf("Nama Makanan - Waktu Sisa Delivery\n");
         for (int i = 0; i < panjangDQ; i++)
         {
             printf("    %d. ", i + 1);
             Makanan mToShow = elmtFQ(dQ, i);
-            cetakTeks(namaMakanan(mToShow));
+            cetakTeks(namaMakanan(mToShow), 'b');
             printf(" - ");
             tulisWaktu(sampaiDalam(mToShow));
             printf("\n");
@@ -198,17 +208,17 @@ void displayInventory(FoodQueue iQ)
     int panjangIQ = nElmt(iQ);
     if (panjangIQ == 0)
     {
-        printf("Tidak ada makanan di dalam inventory kamu!");
+        printSRed("Tidak ada makanan di dalam inventory kamu!\n");
     }
     else
     {
-        printf("List Nama Makanan di Perjalanan\n");
-        printf("(nama - waktu sisa kadaluarsa)\n");
+        printSYellow("List Makanan di Dalam Inventory\n\n");
+        printf("Nama Makanan - Waktu Sisa Kadaluarsa)\n");
         for (int i = 0; i < panjangIQ; i++)
         {
-            printf("%d. ", i + 1);
+            printf("    %d. ", i + 1);
             Makanan mToShow = elmtFQ(iQ, i);
-            cetakTeks(namaMakanan(mToShow));
+            cetakTeks(namaMakanan(mToShow), 'b');
             printf(" - ");
             tulisWaktu(basiDalam(mToShow));
             printf("\n");
@@ -229,10 +239,10 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
         return;
     }
 
-    printf("==================================================\n");
-    printf("                        BUY                       \n");
-    printf("==================================================\n");
-    printf("List Bahan Makanan yang bisa Dibeli:\n");
+    printSCyan("============================================================\n");
+    printSYellow("                             BUY                            \n");
+    printSCyan("============================================================\n\n");
+    printSYellow("List Bahan Makanan yang Bisa Dibeli:\n\n");
     printf("Nama Makanan - Waktu pengiriman\n");
     int lastIdx = lastIdxLStatMakanan(lMakanan);
     int nBuyable = 0;
@@ -248,18 +258,18 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
         if (teksSamaCI(buyT, teksAksiM))
         {
             Makanan mBuyable = elmtLSM(lMakanan, i);
-            printf("%d.", nBuyable + 1);
-            cetakTeks(namaMakanan(mBuyable));
-            printf(" ( ");
+            printf("    %d. ", nBuyable + 1);
+            cetakTeks(namaMakanan(mBuyable), 'b');
+            printf(" - ");
             tulisWaktu(sampaiDalam(mBuyable));
-            printf(")\n");
+            printf("\n");
             insertLastLDinMakanan(&mBuyableList, mBuyable);
             nBuyable++;
         }
     }
-    printf("\n");
-    printf("Kirim 0 untuk exit.\n");
-    printf("\n");
+    printf("\nKetik ");
+    printRed('0');
+    printf(" untuk keluar.\n\n");
 
     // scanf("%d", &choice);
 
@@ -272,11 +282,12 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
     choice--;
 
     Makanan boughtFood = elmtLDM(mBuyableList, choice);
-    printf("Berhasil memesan ");
-    cetakTeks(namaMakanan(boughtFood));
+    printSGreen("\nBerhasil ");
+    printf("memesan ");
+    cetakTeks(namaMakanan(boughtFood), 'b');
     printf(". ");
-    cetakTeks(namaMakanan(boughtFood));
-    printf(" akan diantar dalam ");
+    cetakTeks(namaMakanan(boughtFood), 'b');
+    printf(" akan sampai dalam ");
     tulisWaktu(sampaiDalam(boughtFood));
     printf("\n");
     insertLastLDinNotifRaw(&backNS(*notifS), 'p', namaMakanan(boughtFood));
@@ -391,7 +402,9 @@ void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeSimulator, 
     {
         *isChangeSimulator = true;
         moveSimulator(peta, &posisiSimulator(*currSimulator), dest);
-        printf("Simulator berhasil berpindah ke ");
+        printf("Simulator ");
+        printSGreen("berhasil");
+        printf(" berpindah ke ");
         if (arah == 1)
         {
             printf("Utara!\n");
@@ -416,33 +429,33 @@ void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeSimulator, 
         *isChangeSimulator = false;
         if (EQ(dest, lokasiAL(MIX)))
         {
-            printf("Tidak bisa berpindah karena merupakan lokasi mixing!\n");
+            printSRed("Tidak bisa berpindah karena merupakan lokasi mixing!\n");
         }
         else if (EQ(dest, lokasiAL(BOIL)))
         {
-            printf("Tidak bisa berpindah karena merupakan lokasi boiling!\n");
+            printSRed("Tidak bisa berpindah karena merupakan lokasi boiling!\n");
         }
         else if (EQ(dest, lokasiAL(CHOP)))
         {
-            printf("Tidak bisa berpindah karena merupakan lokasi chopping!\n");
+            printSRed("Tidak bisa berpindah karena merupakan lokasi chopping!\n");
         }
         else if (EQ(dest, lokasiAL(TELEPON)))
         {
-            printf("Tidak bisa berpindah karena merupakan lokasi telepon!\n");
+            printSRed("Tidak bisa berpindah karena merupakan lokasi telepon!\n");
         }
         else if (EQ(dest, lokasiAL(FRY)))
         {
-            printf("Tidak bisa berpindah karena merupakan lokasi frying!\n");
+            printSRed("Tidak bisa berpindah karena merupakan lokasi frying!\n");
         }
         else
         {
             if (isBorder(*peta, dest))
             {
-                printf("Tidak bisa berpindah karena merupakan batas peta!\n");
+                printSRed("Tidak bisa berpindah karena merupakan batas peta!\n");
             }
             else
             {
-                printf("Tidak bisa berpindah karena merupakan tembok!\n");
+                printSRed("Tidak bisa berpindah karena merupakan tembok!\n");
             }
         }
     }

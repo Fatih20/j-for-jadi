@@ -38,33 +38,46 @@ void tulisWaktu(Waktu W)
 {
     if (Hari(W) > 0)
     {
-        printf("%d hari ", Hari(W));
+        printf("%d hari", Hari(W));
     }
 
     if (Jam(W) > 0)
     {
-        printf("%d jam ", Jam(W));
+        if (Hari(W) > 0)
+        {
+            printf(" ");
+        }
+        printf("%d jam", Jam(W));
     }
 
     if (Menit(W) > 0)
     {
-        printf("%d menit ", Menit(W));
+        if (Jam(W) > 0)
+        {
+            printf(" ");
+        }
+        printf("%d menit", Menit(W));
     }
 
     if (Detik(W) > 0)
     {
-        printf("%d detik ", Detik(W));
+        if (Menit(W) > 0)
+        {
+            printf(" ");
+        }
+        printf("%d detik", Detik(W));
     }
 
     if ((Hari(W) == 0) && (Jam(W) == 0) && (Menit(W) == 0) && (Detik(W) == 0))
     {
-        printf("%d detik ", Detik(W));
+        printf("%d detik", Detik(W));
     }
 }
 
 void tulisWaktuDot(Waktu W)
 {
-    if(Jam(W)/10 == 0){
+    if (Jam(W) / 10 == 0)
+    {
         printf("0");
     }
     printf("%d.", Jam(W));

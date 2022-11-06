@@ -102,5 +102,5 @@ void buatNotifCookUndo(Teks command, Teks subject, Notif *notif)
 
 void cetakNotif(Notif notif)
 {
-    cetakTeks(notifTeks(notif));
+    cetakTeks(notifTeks(notif), 'y');
 };
