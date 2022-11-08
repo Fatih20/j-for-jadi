@@ -3,7 +3,7 @@
 #include "../../ADT/Teks/teks.h"
 #include <string.h>
 
-void loader(Matriks *peta, LStatMakanan *lSMakanan, ListNode *lNMakanan, POINT *lokasiSimulator, AksiLokasi *MIX, AksiLokasi *BOIL, AksiLokasi *CHOP, AksiLokasi *FRY, AksiLokasi *TELEPON, Teks alamatFolder)
+void loader(Matriks *peta, LStatMakanan *lSMakanan, ListNode *lNMakanan, POINT *lokasiSimulator, AksiLokasi *MIX, AksiLokasi *BOIL, AksiLokasi *CHOP, AksiLokasi *FRY, AksiLokasi *TELEPON, AksiLokasi *KULKAS, Teks alamatFolder)
 {
 
     Teks namaPeta;
@@ -28,7 +28,7 @@ void loader(Matriks *peta, LStatMakanan *lSMakanan, ListNode *lNMakanan, POINT *
     teksKeString(alamatMakanan, alamatMakananT);
     teksKeString(alamatResep, alamatResepT);
 
-    readMatriks(peta, alamatPeta, lokasiSimulator, MIX, BOIL, CHOP, FRY, TELEPON);
+    readMatriks(peta, alamatPeta, lokasiSimulator, MIX, BOIL, CHOP, FRY, TELEPON, KULKAS);
     AksiLokasi aLArray[5] = {*MIX, *BOIL, *CHOP, *FRY, *TELEPON};
     buatLStatMakanan(lSMakanan);
     readLStatMakanan(lSMakanan, alamatMakanan, aLArray);

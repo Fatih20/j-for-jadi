@@ -5,11 +5,12 @@
 #include "../Makanan/makanan.h"
 #include "../Teks/teks.h"
 #include "../ListDinMakanan/ldinmakanan.h"
+#include "../AksiLokasi/aksiLokasi.h"
 #include "../../Utility/Printc/printc.h"
 
 #define Nil -1
-#define PanjangKulkas 20
-#define LebarKulkas 10
+#define PanjangKulkas 40
+#define LebarKulkas 40
 
 typedef struct
 {
@@ -25,12 +26,14 @@ typedef struct
     IsiKulkas isi;
     int sisaKapasitas;
     LDinMakanan makananKulkas;
+    AksiLokasi aksiLokasiKulkas;
 
 } Kulkas;
 
 #define isiKulkas(kulkas, i, j) aksesIsiKulkas(((kulkas).isi), i, j)
 #define sisaKapasitas(kulkas) (kulkas).sisaKapasitas
 #define makananKulkas(kulkas) (kulkas).makananKulkas
+#define aksiLokasiKulkas(kulkas) (kulkas).aksiLokasiKulkas
 #define aksesIsiKulkas(isiArray, i, j) (isiArray).arrayKulkas[i][j]
 
 /**
@@ -38,7 +41,7 @@ typedef struct
  * @param k ADT Kulkas
  * @return ADT Kulkas dengan matriks kosong (Nil) dan sisaKapasitas = CAPACITY*CAPACITY
  */
-void buatKulkas(Kulkas *k);
+void buatKulkas(Kulkas *k, AksiLokasi aksiKulkas);
 
 /**
  * @brief Mencetak isi kulkas dan list makanan kulkas ke layar

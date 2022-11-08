@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "kulkas.h"
 
-void buatKulkas(Kulkas *k)
+void buatKulkas(Kulkas *k, AksiLokasi aksiKulkas)
 {
     // KAMUS
     int i, j;
@@ -22,6 +22,10 @@ void buatKulkas(Kulkas *k)
 
     // inisiasi listdin makanan
     buatLDinMakanan(&makananKulkas(*k), sisaKapasitas(*k));
+
+    // inisiasi aksiLokasi
+    aksiLokasiKulkas(*k) = aksiKulkas;
+    // buatAksiLokasi(&aksiLokasiKulkas(*k), "KULKAS", 0, 0, 0, 0, 0, 0);
 }
 
 void cetakKulkas(Kulkas k)

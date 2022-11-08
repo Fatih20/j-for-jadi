@@ -361,7 +361,7 @@ void redo(Simulator *currSimulator, Stack *stackUndo, Stack *stackRedo, Simulato
         }
     }
 }
-void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeSimulator, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, NotifState *notifS)
+void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeSimulator, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, AksiLokasi KULKAS, NotifState *notifS)
 {
     // KAMUS LOKAL
     Teks north, east, south, west;
@@ -447,6 +447,10 @@ void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeSimulator, 
         {
             printSRed("Tidak bisa berpindah karena merupakan lokasi frying!\n");
         }
+        else if (EQ(dest, lokasiAL(KULKAS)))
+        {
+            printSRed("Tidak bisa berpindah karena merupakan lokasi kulkas!\n");
+        }
         else
         {
             if (isBorder(*peta, dest))
@@ -458,5 +462,93 @@ void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeSimulator, 
                 printSRed("Tidak bisa berpindah karena merupakan tembok!\n");
             }
         }
+    }
+}
+
+void openKulkas(Simulator *currSimulator, boolean *isChangeSimulator, NotifState *notifS)
+{
+    if (!IsAdjacent(lokasiAL(aksiLokasiKulkas(kulkasSimulator(*currSimulator))), posisiSimulator(*currSimulator)))
+    {
+        printf("\nBNMO tidak berada pada area telepon!\n");
+        printf("Pindah ke ");
+        TulisPOINT(lokasiAL(aksiLokasiKulkas(kulkasSimulator(*currSimulator))));
+        printf(" untuk melakukan aksi KULKAS");
+        *isChangeSimulator = false;
+        return;
+    }
+
+    printSCyan("============================================================\n");
+    printSYellow("                           KULKAS                           \n");
+    printSCyan("============================================================\n\n");
+    cetakKulkas(kulkasSimulator(*currSimulator));
+    int pilihanOpsiKulkas = Nil;
+    boolean isSudahMengisi = false;
+    while (pilihanOpsiKulkas != 0 && !isSudahMengisi)
+    {
+        printSYellow("Pilih tindakan yang ingin dilakukan\n");
+        printSYellow("(1)");
+        printSCyan(" Masukkan makanan\n");
+        printSYellow("(2)");
+        printSCyan(" Keluarkan makanan\n");
+        printSYellow("(3)");
+        printSCyan(" Ubah susunan kulkas\n");
+        printSCyan("Pilihan ::");
+        scanf("%d", &pilihanOpsiKulkas);
+        if (pilihanOpsiKulkas < 0 || pilihanOpsiKulkas > 3)
+        {
+            printSYellow("Maaf, opsi tersebut tidak tersedia, silahkan ulangi.\n");
+        }
+        else
+        {
+            isSudahMengisi = true;
+        }
+    }
+
+    if (pilihanOpsiKulkas)
+    {
+        Makanan operasiMakananKulkas;
+        if (pilihanOpsiKulkas == 1)
+        {
+            isSudahMengisi = false;
+            cetakIsiKulkas((kulkasSimulator(*currSimulator)).isi);
+            cetakFoodQueue(inventorySimulator(*currSimulator));
+            int pilihanOpsiMasukkanKeKulkas = Nil;
+            while (pilihanOpsiMasukkanKeKulkas != 0 && !isSudahMengisi)
+            {
+                printSYellow("Pilih makanan yang ingin dimasukkan\n");
+                printSYellow("(0 untuk membatalkan)\n");
+                printSCyan("Pilihan ::");
+                scanf("%d", &pilihanOpsiMasukkanKeKulkas);
+                if (pilihanOpsiKulkas < 0 || pilihanOpsiKulkas > nElmt(inventorySimulator(*currSimulator)))
+                {
+                    printSYellow("Maaf, opsi tersebut tidak tersedia, silahkan ulangi.\n");
+                }
+                else
+                {
+                    isSudahMengisi = true;
+                }
+            }
+            if (pilihanOpsiMasukkanKeKulkas)
+            {
+                // Mencari makanan pilihan yang hampir basi
+                // int idMakananMasuk = idxMakanan(inventorySimulator(*currSimulator), );
+                deleteByIdTipe(&inventorySimulator(*currSimulator), idTipe(elmtFQ(inventorySimulator(*currSimulator), pilihanOpsiMasukkanKeKulkas - 1)), &operasiMakananKulkas);
+                tambahIsiKulkas(&kulkasSimulator(*currSimulator), operasiMakananKulkas);
+                // operasiMakananKulkas = elmt(inventorySimulator(*currSimulator), pilihanOpsiMasukkanKeKulkas - 1)
+            }
+        }
+        else if (pilihanOpsiKulkas == 2)
+        {
+            keluarkanIsiKulkas(&kulkasSimulator(*currSimulator), &operasiMakananKulkas);
+            enqueueInventory(&inventorySimulator(*currSimulator), operasiMakananKulkas);
+        }
+        else if (pilihanOpsiKulkas == 3)
+        {
+            ubahIsiKulkas(&kulkasSimulator(*currSimulator));
+        }
+    }
+    else
+    {
+        printSYellow("Operasi dibatalkan.");
     }
 }

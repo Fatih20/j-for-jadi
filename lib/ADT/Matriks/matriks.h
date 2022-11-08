@@ -100,9 +100,10 @@ void copyMatriks(Matriks mIn, Matriks *mOut);
  * @param CHOP: AksiLokasi chop
  * @param FRY: AksiLokasi fry
  * @param TELEPON: AksiLokasi telepon
+ * @param KULKAS: AksiLokasi kulkas
  * @return m terdefinisi nilai elemen efektifnya, berukuran nRow x nCol
  */
-void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator, AksiLokasi *MIX, AksiLokasi *BOIL, AksiLokasi *CHOP, AksiLokasi *FRY, AksiLokasi *TELEPON);
+void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator, AksiLokasi *MIX, AksiLokasi *BOIL, AksiLokasi *CHOP, AksiLokasi *FRY, AksiLokasi *TELEPON, AksiLokasi *KULKAS);
 
 /**
  * @brief Menulis nilai setiap elemen m ke layar dengan traversal per baris dan per kolom

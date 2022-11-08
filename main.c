@@ -155,6 +155,7 @@ int main(int argc, char const *argv[])
     AksiLokasi CHOP;
     AksiLokasi FRY;
     AksiLokasi TELEPON;
+    AksiLokasi KULKAS;
     FoodQueue inventoryQ;
     FoodQueue deliveryQ;
     Simulator currSimulator;
@@ -164,7 +165,7 @@ int main(int argc, char const *argv[])
     // Inisialisasi
     CreateEmptyStack(&stackUndo, 10);
     CreateEmptyStack(&stackRedo, 10);
-    buatKulkas(&kulkas);
+    // buatKulkas(&kulkas);
     boolean isCommandValid = true;
     boolean isChangeSimulator = true;
     boolean isUndoRedo = false;
@@ -177,7 +178,8 @@ int main(int argc, char const *argv[])
         Teks inputFolder = elmtLDT(currentRowI, 0);
         Teks fulan;
         buatTeks("Fulan", &fulan);
-        loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON, inputFolder);
+        loader(&peta, &lSMakanan, &lResep, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON, &KULKAS, inputFolder);
+        buatKulkas(&kulkas, KULKAS);
         buatFQKosong(&inventoryQ, 20);
         buatFQKosong(&deliveryQ, 20);
         buatSimulator(&currSimulator, fulan, Absis(lokasiSimulator), Ordinat(lokasiSimulator), 0, 0, 0, 0, inventoryQ, deliveryQ, kulkas);
@@ -254,6 +256,8 @@ int main(int argc, char const *argv[])
     buatTeks("INVENTORY", &inventoryT);
     Teks deliveryT;
     buatTeks("DELIVERY", &deliveryT);
+    Teks commandKulkas;
+    buatTeks("KULKAS", &commandKulkas);
 
     boolean justUndo = false;
     while (!exiting)
@@ -328,6 +332,11 @@ int main(int argc, char const *argv[])
                     isChangeSimulator = false;
                     exiting = true;
                 }
+                else if (teksSamaCI(command, commandKulkas))
+                {
+                    openKulkas(&currSimulator, &isChangeSimulator, &currentNS);
+                    isUndoRedo = false;
+                }
                 else
                 {
                     isCommandValid = false;
@@ -340,7 +349,7 @@ int main(int argc, char const *argv[])
                     Teks direction = elmtLDT(currentRowI, 1);
                     if (teksSamaCI(direction, southT) || teksSamaCI(direction, northT) || teksSamaCI(direction, westT) || teksSamaCI(direction, eastT))
                     {
-                        moveS(&currSimulator, &peta, &isChangeSimulator, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON, &currentNS);
+                        moveS(&currSimulator, &peta, &isChangeSimulator, direction, 1, MIX, BOIL, CHOP, FRY, TELEPON, KULKAS, &currentNS);
                         isUndoRedo = false;
                     }
                     else

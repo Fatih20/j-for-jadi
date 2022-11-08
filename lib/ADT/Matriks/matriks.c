@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "matriks.h"
 
-LDinTeks currentRow;
+// LDinTeks currentRow;
 
 void createMatriks(int nRows, int nCols, Matriks *m)
 {
@@ -54,7 +54,7 @@ void copyMatriks(Matriks mIn, Matriks *mOut)
     }
 }
 
-void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator, AksiLokasi *MIX, AksiLokasi *BOIL, AksiLokasi *CHOP, AksiLokasi *FRY, AksiLokasi *TELEPON)
+void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator, AksiLokasi *MIX, AksiLokasi *BOIL, AksiLokasi *CHOP, AksiLokasi *FRY, AksiLokasi *TELEPON, AksiLokasi *KULKAS)
 {
     // KAMUS LOKAL
     int i, j, e, nRows, nCols, ctr;
@@ -137,6 +137,11 @@ void readMatriks(Matriks *m, char namaFile[], POINT *lokasiSimulator, AksiLokasi
                         buatTeks("BOIL", &aksi);                              // default
                         buatAksiLokasi(BOIL, aksi, i - 1, j - 1, 0, 0, 1, 0); // default
                     }
+                    else if (nthChar(elmtLDT(currentRow, 0), j - 1) == 'K')
+                    {
+                        buatTeks("KULKAS", &aksi);                              // default
+                        buatAksiLokasi(KULKAS, aksi, i - 1, j - 1, 0, 0, 1, 0); // default
+                    }
                     ELMT(*m, i, j) = nthChar(elmtLDT(currentRow, 0), j - 1);
                 }
             }
@@ -189,7 +194,7 @@ boolean isCollide(Matriks m, POINT p)
     // ditambah 1 untuk menyesuaikan Matriks dengan Peta yang sebenarnya (di luar *)
     x = Absis(p) + 1;
     y = Ordinat(p) + 1;
-    return (ELMT(m, x, y) == '*' || ELMT(m, x, y) == 'X' || ELMT(m, x, y) == 'T' || ELMT(m, x, y) == 'M' || ELMT(m, x, y) == 'F' || ELMT(m, x, y) == 'C' || ELMT(m, x, y) == 'B');
+    return (ELMT(m, x, y) == '*' || ELMT(m, x, y) == 'X' || ELMT(m, x, y) == 'T' || ELMT(m, x, y) == 'M' || ELMT(m, x, y) == 'F' || ELMT(m, x, y) == 'C' || ELMT(m, x, y) == 'B' || ELMT(m, x, y) == 'K');
 }
 
 void moveSimulator(Matriks *m, POINT *lokasiSimulator, POINT p)
