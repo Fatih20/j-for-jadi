@@ -5,7 +5,11 @@
 int main()
 {
     Kulkas k;
-    buatKulkas(&k);
+    AksiLokasi aksiKulkas;
+    Teks AKSIKKKK;
+    buatTeks("KULKAS", &AKSIKKKK);
+    buatAksiLokasi(&aksiKulkas, AKSIKKKK, 0, 0, 0, 0, 0, 0);
+    buatKulkas(&k, aksiKulkas);
     cetakKulkas(k);
     int input = 99;
 

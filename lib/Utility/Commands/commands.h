@@ -86,6 +86,16 @@ void redo(Simulator *currSimulator, Stack *stackUndo, Stack *stackRedo, Simulato
  *@param TELEPON : AksiLokasi telepon
  * /
  */
-void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, NotifState *notifS);
+void moveS(Simulator *currSimulator, Matriks *peta, boolean *isChangeState, Teks direction, int displacement, AksiLokasi MIX, AksiLokasi BOIL, AksiLokasi CHOP, AksiLokasi FRY, AksiLokasi TELEPON, AksiLokasi KULKAS, NotifState *notifS);
+
+/**
+ * @brief Fungsi yang meng-handle operasi Kulkas. Panggil ketika command KULKAS dimasukkan. Menyimpan record hal yang terjadi ke notifState.
+ *
+ * @param kulkas
+ * @param currSimulator
+ * @param isChangeSimulator
+ * @param notifS
+ */
+void openKulkas(Simulator *currSimulator, boolean *isChangeSimulator, NotifState *notifS);
 
 #endif
