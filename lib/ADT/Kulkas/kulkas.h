@@ -5,6 +5,7 @@
 #include "../Makanan/makanan.h"
 #include "../Teks/teks.h"
 #include "../ListDinMakanan/ldinmakanan.h"
+#include "../../Utility/Printc/printc.h"
 
 #define Nil -1
 #define PanjangKulkas 20
@@ -49,7 +50,12 @@ void cetakKulkas(Kulkas k);
  * @brief Mencetak isi kulkas ke layar
  * @param k ADT Kulkas
  */
-void cetakIsiKulkas(Kulkas k);
+void cetakIsiKulkas(IsiKulkas k);
+
+/**
+ * @brief Mengubah int ke string
+ */
+void printColored(int val);
 
 /**
  * @brief Mencetak list makanan kulkas ke layar
@@ -137,6 +143,6 @@ void isiHorizontal(Kulkas *k, int idx, int pilihanX, int pilihanY, int panjang, 
  * @param baru ADT IsiKulkas kosong
  * @param lama ADT IsiKulkas yang akan disalin
  */
-void copyIsiKulkas(IsiKulkas baru, IsiKulkas lama);
+void copyIsiKulkas(IsiKulkas *baru, IsiKulkas *lama);
 
 #endif
