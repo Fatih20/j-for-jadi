@@ -48,4 +48,4 @@ int main()
     }
 }
 
-// gcc -o main lib\ADT\Kulkas\driverKulkas.c lib\ADT\Kulkas\kulkas.c lib\ADT\ListDinMakanan\ldinmakanan.c lib\ADT\Teks\teks.c lib\ADT\ListDinKar\ldinkar.c lib\ADT\Makanan\makanan.c lib\ADT\Waktu\waktu.c lib\ADT\AksiLokasi\aksiLokasi.c lib\ADT\Point\Point.c
+// gcc -o main lib\ADT\Kulkas\driverKulkas.c lib\ADT\Kulkas\kulkas.c lib\ADT\ListDinMakanan\ldinmakanan.c lib\ADT\Teks\teks.c lib\ADT\ListDinKar\ldinkar.c lib\ADT\Makanan\makanan.c lib\ADT\Waktu\waktu.c lib\ADT\AksiLokasi\aksiLokasi.c lib\ADT\Point\Point.c lib\Utility\Printc\printc.c
