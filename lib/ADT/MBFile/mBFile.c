@@ -5,10 +5,10 @@
 #include "../Teks/teks.h"
 #include <stdio.h>
 
-char currentChar;
-boolean endMKF;
+// char currentChar;
+// boolean endMKF;
 boolean endMBF;
-Teks currentWord;
+// Teks currentWord;
 LDinTeks currentRow;
 
 boolean isBlankFB(Teks t)
