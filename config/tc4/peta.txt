@@ -3,7 +3,7 @@
 ##X#######X#X#X#######X#######X#######X###########
 X#XXXXXXX#X#X#X#XXX#XXX#XXX#X#X#X#XXXXXXXXX#X#XXXX
 X#########X#X#X###X#######X#X###X#####X#####X#####
-X#XXXXX#XXX#X#XXXSX#X#XXX#XXXXX#X#XXX#X#X#XXXXXXXX
+X#XXXXX#XXX#X#XXX#X#X#XXX#XXXXX#X#XXX#X#X#XXXXXXXX
 X#X###X###X#X###X#X#X###X#X#####X###X###X###X###X#
 X#XXX#X#X#X#XXX#X#X#XXXXXXX#X#X#XXXXX#XXXXXXX#XXX#
 X###X#X#X###X###X#X###X#X#X#X#X#X#####X###X#######
@@ -16,8 +16,8 @@ X#######X#X#####X#X#X###X#####X#X#X#############X#
 XXXXXXX#X#X#XXXXXXX#X#XXX#XXXXX#X#XXXXXXXXX#XXX#XX
 X###X#X###X#X###X#X#####X#########X###X#######X###
 X#XXX#X#XXX#X#X#X#X#XXX#X#XXXXXXX#X#XXX#X#XXXXXXX#
-X#X###K#####X#X###X#X###X###X###X#####X#X###X#####
-X#X#XXXXXXX#X#XXX#XXX#XXXXX#XXXTX#X#XXXXX#X#XXX#X#
+X#X#########X#X###X#X###X###X###X#####X#X###X#####
+X#XMXXXXXXX#X#XXX#XXX#XXXXX#XXXTXSX#XXXXX#X#XXX#X#
 X#####X#X###X#X###X#X###X###X#X#X#X#######X###X#X#
 X#X#X#X#XXXXXXXXX#X#XXXXXXX#X#X#X#X#X#XXX#X#XXXXXX
 X#X#X#############X#####X#X#X#####X#X###X#X#X#X#X#
@@ -28,7 +28,7 @@ X#X#X#X#######X###X#X#X#X#X###X#X#X#X#X#####X#X#X#
 X#X#X#X#X#XXX#XXX#X#X#X#X#X#X#X#XXX#XXXXXXX#X#XXX#
 X#X###X#X###X###############X#####X#####X#######X#
 X#X#X#X#XXXXXXX#XXX#X#XXX#XXXXX#XXXXXXXXX#X#XXX#XX
-X#X#X#X###X#X###X#X#X#X#X#####X###X#######X#X#####
+X#X#X#X###X#X###X#X#X#X#X#####X###X#######X#X##F##
 X#XXX#X#XXX#X#XXX#X#XXX#X#XXXXX#XXXXXXX#X#X#XXXXXX
 X###X#X###X###X#####X#X#####X#X#X#####X#X#X#X#####
 XXX#X#XXXXX#XXX#XXX#X#XXXXXXX#XXXXX#X#X#XXXXXXX#X#
@@ -42,10 +42,10 @@ X#X#####X#######X#X###X#X###X#############X###X###
 X#X#XXX#X#X#X#XXX#XXX#X#XXXXXXX#XXX#XXX#XXXXX#XXXX
 X###X###X#X#X###X###X###X###X###X#X#X#####X#X#####
 X#XXXXXXX#XXXXXXXXXXX#X#XXX#XXX#X#XXXXXXXXX#XXXXX#
-X#X###X#####X#X###X#X#X#X#####X##BX#####X#X#######
+X#X###X#####X#X###X#X#X#X#####X###X#####X#X#######
 X#X#X#XXX#X#X#XXX#X#X#X#XXX#X#X#XXXXX#XXX#X#XXX#XX
 X###X###X#X#X#######X#X#####X#####X#######X###X###
 X#XXXXX#X#XXXXXXX#XXXXXXX#XXX#XXX#XXX#XXXXXXXXX#X#
 X###X###X#########X###X###X#X#X###X###X###X#X#X#X#
 X#XXXXXXX#X#XXX#X#XXX#X#XXX#X#XXX#X#XXX#XXX#X#X#XX
-X#######X#X###X#X#####X#X#####X#############X####X
+X#######X#X###X#X####BX#X#####X#############X####X

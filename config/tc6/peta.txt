@@ -1,6 +1,6 @@
 61 61
 ##XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-####X#X#X#X#####X#######################X#####X#######X#####X
+####X#X#X#X#####X#######################X#####X#######X####SX
 X#X#X#X#X#X#XXX#X#X#X#XXXXXXXXXXXXX#XXXXX#X#X#X#XXXXX#X#X#XXX
 X#X###X#####X#X#X#X#X#######X#X#X#X#X#X#X#X#X#####X#####X#X#X
 X#X#XXXXX#XXX#X#XXX#XXX#XXX#X#X#X#X#X#X#XXXXXXXXX#XXX#X#XXX#X
@@ -12,7 +12,7 @@ X#X#######X#X#######X#X###X###X###X#X#X#########X###X#X###X#X
 X#XXX#X#XXX#XXXXXXX#XXX#XXX#XXXXXXX#X#XXXXXXXXX#XXX#XXXXXXX#X
 X###X#X#X#X#X#####X#X#####X###X###X#X###X#######X#X#X###X#X#X
 X#X#X#X#X#XXXXX#XXX#XXXXXXX#XXX#X#XXX#X#XXXXX#XXX#X#X#XXX#X#X
-X#X#X#X#X#######X#####X#####X#X#X###X#X#X###X#X#######X#####X
+XTX#X#X#X#######X#####X#####X#X#X###X#X#X###X#X#######X#####X
 X#XXXXX#XXX#X#XXX#XXXXXXXXX#X#X#XXX#XXX#X#XXX#XXXXX#XXXXXXX#X
 X#X#X#X#X###X###X###X#####X#####X###X###X###X#X#######X###X#X
 X#X#X#X#XXXXX#X#XXXXX#XXX#X#XXX#X#XXX#XXX#XXX#XXX#X#X#X#XXXXX
@@ -20,7 +20,7 @@ X#####X#X#X###X#####X###X#####X#X#X#######X#X###X#X#X###X#X#X
 X#XXX#X#X#XXX#XXXXX#XXX#XXXXXXX#XXXXXXX#XXX#XXX#XXX#XXXXX#X#X
 X###X#####X###X#####X#####X#X#X#####X#X#X#X#X#X#######X#X###X
 X#XXXXX#XXX#X#XXX#X#X#X#X#X#X#XXXXX#X#X#X#X#X#XXX#XXX#X#X#XXX
-X###X#X#X###X###X#X#X#X#X###X#######X#########X#####X#X#X#X#X
+X###X#X#X###X###X#X#X#X#X###XM######X#########X#####X#X#X#X#X
 X#XXX#X#XXXXXXX#XXX#XXXXX#XXX#X#XXX#X#XXX#X#XXX#X#X#XXX#X#X#X
 X#####X#X###X#####X#########X#X###X###X###X#X#X#X#X#######X#X
 X#XXX#X#X#XXXXX#X#XXXXX#XXX#XXX#X#XXXXXXX#XXX#X#XXXXX#XXX#X#X
@@ -42,7 +42,7 @@ X#####X#X#X#X#X###X#X#X#X#######X#X#####X###X#######X#X###X#X
 X#XXXXXXXXX#X#XXX#XXX#X#X#XXX#XXX#X#X#XXXXX#X#XXX#XXX#XXX#XXX
 X#X###X###X#X###X###X#######X#####X#X#X#######X#########X###X
 X#X#XXX#XXX#X#XXXXX#X#X#X#XXXXX#X#X#X#X#X#XXX#XXX#XXX#XXXXX#X
-X#X###X#####X###X###X#X#X###X###X###X#X#X###X###X###X#X#####X
+X#X###X#####X#F#X###X#X#X###X###X###X#X#X###X###X###X#X#####X
 X#XXX#X#X#XXXXX#X#X#X#X#XXXXXXXXXXX#XXXXX#X#XXXXX#XXXXX#XXX#X
 X#######X###X#X#X#X###X#####X#####X#X###X#X#X#X#######X#X###X
 X#XXX#XXXXX#X#X#XXXXX#XXXXXXX#XXXXX#XXX#XXX#X#X#XXXXXXXXXXX#X
@@ -56,7 +56,7 @@ X###X#X#X###X#X#X#X#####X#X###X#####X###X###X#X#X#######X###X
 X#XXXXX#XXX#XXX#X#XXXXXXX#X#X#XXXXXXXXX#XXX#X#X#X#XXXXX#XXX#X
 X#X#################X#X#X#X#X#X#X#####X#X#X#####X###X#X#####X
 X#XXXXXXXXX#XXXXX#XXX#X#X#X#XXX#XXX#XXX#X#X#XXX#X#XXX#XXX#XXX
-X###X#######X#X###X#X#X###X#####X#X#######X###X###X#####X###X
+X###X#######X#X###X#X#X###X####CX#X#######X###X###X#####X###X
 X#X#X#XXXXX#X#XXX#X#X#XXX#X#XXXXX#X#X#XXXXXXXXX#X#X#X#X#XXXXX
-X#X#######X#X#######X#########X#####X###X#######X###X#X######
+X#X##B####X#X#######X#########X#####X###X#######X###X#X######
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX##
