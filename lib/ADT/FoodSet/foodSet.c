@@ -54,6 +54,18 @@ FoodSet intersectionFoodSet(FoodSet FSa, FoodSet FSb)
     return fsu;
 };
 
+FoodSet convertFQtoFS(FoodQueue FQ, Teks nama)
+{
+    FoodSet fs;
+    buatIdLFSKosong(&fs, nama);
+    for (int i = headFQ(FQ); i < tailFQ(FQ); i++)
+    {
+        int idToAdd = teksToInt(idTipe(elmtFQ(FQ, i)));
+        ElmtFS(fs, idToAdd) = true;
+    }
+    return fs;
+};
+
 boolean isSubsetfs(FoodSet fsa, FoodSet fsb)
 {
     int i = 0;

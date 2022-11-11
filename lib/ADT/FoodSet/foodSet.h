@@ -3,6 +3,7 @@
 
 #include "../boolean.h"
 #include "../Teks/teks.h"
+#include "../FoodQueue/foodQueue.h"
 
 /**
  * @brief Konstanta untuk address tak terdefinisi
@@ -63,6 +64,15 @@ void buatFSKosong(FoodSet *fs, Teks nama, Teks id);
  * @param nama
  */
 void buatIdLFSKosong(FoodSet *fs, Teks nama);
+
+/**
+ * @brief Mengkonversi foodQueue menjadi foodSet
+ *
+ * @param FQ
+ * @param nama nama foodSet yang dihasilkan
+ * @return FoodSet
+ */
+FoodSet convertFQtoFS(FoodQueue FQ, Teks nama);
 
 /**
  * @brief Menghasilkan set baru yang merupakan union dari fsa dan fsb
