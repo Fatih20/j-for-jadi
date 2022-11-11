@@ -2,6 +2,7 @@
 #define foodSet
 
 #include "../boolean.h"
+#include "../Teks/teks.h"
 
 /**
  * @brief Konstanta untuk address tak terdefinisi
@@ -16,7 +17,9 @@
  */
 typedef struct
 {
-    boolean content[capacityFS]
+    Teks nama;
+    int idTipe;
+    boolean content[capacityFS];
 } FoodSet;
 
 /**
@@ -24,6 +27,18 @@ typedef struct
  *
  */
 #define ContentFS(FS) (FS).content
+
+/**
+ * @brief Nama dari set
+ *
+ */
+#define NameFS(FS) (FS).nama
+
+/**
+ * @brief idTipe dari set
+ *
+ */
+#define IdFS(FS) (FS).idTipe
 
 /**
  * @brief id ke-i dari set
@@ -36,8 +51,18 @@ typedef struct
  * @brief Membuat set makanan kosong yang semua makanannya dari 0-100 inklusif di-set false.
  *
  * @param FS FoodSet yang ingin dibuat
+ * @param name nama FoodSet yang ingin dibuat
+ * @param idTipe id dari FoodSet yang ingin dibuat
  */
-void buatFSKosong(FoodSet *fs);
+void buatFSKosong(FoodSet *fs, Teks nama, Teks id);
+
+/**
+ * @brief Membuat Food Set dengan id 0
+ *
+ * @param fs
+ * @param nama
+ */
+void buatIdLFSKosong(FoodSet *fs, Teks nama);
 
 /**
  * @brief Menghasilkan set baru yang merupakan union dari fsa dan fsb

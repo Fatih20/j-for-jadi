@@ -4,13 +4,19 @@
 int main(int argc, char const *argv[])
 {
     FoodSet fsa;
-    buatFSKosong(&fsa);
+    Teks nA;
+    buatTeks("A", &nA);
+    buatIdLFSKosong(&fsa, nA);
 
     FoodSet fsb;
-    buatFSKosong(&fsb);
+    Teks nB;
+    buatTeks("B", &nB);
+    buatIdLFSKosong(&fsb, nB);
 
     FoodSet fsc;
-    buatFSKosong(&fsc);
+    Teks nC;
+    buatTeks("C", &nC);
+    buatIdLFSKosong(&fsc, nC);
 
     for (int i = 0; i < 20; i++)
     {
