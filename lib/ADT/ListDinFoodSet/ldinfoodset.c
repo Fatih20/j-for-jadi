@@ -1,4 +1,5 @@
 #include "ldinfoodset.h"
+#include <stdlib.h>
 
 void buatLDinFoodSet(LDinFoodSet *l, int capacity)
 {
@@ -186,4 +187,30 @@ boolean isMakananInLDFS(LDinFoodSet *l, Teks namaMakanan)
         }
     }
     return false;
+};
+
+int indexBeforeHigher(LDinFoodSet l, int idTipeI)
+{
+    int i = 0;
+    boolean found = false;
+    if (isEmptyLDinFoodSet(l))
+    {
+        return i;
+    }
+    while (i < nEffLDFS(l) && !found)
+    {
+        found = IdFS(elmtLDFS(l, i)) > idTipeI;
+        if (!found)
+        {
+            i++;
+        }
+    }
+
+    return i - 1;
+};
+
+void insertOrderedLDFS(LDinFoodSet *l, FoodSet fs)
+{
+    int whereToAdd = indexBeforeHigher(*l, IdFS(fs));
+    insertAtLDinFoodSet(l, fs, whereToAdd);
 };

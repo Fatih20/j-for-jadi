@@ -66,15 +66,6 @@ void buatFSKosong(FoodSet *fs, Teks nama, Teks id);
 void buatIdLFSKosong(FoodSet *fs, Teks nama);
 
 /**
- * @brief Mengkonversi foodQueue menjadi foodSet
- *
- * @param FQ
- * @param nama nama foodSet yang dihasilkan
- * @return FoodSet
- */
-FoodSet convertFQtoFS(FoodQueue FQ, Teks nama);
-
-/**
  * @brief Menghasilkan set baru yang merupakan union dari fsa dan fsb
  *
  * @param fsa

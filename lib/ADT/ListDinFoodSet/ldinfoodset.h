@@ -205,4 +205,21 @@ void expandLDinFoodSet(LDinFoodSet *l, int num);
  */
 boolean isMakananInLDFS(LDinFoodSet *l, Teks namaMakanan);
 
+/**
+ * @brief Indeks elemen l sebelum elemen yang idTipe-nya lebih tinggi dari idTipe yang diberikan
+ *
+ * @param l
+ * @param idTipeI
+ * @return int
+ */
+int indexBeforeHigher(LDinFoodSet l, int idTipeI);
+
+/**
+ * @brief Menyisipkan fs sebelum elemen yang lebih tinggi idTipe-nya daripada fs.
+ *
+ * @param l
+ * @param fs
+ */
+void insertOrderedLDFS(LDinFoodSet *l, FoodSet fs);
+
 #endif
