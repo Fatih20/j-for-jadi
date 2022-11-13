@@ -1,22 +1,64 @@
-6
-11 
-Ayam Mentah 
-1 0 0 
-0 0 15 
+25
+1 
+Gurame Mentah
+0 16 0 
+0 0 20 
 BUY 
 0 0 0
 15 10
-21 
-Ayam Potong 
-0 2 0 
+9 
+Gurame Potong 
+0 6 0 
 0 0 0 
 CHOP
 0 0 3
 10 5
+34
+Bawang Merah
+14 0 0
+0 20 0
+BUY
+0 0 4
+20 15
+45 
+Bawang Putih
+13 0 0
+0 30 0
+BUY
+0 0 4
+30 25
+66
+Daun Kemangi
+10 0 0
+0 10 0
+BUY
+0 0 0
+15 10
+51
+Cabe Merah
+9 0 0
+0 25 0
+BUY
+0 0 15
+3 4
+33
+Wortel
+7 17 0 
+0 17 5
+BUY
+0 5 10
+3 6
+4 
+Garam
+20 0 0
+0 2 0
+BUY
+0 5 10
+0 0 
 10 
 Tepung
-6 1 0
-0 0 30
+9 5 0
+0 0 45
 BUY
 0 0 0
 10 5
@@ -27,17 +69,108 @@ Minyak Goreng
 BUY
 0 0 0
 5 6
+19
+Air 
+20 0 0
+0 23 0
+BUY
+0 0 5
+7 8
+28
+Air Matang
+0 0 10
+0 0 0
+BOIL
+0 0 9
+5 7
+48
+Wortel Potong
+0 21 0
+0 0 0
+CHOP
+0 12 0
+8 9
+37
+Bawang Merah Potong
+0 13 0
+0 0 0
+CHOP
+0 20 10
+4 7
+53
+Bawang Putih Potong
+0 17 0
+0 0 0
+CHOP
+0 10 8
+2 4
+67
+Cabe Merah Potong
+0 29 5
+0 0 0
+CHOP
+0 5 9
+4 9
+70
+Bumbu Halus
+0 31 0
+0 0 0
+MIX
+0 10 5
+0 0 0
 31 
-Ayam Tepung
-0 0 30
+Gurame Tepung
+0 0 25
 0 0 0
 MIX
 0 0 3
 5 5
-37 
-Ayam Goreng
-0 0 15
+40
+Gurame Goreng
+0 0 10
 0 0 0
 FRY
 0 0 8
 10 5
+77
+Bumbu Tumis
+0 23 0
+0 0 0
+MIX
+0 8 12
+0 0
+24
+Saus Wortel
+0 21 0
+0 0 0
+MIX
+0 7 2
+0 3
+35
+Saus Asam Manis
+0 1 0
+0 0 0
+MIX
+0 10 15
+0 0 
+80 
+Sambal Asam Manis
+1 5 0
+0 0 0
+MIX
+0 0 5
+0 0
+81
+Sambal Kemangi
+1 0 0
+0 0 0
+MIX
+0 5 0
+5 8
+99
+Gurame Sambal Kemangi
+1 15 0
+0 0 0
+MIX
+0 5 0
+0 0 0
