@@ -60,13 +60,17 @@ boolean isChildOf(treeEl val, Tree t)
 }
 
 /* LIST NODE */
-
 void createListNode(ListNode *l, int capacity)
 {
     (*l).child = malloc((capacity * sizeof(ListNodeEl)));
     ListNodeNEff(*l) = 0;
     ListNodeCap(*l) = capacity;
 };
+
+boolean isIdxEffListNode(ListNode l, int idx)
+{
+    return idx >= 0 && idx < ListNodeNEff(l);
+}
 
 void expandListNode(ListNode *l, int n)
 {
@@ -83,6 +87,32 @@ void insertLastListNode(ListNode *l, Address val)
     ListNodeNEff(*l) += 1;
     ListNodeELMT(*l, ListNodeNEff(*l) - 1) = val;
 }
+
+void insertFirstListNode(ListNode *l, Address val)
+{
+    insertAtListNode(l, val, 0);
+}
+
+void insertAtListNode(ListNode *l, Address val, IdxType idx)
+{
+    if (isFullListNode(*l))
+    {
+        expandListNode(l, 1);
+    }
+    ListNodeNEff(*l) += 1;
+    if (isIdxEffListNode(*l, idx))
+    {
+        for (int i = ListNodeNEff(*l) - 1; i > idx; i--)
+        {
+            ListNodeELMT(*l, i) = ListNodeELMT(*l, i - 1);
+        }
+        ListNodeELMT(*l, idx) = val;
+    }
+    else
+    {
+        printf("idx tidak efektif!\n");
+    }
+};
 
 boolean isFullListNode(ListNode l)
 {
@@ -105,6 +135,40 @@ boolean isEmptyListNode(ListNode l)
     return ListNodeNEff(l) == 0;
 }
 
+int sortedInsertListNode(ListNode *l, Address val)
+{
+    if (isEmptyListNode(*l))
+    {
+        insertLastListNode(l, val);
+        return 0;
+    }
+    else
+    {
+        if (teksToInt(IdTipeTree(ListNodeELMT(*l, 0))) > teksToInt(IdTipeTree(val)))
+        {
+            insertFirstListNode(l, val);
+            return 0;
+        }
+        else if (teksToInt(IdTipeTree(ListNodeELMT(*l, ListNodeNEff(*l) - 1))) < teksToInt(IdTipeTree(val)))
+        {
+            insertLastListNode(l, val);
+            return ListNodeNEff(*l);
+        }
+        else
+        {
+            for (int i = 0; i < ListNodeNEff(*l); i++)
+            {
+                if (teksToInt(IdTipeTree(ListNodeELMT(*l, i))) >= teksToInt(IdTipeTree(val)))
+                {
+                    insertAtListNode(l, val, i);
+                    return i;
+                    break;
+                }
+            }
+        }
+    }
+}
+
 void readListNode(ListNode *t, char *file, LStatMakanan listMakanan)
 {
     startMBFile(file);
@@ -117,15 +181,15 @@ void readListNode(ListNode *t, char *file, LStatMakanan listMakanan)
         Teks idTemp = elmtLDT(currentRow, 0);
         treeEl makananTemp = getMakananFromID(listMakanan, idTemp);
         Address addressTemp = isAllocated(makananTemp, *t);
+        int idx;
         if (addressTemp != NULL)
         {
-            insertLastListNode(t, addressTemp);
+            idx = sortedInsertListNode(t, addressTemp);
         }
         else
         {
-            insertLastListNode(t, newTreeNode(makananTemp, jumlahChild));
+            idx = sortedInsertListNode(t, newTreeNode(makananTemp, jumlahChild));
         }
-        int k = 0;
         for (int j = 2; j < panjangLDinTeks(currentRow); j++)
         {
 
@@ -134,11 +198,11 @@ void readListNode(ListNode *t, char *file, LStatMakanan listMakanan)
             addressTemp = isAllocated(makananTemp, *t);
             if (addressTemp != NULL)
             {
-                insertLastListNode(&Children(ListNodeELMT(*t, i)), addressTemp);
+                sortedInsertListNode(&Children(ListNodeELMT(*t, idx)), addressTemp);
             }
             else
             {
-                insertLastListNode(&Children(ListNodeELMT(*t, i)), newTreeNode(makananTemp, 0));
+                sortedInsertListNode(&Children(ListNodeELMT(*t, idx)), newTreeNode(makananTemp, 0));
             }
         }
     }
@@ -163,13 +227,38 @@ Address isAllocated(treeEl val, ListNode l)
         {
             return ListNodeELMT(l, i);
         }
-        for (int j = 0; j < ListNodeNEff(Children(ListNodeELMT(l, i))); j++)
+        Address temp = isAllocated(val, Children(ListNodeELMT(l, i)));
+        if (temp != NULL)
         {
-            if (isMakananEqual(MakananTree(Child(ListNodeELMT(l, i), j)), val))
-            {
-                return Child(ListNodeELMT(l, i), j);
-            }
+            return temp;
         }
+        // for (int j = 0; j < ListNodeNEff(Children(ListNodeELMT(l, i))); j++)
+        // {
+        //     // if (isMakananEqual(MakananTree(Child(ListNodeELMT(l, i), j)), val))
+        //     // {
+        //     //     return Child(ListNodeELMT(l, i), j);
+        //     // }
+        // }
     }
     return NULL;
+}
+
+int searchResep(ListNode l, Makanan val, int lo, int hi)
+{
+    if (hi >= lo)
+    {
+        int mid = hi + (hi - lo) / 2;
+        int idTipeCurr = teksToInt(IdTipeTree(ListNodeELMT(l, mid)));
+        int idTipeVal = teksToInt(idTipe(val));
+        if (idTipeCurr == idTipeVal)
+        {
+            return mid;
+        }
+        if (idTipeCurr > idTipeVal)
+        {
+            return searchResep(l, val, lo, mid - 1);
+        }
+        return searchResep(l, val, mid + 1, hi);
+    }
+    return IDX_UNDEF;
 }
