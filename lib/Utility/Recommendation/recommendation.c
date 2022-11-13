@@ -33,7 +33,11 @@ LDinFoodSet resepToLDFS(ListNode resep)
     return resepLDFS;
 };
 
-void recommend(LDinFoodSet resepLDFS, FoodQueue inventory)
+void ingredientGenerator(ListNode resep, int id){
+
+};
+
+void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
 {
     if (isEmptyFQ(inventory))
     {
@@ -47,9 +51,11 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory)
 
     Teks inventoryName;
     buatTeks("Inventory", &inventoryName);
-    FoodSet augInv = FQToFS(inventory, inventoryName);
-    cetakFoodQueue(inventory);
-    cetakFoodSet(augInv);
+    FoodSet inv = FQToFS(inventory, inventoryName);
+
+    Teks aInventoryName;
+    buatTeks("Augmented Inventory", &aInventoryName);
+    FoodSet augInv = FQToFS(inventory, aInventoryName);
 
     Teks iRecSetN;
     buatTeks("Immediately Cookable", &iRecSetN);
@@ -93,14 +99,14 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory)
                     ElmtFS(sRecSet, recID) = true;
                     ElmtFS(iRecSet, recID) = firstIteration;
                     ElmtFS(pRecSet, recID) = !firstIteration;
-                    insertLastLDinTeks(&sRec, NameFS(observedRSet));
+                    insertLastLDinTeks(&sRec, intToTeks(recID));
                     if (firstIteration)
                     {
-                        insertLastLDinTeks(&iRec, NameFS(observedRSet));
+                        insertLastLDinTeks(&iRec, intToTeks(recID));
                     }
                     else
                     {
-                        insertLastLDinTeks(&pRec, NameFS(observedRSet));
+                        insertLastLDinTeks(&pRec, intToTeks(recID));
                     }
                 }
             }
@@ -118,4 +124,11 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory)
     printLDinTeks(iRec);
     cetakTeks(pRecT, 'c');
     printLDinTeks(pRec);
+};
+
+void printRecommendation(Teks idMakanan, ListNode resep, FoodSet inventorySet)
+{
+    for (int i = 0; i < ListNodeNEff(resep); i++)
+    {
+    }
 };
