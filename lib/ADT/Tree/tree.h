@@ -98,6 +98,14 @@ boolean isChildOf(treeEl val, Tree t);
 void createListNode(ListNode *l, int capacity);
 
 /**
+ * @brief mengembalikan true jika index merupakan index efektif
+ *
+ * @param l
+ * @param idx
+ */
+boolean isIdxEffListNode(ListNode l, int idx);
+
+/**
  * @brief memperbesar memory listnode l sebesar n
  *
  * @param l
@@ -120,6 +128,30 @@ boolean isFullListNode(ListNode l);
  * @param val nilai yang akan dimasukkan ke dalam list l
  */
 void insertLastListNode(ListNode *l, Address val);
+/**
+ * @brief memasukkan val sebagai elemen pertama pada List Node
+ *
+ * @param l
+ * @param val
+ */
+void insertFirstListNode(ListNode *l, Address val);
+
+/**
+ * @brief memasukkan val sebagai elemen pada list
+ *
+ * @param l
+ * @param val
+ * @param idx
+ */
+void insertAtListNode(ListNode *l, Address val, IdxType idx);
+
+/**
+ * @brief memasukkan val ke dalam list l dengan terurut membesar dan mengembalikan indeks tempat val tersebut disimpan
+ *
+ * @param l
+ * @param val
+ */
+int sortedInsertListNode(ListNode *l, Address val);
 
 /**
  * @brief menyalin isi dari l1 ke l2
@@ -172,4 +204,13 @@ Tree getParent(ListNode t, LDinTeks lt);
  */
 Address isAllocated(treeEl val, ListNode l);
 
+/**
+ * @brief mencari resep pada list resep dengan binary search dan
+ * mengembalikan indeks resep tersebut
+ *
+ * @param l
+ * @param val
+ * @return int
+ */
+int searchResep(ListNode l, Makanan val, int lo, int hi);
 #endif
