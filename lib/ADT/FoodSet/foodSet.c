@@ -18,6 +18,18 @@ void buatFSKosong(FoodSet *FS, Teks nama, Teks idTipe)
     }
 };
 
+int nElmtFS(FoodSet fs)
+{
+    int i = 0;
+    int count = 0;
+    while (i < capacityFS)
+    {
+        count += ElmtFS(fs, i);
+        i++;
+    }
+    return count;
+};
+
 FoodSet unionFoodSet(FoodSet FSa, FoodSet FSb)
 {
     FoodSet fsu;

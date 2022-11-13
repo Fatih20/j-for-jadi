@@ -58,6 +58,14 @@ typedef struct
 void buatFSKosong(FoodSet *fs, Teks nama, Teks id);
 
 /**
+ * @brief Mengembalikan jumlah elemen yang true di fs
+ *
+ * @param fs
+ * @return int
+ */
+int nElmtFS(FoodSet fs);
+
+/**
  * @brief Membuat Food Set dengan id 0
  *
  * @param fs

@@ -264,6 +264,8 @@ int main(int argc, char const *argv[])
     buatTeks("DELIVERY", &deliveryT);
     Teks commandKulkas;
     buatTeks("KULKAS", &commandKulkas);
+    Teks recommendT;
+    buatTeks("REKOMENDASI", &recommendT);
 
     boolean justUndo = false;
     while (!exiting)
@@ -342,6 +344,10 @@ int main(int argc, char const *argv[])
                 {
                     openKulkas(&currSimulator, &isChangeSimulator, &currentNS);
                     isUndoRedo = false;
+                }
+                else if (teksSamaCI(command, recommendT))
+                {
+                    recommend(resepLDFS, inventorySimulator(currSimulator));
                 }
                 else
                 {

@@ -80,6 +80,14 @@ FoodQueueEl tailElFQ(FoodQueue FQ);
 void buatFQKosong(FoodQueue *FQ, int max);
 
 /**
+ * @brief Apakah food queue kosong
+ *
+ * @param FQ
+ * @return boolean
+ */
+boolean isEmptyFQ(FoodQueue FQ);
+
+/**
  * @brief Mengirim jumlah elemen pada FQ
  *
  * @param FQ FoodQueue yang ingin dicek jumlah elemennnya

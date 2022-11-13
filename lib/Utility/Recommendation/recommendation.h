@@ -10,4 +10,18 @@
  */
 FoodSet FQToFS(FoodQueue FQ, Teks nama);
 
+/**
+ * @brief Megonversi resep dalam ListNode menjadi LDFS
+ *
+ * @param resep
+ * @return LDinFoodSet
+ */
 LDinFoodSet resepToLDFS(ListNode resep);
+
+/**
+ * @brief Memberikan rekomendasi makanan berdasar makanan di inventory dan resep di resepLDFS
+ *
+ * @param resepLDFS
+ * @param inventory
+ */
+void recommend(LDinFoodSet resepLDFS, FoodQueue inventory);
