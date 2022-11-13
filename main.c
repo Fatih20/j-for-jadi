@@ -347,7 +347,7 @@ int main(int argc, char const *argv[])
                 }
                 else if (teksSamaCI(command, recommendT))
                 {
-                    recommend(resepLDFS, inventorySimulator(currSimulator));
+                    recommend(resepLDFS, inventorySimulator(currSimulator), lResep);
                 }
                 else
                 {
