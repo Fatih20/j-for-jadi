@@ -61,9 +61,12 @@ void cetakTeks(Teks t, char color)
 
 void plusKar(Teks *teks, char kar)
 {
-
     insertLastLDinKar(&(karArrayT(*teks)), kar);
-    // Tidak perlu tambahkan panjangT karena otomatis dilakukan di dalam insertLast
+};
+
+void prefixKar(Teks *teks, char kar)
+{
+    insertFirstLDinKar(&(karArrayT(*teks)), kar);
 };
 
 void delKar(Teks *teks)
@@ -144,6 +147,15 @@ Teks toLower(Teks t1)
     return t1L;
 }
 
+void prependTeks(Teks *t1, Teks t2)
+{
+    int pT2 = panjangT(t2);
+    for (int i = 0; i < pT2; i++)
+    {
+        prefixKar(t1, nthChar(t2, i));
+    }
+};
+
 void tambahkanTeks(Teks *t1, Teks t2)
 {
     int pT2 = panjangT(t2);
@@ -213,4 +225,31 @@ void teksKeString(char string[], Teks teks)
         i++;
     }
     string[i] = '\0';
+};
+
+Teks intToTeks(int i)
+{
+    int n = i;
+    int digitN = 0;
+    Teks iRes;
+    buatTeksKosong(&iRes);
+    while (n != 0)
+    {
+        char charToAdd = (n % 10) + '0';
+        prefixKar(&iRes, charToAdd);
+        n = n / 10;
+        digitN++;
+    }
+
+    Teks leadingZero;
+    buatTeksKosong(&leadingZero);
+    int zeroToAdd = 3 - digitN;
+    while (zeroToAdd > 0)
+    {
+        plusKar(&leadingZero, '0');
+        zeroToAdd--;
+    }
+
+    prependTeks(&iRes, leadingZero);
+    return iRes;
 };
