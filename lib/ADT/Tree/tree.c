@@ -247,9 +247,10 @@ int searchResep(ListNode l, Teks idTipe, int lo, int hi)
 {
     if (hi >= lo)
     {
-        int mid = hi + (hi - lo) / 2;
+        int mid = lo + ((hi - lo) / 2);
         int idTipeCurr = teksToInt(IdTipeTree(ListNodeELMT(l, mid)));
         int idTipeVal = teksToInt(idTipe);
+
         if (idTipeCurr == idTipeVal)
         {
             return mid;

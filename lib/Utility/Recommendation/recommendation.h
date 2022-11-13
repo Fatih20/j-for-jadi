@@ -30,12 +30,12 @@ LDinFoodSet resepToLDFS(ListNode resep);
 void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep);
 
 /**
- * @brief Menghasilkan list teks id bahan dari makanan dengan id yang dimasukkan.
+ * @brief Menghasilkan list makanan bahan dari makanan dengan id yang dimasukkan.
  *
  * @param resep
  * @param id
  */
 
-LDinTeks ingredientGenerator(Address resep, int id);
+LDinMakanan ingredientGenerator(Address resepMakanan, int id);
 
 void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet inventorySet);

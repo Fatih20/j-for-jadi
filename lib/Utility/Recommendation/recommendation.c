@@ -33,14 +33,14 @@ LDinFoodSet resepToLDFS(ListNode resep)
     return resepLDFS;
 };
 
-LDinTeks ingredientGenerator(Address resepMakanan, int id)
+LDinMakanan ingredientGenerator(Address resepMakanan, int id)
 {
     int jumlah = ListNodeNEff(Children(resepMakanan));
-    LDinTeks ingredients;
-    buatLDinTeks(&ingredients, jumlah);
+    LDinMakanan ingredients;
+    buatLDinMakanan(&ingredients, jumlah);
     for (int i = 0; i < jumlah; i++)
     {
-        insertLastLDinTeks(&ingredients, NamaMakananTree(Child(resepMakanan, i)));
+        insertLastLDinMakanan(&ingredients, MakananTree(Child(resepMakanan, i)));
     }
 
     return ingredients;
@@ -57,26 +57,51 @@ void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet i
     printSGreen("============================================================\n\n");
 
     Teks pNoteT;
-    buatTeks("* Prekursor yang tidak dimiliki tapi direkomendasikan untuk dibuat\n", &pNoteT);
+    buatTeks("* Prekursor yang tidak dimiliki tapi telah direkomendasikan untuk dibuat\n", &pNoteT);
     Teks iNoteT;
     buatTeks("* Bahan makanan yang sudah ada di inventory\n", &iNoteT);
-    cetakTeks(pNoteT, 'r');
     cetakTeks(iNoteT, 'g');
+    cetakTeks(pNoteT, 'r');
 
     Teks iRecT;
     buatTeks("Makanan yang bisa langsung dibuat :\n", &iRecT);
+    cetakTeks(iRecT, 'e');
     for (int i = 0; i < ListNodeNEff(iRec); i++)
     {
-        int idxOResep = searchResep(resep, elmtLDT(iRec, i), 0, ListNodeNEff(resep));
+        int idxOResep = searchResep(resep, elmtLDT(iRec, i), 0, ListNodeNEff(resep) - 1);
         Tree observedResep = ListNodeELMT(resep, idxOResep);
-        LDinTeks =
+        LDinMakanan ingredients = ingredientGenerator(observedResep, teksToInt(elmtLDT(iRec, i)));
+        cetakTeks(NamaMakananTree(observedResep), 'e');
+        printf(" : ");
+        int j;
+        for (j = 0; j < nEffLDM(ingredients) - 1; j++)
+        {
+            cetakTeks(namaMakanan(elmtLDM(ingredients, j)), 'g');
+            printf(" - ");
+        }
+        cetakTeks(namaMakanan(elmtLDM(ingredients, j)), 'g');
+        printf("\n");
     }
 
     Teks pRecT;
     buatTeks("Makanan yang perlu dibuat dulu bahan-bahannya :\n", &pRecT);
-
-    cetakTeks(iRecT, 'e');
     cetakTeks(pRecT, 'e');
+    for (int k = 0; k < ListNodeNEff(pRec); k++)
+    {
+        int idxOResep = searchResep(resep, elmtLDT(pRec, k), 0, ListNodeNEff(resep) - 1);
+        Tree observedResep = ListNodeELMT(resep, idxOResep);
+        LDinMakanan ingredients = ingredientGenerator(observedResep, teksToInt(elmtLDT(pRec, k)));
+        cetakTeks(NamaMakananTree(observedResep), 'e');
+        printf(" : ");
+        int m;
+        for (m = 0; m < nEffLDM(ingredients) - 1; m++)
+        {
+            cetakTeks(namaMakanan(elmtLDM(ingredients, m)), ElmtFS(inventorySet, teksToInt(idTipe(elmtLDM(ingredients, m)))) ? 'g' : 'r');
+            printf(" - ");
+        }
+        cetakTeks(namaMakanan(elmtLDM(ingredients, m)), ElmtFS(inventorySet, teksToInt(idTipe(elmtLDM(ingredients, m)))) ? 'g' : 'r');
+        printf("\n");
+    }
 };
 
 void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
@@ -132,7 +157,6 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
             if (!ElmtFS(augInv, IdFS(observedRSet)))
             {
                 boolean isORSubset = isSubsetfs(observedRSet, augInv);
-                printf("%d\n", isORSubset);
                 if (isORSubset)
                 {
                     recMade = true;
@@ -157,11 +181,5 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
         firstIteration = false;
 
     } while (recMade);
-};
-
-void printRecommendation(Teks idMakanan, ListNode resep, FoodSet inventorySet)
-{
-    for (int i = 0; i < ListNodeNEff(resep); i++)
-    {
-    }
+    printRecommendation(iRec, pRec, resep, inv);
 };
