@@ -33,8 +33,50 @@ LDinFoodSet resepToLDFS(ListNode resep)
     return resepLDFS;
 };
 
-void ingredientGenerator(ListNode resep, int id){
+LDinTeks ingredientGenerator(Address resepMakanan, int id)
+{
+    int jumlah = ListNodeNEff(Children(resepMakanan));
+    LDinTeks ingredients;
+    buatLDinTeks(&ingredients, jumlah);
+    for (int i = 0; i < jumlah; i++)
+    {
+        insertLastLDinTeks(&ingredients, NamaMakananTree(Child(resepMakanan, i)));
+    }
 
+    return ingredients;
+};
+
+void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet inventorySet)
+{
+    Teks recommendT;
+    buatTeks("REKOMENDASI", &recommendT);
+    printSGreen("============================================================\n");
+    printf("                               ");
+    cetakTeks(recommendT, 'y');
+    printf("                       \n");
+    printSGreen("============================================================\n\n");
+
+    Teks pNoteT;
+    buatTeks("* Prekursor yang tidak dimiliki tapi direkomendasikan untuk dibuat\n", &pNoteT);
+    Teks iNoteT;
+    buatTeks("* Bahan makanan yang sudah ada di inventory\n", &iNoteT);
+    cetakTeks(pNoteT, 'r');
+    cetakTeks(iNoteT, 'g');
+
+    Teks iRecT;
+    buatTeks("Makanan yang bisa langsung dibuat :\n", &iRecT);
+    for (int i = 0; i < ListNodeNEff(iRec); i++)
+    {
+        int idxOResep = searchResep(resep, elmtLDT(iRec, i), 0, ListNodeNEff(resep));
+        Tree observedResep = ListNodeELMT(resep, idxOResep);
+        LDinTeks =
+    }
+
+    Teks pRecT;
+    buatTeks("Makanan yang perlu dibuat dulu bahan-bahannya :\n", &pRecT);
+
+    cetakTeks(iRecT, 'e');
+    cetakTeks(pRecT, 'e');
 };
 
 void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
@@ -115,15 +157,6 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
         firstIteration = false;
 
     } while (recMade);
-    Teks iRecT;
-    buatTeks("Makanan yang bisa langsung dibuat :\n", &iRecT);
-    Teks pRecT;
-    buatTeks("Makanan yang perlu dibuat dulu bahan-bahannya :\n", &pRecT);
-
-    cetakTeks(iRecT, 'g');
-    printLDinTeks(iRec);
-    cetakTeks(pRecT, 'c');
-    printLDinTeks(pRec);
 };
 
 void printRecommendation(Teks idMakanan, ListNode resep, FoodSet inventorySet)

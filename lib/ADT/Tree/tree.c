@@ -243,22 +243,22 @@ Address isAllocated(treeEl val, ListNode l)
     return NULL;
 }
 
-int searchResep(ListNode l, Makanan val, int lo, int hi)
+int searchResep(ListNode l, Teks idTipe, int lo, int hi)
 {
     if (hi >= lo)
     {
         int mid = hi + (hi - lo) / 2;
         int idTipeCurr = teksToInt(IdTipeTree(ListNodeELMT(l, mid)));
-        int idTipeVal = teksToInt(idTipe(val));
+        int idTipeVal = teksToInt(idTipe);
         if (idTipeCurr == idTipeVal)
         {
             return mid;
         }
         if (idTipeCurr > idTipeVal)
         {
-            return searchResep(l, val, lo, mid - 1);
+            return searchResep(l, idTipe, lo, mid - 1);
         }
-        return searchResep(l, val, mid + 1, hi);
+        return searchResep(l, idTipe, mid + 1, hi);
     }
     return IDX_UNDEF;
 }

@@ -1,4 +1,5 @@
 #include "../../ADT/ListDinFoodSet/ldinfoodset.h"
+#include "../../ADT/ListDinTeks/ldinteks.h"
 #include "../../ADT/Tree/tree.h"
 
 /**
@@ -34,6 +35,7 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep);
  * @param resep
  * @param id
  */
-void ingredientGenerator(ListNode resep, int id);
 
-void printRecommendation(Teks idMakanan, ListNode resep, FoodSet inventorySet);
+LDinTeks ingredientGenerator(Address resep, int id);
+
+void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet inventorySet);
