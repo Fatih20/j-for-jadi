@@ -132,7 +132,7 @@ void copyListNode(ListNode l1, ListNode *l2)
 
 boolean isEmptyListNode(ListNode l)
 {
-    return (ListNodeNEff(l) == 0);
+    return ListNodeNEff(l) == 0;
 }
 
 int sortedInsertListNode(ListNode *l, Address val)
@@ -152,7 +152,7 @@ int sortedInsertListNode(ListNode *l, Address val)
         else if (teksToInt(IdTipeTree(ListNodeELMT(*l, ListNodeNEff(*l) - 1))) < teksToInt(IdTipeTree(val)))
         {
             insertLastListNode(l, val);
-            return ListNodeNEff(*l) - 1;
+            return ListNodeNEff(*l);
         }
         else
         {
@@ -181,7 +181,7 @@ void readListNode(ListNode *t, char *file, LStatMakanan listMakanan)
         Teks idTemp = elmtLDT(currentRow, 0);
         treeEl makananTemp = getMakananFromID(listMakanan, idTemp);
         Address addressTemp = isAllocated(makananTemp, *t);
-        int idx = -1;
+        int idx;
         if (addressTemp != NULL)
         {
             idx = sortedInsertListNode(t, addressTemp);
@@ -190,24 +190,19 @@ void readListNode(ListNode *t, char *file, LStatMakanan listMakanan)
         {
             idx = sortedInsertListNode(t, newTreeNode(makananTemp, jumlahChild));
         }
-        int temp;
         for (int j = 2; j < panjangLDinTeks(currentRow); j++)
         {
+
             idTemp = elmtLDT(currentRow, j);
             makananTemp = getMakananFromID(listMakanan, idTemp);
             addressTemp = isAllocated(makananTemp, *t);
             if (addressTemp != NULL)
             {
-                if (i == 9 && j == 3)
-                {
-                    displayTree(ListNodeELMT(*t, idx));
-                }
-
-                temp = sortedInsertListNode(&Children(ListNodeELMT(*t, idx)), addressTemp);
+                sortedInsertListNode(&Children(ListNodeELMT(*t, idx)), addressTemp);
             }
             else
             {
-                temp = sortedInsertListNode(&Children(ListNodeELMT(*t, idx)), newTreeNode(makananTemp, 0));
+                sortedInsertListNode(&Children(ListNodeELMT(*t, idx)), newTreeNode(makananTemp, 0));
             }
         }
     }
