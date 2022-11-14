@@ -53,13 +53,22 @@ void buatTeksKosong(Teks *teks);
 void cetakTeks(Teks t, char color);
 
 /**
- * @brief Fungsi untuk menambahkan karakter ke Teks. Tidak melakukan apa-apa jika panjang sudah penuh.
+ * @brief Fungsi untuk menambahkan karakter ke akhir Teks. Tidak melakukan apa-apa jika panjang sudah penuh.
  * @param teks pointer ke teks yang ingin dioperasikan
  * @param kar karakter yang ingin ditambahkan
  *  *
  * @return Teks yang diberikan ditambahkan karakter yang diberikan
  */
 void plusKar(Teks *teks, char kar);
+
+/**
+ * @brief Fungsi untuk menambahkan karakter ke awal Teks. Tidak melakukan apa-apa jika panjang sudah penuh.
+ * @param teks pointer ke teks yang ingin dioperasikan
+ * @param kar karakter yang ingin ditambahkan
+ *  *
+ * @return Teks yang diberikan ditambahkan karakter yang diberikan
+ */
+void prefixKar(Teks *teks, char kar);
 
 /**
  * @brief Fungsi untuk menghapus karakter terakhir teks
@@ -149,11 +158,18 @@ boolean teksLPanjang(Teks t1, Teks t2);
 void gabungkanTeks(Teks t1, Teks t2, Teks *t3);
 
 /**
- * @brief Fungsi untuk menambahkan t2 ke t1. t1 harus sudah terdefinisi.
+ * @brief Fungsi untuk menambahkan t2 ke depan t1. t1 harus sudah terdefinisi.
  * @param t1 target teks
  * @param t2 source teks
  */
 void tambahkanTeks(Teks *t1, Teks t2);
+
+/**
+ * @brief Fungsi untuk menambahkan t2 ke awal t1. t1 harus sudah terdefinisi.
+ * @param t1 target teks
+ * @param t2 source teks
+ */
+void prependTeks(Teks *t1, Teks t2);
 
 /**
  * @brief mengembalikan true jika teks t adalah sebuah integer
@@ -170,5 +186,13 @@ boolean isTeksInt(Teks t);
  * @return integer yang direpresentasikan oleh teks t
  */
 int teksToInt(Teks t);
+
+/**
+ * @brief Mengubah int menjadi teks dengan leading zero ditambahkan sampai setidaknya tiga digit panjangnya
+ *
+ * @param i
+ * @return Teks
+ */
+Teks intToTeks(int i);
 
 #endif

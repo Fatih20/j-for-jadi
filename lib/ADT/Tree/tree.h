@@ -209,8 +209,8 @@ Address isAllocated(treeEl val, ListNode l);
  * mengembalikan indeks resep tersebut
  *
  * @param l
- * @param val
+ * @param idTipe
  * @return int
  */
-int searchResep(ListNode l, Makanan val, int lo, int hi);
+int searchResep(ListNode l, Teks idTipe, int lo, int hi);
 #endif

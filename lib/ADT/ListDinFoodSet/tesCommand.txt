@@ -1,0 +1,1 @@
+gcc -lm foodSet.c ldinfoodset.c ldinfoodSetDriver.c foodSetDriver.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../../Utility/Printc/printc.c -o ldfsDriver && ./ldfsDriver

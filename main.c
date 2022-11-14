@@ -3,11 +3,13 @@
 #include "lib/ADT/MKInput/mKInput.h"
 #include "lib/ADT/MBInput/mBInput.h"
 #include "lib/ADT/FoodQueue/foodQueue.h"
+#include "lib/ADT/FoodSet/foodSet.h"
 #include "lib/Utility/Loader/Loader.h"
 #include "lib/Utility/String/String.h"
 #include "lib/Utility/Commands/commands.h"
 #include "lib/Utility/String/String.h"
 #include "lib/Utility/Output/output.h"
+#include "lib/Utility/Recommendation/recommendation.h"
 
 int main(int argc, char const *argv[])
 {
@@ -162,6 +164,7 @@ int main(int argc, char const *argv[])
     Simulator salinanSimulator;
     Kulkas kulkas;
     Stack stackUndo, stackRedo;
+    LDinFoodSet resepLDFS;
     // Inisialisasi
     CreateEmptyStack(&stackUndo, 10);
     CreateEmptyStack(&stackRedo, 10);
@@ -188,6 +191,8 @@ int main(int argc, char const *argv[])
         Absis(posisiSimulator(initialSimulator)) = -1;
         Ordinat(posisiSimulator(initialSimulator)) = -1;
         Push(&stackUndo, initialSimulator);
+        resepLDFS = resepToLDFS(lResep);
+
         // Load username
         boolean unameFilled = false;
         do
@@ -220,6 +225,7 @@ int main(int argc, char const *argv[])
         cetakTeks(elmtLDT(currentRowI, 0), 'y');
         printf("                 \n");
     }
+
     Teks fryT;
     buatTeks("FRY", &fryT);
     Teks chopT;
@@ -258,6 +264,8 @@ int main(int argc, char const *argv[])
     buatTeks("DELIVERY", &deliveryT);
     Teks commandKulkas;
     buatTeks("KULKAS", &commandKulkas);
+    Teks recommendT;
+    buatTeks("REKOMENDASI", &recommendT);
 
     boolean justUndo = false;
     while (!exiting)
@@ -336,6 +344,10 @@ int main(int argc, char const *argv[])
                 {
                     openKulkas(&currSimulator, &isChangeSimulator, &currentNS);
                     isUndoRedo = false;
+                }
+                else if (teksSamaCI(command, recommendT))
+                {
+                    recommend(resepLDFS, inventorySimulator(currSimulator), lResep);
                 }
                 else
                 {
