@@ -198,10 +198,6 @@ void readListNode(ListNode *t, char *file, LStatMakanan listMakanan)
             addressTemp = isAllocated(makananTemp, *t);
             if (addressTemp != NULL)
             {
-                if (i == 9 && j == 3)
-                {
-                    displayTree(ListNodeELMT(*t, idx));
-                }
 
                 temp = sortedInsertListNode(&Children(ListNodeELMT(*t, idx)), addressTemp);
             }
