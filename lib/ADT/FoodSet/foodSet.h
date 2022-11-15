@@ -20,7 +20,7 @@ typedef struct
 {
     Teks nama;
     int idTipe;
-    boolean content[capacityFS];
+    int content[capacityFS];
 } FoodSet;
 
 /**
@@ -66,6 +66,26 @@ void buatFSKosong(FoodSet *fs, Teks nama, Teks id);
 int nElmtFS(FoodSet fs);
 
 /**
+ * @brief Meng-increment elemen dengan id i sebanyak inc
+ *
+ * @param fs
+ * @param i
+ * @param inc
+ * @return int
+ */
+int incrementIFS(FoodSet *fs, int i, int inc);
+
+/**
+ * @brief Meng-increment elemen dengan id i sebanyak 1
+ *
+ * @param fs
+ * @param i
+ * @param inc
+ * @return int
+ */
+int incrementFS(FoodSet *fs, int i);
+
+/**
  * @brief Membuat Food Set dengan id 0
  *
  * @param fs
@@ -74,7 +94,7 @@ int nElmtFS(FoodSet fs);
 void buatIdLFSKosong(FoodSet *fs, Teks nama);
 
 /**
- * @brief Menghasilkan set baru yang merupakan union dari fsa dan fsb
+ * @brief Menghasilkan set baru yang merupakan multiset union dari fsa dan fsb
  *
  * @param fsa
  * @param fsb
@@ -83,13 +103,22 @@ void buatIdLFSKosong(FoodSet *fs, Teks nama);
 FoodSet unionFoodSet(FoodSet fsa, FoodSet fsb);
 
 /**
- * @brief Menghasilkan set baru yang merupakan intersection dari fsa dan fsb
+ * @brief Menghasilkan set baru yang merupakan multiset intersection dari fsa dan fsb
  *
  * @param fsa
  * @param fsb
  * @return FoodSet
  */
 FoodSet intersectionFoodSet(FoodSet fsa, FoodSet fsb);
+
+/**
+ * @brief Menghasilkan set baru yang merupakan multiset difference fsa - fsb
+ *
+ * @param fsa
+ * @param fsb
+ * @return FoodSet
+ */
+FoodSet differenceFoodSet(FoodSet fsa, FoodSet fsb);
 
 /**
  * @brief Apakah fsa subset dari fsb
