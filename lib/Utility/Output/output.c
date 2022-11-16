@@ -14,7 +14,9 @@ void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stac
     printf("\n");
     if (IsEmptyStack(*undoStack) || !showNotification)
     {
-        printf("Notifikasi: -\n");
+        Teks notifT;
+        buatTeks("Notifikasi: ", &notifT);
+        printf("-\n");
     }
     else
     {

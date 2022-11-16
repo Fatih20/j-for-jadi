@@ -102,5 +102,41 @@ void buatNotifCookUndo(Teks command, Teks subject, Notif *notif)
 
 void cetakNotif(Notif notif)
 {
-    cetakTeks(notifTeks(notif), 'y');
+    char kN = kodeNTF(notif);
+    char colorP;
+    switch (kN)
+    {
+    case 'd':
+        colorP = 'b';
+        break;
+    case 'e':
+        colorP = 'r';
+        break;
+    case 's':
+        colorP = 'r';
+        break;
+    case 'n':
+        colorP = 'g';
+        break;
+    case 'f':
+        colorP = 'm';
+        break;
+    case 'b':
+        colorP = 'm';
+        break;
+    case 'm':
+        colorP = 'm';
+        break;
+    case 'c':
+        colorP = 'm';
+        break;
+    case 'p':
+        colorP = 'm';
+        break;
+
+    default:
+        colorP = 'e';
+        break;
+    }
+    cetakTeks(notifTeks(notif), colorP);
 };

@@ -71,7 +71,9 @@ boolean isFullLDinNotif(LDinNotif l)
 
 void printLDinNotif(LDinNotif l)
 {
-    printf("Notifikasi : ");
+    Teks notifT;
+    buatTeks("Notifikasi: ", &notifT);
+    cetakTeks(notifT, 'y');
     if (!isEmptyLDinNotif(l))
     {
         printf("\n");
