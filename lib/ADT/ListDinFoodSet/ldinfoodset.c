@@ -206,11 +206,45 @@ int indexBeforeHigher(LDinFoodSet l, int idTipeI)
         }
     }
 
-    return i - 1;
+    return i;
 };
 
 void insertOrderedLDFS(LDinFoodSet *l, FoodSet fs)
 {
-    int whereToAdd = indexBeforeHigher(*l, IdFS(fs));
-    insertAtLDinFoodSet(l, fs, whereToAdd);
+    if (isEmptyLDinFoodSet(*l))
+    {
+        insertFirstLDinFoodSet(l, fs);
+    }
+    else
+    {
+
+        int whereToAdd = indexBeforeHigher(*l, IdFS(fs));
+        insertAtLDinFoodSet(l, fs, whereToAdd);
+    }
 };
+
+int searchOrderedLDFS(LDinFoodSet l, Teks id)
+{
+    int searchedId = teksToInt(id);
+    return searchOrderedWLDFS(l, searchedId, 0, lastIdxLDinFoodSet(l));
+};
+
+int searchOrderedWLDFS(LDinFoodSet l, int id, int lo, int hi)
+{
+    if (hi >= lo)
+    {
+        int mid = lo + ((hi - lo) / 2);
+        int idTipeCurr = IdFS(elmtLDFS(l, mid));
+
+        if (idTipeCurr == id)
+        {
+            return mid;
+        }
+        if (idTipeCurr > id)
+        {
+            return searchOrderedWLDFS(l, id, lo, mid - 1);
+        }
+        return searchOrderedWLDFS(l, id, mid + 1, hi);
+    }
+    return IDX_UNDEF;
+}
