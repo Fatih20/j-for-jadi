@@ -166,6 +166,25 @@ int incrementIFS(FoodSet *fs, int i, int inc);
 int incrementFS(FoodSet *fs, int i);
 
 /**
+ * @brief Mengurangkan elemen ke-i di fs sebanyak 1
+ *
+ * @param fs
+ * @param i
+ * @return int
+ */
+int decrementFS(FoodSet *fs, int i);
+
+/**
+ * @brief Mengurangkan elemen ke-i di fs sebanyak inc
+ *
+ * @param fs
+ * @param i
+ * @param inc
+ * @return int
+ */
+int decrementIFS(FoodSet *fs, int i, int inc);
+
+/**
  * @brief Mengembalikan semua elemen yang tidak 0 di foodSet
  *
  * @param fs

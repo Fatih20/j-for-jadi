@@ -153,3 +153,13 @@ int incrementFS(FoodSet *fs, int i)
 {
     incrementIFS(fs, i, 1);
 };
+
+int decrementIFS(FoodSet *fs, int i, int inc)
+{
+    int res = ElmtFS(*fs, i) - inc;
+    ElmtFS(*fs, i) = res > 0 ? res : 0;
+};
+int decrementFS(FoodSet *fs, int i)
+{
+    decrementIFS(fs, i, 1);
+};
