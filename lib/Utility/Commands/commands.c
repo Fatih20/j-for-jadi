@@ -132,7 +132,6 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
             {
                 *isChangeSimulator = false;
             }
-            free(daftarMakananTemp.child);
         }
     } while (!isChoiceValid || !isExit);
 }
