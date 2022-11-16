@@ -94,7 +94,7 @@ FoodSet addFoodSet(FoodSet fsa, FoodSet fsb)
     FoodSet fsu;
     Teks namaB;
     Teks unionT;
-    buatTeks(" _ ", &unionT);
+    buatTeks(" + ", &unionT);
     gabungkanTeks(NameFS(fsa), unionT, &namaB);
     gabungkanTeks(namaB, NameFS(fsb), &namaB);
     Teks idB;
@@ -128,6 +128,21 @@ void cetakFoodSet(FoodSet FS)
     {
         printf("%03d -> %d\n", i, ElmtFS(FS, i));
     }
+};
+
+LDinTeks setToList(FoodSet fs)
+{
+    LDinTeks res;
+    buatLDinTeks(&res, 10);
+    for (int i = 0; i < capacityFS; i++)
+    {
+        int obsID = ElmtFS(fs, i);
+        if (obsID != 0)
+        {
+            insertLastLDinTeks(&res, intToTeks(obsID));
+        }
+    }
+    return res;
 };
 
 int incrementIFS(FoodSet *fs, int i, int inc)

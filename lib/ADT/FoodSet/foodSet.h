@@ -4,6 +4,7 @@
 #include "../boolean.h"
 #include "../Teks/teks.h"
 #include "../FoodQueue/foodQueue.h"
+#include "../ListDinTeks/ldinteks.h"
 
 /**
  * @brief Konstanta untuk address tak terdefinisi
@@ -144,5 +145,32 @@ boolean isSubsetfs(FoodSet fsa, FoodSet fsb);
  * @param fs
  */
 void cetakFoodSet(FoodSet fs);
+
+/**
+ * @brief Menambahkan elemen ke-i di fs sebanyak inc
+ *
+ * @param fs
+ * @param i
+ * @param inc
+ * @return int
+ */
+int incrementIFS(FoodSet *fs, int i, int inc);
+
+/**
+ * @brief Menambahkan elemen ke-i di fs sebanyak 1
+ *
+ * @param fs
+ * @param i
+ * @return int
+ */
+int incrementFS(FoodSet *fs, int i);
+
+/**
+ * @brief Mengembalikan semua elemen yang tidak 0 di foodSet
+ *
+ * @param fs
+ * @return LDinTeks
+ */
+LDinTeks setToList(FoodSet fs);
 
 #endif
