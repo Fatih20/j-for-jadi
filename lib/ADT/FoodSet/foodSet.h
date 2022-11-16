@@ -121,6 +121,15 @@ FoodSet intersectionFoodSet(FoodSet fsa, FoodSet fsb);
 FoodSet differenceFoodSet(FoodSet fsa, FoodSet fsb);
 
 /**
+ * @brief Menghasilkan set baru yang merupakan penjumlahan multiset fsa dan fsb
+ *
+ * @param fsa
+ * @param fsb
+ * @return FoodSet
+ */
+FoodSet addFoodSet(FoodSet fsa, FoodSet fsb);
+
+/**
  * @brief Apakah fsa subset dari fsb
  *
  * @param fsa

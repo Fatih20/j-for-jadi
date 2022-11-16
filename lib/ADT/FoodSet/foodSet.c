@@ -89,6 +89,24 @@ FoodSet differenceFoodSet(FoodSet fsa, FoodSet fsb)
     return fsu;
 };
 
+FoodSet addFoodSet(FoodSet fsa, FoodSet fsb)
+{
+    FoodSet fsu;
+    Teks namaB;
+    Teks unionT;
+    buatTeks(" _ ", &unionT);
+    gabungkanTeks(NameFS(fsa), unionT, &namaB);
+    gabungkanTeks(namaB, NameFS(fsb), &namaB);
+    Teks idB;
+    buatTeks("0", &idB);
+    buatFSKosong(&fsu, namaB, idB);
+    for (int i = 0; i < capacityFS; i++)
+    {
+        ElmtFS(fsu, i) = ElmtFS(fsa, i) + ElmtFS(fsb, i);
+    }
+    return fsu;
+};
+
 boolean isSubsetfs(FoodSet fsa, FoodSet fsb)
 {
     int i = 0;
