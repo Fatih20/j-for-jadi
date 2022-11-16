@@ -64,8 +64,16 @@ void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet i
     cetakTeks(pNoteT, 'r');
 
     Teks iRecT;
-    buatTeks("Makanan yang bisa langsung dibuat :\n", &iRecT);
+    buatTeks("Makanan yang bisa langsung dibuat : \n", &iRecT);
     cetakTeks(iRecT, 'e');
+
+    Teks tidakAda;
+    buatTeks("Tidak Ada", &tidakAda);
+    if (isEmptyLDinTeks(pRec))
+    {
+        cetakTeks(tidakAda, 'm');
+    }
+
     for (int i = 0; i < ListNodeNEff(iRec); i++)
     {
         int idxOResep = searchResep(resep, elmtLDT(iRec, i), 0, ListNodeNEff(resep) - 1);
@@ -86,6 +94,10 @@ void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet i
     Teks pRecT;
     buatTeks("Makanan yang perlu dibuat dulu bahan-bahannya :\n", &pRecT);
     cetakTeks(pRecT, 'e');
+    if (isEmptyLDinTeks(pRec))
+    {
+        cetakTeks(tidakAda, 'm');
+    }
     for (int k = 0; k < ListNodeNEff(pRec); k++)
     {
         int idxOResep = searchResep(resep, elmtLDT(pRec, k), 0, ListNodeNEff(resep) - 1);
@@ -184,36 +196,43 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
     printRecommendation(iRec, pRec, resep, inv);
 };
 
-boolean isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventory)
+int isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventory)
 {
-    boolean isRec = false;
+    int isRec = 0;
     Teks idObservedT = IdTipeTree(observedFood);
     int idObserved = teksToInt(idObservedT);
     int idxOResep = searchOrderedLDFS(resepLDFS, idObservedT);
     if (idxOResep == -1)
     {
-        printf("ID not found in recipe\n");
-        return false;
+        // printf("ID not found in recipe\n");
+        return 0;
     }
 
     FoodSet observedResep = elmtLDFS(resepLDFS, idxOResep);
     boolean isSubset = isSubsetfs(observedResep, inventory);
     if (isSubset)
     {
-        printf("It's recommended from subset\n");
-        return true;
+        // printf("It's recommended from subset\n");
+        return 1;
     }
 
-    printf("Not subset, entering union-find\n");
+    isRec = 2;
+
+    // printf("Not subset, entering union-find\n");
     boolean recConclusive = false;
+    int i = 0;
     while (!recConclusive)
     {
         FoodSet diff = differenceFoodSet(observedResep, inventory);
+        // cetakFoodSet(observedResep);
+        // cetakFoodSet(inventory);
+        // cetakFoodSet(diff);
         LDinTeks idOfUFood = setToList(diff);
         // cetakFoodSet(diff);
         printLDinTeks(idOfUFood);
         boolean noLeaves = true;
         int j = 0;
+        // printf("%d-th iteration in union-find\n", i);
         while (noLeaves && j <= lastIdxLDinTeks(idOfUFood))
         {
             Teks curIdT = elmtLDT(idOfUFood, j);
@@ -221,14 +240,15 @@ boolean isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inve
             noLeaves = idxResepToA != -1;
             if (!noLeaves)
             {
-                printf("One of the food is leaves : ");
-                cetakTeks(curIdT, 'e');
-                printf("\n");
+                // printf("One of the food is leaves : ");
+                // cetakTeks(curIdT, 'e');
+                // printf("\n");
                 recConclusive = true;
+                isRec = 0;
             }
             else
             {
-                FoodSet resepToAdd = elmtLDFS(resepLDFS, j);
+                FoodSet resepToAdd = elmtLDFS(resepLDFS, idxResepToA);
                 int idOfMResepToAdd = IdFS(resepToAdd);
                 decrementFS(&observedResep, teksToInt(curIdT));
                 observedResep = addFoodSet(observedResep, resepToAdd);
@@ -240,21 +260,26 @@ boolean isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inve
             boolean isSubset = isSubsetfs(observedResep, inventory);
             if (isSubset)
             {
-                isRec = true;
                 recConclusive = true;
-                printf("It's recommended from union-find\n");
+                // printf("It's recommended from union-find\n");
             }
         }
+        i++;
     }
     return isRec;
 }
 
 void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
 {
-    FoodSet rec;
-    Teks recSet;
-    buatTeks("Inventory", &recSet);
-    buatIdLFSKosong(&rec, recSet);
+    FoodSet iRec;
+    Teks iRecSet;
+    buatTeks("Inventory", &iRecSet);
+    buatIdLFSKosong(&iRec, iRecSet);
+
+    FoodSet pRec;
+    Teks pRecSet;
+    buatTeks("Inventory", &pRecSet);
+    buatIdLFSKosong(&pRec, pRecSet);
 
     Teks inventoryName;
     buatTeks("Inventory", &inventoryName);
@@ -262,11 +287,22 @@ void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
 
     for (int i = 0; i < nEffLDFS(resep); i++)
     {
+        // printf("Testing recommendation for ");
         Tree observedFood = ListNodeELMT(resep, i);
+        // cetakTeks(NamaMakananTree(observedFood), 'e');
+        // printf("\n");
         int idObserved = teksToInt(IdTipeTree(observedFood));
-        incrementIFS(&rec, idObserved, isFoodRecommended(observedFood, resepLDFS, invFS));
+        int recLevel = isFoodRecommended(observedFood, resepLDFS, invFS);
+        if (recLevel == 1)
+        {
+            incrementFS(&iRec, idObserved);
+        }
+        else if (recLevel == 2)
+        {
+            incrementFS(&pRec, idObserved);
+        }
     }
     LDinTeks test;
     buatLDinTeks(&test, 10);
-    printRecommendation(setToList(rec), test, resep, invFS);
+    printRecommendation(setToList(iRec), setToList(pRec), resep, invFS);
 }
