@@ -24,6 +24,7 @@ void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stac
     {
         Teks notifT;
         buatTeks("Notifikasi", &notifT);
+        cetakTeks(notifT, 'y');
         printf("\n-\n");
     }
     else
