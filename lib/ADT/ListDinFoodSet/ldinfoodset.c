@@ -218,10 +218,10 @@ void insertOrderedLDFS(LDinFoodSet *l, FoodSet fs)
 int searchOrderedLDFS(LDinFoodSet l, Teks id)
 {
     int searchedId = teksToInt(id);
-    return searchOrderedWLDFS(l, searchedId, capacityLDFS(l) - 1, 0);
+    return searchOrderedWLDFS(l, searchedId, 0, capacityLDFS(l) - 1);
 };
 
-int searchOrderedWLDFS(LDinFoodSet l, int id, int hi, int lo)
+int searchOrderedWLDFS(LDinFoodSet l, int id, int lo, int hi)
 {
     if (hi >= lo)
     {

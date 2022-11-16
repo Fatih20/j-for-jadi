@@ -184,7 +184,7 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
     printRecommendation(iRec, pRec, resep, inv);
 };
 
-void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
+void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
 {
     FoodSet rec;
     Teks recSet;
@@ -194,6 +194,7 @@ void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
     Teks inventoryName;
     buatTeks("Inventory", &inventoryName);
     FoodSet inv = FQToFS(inventory, inventoryName);
+    cetakFoodSet(inv);
 
     for (int i = 0; i < nEffLDFS(resep); i++)
     {
@@ -201,16 +202,19 @@ void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
         Teks idObservedT = IdTipeTree(observedFood);
         int idObserved = teksToInt(idObservedT);
         int idxOResep = searchOrderedLDFS(resepLDFS, idObservedT);
+        printf("Entering iteration of recipe. The %d-th resep. ID : %d\n", i, idObserved);
         if (idxOResep != -1)
         {
             FoodSet observedResep = elmtLDFS(resepLDFS, idxOResep);
             boolean isSubset = isSubsetfs(observedResep, inv);
             if (isSubset)
             {
+                printf("It's subset\n");
                 incrementFS(&rec, idObserved);
             }
             else
             {
+                printf("Not subset, entering union-find\n");
                 boolean recConclusive = false;
                 while (!recConclusive)
                 {
@@ -225,6 +229,9 @@ void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
                         noLeaves = idxResepToA != -1;
                         if (!noLeaves)
                         {
+                            printf("One of the food is leaves : ");
+                            cetakTeks(curIdT, 'e');
+                            printf("\n");
                             recConclusive = true;
                         }
                         else
@@ -243,10 +250,15 @@ void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
                         {
                             incrementFS(&rec, idObserved);
                             recConclusive = true;
+                            printf("It's recommended\n");
                         }
                     }
                 }
             }
+        }
+        else
+        {
+            printf("ID Not found?\n");
         }
     }
     cetakFoodSet(rec);

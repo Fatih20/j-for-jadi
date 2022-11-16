@@ -47,4 +47,4 @@ void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet i
  * @param inventory
  * @param resep
  */
-void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep);
+void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep);

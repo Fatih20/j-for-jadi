@@ -240,6 +240,6 @@ int searchOrderedLDFS(LDinFoodSet l, Teks id);
  * @param lo
  * @return int
  */
-int searchOrderedWLDFS(LDinFoodSet l, int id, int hi, int lo);
+int searchOrderedWLDFS(LDinFoodSet l, int id, int lo, int hi);
 
 #endif
