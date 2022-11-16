@@ -234,9 +234,9 @@ int searchOrderedWLDFS(LDinFoodSet l, int id, int hi, int lo)
         }
         if (idTipeCurr > id)
         {
-            return searchResep(l, id, lo, mid - 1);
+            return searchOrderedWLDFS(l, id, lo, mid - 1);
         }
-        return searchResep(l, id, mid + 1, hi);
+        return searchOrderedWLDFS(l, id, mid + 1, hi);
     }
     return IDX_UNDEF;
 }
