@@ -183,3 +183,40 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
     } while (recMade);
     printRecommendation(iRec, pRec, resep, inv);
 };
+
+void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
+{
+    FoodSet rec;
+    Teks recSet;
+    buatTeks("Inventory", &recSet);
+    buatIdLFSKosong(&rec, recSet);
+
+    FoodSet inv;
+    Teks inventoryName;
+    buatTeks("Inventory", &inventoryName);
+    buatIdLFSKosong(&inv, inventoryName);
+
+    for (int i = 0; i < nEffLDFS(resep); i++)
+    {
+        boolean recConclusive = false;
+        Tree observedFood = ListNodeELMT(resep, i);
+        Teks idObservedT = IdTipeTree(observedFood);
+        int idObserved = teksToInt(idObservedT);
+        int idxOResep = searchOrderedLDFS(resepLDFS, idObservedT);
+        if (idxOResep != -1)
+        {
+            FoodSet observedResep = elmtLDFS(resepLDFS, idxOResep);
+            boolean isSubset = isSubsetfs(observedResep, inv);
+            if (isSubset)
+            {
+                incrementFS(&rec, idObserved);
+                recConclusive = true;
+            }
+            else
+            {
+                FoodSet diff = differenceFoodSet(observedResep, inv);
+                LDinTeks idOfUFood = setToList(diff);
+            }
+        }
+    }
+}

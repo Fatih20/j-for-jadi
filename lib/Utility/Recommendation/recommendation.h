@@ -39,3 +39,12 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep);
 LDinMakanan ingredientGenerator(Address resepMakanan, int id);
 
 void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet inventorySet);
+
+/**
+ * @brief Algoritma alternatif untuk rekomendasi
+ *
+ * @param resepLDFS
+ * @param inventory
+ * @param resep
+ */
+void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep);
