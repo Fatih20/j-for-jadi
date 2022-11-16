@@ -1,7 +1,7 @@
 #include "output.h"
 #include <stdio.h>
 
-void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stack *undoStack)
+void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stack *undoStack, boolean showNotification)
 {
     printSCyan("\n============================================================\n\n");
     printf("\n");
@@ -12,7 +12,7 @@ void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stac
     printf("Waktu: ");
     tulisWaktuDot(waktuSimulator(cSimulator));
     printf("\n");
-    if (IsEmptyStack(*undoStack))
+    if (IsEmptyStack(*undoStack) || !showNotification)
     {
         printf("Notifikasi: -\n");
     }

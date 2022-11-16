@@ -270,7 +270,7 @@ int main(int argc, char const *argv[])
     boolean justUndo = false;
     while (!exiting)
     {
-        displayCondition(currSimulator, peta, justUndo, &stackUndo);
+        displayCondition(currSimulator, peta, justUndo, &stackUndo, isChangeSimulator || isUndoRedo);
         Teks command;
         NotifState currentNS;
         buatNotifStateR(&currentNS);
