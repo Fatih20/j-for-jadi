@@ -7,7 +7,7 @@ FoodSet FQToFS(FoodQueue FQ, Teks nama)
     for (int i = headFQ(FQ); i <= tailFQ(FQ); i++)
     {
         int idToAdd = teksToInt(idTipe(elmtFQ(FQ, i)));
-        ElmtFS(fs, idToAdd) = true;
+        ElmtFS(fs, idToAdd) += 1;
     }
     return fs;
 };
@@ -51,7 +51,7 @@ void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet i
     Teks recommendT;
     buatTeks("REKOMENDASI", &recommendT);
     printSGreen("============================================================\n");
-    printf("                               ");
+    printf("                           ");
     cetakTeks(recommendT, 'y');
     printf("                       \n");
     printSGreen("============================================================\n\n");
@@ -69,9 +69,10 @@ void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet i
 
     Teks tidakAda;
     buatTeks("Tidak Ada", &tidakAda);
-    if (isEmptyLDinTeks(pRec))
+    if (isEmptyLDinTeks(iRec))
     {
         cetakTeks(tidakAda, 'm');
+        printf("\n");
     }
 
     for (int i = 0; i < ListNodeNEff(iRec); i++)
@@ -90,6 +91,7 @@ void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet i
         cetakTeks(namaMakanan(elmtLDM(ingredients, j)), 'g');
         printf("\n");
     }
+    printf("\n");
 
     Teks pRecT;
     buatTeks("Makanan yang perlu dibuat dulu bahan-bahannya :\n", &pRecT);
@@ -97,6 +99,7 @@ void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet i
     if (isEmptyLDinTeks(pRec))
     {
         cetakTeks(tidakAda, 'm');
+        printf("\n");
     }
     for (int k = 0; k < ListNodeNEff(pRec); k++)
     {
@@ -202,6 +205,9 @@ int isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventor
     Teks idObservedT = IdTipeTree(observedFood);
     int idObserved = teksToInt(idObservedT);
     int idxOResep = searchOrderedLDFS(resepLDFS, idObservedT);
+    // printf("Finding recommendation of \n");
+    // cetakTeks(NamaMakananTree(observedFood), 'e');
+    // printf("\n");
     if (idxOResep == -1)
     {
         // printf("ID not found in recipe\n");
@@ -224,11 +230,13 @@ int isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventor
     while (!recConclusive)
     {
         FoodSet diff = differenceFoodSet(observedResep, inventory);
-        // cetakFoodSet(observedResep);
-        // cetakFoodSet(inventory);
-        // cetakFoodSet(diff);
+        if (idObserved == 80)
+        {
+            cetakFoodSet(observedResep);
+            cetakFoodSet(inventory);
+            cetakFoodSet(diff);
+        }
         LDinTeks idOfUFood = setToList(diff);
-        // cetakFoodSet(diff);
         printLDinTeks(idOfUFood);
         boolean noLeaves = true;
         int j = 0;
@@ -240,9 +248,12 @@ int isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventor
             noLeaves = idxResepToA != -1;
             if (!noLeaves)
             {
-                // printf("One of the food is leaves : ");
-                // cetakTeks(curIdT, 'e');
-                // printf("\n");
+                if (idObserved == 80)
+                {
+                    // printf("One of the food is leaves : ");
+                    // cetakTeks(curIdT, 'e');
+                    // printf("\n");
+                }
                 recConclusive = true;
                 isRec = 0;
             }
@@ -284,13 +295,11 @@ void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
     Teks inventoryName;
     buatTeks("Inventory", &inventoryName);
     FoodSet invFS = FQToFS(inventory, inventoryName);
+    cetakFoodSet(invFS);
 
     for (int i = 0; i < nEffLDFS(resep); i++)
     {
-        // printf("Testing recommendation for ");
         Tree observedFood = ListNodeELMT(resep, i);
-        // cetakTeks(NamaMakananTree(observedFood), 'e');
-        // printf("\n");
         int idObserved = teksToInt(IdTipeTree(observedFood));
         int recLevel = isFoodRecommended(observedFood, resepLDFS, invFS);
         if (recLevel == 1)
