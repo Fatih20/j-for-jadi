@@ -191,10 +191,9 @@ void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
     buatTeks("Inventory", &recSet);
     buatIdLFSKosong(&rec, recSet);
 
-    FoodSet inv;
     Teks inventoryName;
     buatTeks("Inventory", &inventoryName);
-    buatIdLFSKosong(&inv, inventoryName);
+    FoodSet inv = FQToFS(inventory, inventoryName);
 
     for (int i = 0; i < nEffLDFS(resep); i++)
     {
