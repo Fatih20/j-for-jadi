@@ -1,11 +1,26 @@
-10 10
-###C######
-##FST##X##
-##BM###X##
-#######X##
-####XXXX##
-#X########
-#X########
-#XXX######
-##########
-##########
+25 25 
+##XXXXXXXXXXXXXXXXXXXXXXX
+######X###########X#X###X
+X#XXXXX#XXX#XXXXXXX#X#XXX
+X##SX###X###X#M#X#####X#X
+XXX#X#XXX#X#X#XXXXXXX#X#X
+X#X####TX#X#######X#####X
+X#X#XXX#X#X#XXXXX#XXXXX#X
+X###X#X#X#X#XC##X#X#####X
+XXX#X#X#XXX#X#XXX#XXX#XXX
+X#X###X###X#X#######X#X#X
+X#XXXXXXXXX#XXXXX#XXX#X#X
+X##FX#####X###X#########X
+X#XXX#XXXXXXX#X#X#X#XXX#X
+X#########X#X#X#X#X#X#X#X
+XXXXXXXXX#X#X#XXX#XXX#X#X
+X#####X#####X###XB##X###X
+XXX#XXX#XXXXX#XXXXX#XXX#X
+X###X###X###X#X#X#X#X###X
+X#X#XXX#XXX#X#X#X#X#XXX#X
+X#X#########X###X#X###X#X
+XXXXX#X#X#XXXXX#X#XXXXX#X
+X#####X#X###X#X#X###X###X
+X#X#X#X#X#XXX#X#XXX#XXXXX
+X#X#X#X#X################
+XXXXXXXXXXXXXXXXXXXXXXX##
