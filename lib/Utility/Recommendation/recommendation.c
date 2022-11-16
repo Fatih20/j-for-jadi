@@ -251,7 +251,6 @@ boolean isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inve
 
 void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
 {
-    printLDinFoodSet(resepLDFS);
     FoodSet rec;
     Teks recSet;
     buatTeks("Inventory", &recSet);
@@ -267,5 +266,7 @@ void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
         int idObserved = teksToInt(IdTipeTree(observedFood));
         incrementIFS(&rec, idObserved, isFoodRecommended(observedFood, resepLDFS, invFS));
     }
-    cetakFoodSet(rec);
+    LDinTeks test;
+    buatLDinTeks(&test, 10);
+    printRecommendation(setToList(rec), test, resep, invFS);
 }
