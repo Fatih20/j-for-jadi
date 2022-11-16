@@ -186,6 +186,7 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
 
 void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
 {
+    printLDinFoodSet(resepLDFS);
     FoodSet rec;
     Teks recSet;
     buatTeks("Inventory", &recSet);
