@@ -48,3 +48,13 @@ void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet i
  * @param resep
  */
 void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep);
+
+/**
+ * @brief Mengecek apakah suatu food direkomendasikan dengan union-find
+ *
+ * @param observedFood tree dari makanan yang ingin dicek
+ * @param resepLDFS
+ * @param inv
+ * @return boolean
+ */
+boolean isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventory);
