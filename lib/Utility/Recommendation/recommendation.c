@@ -198,7 +198,6 @@ void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
 
     for (int i = 0; i < nEffLDFS(resep); i++)
     {
-        boolean recConclusive = false;
         Tree observedFood = ListNodeELMT(resep, i);
         Teks idObservedT = IdTipeTree(observedFood);
         int idObserved = teksToInt(idObservedT);
@@ -210,13 +209,46 @@ void recommendT(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
             if (isSubset)
             {
                 incrementFS(&rec, idObserved);
-                recConclusive = true;
             }
             else
             {
-                FoodSet diff = differenceFoodSet(observedResep, inv);
-                LDinTeks idOfUFood = setToList(diff);
+                boolean recConclusive = false;
+                while (!recConclusive)
+                {
+                    FoodSet diff = differenceFoodSet(observedResep, inv);
+                    LDinTeks idOfUFood = setToList(diff);
+                    boolean noLeaves = true;
+                    int j = 0;
+                    while (noLeaves)
+                    {
+                        Teks curIdT = elmtLDT(idOfUFood, j);
+                        int idxResepToA = searchOrderedLDFS(resepLDFS, curIdT);
+                        noLeaves = idxResepToA != -1;
+                        if (!noLeaves)
+                        {
+                            recConclusive = true;
+                        }
+                        else
+                        {
+                            FoodSet resepToAdd = elmtLDFS(resepLDFS, j);
+                            int idOfMResepToAdd = IdFS(resepToAdd);
+                            decrementFS(&observedResep, teksToInt(curIdT));
+                            observedResep = addFoodSet(observedResep, resepToAdd);
+                        }
+                        j += !noLeaves;
+                    }
+                    if (!recConclusive)
+                    {
+                        boolean isSubset = isSubsetfs(observedResep, inv);
+                        if (isSubset)
+                        {
+                            incrementFS(&rec, idObserved);
+                            recConclusive = true;
+                        }
+                    }
+                }
             }
         }
     }
+    cetakFoodSet(rec);
 }
