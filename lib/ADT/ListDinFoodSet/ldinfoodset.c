@@ -214,3 +214,29 @@ void insertOrderedLDFS(LDinFoodSet *l, FoodSet fs)
     int whereToAdd = indexBeforeHigher(*l, IdFS(fs));
     insertAtLDinFoodSet(l, fs, whereToAdd);
 };
+
+int searchOrderedLDFS(LDinFoodSet l, Teks id)
+{
+    int searchedId = teksToInt(id);
+    return searchOrderedWLDFS(l, searchedId, capacityLDFS(l) - 1, 0);
+};
+
+int searchOrderedWLDFS(LDinFoodSet l, int id, int hi, int lo)
+{
+    if (hi >= lo)
+    {
+        int mid = lo + ((hi - lo) / 2);
+        int idTipeCurr = IdFS(elmtLDFS(l, mid));
+
+        if (idTipeCurr == id)
+        {
+            return mid;
+        }
+        if (idTipeCurr > id)
+        {
+            return searchResep(l, id, lo, mid - 1);
+        }
+        return searchResep(l, id, mid + 1, hi);
+    }
+    return IDX_UNDEF;
+}
