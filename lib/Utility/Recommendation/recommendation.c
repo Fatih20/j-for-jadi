@@ -210,9 +210,11 @@ boolean isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inve
     {
         FoodSet diff = differenceFoodSet(observedResep, inventory);
         LDinTeks idOfUFood = setToList(diff);
+        // cetakFoodSet(diff);
+        printLDinTeks(idOfUFood);
         boolean noLeaves = true;
         int j = 0;
-        while (noLeaves)
+        while (noLeaves && j <= lastIdxLDinTeks(idOfUFood))
         {
             Teks curIdT = elmtLDT(idOfUFood, j);
             int idxResepToA = searchOrderedLDFS(resepLDFS, curIdT);
@@ -231,7 +233,7 @@ boolean isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inve
                 decrementFS(&observedResep, teksToInt(curIdT));
                 observedResep = addFoodSet(observedResep, resepToAdd);
             }
-            j += !noLeaves;
+            j += noLeaves;
         }
         if (!recConclusive)
         {
@@ -258,7 +260,6 @@ void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
     Teks inventoryName;
     buatTeks("Inventory", &inventoryName);
     FoodSet invFS = FQToFS(inventory, inventoryName);
-    cetakFoodSet(invFS);
 
     for (int i = 0; i < nEffLDFS(resep); i++)
     {

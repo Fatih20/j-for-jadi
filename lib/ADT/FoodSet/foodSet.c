@@ -139,7 +139,7 @@ LDinTeks setToList(FoodSet fs)
         int obsID = ElmtFS(fs, i);
         if (obsID != 0)
         {
-            insertLastLDinTeks(&res, intToTeks(obsID));
+            insertLastLDinTeks(&res, intToTeks(i));
         }
     }
     return res;
