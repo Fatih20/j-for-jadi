@@ -72,7 +72,7 @@ boolean isFullLDinNotif(LDinNotif l)
 void printLDinNotif(LDinNotif l)
 {
     Teks notifT;
-    buatTeks("Notifikasi: ", &notifT);
+    buatTeks("Notifikasi", &notifT);
     cetakTeks(notifT, 'y');
     if (!isEmptyLDinNotif(l))
     {
@@ -86,7 +86,7 @@ void printLDinNotif(LDinNotif l)
     }
     else
     {
-        printf("-\n");
+        printf("\n-\n");
     }
 }
 

@@ -5,18 +5,26 @@ void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stac
 {
     printSCyan("\n============================================================\n\n");
     printf("\n");
-    cetakTeks(userNameSimulator(cSimulator), 'n');
-    printf(" di posisi: ");
+    printf("You're playing as ");
+    cetakTeks(userNameSimulator(cSimulator), 'g');
+    printf("\n");
+    Teks positionT;
+    buatTeks("Posisi", &positionT);
+    cetakTeks(positionT, 'c');
+    printf("\n");
     TulisPOINT(posisiSimulator(cSimulator));
     printf("\n");
-    printf("Waktu: ");
+    Teks waktuT;
+    buatTeks("Waktu", &waktuT);
+    cetakTeks(waktuT, 'p');
+    printf("\n");
     tulisWaktuDot(waktuSimulator(cSimulator));
     printf("\n");
     if (IsEmptyStack(*undoStack) || !showNotification)
     {
         Teks notifT;
-        buatTeks("Notifikasi: ", &notifT);
-        printf("-\n");
+        buatTeks("Notifikasi", &notifT);
+        printf("\n-\n");
     }
     else
     {
