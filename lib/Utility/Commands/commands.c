@@ -15,7 +15,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
             }
             else
             {
-                printf("Pindah ke ");
+                printf("Pindah ke posisi yang berhadapan dengan ");
                 TulisPOINT(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))));
                 printf(" untuk melakukan aksi ");
                 cetakTeks(toUpper(command), 'y');
@@ -132,7 +132,6 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
             {
                 *isChangeSimulator = false;
             }
-            free(daftarMakananTemp.child);
         }
     } while (!isChoiceValid || !isExit);
 }
@@ -231,8 +230,8 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
 {
     if (!IsAdjacent(lokasiAL(telepon), posisiSimulator(*currSimulator)))
     {
-        printf("\nBNMO tidak berada pada area telepon!\n");
-        printf("Pindah ke ");
+        printf("\nSimulaotr tidak berada pada area telepon!\n");
+        printf("Pindah ke lokasi yang berhadapan dengan ");
         TulisPOINT(lokasiAL(telepon));
         printf(" untuk melakukan aksi BUY");
         *isChangeSimulator = false;
@@ -480,8 +479,8 @@ void openKulkas(Simulator *currSimulator, boolean *isChangeSimulator, NotifState
 {
     if (!IsAdjacent(lokasiAL(aksiLokasiKulkas(kulkasSimulator(*currSimulator))), posisiSimulator(*currSimulator)))
     {
-        printf("\nBNMO tidak berada pada area telepon!\n");
-        printf("Pindah ke ");
+        printf("\nSimulator tidak berada pada area telepon!\n");
+        printf("Pindah ke lokasi yang berhadapan dengan ");
         TulisPOINT(lokasiAL(aksiLokasiKulkas(kulkasSimulator(*currSimulator))));
         printf(" untuk melakukan aksi KULKAS");
         *isChangeSimulator = false;
