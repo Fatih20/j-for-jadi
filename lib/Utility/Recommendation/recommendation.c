@@ -201,6 +201,7 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
 
 int isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventory)
 {
+
     int isRec = 0;
     Teks idObservedT = IdTipeTree(observedFood);
     int idObserved = teksToInt(idObservedT);
@@ -282,6 +283,13 @@ int isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventor
 
 void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
 {
+    if (isEmptyFQ(inventory))
+    {
+        Teks noRec;
+        buatTeks("Inventory kosong, tidak ada makanan yang bisa direkomendasikan!\n", &noRec);
+        cetakTeks(noRec, 'r');
+        return;
+    }
     FoodSet iRec;
     Teks iRecSet;
     buatTeks("Inventory", &iRecSet);
