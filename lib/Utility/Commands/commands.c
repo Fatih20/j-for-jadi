@@ -479,21 +479,21 @@ void openKulkas(Simulator *currSimulator, boolean *isChangeSimulator, NotifState
 {
     if (!IsAdjacent(lokasiAL(aksiLokasiKulkas(kulkasSimulator(*currSimulator))), posisiSimulator(*currSimulator)))
     {
-        printf("\nSimulator tidak berada pada area telepon!\n");
-        printf("Pindah ke lokasi yang berhadapan dengan ");
+        printf("\nBNMO tidak berada pada area kulkas!\n");
+        printf("Pindah ke ");
         TulisPOINT(lokasiAL(aksiLokasiKulkas(kulkasSimulator(*currSimulator))));
         printf(" untuk melakukan aksi KULKAS");
         *isChangeSimulator = false;
         return;
     }
+    boolean isKulkasBerubah;
 
     printSCyan("============================================================\n");
     printSYellow("                           KULKAS                           \n");
     printSCyan("============================================================\n\n");
     cetakKulkas(kulkasSimulator(*currSimulator));
     int pilihanOpsiKulkas = Nil;
-    boolean isSudahMengisi = false;
-    while (pilihanOpsiKulkas != 0 && !isSudahMengisi)
+    while (pilihanOpsiKulkas != 0)
     {
         printSYellow("Pilih tindakan yang ingin dilakukan\n");
         printSYellow("(1)");
@@ -502,63 +502,97 @@ void openKulkas(Simulator *currSimulator, boolean *isChangeSimulator, NotifState
         printSCyan(" Keluarkan makanan\n");
         printSYellow("(3)");
         printSCyan(" Ubah susunan kulkas\n");
-        printSCyan("Pilihan ::");
-        scanf("%d", &pilihanOpsiKulkas);
-        if (pilihanOpsiKulkas < 0 || pilihanOpsiKulkas > 3)
+        pilihanOpsiKulkas = askForNumber(0, 3, "Pilih tindakan : ");
+        printf("\n\n");
+        isKulkasBerubah = false;
+
+        if (pilihanOpsiKulkas == 0)
         {
-            printSYellow("Maaf, opsi tersebut tidak tersedia, silahkan ulangi.\n");
+            printSYellow("Operasi dibatalkan.\n\n");
         }
         else
         {
-            isSudahMengisi = true;
-        }
-    }
-
-    if (pilihanOpsiKulkas)
-    {
-        Makanan operasiMakananKulkas;
-        if (pilihanOpsiKulkas == 1)
-        {
-            isSudahMengisi = false;
-            cetakIsiKulkas((kulkasSimulator(*currSimulator)).isi);
-            cetakFoodQueue(inventorySimulator(*currSimulator));
-            int pilihanOpsiMasukkanKeKulkas = Nil;
-            while (pilihanOpsiMasukkanKeKulkas != 0 && !isSudahMengisi)
+            Makanan operasiMakananKulkas;
+            if (pilihanOpsiKulkas == 1)
             {
-                printSYellow("Pilih makanan yang ingin dimasukkan\n");
-                printSYellow("(0 untuk membatalkan)\n");
-                printSCyan("Pilihan ::");
-                scanf("%d", &pilihanOpsiMasukkanKeKulkas);
-                if (pilihanOpsiKulkas < 0 || pilihanOpsiKulkas > nElmt(inventorySimulator(*currSimulator)))
+                if (nElmt(inventorySimulator(*currSimulator)) == 0)
                 {
-                    printSYellow("Maaf, opsi tersebut tidak tersedia, silahkan ulangi.\n");
+                    printSYellow("Inventory Kosong.\n\n");
                 }
                 else
                 {
-                    isSudahMengisi = true;
+                    cetakIsiKulkas((kulkasSimulator(*currSimulator)).isi);
+                    printf("\n");
+                    printSYellow("Makanan dalam inventory: \n");
+                    for (int i = 0; i < panjangLDinMakanan(content(inventorySimulator(*currSimulator))); i++)
+                    {
+                        printf("%d.", i + 1);
+                        printSCyan(" Nama makanan: ");
+                        cetakTeks(namaMakanan(elmtLDM(content(inventorySimulator(*currSimulator)), i)), 'b');
+                        printf("\n");
+                        printSCyan("   ID makanan: ");
+                        cetakTeks(idTipe(elmtLDM(content(inventorySimulator(*currSimulator)), i)), 'c');
+                        printf("\n");
+                    }
+                    printf("\n");
+
+                    int pilihanOpsiMasukkanKeKulkas = Nil;
+
+                    printSYellow("Pilih makanan yang ingin dimasukkan\n");
+                    printSYellow("(0 untuk membatalkan)\n");
+                    pilihanOpsiMasukkanKeKulkas = askForNumber(0, nElmt(inventorySimulator(*currSimulator)), "Pilihan makanan : ");
+
+                    if (pilihanOpsiMasukkanKeKulkas == 0)
+                    {
+                        printSYellow("Operasi dibatalkan.\n\n");
+                    }
+                    else
+                    {
+                        Teks idDimasukkanKulkas = idTipe(elmtLDM(content(inventorySimulator(*currSimulator)), pilihanOpsiMasukkanKeKulkas - 1));
+                        int searchInvForKulkas = 0;
+                        boolean isSearchInvForKulkasFound = false;
+                        while (!isSearchInvForKulkasFound)
+                        {
+                            isSearchInvForKulkasFound = teksSama(idDimasukkanKulkas, idTipe(elmtLDM(content(inventorySimulator(*currSimulator)), searchInvForKulkas)));
+                            if (isSearchInvForKulkasFound)
+                            {
+                                operasiMakananKulkas = elmtLDM(content(inventorySimulator(*currSimulator)), searchInvForKulkas);
+                            }
+                            searchInvForKulkas++;
+                        }
+
+                        tambahIsiKulkas(&kulkasSimulator(*currSimulator), operasiMakananKulkas, &isKulkasBerubah);
+                        if (isKulkasBerubah)
+                        {
+                            deleteByIdTipe(&inventorySimulator(*currSimulator), idTipe(elmtFQ(inventorySimulator(*currSimulator), pilihanOpsiMasukkanKeKulkas - 1)), &operasiMakananKulkas);
+                            insertLastLDinNotifRaw(&backNS(*notifS), 'x', namaMakanan(operasiMakananKulkas));
+                        }
+                        printf("\n");
+                    }
                 }
             }
-            if (pilihanOpsiMasukkanKeKulkas)
+            else if (pilihanOpsiKulkas == 2)
             {
-                // Mencari makanan pilihan yang hampir basi
-                // int idMakananMasuk = idxMakanan(inventorySimulator(*currSimulator), );
-                deleteByIdTipe(&inventorySimulator(*currSimulator), idTipe(elmtFQ(inventorySimulator(*currSimulator), pilihanOpsiMasukkanKeKulkas - 1)), &operasiMakananKulkas);
-                tambahIsiKulkas(&kulkasSimulator(*currSimulator), operasiMakananKulkas);
-                // operasiMakananKulkas = elmt(inventorySimulator(*currSimulator), pilihanOpsiMasukkanKeKulkas - 1)
+                keluarkanIsiKulkas(&kulkasSimulator(*currSimulator), &operasiMakananKulkas, &isKulkasBerubah);
+                if (isKulkasBerubah)
+                {
+                    enqueueInventory(&inventorySimulator(*currSimulator), operasiMakananKulkas);
+                    insertLastLDinNotifRaw(&backNS(*notifS), 'y', namaMakanan(operasiMakananKulkas));
+                }
+                printf("\n");
+            }
+            else if (pilihanOpsiKulkas == 3)
+            {
+                ubahIsiKulkas(&kulkasSimulator(*currSimulator), &isKulkasBerubah);
+                printf("\n");
+            }
+            if (isKulkasBerubah)
+            {
+                Waktu time;
+                time = buatWaktu(0, 0, 1, 0);
+                majukanWaktuSimulator(currSimulator, time, notifS);
+                *isChangeSimulator = true;
             }
         }
-        else if (pilihanOpsiKulkas == 2)
-        {
-            keluarkanIsiKulkas(&kulkasSimulator(*currSimulator), &operasiMakananKulkas);
-            enqueueInventory(&inventorySimulator(*currSimulator), operasiMakananKulkas);
-        }
-        else if (pilihanOpsiKulkas == 3)
-        {
-            ubahIsiKulkas(&kulkasSimulator(*currSimulator));
-        }
-    }
-    else
-    {
-        printSYellow("Operasi dibatalkan.");
     }
 }

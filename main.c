@@ -262,8 +262,8 @@ int main(int argc, char const *argv[])
     buatTeks("INVENTORY", &inventoryT);
     Teks deliveryT;
     buatTeks("DELIVERY", &deliveryT);
-    Teks commandKulkas;
-    buatTeks("KULKAS", &commandKulkas);
+    Teks kulkasT;
+    buatTeks("KULKAS", &kulkasT);
     Teks recommendT;
     buatTeks("REKOMENDASI", &recommendT);
 
@@ -340,7 +340,7 @@ int main(int argc, char const *argv[])
                     isChangeSimulator = false;
                     exiting = true;
                 }
-                else if (teksSamaCI(command, commandKulkas))
+                else if (teksSamaCI(command, kulkasT))
                 {
                     openKulkas(&currSimulator, &isChangeSimulator, &currentNS);
                     isUndoRedo = false;

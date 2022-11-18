@@ -54,6 +54,16 @@ Teks notifTeks(Notif ntf)
         tambahkanTeks(&result, subject);
         tambahkanTeks(&result, toAppend);
         break;
+    case 'x':
+        buatTeks(" dibatalkan masuk ke kulkas!", &toAppend);
+        tambahkanTeks(&result, subject);
+        tambahkanTeks(&result, toAppend);
+        break;
+    case 'y':
+        buatTeks(" dibatakan keluar dari kulkas!", &toAppend);
+        tambahkanTeks(&result, subject);
+        tambahkanTeks(&result, toAppend);
+        break;
     default:
         break;
     }
@@ -76,6 +86,9 @@ void buatNotifCookUndo(Teks command, Teks subject, Notif *notif)
     buatTeks("BOIL", &boilT);
     Teks mixT;
     buatTeks("MIX", &mixT);
+    Teks commandKulkas;
+    buatTeks("KULKAS", &commandKulkas);
+
     char kodeNTF;
     if (teksSamaCI(command, fryT))
     {
@@ -92,6 +105,10 @@ void buatNotifCookUndo(Teks command, Teks subject, Notif *notif)
     else if (teksSamaCI(command, mixT))
     {
         kodeNTF = 'm';
+    }
+    else if (teksSamaCI(command, commandKulkas))
+    {
+        kodeNTF = 'x';
     }
     else
     {
@@ -133,7 +150,12 @@ void cetakNotif(Notif notif)
     case 'p':
         colorP = 'm';
         break;
-
+    case 'x':
+        colorP = 'm';
+        break;
+    case 'y':
+        colorP = 'm';
+        break;
     default:
         colorP = 'e';
         break;
