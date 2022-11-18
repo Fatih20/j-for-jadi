@@ -232,7 +232,6 @@ int isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventor
     {
         FoodSet diff = differenceFoodSet(observedResep, inventory);
         LDinTeks idOfUFood = setToList(diff);
-        printLDinTeks(idOfUFood);
         boolean noLeaves = true;
         int j = 0;
         // printf("%d-th iteration in union-find\n", i);
@@ -291,7 +290,6 @@ void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep)
     Teks inventoryName;
     buatTeks("Inventory", &inventoryName);
     FoodSet invFS = FQToFS(inventory, inventoryName);
-    cetakFoodSet(invFS);
 
     for (int i = 0; i < nEffLDFS(resep); i++)
     {
