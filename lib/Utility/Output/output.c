@@ -1,20 +1,31 @@
 #include "output.h"
 #include <stdio.h>
 
-void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stack *undoStack)
+void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stack *undoStack, boolean showNotification)
 {
     printSCyan("\n============================================================\n\n");
     printf("\n");
-    cetakTeks(userNameSimulator(cSimulator), 'n');
-    printf(" di posisi: ");
+    printf("You're playing as ");
+    cetakTeks(userNameSimulator(cSimulator), 'g');
+    printf("\n");
+    Teks positionT;
+    buatTeks("Posisi", &positionT);
+    cetakTeks(positionT, 'c');
+    printf("\n");
     TulisPOINT(posisiSimulator(cSimulator));
     printf("\n");
-    printf("Waktu: ");
+    Teks waktuT;
+    buatTeks("Waktu", &waktuT);
+    cetakTeks(waktuT, 'p');
+    printf("\n");
     tulisWaktuDot(waktuSimulator(cSimulator));
     printf("\n");
-    if (IsEmptyStack(*undoStack))
+    if (IsEmptyStack(*undoStack) || !showNotification)
     {
-        printf("Notifikasi: -\n");
+        Teks notifT;
+        buatTeks("Notifikasi", &notifT);
+        cetakTeks(notifT, 'y');
+        printf("\n-\n");
     }
     else
     {

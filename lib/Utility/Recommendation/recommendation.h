@@ -39,3 +39,22 @@ void recommend(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep);
 LDinMakanan ingredientGenerator(Address resepMakanan, int id);
 
 void printRecommendation(LDinTeks iRec, LDinTeks pRec, ListNode resep, FoodSet inventorySet);
+
+/**
+ * @brief Algoritma alternatif untuk rekomendasi
+ *
+ * @param resepLDFS
+ * @param inventory
+ * @param resep
+ */
+void recommendTiered(LDinFoodSet resepLDFS, FoodQueue inventory, ListNode resep);
+
+/**
+ * @brief Mengecek apakah suatu food direkomendasikan dengan union-find.
+ *
+ * @param observedFood tree dari makanan yang ingin dicek
+ * @param resepLDFS
+ * @param inv
+ * @return int 0 jika tidak direkomendasikan, 1 jika iRec, 2 jika pRec
+ */
+int isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventory);

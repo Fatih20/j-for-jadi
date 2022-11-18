@@ -9,5 +9,6 @@
  * @param peta
  * @param justUndo apakah command sebelumnya adalah undo
  * @param undoStack
+ * @param showNotification
  */
-void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stack *undoStack);
+void displayCondition(Simulator cSimulator, Matriks peta, boolean justUndo, Stack *undoStack, boolean showNotification);

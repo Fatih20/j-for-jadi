@@ -227,8 +227,11 @@ void majukanWDQ(FoodQueue *DQ, FoodQueue *IQ, Waktu w, NotifState *nS)
             insertLastLDinNotifRaw(&forNS(*nS), 'e', namaMakanan(movedFood));
             insertLastLDinNotifRaw(&backNS(*nS), 'n', namaMakanan(movedFood));
         }
-        currentM = headElFQ(*DQ);
-        nP = newPosisiMDelivery(currentM, w);
+        if (!isEmptyFQ(*DQ))
+        {
+            currentM = headElFQ(*DQ);
+            nP = newPosisiMDelivery(currentM, w);
+        }
     }
 
     if (isEmptyFQ(*DQ))

@@ -15,7 +15,7 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
             }
             else
             {
-                printf("Pindah ke ");
+                printf("Pindah ke posisi yang berhadapan dengan ");
                 TulisPOINT(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))));
                 printf(" untuk melakukan aksi ");
                 cetakTeks(toUpper(command), 'y');
@@ -132,7 +132,6 @@ void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, 
             {
                 *isChangeSimulator = false;
             }
-            free(daftarMakananTemp.child);
         }
     } while (!isChoiceValid || !isExit);
 }
@@ -231,8 +230,8 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
 {
     if (!IsAdjacent(lokasiAL(telepon), posisiSimulator(*currSimulator)))
     {
-        printf("\nBNMO tidak berada pada area telepon!\n");
-        printf("Pindah ke ");
+        printf("\nSimulator tidak berada pada area telepon!\n");
+        printf("Pindah ke lokasi yang berhadapan dengan ");
         TulisPOINT(lokasiAL(telepon));
         printf(" untuk melakukan aksi BUY");
         *isChangeSimulator = false;
@@ -242,8 +241,6 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
     printSCyan("============================================================\n");
     printSYellow("                             BUY                            \n");
     printSCyan("============================================================\n\n");
-    printSYellow("List Bahan Makanan yang Bisa Dibeli:\n\n");
-    printf("Nama Makanan - Waktu pengiriman\n");
     int lastIdx = lastIdxLStatMakanan(lMakanan);
     int nBuyable = 0;
     Teks buyT;
@@ -258,44 +255,57 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
         if (teksSamaCI(buyT, teksAksiM))
         {
             Makanan mBuyable = elmtLSM(lMakanan, i);
-            printf("    %d. ", nBuyable + 1);
-            cetakTeks(namaMakanan(mBuyable), 'b');
-            printf(" - ");
-            tulisWaktu(sampaiDalam(mBuyable));
-            printf("\n");
             insertLastLDinMakanan(&mBuyableList, mBuyable);
             nBuyable++;
         }
     }
+
     printf("\nKetik ");
     printRed('0');
     printf(" untuk keluar.\n\n");
 
     // scanf("%d", &choice);
 
-    int choice = askForNumber(0, nBuyable, "Enter command : ");
-
-    if (choice == 0)
+    int choice;
+    do
     {
-        return;
-    }
-    choice--;
+        printSYellow("List Bahan Makanan yang Bisa Dibeli:\n\n");
+        printf("Nama Makanan - Waktu pengiriman\n");
+        for (int i = 0; i <= lastIdxLDinMakanan(mBuyableList); i++)
+        {
+            Makanan mBuyable = elmtLSM(mBuyableList, i);
+            printf("    %d. ", i + 1);
+            cetakTeks(namaMakanan(mBuyable), 'b');
+            printf(" - ");
+            tulisWaktu(sampaiDalam(mBuyable));
+            printf("\n");
+        }
 
-    Makanan boughtFood = elmtLDM(mBuyableList, choice);
-    printSGreen("\nBerhasil ");
-    printf("memesan ");
-    cetakTeks(namaMakanan(boughtFood), 'b');
-    printf(". ");
-    cetakTeks(namaMakanan(boughtFood), 'b');
-    printf(" akan sampai dalam ");
-    tulisWaktu(sampaiDalam(boughtFood));
-    printf("\n");
-    insertLastLDinNotifRaw(&backNS(*notifS), 'p', namaMakanan(boughtFood));
-    Waktu time;
-    time = buatWaktu(0, 0, 1, 0);
-    majukanWaktuSimulator(currSimulator, time, notifS);
-    *isChangeSimulator = true;
-    enqueueDelivery(&deliverySimulator(*currSimulator), boughtFood);
+        printf("\n");
+
+        choice = askForNumber(0, nBuyable, "Enter food to buy : ");
+
+        if (choice != 0)
+        {
+
+            Makanan boughtFood = elmtLDM(mBuyableList, choice - 1);
+            printSGreen("\nBerhasil ");
+            printf("memesan ");
+            cetakTeks(namaMakanan(boughtFood), 'b');
+            printf(". ");
+            cetakTeks(namaMakanan(boughtFood), 'b');
+            printf(" akan sampai dalam ");
+            tulisWaktu(sampaiDalam(boughtFood));
+            printf("\n\n");
+            insertLastLDinNotifRaw(&backNS(*notifS), 'p', namaMakanan(boughtFood));
+            Waktu time;
+            time = buatWaktu(0, 0, 1, 0);
+            majukanWaktuSimulator(currSimulator, time, notifS);
+            *isChangeSimulator = true;
+            enqueueDelivery(&deliverySimulator(*currSimulator), boughtFood);
+        }
+
+    } while (choice != 0);
 };
 void undo(Simulator *currSimulator, Stack *stackUndo, Stack *stackRedo, Simulator salinanSimulator, Matriks *peta)
 {
@@ -469,8 +479,8 @@ void openKulkas(Simulator *currSimulator, boolean *isChangeSimulator, NotifState
 {
     if (!IsAdjacent(lokasiAL(aksiLokasiKulkas(kulkasSimulator(*currSimulator))), posisiSimulator(*currSimulator)))
     {
-        printf("\nBNMO tidak berada pada area telepon!\n");
-        printf("Pindah ke ");
+        printf("\nSimulator tidak berada pada area telepon!\n");
+        printf("Pindah ke lokasi yang berhadapan dengan ");
         TulisPOINT(lokasiAL(aksiLokasiKulkas(kulkasSimulator(*currSimulator))));
         printf(" untuk melakukan aksi KULKAS");
         *isChangeSimulator = false;

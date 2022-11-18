@@ -270,7 +270,7 @@ int main(int argc, char const *argv[])
     boolean justUndo = false;
     while (!exiting)
     {
-        displayCondition(currSimulator, peta, justUndo, &stackUndo);
+        displayCondition(currSimulator, peta, justUndo, &stackUndo, isChangeSimulator || isUndoRedo);
         Teks command;
         NotifState currentNS;
         buatNotifStateR(&currentNS);
@@ -347,7 +347,8 @@ int main(int argc, char const *argv[])
                 }
                 else if (teksSamaCI(command, recommendT))
                 {
-                    recommend(resepLDFS, inventorySimulator(currSimulator), lResep);
+                    // recommend(resepLDFS, inventorySimulator(currSimulator), lResep);
+                    recommendTiered(resepLDFS, inventorySimulator(currSimulator), lResep);
                 }
                 else
                 {

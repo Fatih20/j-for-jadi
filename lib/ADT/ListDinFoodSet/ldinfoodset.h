@@ -222,4 +222,24 @@ int indexBeforeHigher(LDinFoodSet l, int idTipeI);
  */
 void insertOrderedLDFS(LDinFoodSet *l, FoodSet fs);
 
+/**
+ * @brief Mencari di indeks keberapa foodSet dengan id sesuai ditemukan
+ *
+ * @param l
+ * @param id
+ * @return int
+ */
+int searchOrderedLDFS(LDinFoodSet l, Teks id);
+
+/**
+ * @brief Fungsi yang sebenarnya dipanggil oleh search ordered
+ *
+ * @param l
+ * @param id
+ * @param hi
+ * @param lo
+ * @return int
+ */
+int searchOrderedWLDFS(LDinFoodSet l, int id, int lo, int hi);
+
 #endif

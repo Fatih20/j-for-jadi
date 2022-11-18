@@ -30,38 +30,79 @@ int nElmtFS(FoodSet fs)
     return count;
 };
 
-FoodSet unionFoodSet(FoodSet FSa, FoodSet FSb)
+FoodSet unionFoodSet(FoodSet fsa, FoodSet fsb)
 {
     FoodSet fsu;
     Teks namaB;
     Teks unionT;
     buatTeks(" Union ", &unionT);
-    gabungkanTeks(NameFS(FSa), unionT, &namaB);
-    gabungkanTeks(namaB, NameFS(FSb), &namaB);
+    gabungkanTeks(NameFS(fsa), unionT, &namaB);
+    gabungkanTeks(namaB, NameFS(fsb), &namaB);
     Teks idB;
     buatTeks("0", &idB);
     buatFSKosong(&fsu, namaB, idB);
     for (int i = 0; i < capacityFS; i++)
     {
-        ElmtFS(fsu, i) = ElmtFS(FSa, i) || ElmtFS(FSb, i);
+        int aNum = ElmtFS(fsa, i);
+        int bNum = ElmtFS(fsb, i);
+        ElmtFS(fsu, i) = aNum > bNum ? aNum : bNum;
     }
     return fsu;
 };
 
-FoodSet intersectionFoodSet(FoodSet FSa, FoodSet FSb)
+FoodSet intersectionFoodSet(FoodSet fsa, FoodSet fsb)
 {
     FoodSet fsu;
     Teks namaB;
     Teks unionT;
     buatTeks(" Intersect ", &unionT);
-    gabungkanTeks(NameFS(FSa), unionT, &namaB);
-    gabungkanTeks(namaB, NameFS(FSb), &namaB);
+    gabungkanTeks(NameFS(fsa), unionT, &namaB);
+    gabungkanTeks(namaB, NameFS(fsb), &namaB);
     Teks idB;
     buatTeks("0", &idB);
     buatFSKosong(&fsu, namaB, idB);
     for (int i = 0; i < capacityFS; i++)
     {
-        ElmtFS(fsu, i) = ElmtFS(FSa, i) && ElmtFS(FSb, i);
+        int aNum = ElmtFS(fsa, i);
+        int bNum = ElmtFS(fsb, i);
+        ElmtFS(fsu, i) = aNum < bNum ? aNum : bNum;
+    }
+    return fsu;
+};
+
+FoodSet differenceFoodSet(FoodSet fsa, FoodSet fsb)
+{
+    FoodSet fsu;
+    Teks namaB;
+    Teks unionT;
+    buatTeks(" Difference ", &unionT);
+    gabungkanTeks(NameFS(fsa), unionT, &namaB);
+    gabungkanTeks(namaB, NameFS(fsb), &namaB);
+    Teks idB;
+    buatTeks("0", &idB);
+    buatFSKosong(&fsu, namaB, idB);
+    for (int i = 0; i < capacityFS; i++)
+    {
+        int difference = ElmtFS(fsa, i) - ElmtFS(fsb, i);
+        ElmtFS(fsu, i) = difference > 0 ? difference : 0;
+    }
+    return fsu;
+};
+
+FoodSet addFoodSet(FoodSet fsa, FoodSet fsb)
+{
+    FoodSet fsu;
+    Teks namaB;
+    Teks unionT;
+    buatTeks(" + ", &unionT);
+    gabungkanTeks(NameFS(fsa), unionT, &namaB);
+    gabungkanTeks(namaB, NameFS(fsb), &namaB);
+    Teks idB;
+    buatTeks("0", &idB);
+    buatFSKosong(&fsu, namaB, idB);
+    for (int i = 0; i < capacityFS; i++)
+    {
+        ElmtFS(fsu, i) = ElmtFS(fsa, i) + ElmtFS(fsb, i);
     }
     return fsu;
 };
@@ -72,7 +113,7 @@ boolean isSubsetfs(FoodSet fsa, FoodSet fsb)
     boolean foundNot = false;
     while (!foundNot && i < capacityFS)
     {
-        foundNot = ElmtFS(fsa, i) && !ElmtFS(fsb, i);
+        foundNot = ElmtFS(fsa, i) > ElmtFS(fsb, i);
         i += !foundNot;
     }
     return !foundNot;
@@ -87,4 +128,38 @@ void cetakFoodSet(FoodSet FS)
     {
         printf("%03d -> %d\n", i, ElmtFS(FS, i));
     }
+};
+
+LDinTeks setToList(FoodSet fs)
+{
+    LDinTeks res;
+    buatLDinTeks(&res, 10);
+    for (int i = 0; i < capacityFS; i++)
+    {
+        int obsID = ElmtFS(fs, i);
+        if (obsID != 0)
+        {
+            insertLastLDinTeks(&res, intToTeks(i));
+        }
+    }
+    return res;
+};
+
+int incrementIFS(FoodSet *fs, int i, int inc)
+{
+    ElmtFS(*fs, i) += inc;
+};
+int incrementFS(FoodSet *fs, int i)
+{
+    incrementIFS(fs, i, 1);
+};
+
+int decrementIFS(FoodSet *fs, int i, int inc)
+{
+    int res = ElmtFS(*fs, i) - inc;
+    ElmtFS(*fs, i) = res > 0 ? res : 0;
+};
+int decrementFS(FoodSet *fs, int i)
+{
+    decrementIFS(fs, i, 1);
 };
