@@ -1,8 +1,8 @@
 Tes time advanced
-gcc fQueueTimeAdv.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c ../Waktu/waktu.c ../AksiLokasi/aksiLokasi.c ../Point/Point.c -o tesFQWaktuAdv -lm && ./tesFQWaktuAdv
+gcc fQueueTimeAdv.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c ../Waktu/waktu.c ../AksiLokasi/aksiLokasi.c ../Point/Point.c ../Notification/notification.c ../NotificationState/notificationState.c ../ListDinNotif/listDinNotif.c ../../Utility/Printc/printc.c -o tesFQWaktuAdv -lm && ./tesFQWaktuAdv
 
 Tes time
-gcc fQueueTimeDriver.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c ../Waktu/waktu.c ../AksiLokasi/aksiLokasi.c ../Point/Point.c -o tesFQWaktu -lm && ./tesFQWaktu
+gcc fQueueTimeDriver.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c ../Waktu/waktu.c ../AksiLokasi/aksiLokasi.c ../Point/Point.c ../Notification/notification.c ../NotificationState/notificationState.c ../ListDinNotif/listDinNotif.c ../../Utility/Printc/printc.c -o tesFQWaktu -lm && ./tesFQWaktu
 
 Tes in general
-gcc fQueueDriver.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c ../Waktu/waktu.c ../AksiLokasi/aksiLokasi.c ../Point/Point.c -o tesFQ -lm && ./tesFQ
+gcc fQueueDriver.c foodQueue.c ../Teks/teks.c ../ListDinKar/ldinkar.c ../Makanan/makanan.c ../ListDinMakanan/ldinmakanan.c ../Waktu/waktu.c ../AksiLokasi/aksiLokasi.c ../Point/Point.c ../Notification/notification.c ../NotificationState/notificationState.c ../ListDinNotif/listDinNotif.c ../../Utility/Printc/printc.c -o tesFQ -lm && ./tesFQ

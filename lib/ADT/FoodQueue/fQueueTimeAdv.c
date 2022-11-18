@@ -95,8 +95,11 @@ void tC1()
     cetakFoodQueue(iq);
     printf("\n\n");
 
+    NotifState nS;
+    buatNotifStateR(&nS);
+
     Waktu wOffset = buatWaktu(0, 0, 10, 0);
-    majukanWFQ(&dq, &iq, wOffset);
+    majukanWFQ(&dq, &iq, wOffset, &nS);
 
     // Enqueue delivery
     printf("DQ After\n");
@@ -226,8 +229,10 @@ void tC2()
     cetakFoodQueue(iq);
     printf("\n\n");
 
+    NotifState nS;
+    buatNotifStateR(&nS);
     Waktu wOffset = buatWaktu(0, 0, 9, 0);
-    majukanWFQ(&dq, &iq, wOffset);
+    majukanWFQ(&dq, &iq, wOffset, &nS);
 
     // Enqueue delivery
     printf("DQ After\n");
@@ -298,8 +303,10 @@ void tC3()
     cetakFoodQueue(iq);
     printf("\n\n");
 
+    NotifState nS;
+    buatNotifStateR(&nS);
     Waktu wOffset = buatWaktu(0, 0, 59, 0);
-    majukanWFQ(&dq, &iq, wOffset);
+    majukanWFQ(&dq, &iq, wOffset, &nS);
 
     // Enqueue delivery
     printf("DQ After\n");
@@ -364,8 +371,10 @@ void tC4()
     cetakFoodQueue(iq);
     printf("\n\n");
 
+    NotifState nS;
+    buatNotifStateR(&nS);
     Waktu wOffset = buatWaktu(0, 0, 58, 0);
-    majukanWFQ(&dq, &iq, wOffset);
+    majukanWFQ(&dq, &iq, wOffset, &nS);
 
     // Enqueue delivery
     printf("DQ After\n");
@@ -473,8 +482,10 @@ void tC5()
     cetakFoodQueue(iq);
     printf("\n\n");
 
+    NotifState nS;
+    buatNotifStateR(&nS);
     Waktu wOffset = buatWaktu(0, 0, 49, 0);
-    majukanWFQ(&dq, &iq, wOffset);
+    majukanWFQ(&dq, &iq, wOffset, &nS);
 
     // Enqueue delivery
     printf("DQ After\n");
@@ -604,8 +615,10 @@ void tC6()
     cetakFoodQueue(iq);
     printf("\n\n");
 
+    NotifState nS;
+    buatNotifStateR(&nS);
     Waktu wOffset = buatWaktu(0, 5, 2, 0);
-    majukanWFQ(&dq, &iq, wOffset);
+    majukanWFQ(&dq, &iq, wOffset, &nS);
 
     // Enqueue delivery
     printf("DQ After\n");

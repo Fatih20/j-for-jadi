@@ -105,8 +105,12 @@ int main(int argc, char const *argv[])
     // Uji remove and find by ID
     printf("Tes remove dan cari tipe dalam FQ2\n");
     FoodQueueEl tempEl3;
-    printf("%d\n", idxMakanan(fq2, "014"));
-    deleteByIdTipe(&fq2, "010", &tempEl3);
+    Teks id1;
+    buatTeks("014", &id1);
+    Teks id2;
+    buatTeks("014", &id2);
+    printf("%d\n", idxMakanan(fq2, id1));
+    deleteByIdTipe(&fq2, id2, &tempEl3);
     cetakFoodQueue(fq2);
     printf("\n\n");
     return 0;

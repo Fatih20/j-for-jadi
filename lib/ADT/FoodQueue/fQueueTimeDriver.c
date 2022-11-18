@@ -74,9 +74,12 @@ int main(int argc, char const *argv[])
     cetakFoodQueue(iq);
     printf("\n\n");
 
-    Waktu wOffset = buatWaktu(0, 5, 2, 0);
-    majukanWFQ(&dq, &iq, wOffset);
+    NotifState nS;
+    buatNotifStateR(&nS);
 
-    majukanWDQ(&dq, &iq, wOffset);
-    majukanWIQ(&iq, wOffset);
+    Waktu wOffset = buatWaktu(0, 5, 2, 0);
+    majukanWFQ(&dq, &iq, wOffset, &nS);
+
+    majukanWDQ(&dq, &iq, wOffset, &nS);
+    majukanWIQ(&iq, wOffset, &nS);
 }
