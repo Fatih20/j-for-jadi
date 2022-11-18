@@ -72,7 +72,7 @@ void cetakListMakananKulkas(Kulkas k);
  * @param makanan ADT Makanan berisi makanan yang akan diisi
  * @return makanan akan masuk ke k jika ada ruang yang bisa ditempati
  */
-void tambahIsiKulkas(Kulkas *k, Makanan makanan);
+void tambahIsiKulkas(Kulkas *k, Makanan makanan, boolean *isKulkasBerubah);
 
 /**
  * @brief Mengeluarkan makanan dari kulkas
@@ -80,14 +80,14 @@ void tambahIsiKulkas(Kulkas *k, Makanan makanan);
  * @param makanan ADT Makanan berisi makanan yang akan dikeluarkan
  * @return makanan akan masuk dibuang dari k
  */
-void keluarkanIsiKulkas(Kulkas *k, Makanan *makanan);
+void keluarkanIsiKulkas(Kulkas *k, Makanan *makanan, boolean *isKulkasBerubah);
 
 /**
  * @brief Mengubah susunan isi kulkas
  * @param k ADT Kulkas
  * @return isi kulkas akan berubah susunannya sesuai perintah user
  */
-void ubahIsiKulkas(Kulkas *k);
+void ubahIsiKulkas(Kulkas *k, boolean *isKulkasBerubah);
 
 /**
  * @brief Mengecek apakah makanan bisa dimasukkan secara horizontal

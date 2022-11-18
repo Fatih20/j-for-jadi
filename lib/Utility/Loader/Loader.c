@@ -29,7 +29,7 @@ void loader(Matriks *peta, LStatMakanan *lSMakanan, ListNode *lNMakanan, POINT *
     teksKeString(alamatResep, alamatResepT);
 
     readMatriks(peta, alamatPeta, lokasiSimulator, MIX, BOIL, CHOP, FRY, TELEPON, KULKAS);
-    AksiLokasi aLArray[5] = {*MIX, *BOIL, *CHOP, *FRY, *TELEPON};
+    AksiLokasi aLArray[6] = {*MIX, *BOIL, *CHOP, *FRY, *TELEPON, *KULKAS};
     buatLStatMakanan(lSMakanan);
     readLStatMakanan(lSMakanan, alamatMakanan, aLArray);
     readListNode(lNMakanan, alamatResep, *lSMakanan);
