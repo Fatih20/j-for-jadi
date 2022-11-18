@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
     startMKFile("test.txt");
     while (!endMKF)
     {
-        cetakTeks(currentWord);
+        cetakTeks(currentWord, 'b');
         advMKFile();
     }
 

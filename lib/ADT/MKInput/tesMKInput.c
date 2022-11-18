@@ -10,7 +10,7 @@ int main(int argc, char const *argv[])
     startMKInput();
     while (!endMKI)
     {
-        cetakTeks(currentWord);
+        cetakTeks(currentWord, 'b');
         printf("\n");
         advMKInput();
     }
@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
     // printf("%d\n", endMKI);
     do
     {
-        cetakTeks(currentWord);
+        cetakTeks(currentWord, 'b');
         advMKInput();
 
     } while (!endMKI);

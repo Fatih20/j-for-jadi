@@ -299,7 +299,17 @@ int main(int argc, char const *argv[])
                 }
                 else if (teksSamaCI(command, fryT) || teksSamaCI(command, boilT) || teksSamaCI(command, mixT) || teksSamaCI(command, chopT))
                 {
-                    olahMakanan(command, &lResep, &currSimulator, &isChangeSimulator, &currentNS);
+
+                    if ((teksSamaCI(command, fryT) && !IsAdjacent(posisiSimulator(currSimulator), lokasiAL(FRY))) || (teksSamaCI(command, boilT) && !IsAdjacent(posisiSimulator(currSimulator), lokasiAL(BOIL))) || (teksSamaCI(command, chopT) && !IsAdjacent(posisiSimulator(currSimulator), lokasiAL(CHOP))) || (teksSamaCI(command, mixT) && !IsAdjacent(posisiSimulator(currSimulator), lokasiAL(MIX))))
+                    {
+                        printSRed("Gagal melakukan aksi ");
+                        cetakTeks(command, 'b');
+                        printSRed(" karena simulator tidak berada\npada lokasi yang adjacent pada lokasi aksi.\n");
+                    }
+                    else
+                    {
+                        olahMakanan(command, &lResep, &currSimulator, &isChangeSimulator, &currentNS);
+                    }
                     isUndoRedo = false;
                 }
                 else if (teksSamaCI(command, cookBT))

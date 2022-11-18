@@ -5,25 +5,6 @@
 
 void olahMakanan(Teks command, ListNode *daftarResep, Simulator *currSimulator, boolean *isChangeSimulator, NotifState *notifS)
 {
-    for (int i = 0; i < ListNodeNEff(*daftarResep); i++)
-    {
-        if (teksSamaCI(AksiTree(ListNodeELMT(*daftarResep, i)), command))
-        {
-            if (IsAdjacent(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))), posisiSimulator(*currSimulator)))
-            {
-                break;
-            }
-            else
-            {
-                printf("Pindah ke posisi yang berhadapan dengan ");
-                TulisPOINT(lokasiAL(AksiLokasiTree(ListNodeELMT(*daftarResep, i))));
-                printf(" untuk melakukan aksi ");
-                cetakTeks(toUpper(command), 'y');
-                printf("\n");
-                return;
-            }
-        }
-    }
     ListNode daftarMakananTemp;
     createListNode(&daftarMakananTemp, 0);
     printSCyan("============================================================\n");
