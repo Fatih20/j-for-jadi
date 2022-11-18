@@ -2,6 +2,7 @@
 #include "../Point/Point.h"
 #include "../MBFile/mBFile.h"
 #include "../AksiLokasi/aksiLokasi.h"
+#include "../../Utility/Printc/printc.h"
 
 #ifndef MATRIKS_H
 #define MATRIKS_H
