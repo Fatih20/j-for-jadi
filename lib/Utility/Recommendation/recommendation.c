@@ -231,12 +231,6 @@ int isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventor
     while (!recConclusive)
     {
         FoodSet diff = differenceFoodSet(observedResep, inventory);
-        if (idObserved == 80)
-        {
-            cetakFoodSet(observedResep);
-            cetakFoodSet(inventory);
-            cetakFoodSet(diff);
-        }
         LDinTeks idOfUFood = setToList(diff);
         printLDinTeks(idOfUFood);
         boolean noLeaves = true;
@@ -249,12 +243,6 @@ int isFoodRecommended(Tree observedFood, LDinFoodSet resepLDFS, FoodSet inventor
             noLeaves = idxResepToA != -1;
             if (!noLeaves)
             {
-                if (idObserved == 80)
-                {
-                    // printf("One of the food is leaves : ");
-                    // cetakTeks(curIdT, 'e');
-                    // printf("\n");
-                }
                 recConclusive = true;
                 isRec = 0;
             }
