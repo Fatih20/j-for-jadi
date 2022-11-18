@@ -18,8 +18,12 @@
 ## FEATURES
 | FEATURE/COMMANDS            | STATUS |
 |----------------------------|--------|
+| COMMAND PARSER             |<ul><li>- [x] </li><li>|
 | START                      |<ul><li>- [x] </li><li>|
 | EXIT                       |<ul><li>- [x] </li><li>|
+| SPLASH SCREEN              |<ul><li>- [x] </li><li>|
+| SIMULATOR                  |<ul><li>- [x] </li><li>|
+| PETA                       |<ul><li>- [x] </li><li>|
 | BUY                        |<ul><li>- [x] </li><li>|
 | MOVE                       |<ul><li>- [x] </li><li>|
 | WAIT                       |<ul><li>- [x] </li><li>|
