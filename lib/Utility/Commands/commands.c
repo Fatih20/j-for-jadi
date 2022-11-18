@@ -230,7 +230,7 @@ void buyFood(LStatMakanan lMakanan, Simulator *currSimulator, AksiLokasi telepon
 {
     if (!IsAdjacent(lokasiAL(telepon), posisiSimulator(*currSimulator)))
     {
-        printf("\nSimulaotr tidak berada pada area telepon!\n");
+        printf("\nSimulator tidak berada pada area telepon!\n");
         printf("Pindah ke lokasi yang berhadapan dengan ");
         TulisPOINT(lokasiAL(telepon));
         printf(" untuk melakukan aksi BUY");
