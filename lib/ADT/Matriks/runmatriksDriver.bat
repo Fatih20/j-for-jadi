@@ -1,1 +1,1 @@
-gcc matriksDriver.c matriks.c ../ListDinTeks/ldinteks.c ../ListDinKar/ldinkar.c ../Point/Point.c ../MBFile/mBFile.c ../MKFile/mKFile.c ../MCFile/mCFile.c ../Teks/teks.c ../AksiLokasi/aksiLokasi.c ../Waktu/waktu.c -o driverMatriks
+gcc matriksDriver.c matriks.c ../ListDinTeks/ldinteks.c ../ListDinKar/ldinkar.c ../Point/Point.c ../MBFile/mBFile.c ../MKFile/mKFile.c ../MCFile/mCFile.c ../Teks/teks.c ../AksiLokasi/aksiLokasi.c ../Waktu/waktu.c ../../Utility/Printc/printc.c -o driverMatriks

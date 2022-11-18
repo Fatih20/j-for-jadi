@@ -1,13 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "matriks.h"
 
 int main()
 {
-    AksiLokasi MIX, BOIL, TELEPON, FRY, CHOP;
+    AksiLokasi MIX, BOIL, TELEPON, FRY, CHOP, KULKAS;
     Matriks Peta, CopyPeta;
     POINT lokasiSimulator, dest, mix;
     char namaFile[] = "peta.txt";
-    readMatriks(&Peta, namaFile, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON);
+    readMatriks(&Peta, namaFile, &lokasiSimulator, &MIX, &BOIL, &CHOP, &FRY, &TELEPON, &KULKAS);
     displayMatriks(Peta);
     printf("isMatriksIdxValid\n");
     printf("%d\n", isMatriksIdxValid(10, 10));
