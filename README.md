@@ -14,6 +14,8 @@
 1. Open terminal and clone this repo ``git clone https://github.com/Fatih20/j-for-jadi.git``
 2. Compile the program. Windows: ``./crun.bat``, Linux: ``./crun.sh``
 3. Run the executable. Windows: ``./main.exe``, Linux: ``./main``
+4. Enter `start` to start the program
+5. Enter the directory of the config file to use. Usually it's in the `config` folder of this project. Example of the directory would be `config/tc1`.
 
 ## FEATURES
 | FEATURE/COMMANDS            | STATUS |
