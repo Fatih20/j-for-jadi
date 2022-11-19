@@ -55,6 +55,8 @@ void copySimulator(Simulator SIn, Simulator *SOut)
     deliverySimulator(*SOut) = deliverySalinan;
     CreatePoint(&posisiSalinan, Absis(posisiSimulator(SIn)), Ordinat(posisiSimulator(SIn)));
     posisiSimulator(*SOut) = posisiSalinan;
+    copyKulkas(kulkasSimulator(SIn), &kulkasSalinan);
+    kulkasSimulator(*SOut) = kulkasSalinan;
     HH = Hari(waktuSimulator(SIn));
     JJ = Jam(waktuSimulator(SIn));
     MM = Menit(waktuSimulator(SIn));

@@ -322,17 +322,10 @@ void ubahIsiKulkas(Kulkas *k, boolean *isKulkasBerubah)
     if (sisaKapasitas(*k) != PanjangKulkas * LebarKulkas)
     {
         cetakKulkas(*k);
-        while (pilihanIsiKulkas < 0 || pilihanIsiKulkas > idxMax)
-        {
-            printSGreen("Pilih nomor makanan yang ingin diubah posisinya:\n");
-            printSRed("(0 untuk membatalkan)\n");
-            printSGreen(":: ");
-            scanf("%d", &pilihanIsiKulkas);
-            if (pilihanIsiKulkas < 0 || pilihanIsiKulkas > idxMax)
-            {
-                printf("Tidak ada makanan dengan nomor %d.\n\n", pilihanIsiKulkas);
-            }
-        }
+
+        printSGreen("Pilih nomor makanan yang ingin diubah posisinya:\n");
+        printSRed("(0 untuk membatalkan)\n");
+        pilihanIsiKulkas = askForNumber(0, idxMax, ":: ");
         if (pilihanIsiKulkas)
         {
             int panjang = panjang(elmtLDM((*k).makananKulkas, pilihanIsiKulkas - 1));
@@ -362,8 +355,8 @@ void ubahIsiKulkas(Kulkas *k, boolean *isKulkasBerubah)
                 printSGreen("(input ");
                 printSRed("[0,0]");
                 printSGreen(" untuk membatalkan proses)\n");
-                printSRed("X Y: ");
-                scanf("%d %d", &pilihanX, &pilihanY);
+                pilihanX = askForNumber(0, PanjangKulkas, "X : ");
+                pilihanY = askForNumber(0, LebarKulkas, "Y : ");
                 printf("\n");
 
                 pilihanX--;
@@ -491,16 +484,7 @@ void cekHorizontalVertical(boolean *horizontal, boolean *vertikal, Kulkas k, int
         printSRed("Horizontal\n");
         printSGreen("(2) ");
         printSRed("Vertikal\n");
-        int opsi = 0;
-        while (opsi != 1 && opsi != 2)
-        {
-            printSGreen("Pilihan: ");
-            scanf("%d", &opsi);
-            if (opsi != 1 && opsi != 2)
-            {
-                printSGreen("Masukan salah! Silahkan ulangi.\n");
-            }
-        }
+        int opsi = askForNumber(1, 2, "Pilihan: ");
         if (opsi == 1)
         {
             (*vertikal) = false;
@@ -548,4 +532,30 @@ void copyIsiKulkas(IsiKulkas *baru, IsiKulkas *lama)
             aksesIsiKulkas(*baru, i, j) = aksesIsiKulkas(*lama, i, j);
         }
     }
+}
+
+void copyKulkas(Kulkas KIn, Kulkas *KOut)
+{
+
+    // KAMUS
+    int i, j;
+
+    // ALGORITMA
+
+    // copy matriks dengan nilai KIN
+    for (i = 0; i < LebarKulkas; i++)
+    {
+        for (j = 0; j < PanjangKulkas; j++)
+        {
+            isiKulkas(*KOut, i, j) = isiKulkas(KIn, i, j);
+        }
+    }
+
+    // copu free space
+    sisaKapasitas(*KOut) = sisaKapasitas(KIn);
+
+    // copy listdin makanan
+    copyLDinMakanan(makananKulkas(KIn), &makananKulkas(*KOut));
+
+    aksiLokasiKulkas(*KOut) = aksiLokasiKulkas(KIn);
 }

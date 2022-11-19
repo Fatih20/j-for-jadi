@@ -148,4 +148,11 @@ void isiHorizontal(Kulkas *k, int idx, int pilihanX, int pilihanY, int panjang, 
  */
 void copyIsiKulkas(IsiKulkas *baru, IsiKulkas *lama);
 
+/**
+ * @brief Membuat salinan ADT KULKAS
+ * @param KIn Kulkas yang akan dicopy
+ * @param KOut Output
+ */
+void copyKulkas(Kulkas KIn, Kulkas *KOut);
+
 #endif
