@@ -1,4 +1,4 @@
-6
+7
 11 
 Ayam Mentah 
 1 0 0 
@@ -41,3 +41,10 @@ Ayam Goreng
 FRY
 0 0 8
 90 9
+42
+Ayam Rebus
+0 1 30
+0 0 0
+BOIL
+0 0 5
+13 4
