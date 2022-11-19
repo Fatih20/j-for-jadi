@@ -585,6 +585,10 @@ void openKulkas(Simulator *currSimulator, boolean *isChangeSimulator, NotifState
             {
                 ubahIsiKulkas(&kulkasSimulator(*currSimulator), &isKulkasBerubah);
                 printf("\n");
+                if (isKulkasBerubah)
+                {
+                    insertLastLDinNotifRaw(&backNS(*notifS), 'z', namaMakanan(operasiMakananKulkas));
+                }
             }
             if (isKulkasBerubah)
             {
